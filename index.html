@@ -10,28 +10,16 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, sans-serif;
-            background: #FFFBEF;
-            color: #1E1E2A;
+            background: #f9f6f0;
+            color: #222;
         }
         .eid {
-            background: linear-gradient(90deg, #8a1c1c, #1a365d, #8a1c1c);
+            background: linear-gradient(90deg, #7A1C1C, #1A365D);
             color: white;
             text-align: center;
             padding: 10px;
+            font-size: 13px;
             font-weight: bold;
-            font-size: 12px;
-            border-bottom: 2px solid #D4AF37;
-            white-space: nowrap;
-            overflow: hidden;
-        }
-        .eid span {
-            display: inline-block;
-            padding-left: 100%;
-            animation: move 25s linear infinite;
-        }
-        @keyframes move {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-100%); }
         }
         header {
             background: linear-gradient(135deg, #7A1C1C, #1A365D);
@@ -39,10 +27,8 @@
             text-align: center;
             padding: 30px 15px;
         }
-        header h1 { font-size: 24px; }
+        header h1 { font-size: 26px; }
         header .sub { font-size: 14px; opacity: 0.9; margin: 5px 0; }
-        header .addr { font-size: 12px; opacity: 0.7; }
-
         .tabs {
             display: flex;
             justify-content: center;
@@ -51,81 +37,72 @@
             top: 0;
             z-index: 99;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            overflow-x: auto;
         }
         .tab {
-            padding: 14px 18px;
+            padding: 14px 20px;
             cursor: pointer;
             font-weight: bold;
-            font-size: 12px;
+            font-size: 13px;
             border: none;
             background: none;
             color: #666;
             border-bottom: 3px solid transparent;
-            white-space: nowrap;
         }
         .tab.active { border-bottom-color: #7A1C1C; color: #7A1C1C; }
-
         .container { max-width: 1100px; margin: 25px auto; padding: 0 15px; }
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
-
         .card {
             background: white;
             border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
             border: 1px solid #eee;
-            transition: 0.3s;
         }
-        .card:hover { transform: translateY(-4px); }
-        .card img {
+        .card .img-wrap {
             width: 100%;
             height: 190px;
-            object-fit: cover;
             background: #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 14px;
+            overflow: hidden;
+        }
+        .card .img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         .card-body { padding: 14px; }
-        .card-body h3 { font-size: 15px; margin-bottom: 2px; }
+        .card-body h3 { font-size: 15px; margin-bottom: 4px; }
         .card-body .desc { font-size: 12px; color: #666; margin-bottom: 8px; }
         .meta { display: flex; justify-content: space-between; margin-bottom: 12px; }
         .price { color: #7A1C1C; font-weight: bold; font-size: 15px; }
         .qty { background: #e2e8f0; font-size: 11px; padding: 2px 10px; border-radius: 20px; font-weight: bold; }
         .wa-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
+            display: block;
+            text-align: center;
             background: #25D366;
             color: white;
             text-decoration: none;
             padding: 10px;
             border-radius: 8px;
             font-weight: bold;
-            font-size: 12px;
+            font-size: 13px;
         }
-        .wa-btn svg { width: 16px; height: 16px; fill: white; }
-
         footer { text-align: center; padding: 30px; }
-        .admin-btn {
-            background: none;
-            border: none;
-            color: #aaa;
-            cursor: pointer;
-            font-size: 11px;
-            text-decoration: underline;
-        }
-
+        .admin-btn { background: none; border: none; color: #aaa; cursor: pointer; font-size: 11px; text-decoration: underline; }
         .admin-panel {
             display: none;
-            max-width: 580px;
+            max-width: 550px;
             margin: 20px auto;
             padding: 22px;
             background: white;
             border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
             border: 2px solid #1A365D;
         }
-        .admin-panel h2 { text-align: center; color: #1A365D; margin-bottom: 15px; }
+        .admin-panel h2 { text-align: center; color: #1A365D; }
         .admin-panel label { display: block; font-weight: bold; margin-top: 12px; font-size: 12px; }
         .admin-panel input, .admin-panel select, .admin-panel textarea {
             width: 100%;
@@ -133,18 +110,9 @@
             margin-top: 4px;
             border: 1px solid #ccc;
             border-radius: 6px;
-            font-family: inherit;
         }
-        .admin-panel .img-preview {
-            display: none;
-            width: 100%;
-            max-height: 140px;
-            object-fit: cover;
-            border-radius: 6px;
-            margin-top: 6px;
-            border: 1px dashed #ccc;
-        }
-        .admin-panel .submit-btn {
+        .img-preview { display: none; width: 100%; max-height: 140px; object-fit: cover; border-radius: 6px; margin-top: 6px; border: 1px dashed #ccc; }
+        .submit-btn {
             width: 100%;
             padding: 11px;
             background: #1A365D;
@@ -161,31 +129,30 @@
         .admin-item .info { font-size: 12px; flex: 1; }
         .edit-btn { background: #FFA500; color: white; border: none; padding: 4px 10px; border-radius: 4px; cursor: pointer; font-size: 10px; font-weight: bold; }
         .del-btn { background: #D9534F; color: white; border: none; padding: 4px 10px; border-radius: 4px; cursor: pointer; font-size: 10px; font-weight: bold; }
-
         .empty { text-align: center; padding: 40px; color: #666; width: 100%; }
     </style>
 </head>
 <body>
 
-    <div class="eid"><span>✨ مركز الأمجاد يهنئكم بحلول العيد السعيد.. كل عام وأنتم بخير ✨ | أهلاً ومرحباً بكم 💖</span></div>
+    <div class="eid">✨ مركز الأمجاد يهنئكم بحلول العيد السعيد ✨</div>
 
     <header>
         <h1>مركز الأمجاد</h1>
-        <div class="sub">للطباعة ومستلزمات الأفراح والمناسبات</div>
-        <div class="addr">📍 شرعب الرونة — المعشار — مقابل معرض الإخوة</div>
+        <div class="sub">للطباعة ومستلزمات الأفراح</div>
+        <div style="font-size:12px;opacity:0.7;">📍 شرعب الرونة — مقابل معرض الإخوة</div>
     </header>
 
     <div class="tabs">
-        <button class="tab active" onclick="go('wedding',this)">🎊 الأفراح</button>
-        <button class="tab" onclick="go('print',this)">🖨️ الطباعة</button>
-        <button class="tab" onclick="go('office',this)">📋 مكتبية</button>
+        <button class="tab active" onclick="filter('wedding',this)">🎊 الأفراح</button>
+        <button class="tab" onclick="filter('print',this)">🖨️ الطباعة</button>
+        <button class="tab" onclick="filter('office',this)">📋 مكتبية</button>
     </div>
 
     <div class="container">
         <div id="grid" class="grid"></div>
     </div>
 
-    <div id="adminPanel" class="admin-panel">
+    <div id="admin" class="admin-panel">
         <h2>🔐 لوحة الإدارة</h2>
         <form id="form">
             <input type="hidden" id="pid">
@@ -199,16 +166,16 @@
             </select>
             <label>السعر:</label>
             <input type="text" id="price" required>
-            <label>التوفر:</label>
+            <label>الحالة:</label>
             <input type="text" id="qty" required>
             <label>الوصف:</label>
             <textarea id="desc" rows="2"></textarea>
             <label>رابط الصورة:</label>
-            <input type="url" id="imgUrl" oninput="prevImg()">
-            <img id="imgPrev" class="img-preview" alt="">
-            <button type="submit" id="sBtn" class="submit-btn">➕ نشر</button>
+            <input type="url" id="img" oninput="previewImg()">
+            <img id="prev" class="img-preview">
+            <button type="submit" id="sbtn" class="submit-btn">➕ نشر</button>
         </form>
-        <div class="admin-list"><h3>📋 المنتجات</h3><div id="adminList"></div></div>
+        <div class="admin-list"><h3>المنتجات</h3><div id="list"></div></div>
     </div>
 
     <footer>
@@ -216,101 +183,136 @@
     </footer>
 
     <script>
-        firebase.initializeApp({databaseURL:"https://al-amjad-center-default-rtdb.firebaseio.com/"});
-        const db=firebase.database(), ref=db.ref('products');
-        const PASS="77W7@";
-        let cat='wedding';
+        // تهيئة Firebase
+        firebase.initializeApp({ databaseURL: "https://al-amjad-center-default-rtdb.firebaseio.com/" });
+        const db = firebase.database();
+        const prods = db.ref('products');
+        const PASS = "77W7@";
+        let cur = 'wedding';
 
-        function safe(t){if(!t)return'';const d=document.createElement('div');d.textContent=t;return d.innerHTML;}
-
-        function prevImg(){
-            const u=document.getElementById('imgUrl').value.trim(), p=document.getElementById('imgPrev');
-            if(u){p.src=u;p.style.display='block';p.onerror=()=>p.style.display='none';}
-            else p.style.display='none';
+        // دالة أمان بسيطة
+        function esc(s) {
+            if (!s) return '';
+            var d = document.createElement('div');
+            d.textContent = s;
+            return d.innerHTML;
         }
 
-        function openAdmin(){
-            const p=document.getElementById('adminPanel');
-            if(p.style.display==='block'){p.style.display='none';return;}
-            const a=prompt('كلمة السر:');
-            if(a===PASS){p.style.display='block';setTimeout(()=>p.scrollIntoView({behavior:'smooth'}),100);}
-            else if(a!==null)alert('❌ خطأ');
+        // معاينة الصورة
+        function previewImg() {
+            var u = document.getElementById('img').value.trim();
+            var p = document.getElementById('prev');
+            if (u) { p.src = u; p.style.display = 'block'; p.onerror = function() { p.style.display = 'none'; }; }
+            else p.style.display = 'none';
         }
 
-        function load(){
-            ref.on('value',snap=>{
-                const g=document.getElementById('grid');g.innerHTML='';
-                const d=snap.val();let f=false;
-                for(let i in d){
-                    const p=d[i];if(p.category!==cat)continue;f=true;
-                    const t=safe(p.title),pr=safe(p.price),q=safe(p.qty||'متوفر'),de=safe(p.desc||'');
-                    const img=p.image&&p.image.startsWith('http')?p.image:'';
-                    const msg=encodeURIComponent(`السلام عليكم، أريد الاستفسار عن: ${t} - ${pr}`);
-                    const wa=`https://wa.me/${p.phone||'96773269355'}?text=${msg}`;
-                    let im='';
-                    if(img) im=`<img src="${img}" alt="${t}" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22190%22 fill=%22%23e9ecef%22%3E%3Crect width=%22300%22 height=%22190%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23999%22 font-size=%2214%22%3E❌%3C/text%3E%3C/svg%3E';">`;
-                    else im=`<div style="height:190px;display:flex;align-items:center;justify-content:center;background:#e9ecef;color:#999;">🖼️ لا توجد صورة</div>`;
-                    g.innerHTML+=`<div class="card">${im}<div class="card-body"><h3>${t}</h3>${de?`<div class="desc">${de}</div>`:''}<div class="meta"><span class="price">${pr}</span><span class="qty">${q}</span></div><a href="${wa}" class="wa-btn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.5-5.754-1.446L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.963C16.528 2.028 14.061.966 11.454.966c-5.443 0-9.874 4.375-9.878 9.802-.001 1.748.463 3.454 1.343 4.967l-.983 3.595 3.711-.966zm12.108-6.11c-.328-.164-1.94-.954-2.242-1.063-.301-.109-.522-.164-.742.164-.219.328-.85 1.063-1.041 1.281-.192.219-.384.246-.712.082-1.399-.699-2.309-1.222-3.114-2.602-.212-.365.212-.34.607-1.127.066-.137.033-.257-.016-.355-.05-.099-.443-1.063-.607-1.457-.159-.384-.334-.333-.459-.34l-.394-.008c-.137 0-.361.051-.548.257-.188.206-.717.7-.717 1.709 0 1.009.734 1.984.836 2.121.102.137 1.444 2.201 3.495 3.086.488.21.87.336 1.167.431.49.155.936.133 1.288.08.393-.058 1.94-.793 2.214-1.523.274-.73.274-1.355.192-1.485-.082-.131-.274-.164-.602-.328z"/></svg> واتساب</a></div></div>`;
+        // فتح لوحة الإدارة
+        function openAdmin() {
+            var p = document.getElementById('admin');
+            if (p.style.display === 'block') { p.style.display = 'none'; return; }
+            var a = prompt('كلمة السر:');
+            if (a === PASS) { p.style.display = 'block'; setTimeout(function() { p.scrollIntoView({ behavior: 'smooth' }); }, 100); }
+            else if (a !== null) alert('❌ خطأ');
+        }
+
+        // تحميل المنتجات
+        function load() {
+            prods.on('value', function(snapshot) {
+                var g = document.getElementById('grid');
+                g.innerHTML = '';
+                var data = snapshot.val();
+                var found = false;
+                if (!data) { g.innerHTML = '<div class="empty"><p>📭 لا توجد منتجات</p></div>'; return; }
+                for (var id in data) {
+                    var p = data[id];
+                    if (p.category !== cur) continue;
+                    found = true;
+                    var t = esc(p.title);
+                    var pr = esc(p.price);
+                    var q = esc(p.qty || 'متوفر');
+                    var d = esc(p.desc || '');
+                    var img = p.image && p.image.startsWith('http') ? p.image : '';
+                    var msg = encodeURIComponent('السلام عليكم مركز الأمجاد، أريد الاستفسار عن: ' + t + ' - السعر: ' + pr);
+                    var wa = 'https://wa.me/' + (p.phone || '96773269355') + '?text=' + msg;
+                    var imgHtml = '';
+                    if (img) {
+                        imgHtml = '<div class="img-wrap"><img src="' + img + '" alt="' + t + '" loading="lazy" onerror="this.parentElement.innerHTML=\'🖼️ لا توجد صورة\'"></div>';
+                    } else {
+                        imgHtml = '<div class="img-wrap">🖼️ لا توجد صورة</div>';
+                    }
+                    var descHtml = d ? '<div class="desc">' + d + '</div>' : '';
+                    g.innerHTML += '<div class="card">' + imgHtml + '<div class="card-body"><h3>' + t + '</h3>' + descHtml + '<div class="meta"><span class="price">' + pr + '</span><span class="qty">' + q + '</span></div><a href="' + wa + '" class="wa-btn" target="_blank" rel="noopener">💬 واتساب</a></div></div>';
                 }
-                if(!f)g.innerHTML='<div class="empty"><p>📭 لا توجد منتجات</p></div>';
+                if (!found) g.innerHTML = '<div class="empty"><p>📭 لا توجد منتجات في هذا القسم</p></div>';
             });
         }
 
-        document.getElementById('form').addEventListener('submit',function(e){
+        // حفظ المنتج
+        document.getElementById('form').addEventListener('submit', function(e) {
             e.preventDefault();
-            const btn=document.getElementById('sBtn');btn.disabled=true;btn.innerText='⏳...';
-            const id=document.getElementById('pid').value;
-            const d={
-                title:safe(document.getElementById('title').value),
-                category:document.getElementById('cat').value,
-                price:safe(document.getElementById('price').value),
-                qty:safe(document.getElementById('qty').value),
-                desc:safe(document.getElementById('desc').value),
-                image:document.getElementById('imgUrl').value.trim().startsWith('http')?document.getElementById('imgUrl').value.trim():'',
-                phone:'96773269355'
+            var btn = document.getElementById('sbtn');
+            btn.disabled = true;
+            btn.innerText = '⏳...';
+            var id = document.getElementById('pid').value;
+            var data = {
+                title: esc(document.getElementById('title').value),
+                category: document.getElementById('cat').value,
+                price: esc(document.getElementById('price').value),
+                qty: esc(document.getElementById('qty').value),
+                desc: esc(document.getElementById('desc').value),
+                image: document.getElementById('img').value.trim().startsWith('http') ? document.getElementById('img').value.trim() : '',
+                phone: '96773269355'
             };
-            (id?ref.child(id).set(d):ref.push().set(d)).then(()=>{
-                alert(id?'✅ تم التعديل':'✅ تم النشر');
-                document.getElementById('form').reset();document.getElementById('pid').value='';
-                document.getElementById('imgPrev').style.display='none';btn.innerText='➕ نشر';
-            }).catch(e=>alert('❌ '+e.message)).finally(()=>btn.disabled=false);
+            var save = id ? prods.child(id).set(data) : prods.push().set(data);
+            save.then(function() {
+                alert(id ? '✅ تم التعديل' : '✅ تم النشر');
+                document.getElementById('form').reset();
+                document.getElementById('pid').value = '';
+                document.getElementById('prev').style.display = 'none';
+                btn.innerText = '➕ نشر';
+            }).catch(function(err) { alert('❌ ' + err.message); }).finally(function() { btn.disabled = false; });
         });
 
-        ref.on('value',snap=>{
-            const l=document.getElementById('adminList');l.innerHTML='';
-            const d=snap.val();if(!d){l.innerHTML='<p style="color:#aaa;font-size:12px;">لا توجد منتجات</p>';return;}
-            for(let i in d){
-                const p=d[i];
-                const lb={'wedding':'🎊','print':'🖨️','office':'📋'}[p.category]||'';
-                l.innerHTML+=`<div class="admin-item"><div class="info"><strong>${safe(p.title)}</strong> ${p.price} ${lb}</div><div><button class="edit-btn" onclick="edit('${i}')">✏️</button> <button class="del-btn" onclick="del('${i}')">🗑️</button></div></div>`;
+        // قائمة الإدارة
+        prods.on('value', function(snapshot) {
+            var l = document.getElementById('list');
+            l.innerHTML = '';
+            var data = snapshot.val();
+            if (!data) { l.innerHTML = '<p style="color:#aaa;font-size:12px;">لا توجد منتجات</p>'; return; }
+            for (var id in data) {
+                var p = data[id];
+                var lb = { 'wedding': '🎊', 'print': '🖨️', 'office': '📋' }[p.category] || '';
+                l.innerHTML += '<div class="admin-item"><div class="info"><strong>' + esc(p.title) + '</strong> ' + esc(p.price) + ' ' + lb + '</div><div><button class="edit-btn" onclick="edit(\'' + id + '\')">✏️</button> <button class="del-btn" onclick="del(\'' + id + '\')">🗑️</button></div></div>';
             }
         });
 
-        function del(id){if(confirm('حذف؟'))ref.child(id).remove();}
+        function del(id) { if (confirm('حذف هذا المنتج؟')) prods.child(id).remove(); }
 
-        function edit(id){
-            ref.child(id).once('value',snap=>{
-                const p=snap.val();if(!p)return;
-                document.getElementById('pid').value=id;
-                document.getElementById('title').value=p.title||'';
-                document.getElementById('cat').value=p.category||'wedding';
-                document.getElementById('price').value=p.price||'';
-                document.getElementById('qty').value=p.qty||'';
-                document.getElementById('desc').value=p.desc||'';
-                const iu=document.getElementById('imgUrl'),ip=document.getElementById('imgPrev');
-                if(p.image){iu.value=p.image;ip.src=p.image;ip.style.display='block';}
-                else{iu.value='';ip.style.display='none';}
-                document.getElementById('sBtn').innerText='✏️ تحديث';
-                document.getElementById('adminPanel').scrollIntoView({behavior:'smooth'});
+        function edit(id) {
+            prods.child(id).once('value', function(snapshot) {
+                var p = snapshot.val();
+                if (!p) return;
+                document.getElementById('pid').value = id;
+                document.getElementById('title').value = p.title || '';
+                document.getElementById('cat').value = p.category || 'wedding';
+                document.getElementById('price').value = p.price || '';
+                document.getElementById('qty').value = p.qty || '';
+                document.getElementById('desc').value = p.desc || '';
+                var iu = document.getElementById('img');
+                var ip = document.getElementById('prev');
+                if (p.image) { iu.value = p.image; ip.src = p.image; ip.style.display = 'block'; } else { iu.value = ''; ip.style.display = 'none'; }
+                document.getElementById('sbtn').innerText = '✏️ تحديث';
+                document.getElementById('admin').scrollIntoView({ behavior: 'smooth' });
             });
         }
 
-        function go(c,el){
-            cat=c;
-            document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+        function filter(c, el) {
+            cur = c;
+            document.querySelectorAll('.tab').forEach(function(b) { b.classList.remove('active'); });
             el.classList.add('active');
             load();
         }
+
         load();
     </script>
 </body>
