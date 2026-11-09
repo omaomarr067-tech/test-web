@@ -115,8 +115,8 @@
     </header>
 
     <div class="tabs-container">
-        <button class="tab-btn active" onclick="filterCategory('wedding', this)">قسم مستلزمات الأفراح</button>
-        <button class="tab-btn" onclick="filterCategory('print', this)">قسم خدمات الطباعة الرقمية</button>
+        <button class="tab-btn active" onclick="filterCategory('wedding')">قسم مستلزمات الأفراح</button>
+        <button class="tab-btn" onclick="filterCategory('print')">قسم خدمات الطباعة الرقمية</button>
     </div>
 
     <div class="container">
@@ -221,8 +221,7 @@
                             <div class="product-card">
                                 <img src="${p.image || 'https://via.placeholder.com/300x200?text=No+Image'}" class="product-img" alt="${p.title}">
                                 <div class="product-info">
-                                    <div>
-                                        <div class="product-title">${p.title}</div>
+                                    <div>                                        <div class="product-title">${p.title}</div>
                                         <div class="product-desc">${p.desc || ''}</div>
                                     </div>
                                     <div>
@@ -257,7 +256,7 @@
                 price: document.getElementById('price').value,
                 qty: document.getElementById('qty').value,
                 desc: document.getElementById('desc').value,
-                image: document.getElementById('imageUrl').value,
+                image: document.getElementById('imageUrl').value, // حفظ رابط الصورة المباشر هنا
                 phone: document.getElementById('phone').value
             };
 
@@ -325,10 +324,10 @@
             submitBtn.style.background = "var(--primary-print)";
         }
 
-        function filterCategory(cat, element) {
+        function filterCategory(cat) {
             currentCategory = cat;
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            if(element) element.classList.add('active');
+            event.target.classList.add('active');
             loadProducts();                                          
         }
         window.onload = loadProducts;
