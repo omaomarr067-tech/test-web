@@ -368,7 +368,7 @@ footer .sub{font-size:.78rem;color:#6d7ba0;margin-top:6px}
   <div class="header-line"></div>
   <div class="address">شرعب الرونة — المعشار — مقابل معرض الإخوة</div>
   <div class="socials">
-    <a class="btn-tiktok" href="https://www.tiktok.com/@الحساب" target="_blank" rel="noopener">🎵 تيك توك</a>
+    <a class="btn-tiktok" href="https://www.tiktok.com/@YOUR_TIKTOK" target="_blank" rel="noopener">🎵 تيك توك</a>
     <a class="btn-wa" id="waMain" href="#" target="_blank" rel="noopener">💬 واتساب مباشر</a>
   </div>
 </header>
@@ -480,15 +480,15 @@ const firebaseConfig = {
   messagingSenderId: "000000000000",
   appId: "ضع_appId_هنا"
 };
-const WHATSAPP_NUMBER = "9665XXXXXXXX";
+const WHATSAPP_NUMBER = "96773269355";
 
 /* 🔐 رمز المدير السري */
 const ADMIN_CODE = "77W7@";
 
 const SESSION_KEY  = 'amjadAdminSession';
 const LOCK_KEY     = 'amjadLockUntil';
-const MAX_ATTEMPTS = 5;    /* عدد المحاولات قبل القفل */
-const LOCK_MINUTES = 5;    /* مدة القفل بالدقائق */
+const MAX_ATTEMPTS = 5;
+const LOCK_MINUTES = 5;
 
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
@@ -496,11 +496,11 @@ const db = firebase.firestore();
 let products = [];
 let currentTab = "wedding";
 let editingId = null;
-let pendingImage = null;      /* الصورة الجاهزة للحفظ (Base64) */
-let imageRemoved = false;     /* هل حُذفت الصورة عمداً أثناء التعديل */
+let pendingImage = null;
+let imageRemoved = false;
 let attempts = 0;
 
-/* ═══ صورة بديلة مدمجة بالكود — مستحيل تموت أو تختفي ═══ */
+/* ═══ صورة بديلة مدمجة بالكود ═══ */
 const PLACEHOLDER = 'data:image/svg+xml;utf8,' + encodeURIComponent(
   '<svg xmlns="http://www.w3.org/2000/svg" width="500" height="380">'+
   '<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">'+
@@ -545,10 +545,9 @@ db.collection("products").orderBy("createdAt","desc").onSnapshot(snap=>{
   document.getElementById("productsGrid").innerHTML =
     `<div class="empty-msg">⚠️ تعذر الاتصال بقاعدة البيانات<br>
     <small style="font-size:.8rem;color:#c0392b">${esc(err.code||err.message||'')}</small><br>
-    <small style="font-size:.78rem;color:#999">تأكد من إعدادات Firebase وإنشاء Firestore بوضع Test mode</small></div>`;
+    <small style="font-size:.78rem;color:#999">تأكد من إعدادات Firebase وتفعيل Firestore</small></div>`;
 });
 
-/* مصدر الصورة: المرفوعة (محفوظة دائم) ثم الرابط ثم البديل المدمج */
 function imgSrc(p){
   return p.imgData || p.img || PLACEHOLDER;
 }
@@ -590,7 +589,7 @@ function renderProducts(){
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 
 /* ═══════════════════════════════════════════
-   🔐 نظام الأمان: رمز مباشر + محاولات + قفل + جلسة دائمة
+   🔐 نظام الأمان
 ═══════════════════════════════════════════ */
 const pinModal  = document.getElementById('pinModal');
 const pinInput  = document.getElementById('pinInput');
@@ -598,7 +597,6 @@ const pinDots   = [...document.querySelectorAll('#pinDots span')];
 const pinErrEl  = document.getElementById('pinErr');
 const pinOkBtn  = document.getElementById('pinOkBtn');
 
-/* فتح اللوحة تلقائياً إذا الجلسة محفوظة (بدون رمز) */
 window.addEventListener('load',()=>{
   if(localStorage.getItem(SESSION_KEY)==='1'){
     document.getElementById('adminPanel').classList.add('show');
@@ -614,7 +612,6 @@ document.getElementById('secretLock').addEventListener('click',()=>{
   openPinModal();
 });
 
-/* مدخل سري ثاني: نقرتان سريعتان على تاج الشعار */
 let clickTimer=null, clickCount=0;
 document.getElementById('logoBadge').addEventListener('click',()=>{
   if(localStorage.getItem(SESSION_KEY)==='1'){
@@ -656,246 +653,201 @@ function checkPin(){
   const lockUntil = parseInt(localStorage.getItem(LOCK_KEY)||'0');
   if(Date.now() < lockUntil){
     const mins = Math.ceil((lockUntil-Date.now())/60000);
-    pinErrEl.textContent = `⏳ القفل مؤقت — انتظر ${mins} دقيقة ثم أعد المحاولة`;
+    pinErrEl.textContent = `⏳ القفل مؤقت — انتظر ${mins} دقيقة`;
     return;
   }
 
   if(pinInput.value === ADMIN_CODE){
+    localStorage.setItem(SESSION_KEY,'1');
     attempts = 0;
-    localStorage.removeItem(LOCK_KEY);
     closePin();
-    localStorage.setItem(SESSION_KEY,'1');   /* جلسة دائمة على جهازك فقط */
     document.getElementById('adminPanel').classList.add('show');
-    toast('أهلاً بك أيها المدير 👑','success');
-  }else{
+    toast('تم تفعيل جلسة المدير بنجاح 👑','success');
+  } else {
     attempts++;
+    pinErrEl.textContent = `رمز خاطئ! (${attempts}/${MAX_ATTEMPTS})`;
     document.getElementById('pinModalBox').classList.add('shake');
-    setTimeout(()=>document.getElementById('pinModalBox').classList.remove('shake'),450);
+    setTimeout(()=>document.getElementById('pinModalBox').classList.remove('shake'),400);
+    
     if(attempts >= MAX_ATTEMPTS){
-      localStorage.setItem(LOCK_KEY, String(Date.now() + LOCK_MINUTES*60000));
-      attempts = 0;
-      pinErrEl.textContent = `🔒 ${MAX_ATTEMPTS} محاولات خاطئة — القفل ${LOCK_MINUTES} دقائق`;
+      const until = Date.now() + LOCK_MINUTES * 60 * 1000;
+      localStorage.setItem(LOCK_KEY, until.toString());
+      pinErrEl.textContent = `⏳ تجاوزت المحاولات — تم القفل لمدة ${LOCK_MINUTES} دقائق`;
       pinInput.disabled = true; pinOkBtn.disabled = true;
-    }else{
-      pinErrEl.textContent = `❌ الرمز غير صحيح (محاولة ${attempts} من ${MAX_ATTEMPTS})`;
     }
-    pinInput.value=''; updateDots();
   }
 }
-
-function closeAdmin(){
-  document.getElementById('adminPanel').classList.remove('show');
-  resetForm();
-}
-function adminLogout(){
-  if(confirm('تسجيل الخروج؟ سيسألك الموقع عن الرمز السري في المرة القادمة.')){
-    localStorage.removeItem(SESSION_KEY);
-    closeAdmin();
-    toast('تم تسجيل الخروج 🔒','success');
-  }
-}
-pinModal.addEventListener('click',e=>{if(e.target===pinModal)closePin()});
-document.getElementById('adminPanel').addEventListener('click',e=>{
-  if(e.target.id==='adminPanel')closeAdmin();
-});
-document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'){closePin();closeAdmin()}
-});
 
 /* ═══════════════════════════════════════════
-   🖼️ رفع الصور: ضغط تكيفي ذكي + تخزين دائم
-   يجرّب مقاسات وجودات متدرجة حتى يبقى الحجم
-   تحت 500KB (حد Firestore الآمن 1MB)
+   ⚙️ لوحة التحكم وإدارة المنتجات
 ═══════════════════════════════════════════ */
-const fileInput  = document.getElementById('pFile');
-const uploadZone = document.getElementById('uploadZone');
-
-fileInput.addEventListener('change',e=>{
-  if(e.target.files[0]) handleImageFile(e.target.files[0]);
-});
-['dragover','dragenter'].forEach(ev=>uploadZone.addEventListener(ev,e=>{
-  e.preventDefault(); uploadZone.classList.add('drag');
-}));
-['dragleave','drop'].forEach(ev=>uploadZone.addEventListener(ev,e=>{
-  e.preventDefault(); uploadZone.classList.remove('drag');
-}));
-uploadZone.addEventListener('drop',e=>{
-  if(e.dataTransfer.files[0]) handleImageFile(e.dataTransfer.files[0]);
-});
-
-function handleImageFile(file){
-  if(!file.type.startsWith('image/')){toast('❌ الملف المختار ليس صورة','error');return}
-  toast('⏳ جاري ضغط الصورة بالذكاء...');
+document.getElementById('pFile').addEventListener('change', function(e){
+  const file = e.target.files[0];
+  if(!file) return;
   const reader = new FileReader();
-  reader.onload = e=>{
+  reader.onload = function(evt){
     const img = new Image();
-    img.onload = ()=>{
-      const sizes     = [900, 700, 550, 420];
-      const qualities = [0.8, 0.72, 0.65, 0.55];
-      let best = null;
-
-      for(let s=0; s<sizes.length; s++){
-        const MAX = sizes[s];
-        let w = img.width, h = img.height;
-        if(w>MAX || h>MAX){
-          const ratio = Math.min(MAX/w, MAX/h);
-          w = Math.round(w*ratio); h = Math.round(h*ratio);
-        }
-        const canvas = document.createElement('canvas');
-        canvas.width=w; canvas.height=h;
-        const ctx = canvas.getContext('2d');
-        ctx.fillStyle='#fff'; ctx.fillRect(0,0,w,h);
-        ctx.drawImage(img,0,0,w,h);
-
-        const data = canvas.toDataURL('image/jpeg', qualities[s]);
-        const sizeKB = Math.round(data.length*0.75/1024);
-        if(sizeKB <= 500){ best = data; break; }
-        best = data; /* نحتفظ بأصغر نسخة حتى الآن ونكمل التصغير */
+    img.onload = function(){
+      const canvas = document.createElement('canvas');
+      let w = img.width, h = img.height;
+      const max = 800;
+      if(w > max || h > max){
+        if(w > h){ h = Math.round(h * max / w); w = max; }
+        else { w = Math.round(w * max / h); h = max; }
       }
-      pendingImage = best;
+      canvas.width = w; canvas.height = h;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, w, h);
+      pendingImage = canvas.toDataURL('image/jpeg', 0.82);
       imageRemoved = false;
-      showPreview(best);
-      const kb = Math.round(best.length*0.75/1024);
-      toast(`✅ الصورة جاهزة (${kb} كيلوبايت) — ستُحفظ دائم`,'success');
+      showPreview(pendingImage);
     };
-    img.onerror = ()=>toast('❌ تعذر قراءة الصورة — جرّب صورة أخرى','error');
-    img.src = e.target.result;
+    img.src = evt.target.result;
   };
   reader.readAsDataURL(file);
-}
+});
+
 function showPreview(src){
   document.getElementById('imgPreview').src = src;
   document.getElementById('imgPreviewWrap').classList.add('show');
 }
-function removeImage(){
-  if(editingId){ imageRemoved = true; }  /* الحذف المتعمد فقط أثناء التعديل */
-  pendingImage = null;
-  document.getElementById('imgPreviewWrap').classList.remove('show');
-  document.getElementById('imgPreview').removeAttribute('src');
-  fileInput.value='';
-}
 
-/* ═══ إضافة / تعديل / حذف ═══ */
-function resetForm(){
-  ['pTitle','pDesc','pPrice'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('pTab').value='wedding';
-  document.getElementById('pAvail').value='true';
+function removeImage(){
   pendingImage = null;
-  imageRemoved = false;
+  imageRemoved = true;
+  document.getElementById('pFile').value = '';
   document.getElementById('imgPreviewWrap').classList.remove('show');
-  document.getElementById('imgPreview').removeAttribute('src');
-  fileInput.value='';
-  editingId=null;
-  document.getElementById('saveBtn').textContent='➕ إضافة المنتج';
-  document.getElementById('saveBtn').disabled=false;
 }
 
 async function saveProduct(){
-  const title=document.getElementById('pTitle').value.trim();
-  if(!title){toast('✍️ اكتب اسم المنتج أولاً','error');return}
-  const saveBtn=document.getElementById('saveBtn');
-  saveBtn.disabled=true;
-  saveBtn.textContent='⏳ جاري الحفظ...';
+  const title = document.getElementById('pTitle').value.trim();
+  if(!title){ toast('يرجى إدخال اسم المنتج ⚠️','error'); return; }
 
-  const old = editingId ? products.find(p=>p.id===editingId) : null;
-  const data={
-    title,
-    desc:document.getElementById('pDesc').value.trim(),
-    tab:document.getElementById('pTab').value,
-    price:document.getElementById('pPrice').value,
-    available:document.getElementById('pAvail').value==='true',
-    createdAt: old ? old.createdAt : Date.now()
-  };
-  /* منطق الصورة المحكم:
-     - رفعت صورة جديدة؟ => تُحفظ دائم داخل Firestore
-     - تعدّل بدون تغيير الصورة؟ => الصورة القديمة تبقى
-     - ضغطت ✕ على المعاينة أثناء التعديل؟ => تُحذف فعلاً
-  */
-  if(pendingImage){
-    data.imgData = pendingImage;
-  }else if(old && old.imgData && !imageRemoved){
-    data.imgData = old.imgData;
-  }else{
-    data.imgData = '';
-  }
+  const saveBtn = document.getElementById('saveBtn');
+  saveBtn.disabled = true;
+  saveBtn.textContent = 'جاري الحفظ...';
 
-  try{
+  const desc = document.getElementById('pDesc').value.trim();
+  const tab = document.getElementById('pTab').value;
+  const priceInput = document.getElementById('pPrice').value;
+  const price = priceInput !== '' ? parseFloat(priceInput) : null;
+  const available = document.getElementById('pAvail').value === 'true';
+
+  try {
+    const data = {
+      title, desc, tab, price, available,
+      updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+    };
+
+    if(pendingImage){
+      data.imgData = pendingImage;
+    } else if(imageRemoved){
+      data.imgData = firebase.firestore.FieldValue.delete();
+    }
+
     if(editingId){
       await db.collection('products').doc(editingId).update(data);
-      toast('💾 تم حفظ التعديل — الصورة محفوظة دائم ✔','success');
-    }else{
+      toast('تم تحديث المنتج بنجاح ✔','success');
+    } else {
+      data.createdAt = firebase.firestore.FieldValue.serverTimestamp();
       await db.collection('products').add(data);
-      toast('✅ تمت إضافة المنتج — الصورة محفوظة دائم ✔','success');
+      toast('تمت إضافة المنتج بنجاح 🎉','success');
     }
-    resetForm();
-  }catch(e){
-    console.error(e);
-    let msg = '❌ حدث خطأ أثناء الحفظ';
-    if(e && e.code==='permission-denied') msg='❌ قواعد Firestore تمنع الكتابة — فعّل Test mode';
-    else if(String((e&&e.message)||'').includes('exceeds')) msg='❌ الصورة كبيرة جداً حتى بعد الضغط — جرّب صورة أصغر';
-    toast(msg,'error');
-  }
-  saveBtn.disabled=false;
-  document.getElementById('saveBtn').textContent = editingId ? '💾 حفظ التعديل' : '➕ إضافة المنتج';
-}
-
-function editProduct(id){
-  const p=products.find(x=>x.id===id); if(!p)return;
-  document.getElementById('pTitle').value=p.title||'';
-  document.getElementById('pDesc').value=p.desc||'';
-  document.getElementById('pTab').value=p.tab||'wedding';
-  document.getElementById('pPrice').value=p.price??'';
-  document.getElementById('pAvail').value=String(p.available);
-  imageRemoved = false;
-  pendingImage = null;
-  if(p.imgData){
-    showPreview(p.imgData);
-  }else{
-    document.getElementById('imgPreviewWrap').classList.remove('show');
-    document.getElementById('imgPreview').removeAttribute('src');
-  }
-  editingId=id;
-  document.getElementById('saveBtn').textContent='💾 حفظ التعديل';
-  document.getElementById('adminPanel').scrollTo({top:0,behavior:'smooth'});
-}
-
-async function deleteProduct(id){
-  const p=products.find(x=>x.id===id);
-  if(confirm('⚠️ هل تريد حذف «'+(p?p.title:'')+'» نهائياً؟')){
-    try{ await db.collection('products').doc(id).delete(); toast('🗑️ تم الحذف نهائياً','success'); }
-    catch(e){ toast('❌ تعذر الحذف','error'); }
+    resetAdminForm();
+  } catch(err){
+    console.error(err);
+    toast('حدث خطأ أثناء الحفظ!','error');
+  } finally {
+    saveBtn.disabled = false;
+    saveBtn.textContent = editingId ? '💾 حفظ التعديلات' : '➕ إضافة المنتج';
   }
 }
 
-/* ═══ قائمة الإدارة ═══ */
 function renderAdminList(){
-  const el=document.getElementById('adminList');
-  el.innerHTML = products.map(p=>`
+  const listEl = document.getElementById('adminList');
+  if(!products.length){
+    listEl.innerHTML = '<div style="text-align:center;color:#999;padding:15px">لا توجد منتجات مسجلة</div>';
+    return;
+  }
+  listEl.innerHTML = products.map(p=>`
     <div class="admin-item">
-      <img src="${esc(imgSrc(p))}" onerror="this.onerror=null;this.src='${PLACEHOLDER}'">
+      <img src="${esc(imgSrc(p))}" onerror="this.src='${PLACEHOLDER}'">
       <div class="info">
         <b>${esc(p.title)}</b>
-        <small>${p.tab==='wedding'?'🎀 أفراح':'🖨️ مكتبي'} • ${p.price||'—'} ر.س • ${p.available?'✔ متوفر':'✖ غير متوفر'}${p.imgData?' • 🖼️ محفوظة':' • ⚠️ بدون صورة محفوظة'}</small>
+        <small>${p.tab==='wedding'?'أفراح':'طباعة'} • ${p.available?'متوفر':'غير متوفر'} • ${p.price?p.price+' ر.س':'عند الطلب'}</small>
       </div>
       <button class="edit" onclick="editProduct('${p.id}')">تعديل</button>
       <button class="del" onclick="deleteProduct('${p.id}')">حذف</button>
     </div>
-  `).join('') || '<div style="text-align:center;color:#aaa;padding:20px 0">لا توجد منتجات بعد — أضف أول منتج 👆</div>';
+  `).join('');
 }
 
-/* ═══ Toast ═══ */
-let toastTimer;
-function toast(msg,type=''){
-  const t=document.getElementById('toast');
-  t.textContent=msg; t.className='show '+type;
-  clearTimeout(toastTimer);
-  toastTimer=setTimeout(()=>t.className='',3000);
+function editProduct(id){
+  const p = products.find(x=>x.id===id);
+  if(!p) return;
+  editingId = id;
+  document.getElementById('pTitle').value = p.title || '';
+  document.getElementById('pDesc').value = p.desc || '';
+  document.getElementById('pTab').value = p.tab || 'wedding';
+  document.getElementById('pPrice').value = p.price != null ? p.price : '';
+  document.getElementById('pAvail').value = p.available ? 'true' : 'false';
+
+  pendingImage = null;
+  imageRemoved = false;
+  if(imgSrc(p) && imgSrc(p) !== PLACEHOLDER){
+    showPreview(imgSrc(p));
+  } else {
+    removeImage();
+  }
+  document.getElementById('saveBtn').textContent = '💾 حفظ التعديلات';
+  window.scrollTo({top:0, behavior:'smooth'});
 }
 
-/* ═══ زر العودة للأعلى ═══ */
-const toTop=document.getElementById('toTop');
-window.addEventListener('scroll',()=>toTop.classList.toggle('show',window.scrollY>400));
-toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+async function deleteProduct(id){
+  if(!confirm('هل أنت تأكد من حذف هذا المنتج نهائياً؟')) return;
+  try {
+    await db.collection('products').doc(id).delete();
+    toast('تم حذف المنتج بنجاح','success');
+    if(editingId === id) resetAdminForm();
+  } catch(err){
+    toast('تعذر حذف المنتج!','error');
+  }
+}
+
+function resetAdminForm(){
+  editingId = null;
+  document.getElementById('pTitle').value = '';
+  document.getElementById('pDesc').value = '';
+  document.getElementById('pPrice').value = '';
+  document.getElementById('pTab').value = 'wedding';
+  document.getElementById('pAvail').value = 'true';
+  removeImage();
+  document.getElementById('saveBtn').textContent = '➕ إضافة المنتج';
+}
+
+function closeAdmin(){
+  document.getElementById('adminPanel').classList.remove('show');
+}
+
+function adminLogout(){
+  localStorage.removeItem(SESSION_KEY);
+  closeAdmin();
+  toast('تم تسجيل الخروج من الإدارة 🔒','success');
+}
+
+/* ═══ Toast & Scroll Top ═══ */
+function toast(msg, type=''){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'show ' + type;
+  setTimeout(()=>t.className='', 3200);
+}
+
+const toTop = document.getElementById('toTop');
+window.addEventListener('scroll', ()=>{
+  toTop.classList.toggle('show', window.scrollY > 300);
+});
+toTop.addEventListener('click', ()=>window.scrollTo({top:0, behavior:'smooth'}));
 </script>
 </body>
 </html>
