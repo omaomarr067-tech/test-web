@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>مركز الأمجاد | شرعب الرونة</title>
+<meta name="description" content="مركز الأمجام - مستلزمات أفراح وأدوات مكتبية وطباعة - شرعب الرونة، المعشار، مقابل معرض الإخوة">
+
+<!-- خط عربي احترافي -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 
 <!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
@@ -11,241 +16,447 @@
 
 <style>
 :root{
-  --maroon:#7b1f3a;      /* العنابي */
-  --maroon-dark:#5a1428;
-  --navy:#0d1b3e;        /* الكحلي */
-  --navy-dark:#060d22;
-  --gold:#d4af37;
-  --white:#ffffff;
-  --radius:14px;
+  --maroon:#7b1f3a; --maroon-dark:#521228; --maroon-deep:#3a0c1c;
+  --navy:#0d1b3e; --navy-dark:#070f26; --navy-deep:#040918;
+  --gold:#d4af37; --gold-light:#f3d97a; --gold-dark:#a8842a;
+  --cream:#faf6ee; --radius:16px;
+  --shadow-sm:0 2px 10px rgba(0,0,0,.08);
+  --shadow-md:0 8px 26px rgba(0,0,0,.14);
+  --shadow-lg:0 16px 48px rgba(0,0,0,.22);
 }
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Arial,sans-serif}
-body{background:#f4f5f8;color:#222}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Tajawal',Tahoma,sans-serif;
+  background:var(--cream);
+  background-image:radial-gradient(rgba(123,31,58,.05) 1px,transparent 1px);
+  background-size:26px 26px;
+  color:#222;overflow-x:hidden;
+}
 
-/* ===== 1) شريط الترحيب المتحرك (Marquee) ===== */
+/* ================= شريط الترحيب المتحرك (مُصلَح) ================= */
 .welcome-marquee{
-  background:linear-gradient(90deg,var(--maroon),var(--maroon-dark));
-  color:#fff;overflow:hidden;white-space:nowrap;padding:8px 0;font-size:15px;position:relative;
+  background:linear-gradient(90deg,var(--maroon-deep),var(--maroon) 35%,#93294a 50%,var(--maroon) 65%,var(--maroon-deep));
+  color:#fff;padding:9px 0;font-size:15px;font-weight:600;
+  border-bottom:1px solid rgba(212,175,55,.35);
+  overflow:hidden;position:relative;
+  box-shadow:0 2px 10px rgba(0,0,0,.25);
 }
-.welcome-marquee .track{
-  display:inline-block;padding-right:100%;
-  animation:scrollLeft 30s linear infinite;
+/* الحيلة: النص داخله LTR + نسختان مكررتان => يعمل 100% في كل المتصفحات */
+.marquee-viewport{direction:ltr;overflow:hidden;width:100%}
+.marquee-track{
+  display:flex;width:max-content;
+  animation:marqueeMove 38s linear infinite;
 }
-.welcome-marquee .track span{margin:0 40px}
-.welcome-marquee .track .h{color:var(--gold);font-weight:bold}
-@keyframes scrollLeft{from{transform:translateX(0)}to{transform:translateX(-100%)}}
+.welcome-marquee:hover .marquee-track{animation-play-state:paused}
+.marquee-track .chunk{direction:rtl;display:flex;white-space:nowrap}
+.marquee-track .chunk>*{padding:0 34px}
+.marquee-track .h{color:var(--gold-light);font-weight:800;text-shadow:0 1px 4px rgba(0,0,0,.4)}
+@keyframes marqueeMove{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.marquee-icon{animation:spin 4s linear infinite;display:inline-block;margin-left:6px}
+@keyframes spin{to{transform:rotate(360deg)}}
 
-/* ===== 2) شريط إشعارات العز نت ===== */
+/* ================= شريط العز نت (مُصلَح + حفظ الإخفاء) ================= */
 .alaz-bar{
-  background:var(--navy-dark);color:#fff;padding:10px 14px;display:flex;align-items:center;gap:10px;
+  background:linear-gradient(90deg,var(--navy-deep),var(--navy) 40%,#16295c 55%,var(--navy) 70%,var(--navy-deep));
+  color:#fff;display:flex;align-items:center;gap:10px;padding:0 12px;height:44px;
+  border-bottom:1px solid rgba(79,195,247,.25);position:relative;z-index:5;
 }
-.alaz-bar .txt{
-  flex:1;overflow:hidden;white-space:nowrap;
+.alaz-bar.hidden{display:none}
+.alaz-viewport{direction:ltr;overflow:hidden;flex:1;height:100%;display:flex;align-items:center}
+.alaz-track{display:flex;width:max-content;animation:marqueeMove 26s linear infinite}
+.alaz-track .chunk{direction:rtl;display:flex;white-space:nowrap;font-size:14px;font-weight:500}
+.alaz-track .chunk>*{padding:0 30px}
+.alaz-track b{color:#4fc3f7}
+.alaz-track .cta{color:var(--gold-light);font-weight:700}
+.alaz-close{
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);color:#fff;
+  width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:13px;flex-shrink:0;
+  transition:.25s;display:flex;align-items:center;justify-content:center;line-height:1;
 }
-.alaz-bar .txt .inner{
-  display:inline-block;padding-right:100%;
-  animation:scrollLeft 25s linear infinite;font-size:14px;
-}
-.alaz-bar .txt .inner b{color:#4fc3f7}
-.alaz-bar .close-btn{
-  background:none;border:1px solid #ffffff55;color:#fff;width:28px;height:28px;border-radius:50%;
-  cursor:pointer;font-size:14px;flex-shrink:0;transition:.2s;
-}
-.alaz-bar .close-btn:hover{background:#ffffff22}
+.alaz-close:hover{background:rgba(255,255,255,.2);transform:rotate(90deg)}
 
-/* ===== 3) الهيدر ===== */
+/* ================= الهيدر ================= */
 header{
-  background:linear-gradient(135deg,var(--maroon) 0%,#4a1230 50%,var(--navy) 100%);
-  color:#fff;text-align:center;padding:26px 16px 20px;position:relative;
-  border-bottom:4px solid var(--gold);
+  position:relative;text-align:center;padding:34px 18px 26px;color:#fff;overflow:hidden;
+  background:linear-gradient(135deg,var(--maroon-deep) 0%,var(--maroon) 38%,#6d1a37 55%,var(--navy-dark) 100%);
 }
-header h1{font-size:2rem;letter-spacing:1px;text-shadow:0 2px 6px #0008}
-header h1 span{color:var(--gold)}
-header .address{margin-top:8px;font-size:.95rem;color:#f0e6d2}
-header .address::before{content:"📍 "}
+/* زخرفة نقاط ذهبية */
+header::before{
+  content:'';position:absolute;inset:0;opacity:.14;
+  background-image:radial-gradient(var(--gold) 1.2px,transparent 1.2px);
+  background-size:22px 22px;
+  -webkit-mask-image:linear-gradient(to bottom,black,transparent 75%);
+          mask-image:linear-gradient(to bottom,black,transparent 75%);
+}
+header::after{ /* لمعة مائلة */
+  content:'';position:absolute;top:-60%;left:-20%;width:40%;height:220%;
+  background:linear-gradient(105deg,transparent,rgba(255,255,255,.09),transparent);
+  transform:rotate(8deg);animation:shine 7s ease-in-out infinite;
+}
+@keyframes shine{0%,100%{left:-30%}50%{left:105%}}
+header>*{position:relative;z-index:2}
 
-.socials{display:flex;justify-content:center;gap:14px;margin-top:16px;flex-wrap:wrap}
+.logo-badge{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:76px;height:76px;border-radius:50%;margin-bottom:10px;
+  background:radial-gradient(circle at 30% 25%,#ffe9a8,var(--gold) 60%,var(--gold-dark));
+  box-shadow:0 6px 22px rgba(212,175,55,.45),inset 0 2px 6px rgba(255,255,255,.5);
+  font-size:2rem;animation:floaty 4s ease-in-out infinite;
+}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+header h1{
+  font-size:2.3rem;font-weight:900;letter-spacing:1px;
+  text-shadow:0 3px 10px rgba(0,0,0,.45);
+}
+header h1 span{
+  background:linear-gradient(120deg,var(--gold-light),var(--gold),var(--gold-light));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.header-line{
+  width:190px;height:3px;margin:10px auto;border-radius:3px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+header .address{
+  display:inline-flex;align-items:center;gap:7px;font-size:.98rem;color:#f3e9d6;
+  background:rgba(255,255,255,.08);backdrop-filter:blur(6px);
+  padding:8px 20px;border-radius:30px;border:1px solid rgba(212,175,55,.3);
+  margin-top:4px;
+}
+
+/* أزرار التواصل */
+.socials{display:flex;justify-content:center;gap:14px;margin-top:18px;flex-wrap:wrap}
 .socials a{
-  display:inline-flex;align-items:center;gap:8px;padding:9px 22px;border-radius:30px;
-  text-decoration:none;font-weight:bold;font-size:.95rem;transition:.25s;box-shadow:0 3px 10px #0004;
+  display:inline-flex;align-items:center;gap:9px;padding:11px 26px;border-radius:30px;
+  text-decoration:none;font-weight:800;font-size:.95rem;transition:.28s;position:relative;overflow:hidden;
 }
-.socials a:hover{transform:translateY(-3px)}
-.btn-tiktok{background:#000;color:#fff;border:1px solid #444}
-.btn-tiktok:hover{background:#111}
-.btn-wa{background:#25d366;color:#fff}
-.btn-wa:hover{background:#1eb857}
+.socials a::after{
+  content:'';position:absolute;inset:0;background:linear-gradient(105deg,transparent,rgba(255,255,255,.35),transparent);
+  transform:translateX(-120%);transition:.5s;
+}
+.socials a:hover::after{transform:translateX(120%)}
+.socials a:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(0,0,0,.35)}
+.btn-tiktok{background:#000;color:#fff;border:1px solid #3a3a3a}
+.btn-wa{background:linear-gradient(135deg,#2fe071,#1fbe5f);color:#fff}
 
-/* ===== 4) التبويبات ===== */
-.tabs{display:flex;justify-content:center;gap:10px;margin:24px 0 6px;flex-wrap:wrap;padding:0 12px}
+/* ================= التبويبات ================= */
+.tabs{
+  display:flex;justify-content:center;gap:10px;margin:26px 0 4px;flex-wrap:wrap;padding:0 14px;
+  position:sticky;top:0;z-index:50;
+}
+.tabs-inner{
+  background:rgba(255,255,255,.85);backdrop-filter:blur(10px);
+  padding:6px;border-radius:40px;display:flex;gap:6px;box-shadow:var(--shadow-md);
+  border:1px solid rgba(123,31,58,.12);
+}
 .tabs button{
-  padding:12px 30px;border:none;border-radius:30px;cursor:pointer;font-size:1rem;font-weight:bold;
-  background:#fff;color:var(--navy);box-shadow:0 2px 8px #0002;transition:.25s;border:2px solid transparent;
+  padding:12px 28px;border:none;border-radius:30px;cursor:pointer;font-size:.98rem;
+  font-family:inherit;font-weight:800;background:transparent;color:var(--navy);transition:.3s;
+  display:flex;align-items:center;gap:8px;
 }
-.tabs button.active{background:var(--maroon);color:#fff;border-color:var(--gold)}
-.tabs button:hover:not(.active){border-color:var(--maroon)}
+.tabs button.active{
+  background:linear-gradient(135deg,var(--maroon),var(--maroon-dark));
+  color:#fff;box-shadow:0 4px 14px rgba(123,31,58,.4);
+}
+.tabs button:hover:not(.active){background:rgba(123,31,58,.08)}
 
-/* ===== 5) المنتجات ===== */
+/* عدّاد المنتجات */
+.count-pill{
+  text-align:center;margin:14px 0 4px;font-size:.85rem;color:#777;font-weight:600;
+}
+.count-pill b{color:var(--maroon)}
+
+/* ================= بطاقات المنتجات ================= */
 .grid{
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
-  gap:20px;max-width:1100px;margin:22px auto;padding:0 16px;
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+  gap:22px;max-width:1140px;margin:18px auto 30px;padding:0 18px;
 }
 .card{
-  background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:0 4px 14px #0001;
-  display:flex;flex-direction:column;transition:.25s;animation:fadeUp .4s ease;
+  background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);
+  display:flex;flex-direction:column;transition:.3s;animation:fadeUp .5s ease both;
+  border:1px solid rgba(0,0,0,.05);position:relative;
 }
-.card:hover{transform:translateY(-5px);box-shadow:0 8px 22px #0002}
-@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-.card img{width:100%;height:190px;object-fit:cover;background:#eee}
-.card .body{padding:14px;flex:1;display:flex;flex-direction:column}
-.card h3{color:var(--navy);font-size:1.05rem;margin-bottom:6px}
-.card .desc{font-size:.85rem;color:#666;flex:1;margin-bottom:10px}
-.card .price{
-  font-size:1.15rem;font-weight:bold;color:var(--maroon);margin-bottom:6px;
+.card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.card:hover .card-img img{transform:scale(1.08)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.card-img{height:195px;overflow:hidden;position:relative;background:linear-gradient(135deg,#eee,#f7f7f7)}
+.card-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.card-img::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.25),transparent 45%);
 }
-.card .price small{color:#888;font-weight:normal}
-.badge{
-  align-self:flex-start;font-size:.75rem;padding:3px 12px;border-radius:20px;margin-bottom:10px;font-weight:bold;
+.card .tab-ribbon{
+  position:absolute;top:12px;right:12px;z-index:2;font-size:.72rem;font-weight:800;
+  padding:4px 12px;border-radius:20px;color:#fff;
+  background:linear-gradient(135deg,var(--navy),#1e3a7a);box-shadow:0 3px 8px rgba(0,0,0,.3);
 }
-.badge.available{background:#e3f6e6;color:#1a7a2e}
-.badge.unavailable{background:#fde3e3;color:#a11}
+.card .tab-ribbon.wed{background:linear-gradient(135deg,var(--maroon),#93294a)}
+.card .body{padding:15px 15px 16px;flex:1;display:flex;flex-direction:column}
+.card h3{color:var(--navy);font-size:1.08rem;font-weight:800;margin-bottom:6px;line-height:1.5}
+.card .desc{font-size:.86rem;color:#777;flex:1;margin-bottom:11px;line-height:1.7}
+.card .meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.card .price{font-size:1.2rem;font-weight:900;color:var(--maroon)}
+.card .price small{color:#999;font-weight:600;font-size:.75rem}
+.badge{font-size:.74rem;padding:4px 12px;border-radius:20px;font-weight:800}
+.badge.available{background:#e3f6e6;color:#1a7a2e;box-shadow:inset 0 0 0 1px #bfe6c6}
+.badge.unavailable{background:#fdeaea;color:#b02a2a;box-shadow:inset 0 0 0 1px #f2c4c4}
 .order-btn{
-  background:#25d366;color:#fff;border:none;border-radius:8px;padding:11px;cursor:pointer;
-  font-weight:bold;font-size:.95rem;transition:.2s;text-decoration:none;text-align:center;
+  background:linear-gradient(135deg,#2fe071,#1fbe5f);color:#fff;border:none;border-radius:10px;
+  padding:12px;cursor:pointer;font-weight:800;font-size:.95rem;font-family:inherit;
+  transition:.25s;text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;gap:8px;
+  box-shadow:0 4px 12px rgba(37,211,102,.3);
 }
-.order-btn:hover{background:#1eb857}
-.order-btn:disabled{background:#bbb;cursor:not-allowed}
+.order-btn:hover{transform:translateY(-2px);box-shadow:0 7px 18px rgba(37,211,102,.45)}
+.order-btn.off{
+  background:linear-gradient(135deg,#ccc,#aaa);box-shadow:none;pointer-events:none;color:#777;
+}
+.card.unavail .card-img img{filter:grayscale(.9) opacity(.7)}
 
-/* ===== 6) الفوتر ===== */
+/* هياكل تحميل (Skeleton) */
+.skel{height:330px;border-radius:var(--radius);background:#ececec;position:relative;overflow:hidden}
+.skel::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.65),transparent);
+  animation:skelWave 1.4s infinite;
+}
+@keyframes skelWave{from{transform:translateX(100%)}to{transform:translateX(-100%)}}
+
+/* ================= الفوتر ================= */
 footer{
-  background:var(--navy-dark);color:#cfd6e6;text-align:center;padding:22px 14px;margin-top:40px;position:relative;
+  background:linear-gradient(180deg,var(--navy-deep),#0a1330);
+  color:#c9d3ea;text-align:center;padding:30px 16px 46px;margin-top:40px;position:relative;
+  border-top:3px solid var(--gold);
 }
-footer .rights{font-size:.9rem}
-footer .rights b{color:var(--gold)}
-
-/* ===== القفل السري ===== */
+footer .foot-logo{font-size:1.6rem;margin-bottom:4px}
+footer .rights{font-size:.92rem;font-weight:600;margin-top:6px}
+footer .rights b{
+  background:linear-gradient(120deg,var(--gold-light),var(--gold));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+footer .sub{font-size:.78rem;color:#6d7ba0;margin-top:6px}
+/* زر القفل السري */
 #secretLock{
-  position:absolute;left:12px;bottom:12px;opacity:.15;font-size:16px;cursor:pointer;
-  transition:.3s;user-select:none;
+  position:absolute;left:14px;bottom:12px;font-size:15px;cursor:pointer;
+  opacity:.12;transition:.35s;user-select:none;filter:drop-shadow(0 0 2px #fff2);
 }
-#secretLock:hover{opacity:1;transform:scale(1.3)}
+#secretLock:hover{opacity:1;transform:scale(1.45) rotate(-10deg)}
 
-/* ===== نافذة الرمز ===== */
+/* ================= نافذة الرمز ================= */
 .modal-bg{
-  display:none;position:fixed;inset:0;background:#000a;z-index:1000;
-  align-items:center;justify-content:center;
+  display:none;position:fixed;inset:0;background:rgba(4,9,24,.75);backdrop-filter:blur(5px);
+  z-index:1000;align-items:center;justify-content:center;padding:16px;
 }
-.modal-bg.show{display:flex}
+.modal-bg.show{display:flex;animation:fadeIn .25s}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
 .modal{
-  background:#fff;border-radius:var(--radius);padding:28px 24px;width:90%;max-width:360px;text-align:center;
-  box-shadow:0 10px 40px #0006;
+  background:#fff;border-radius:20px;padding:30px 26px;width:100%;max-width:370px;text-align:center;
+  box-shadow:var(--shadow-lg);animation:popIn .3s cubic-bezier(.2,1.4,.4,1);
 }
-.modal h2{color:var(--navy);margin-bottom:14px;font-size:1.2rem}
+@keyframes popIn{from{opacity:0;transform:scale(.8) translateY(20px)}to{opacity:1;transform:none}}
+.modal .lock-ic{
+  width:64px;height:64px;margin:0 auto 14px;border-radius:50%;font-size:1.7rem;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,var(--maroon),var(--maroon-dark));
+  box-shadow:0 8px 20px rgba(123,31,58,.4);animation:floaty 3s ease-in-out infinite;
+}
+.modal h2{color:var(--navy);margin-bottom:6px;font-size:1.25rem;font-weight:900}
+.modal p{font-size:.83rem;color:#999;margin-bottom:16px}
+.modal .pin-dots{
+  display:flex;gap:8px;justify-content:center;margin-bottom:14px;direction:ltr;
+}
+.modal .pin-dots span{
+  width:12px;height:12px;border-radius:50%;background:#e3e3e3;transition:.2s;
+}
+.modal .pin-dots span.fill{background:var(--maroon);transform:scale(1.25)}
 .modal input{
-  width:100%;padding:12px;border:2px solid #ddd;border-radius:8px;text-align:center;
-  font-size:1.1rem;letter-spacing:2px;margin-bottom:12px;
+  width:100%;padding:13px;border:2px solid #e5e5e5;border-radius:12px;text-align:center;
+  font-size:1.15rem;letter-spacing:3px;font-family:inherit;margin-bottom:8px;transition:.25s;
 }
-.modal input:focus{outline:none;border-color:var(--maroon)}
-.modal .err{color:#c0392b;font-size:.85rem;min-height:18px;margin-bottom:8px}
+.modal input:focus{outline:none;border-color:var(--maroon);box-shadow:0 0 0 4px rgba(123,31,58,.12)}
+.modal .err{color:#c0392b;font-size:.84rem;min-height:20px;margin-bottom:8px;font-weight:700}
+.modal .shake{animation:shake .4s}
+@keyframes shake{0%,100%{transform:none}25%{transform:translateX(8px)}50%{transform:translateX(-8px)}75%{transform:translateX(5px)}}
 .modal button{
-  width:100%;padding:12px;border:none;border-radius:8px;cursor:pointer;font-weight:bold;margin-bottom:8px;
+  width:100%;padding:13px;border:none;border-radius:12px;cursor:pointer;font-weight:800;
+  font-family:inherit;margin-bottom:9px;font-size:.98rem;transition:.25s;
 }
-.modal .ok{background:var(--maroon);color:#fff}
-.modal .cancel{background:#eee;color:#333}
+.modal .ok{background:linear-gradient(135deg,var(--maroon),var(--maroon-dark));color:#fff}
+.modal .ok:hover{filter:brightness(1.15)}
+.modal .cancel{background:#f0f0f0;color:#444}
 
-/* ===== لوحة التحكم ===== */
+/* ================= لوحة التحكم ================= */
 #adminPanel{
-  display:none;position:fixed;inset:0;background:#000b;z-index:999;overflow-y:auto;padding:20px 12px;
+  display:none;position:fixed;inset:0;background:rgba(4,9,24,.82);backdrop-filter:blur(6px);
+  z-index:999;overflow-y:auto;padding:24px 14px;
 }
-#adminPanel.show{display:block}
+#adminPanel.show{display:block;animation:fadeIn .25s}
 .admin-box{
-  background:#fff;max-width:600px;margin:30px auto;border-radius:var(--radius);padding:22px;
-  box-shadow:0 10px 40px #0008;
+  background:#fff;max-width:620px;margin:20px auto 40px;border-radius:20px;padding:26px 22px;
+  box-shadow:var(--shadow-lg);animation:popIn .35s cubic-bezier(.2,1.4,.4,1);
 }
-.admin-box h2{color:var(--maroon);margin-bottom:16px;text-align:center}
-.admin-box label{display:block;font-size:.85rem;font-weight:bold;color:#444;margin:10px 0 4px}
+.admin-box h2{
+  color:var(--maroon);margin-bottom:18px;text-align:center;font-weight:900;font-size:1.3rem;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.admin-box label{display:block;font-size:.84rem;font-weight:800;color:#555;margin:12px 0 5px}
 .admin-box input,.admin-box select,.admin-box textarea{
-  width:100%;padding:10px;border:1px solid #ccc;border-radius:8px;font-size:.95rem;
+  width:100%;padding:11px;border:1.5px solid #ddd;border-radius:10px;font-size:.95rem;
+  font-family:inherit;transition:.2s;background:#fbfbfb;
+}
+.admin-box input:focus,.admin-box select:focus,.admin-box textarea:focus{
+  outline:none;border-color:var(--maroon);background:#fff;
+  box-shadow:0 0 0 3px rgba(123,31,58,.1);
 }
 .admin-box .row{display:flex;gap:10px}
 .admin-box .row>*{flex:1}
-.admin-actions{display:flex;gap:10px;margin-top:16px}
-.admin-actions button{flex:1;padding:12px;border:none;border-radius:8px;font-weight:bold;cursor:pointer}
-.btn-save{background:var(--navy);color:#fff}
-.btn-close-admin{background:#eee}
-.admin-list{margin-top:26px}
-.admin-item{
-  display:flex;align-items:center;gap:10px;background:#f8f8f8;border:1px solid #eee;
-  border-radius:10px;padding:10px;margin-bottom:8px;
+.admin-actions{display:flex;gap:10px;margin-top:18px}
+.admin-actions button{
+  flex:1;padding:13px;border:none;border-radius:10px;font-weight:800;cursor:pointer;
+  font-family:inherit;font-size:.95rem;transition:.25s;
 }
-.admin-item img{width:52px;height:52px;object-fit:cover;border-radius:8px}
-.admin-item .info{flex:1}
-.admin-item .info b{color:var(--navy)}
-.admin-item .info small{display:block;color:#777}
-.admin-item .del{background:#c0392b;color:#fff;border:none;border-radius:6px;padding:7px 14px;cursor:pointer}
-.admin-item .edit{background:var(--navy);color:#fff;border:none;border-radius:6px;padding:7px 14px;cursor:pointer}
+.btn-save{background:linear-gradient(135deg,var(--navy),#1e3a7a);color:#fff}
+.btn-save:hover{filter:brightness(1.2)}
+.btn-close-admin{background:#f0f0f0;color:#444}
+.btn-close-admin:hover{background:#e2e2e2}
+.admin-divider{
+  display:flex;align-items:center;gap:12px;margin:26px 0 14px;color:#999;font-size:.85rem;font-weight:700;
+}
+.admin-divider::before,.admin-divider::after{content:'';flex:1;height:1px;background:#e5e5e5}
+.admin-list{display:flex;flex-direction:column;gap:9px;max-height:420px;overflow-y:auto;padding-left:4px}
+.admin-item{
+  display:flex;align-items:center;gap:11px;background:#fafafa;border:1px solid #ececec;
+  border-radius:12px;padding:10px;transition:.2s;
+}
+.admin-item:hover{background:#f3f3f3;border-color:#ddd}
+.admin-item img{width:54px;height:54px;object-fit:cover;border-radius:10px;background:#eee}
+.admin-item .info{flex:1;min-width:0}
+.admin-item .info b{color:var(--navy);font-size:.95rem}
+.admin-item .info small{display:block;color:#888;font-size:.76rem;margin-top:2px}
+.admin-item button{border:none;border-radius:8px;padding:8px 13px;cursor:pointer;font-family:inherit;font-weight:700;font-size:.82rem;transition:.2s}
+.admin-item .edit{background:var(--navy);color:#fff}
+.admin-item .edit:hover{background:#1e3a7a}
+.admin-item .del{background:#c0392b;color:#fff}
+.admin-item .del:hover{background:#a93226}
 
-.empty-msg{text-align:center;color:#999;padding:40px 0;grid-column:1/-1}
+/* ================= رسالة Toast ================= */
+#toast{
+  position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(90px);
+  background:var(--navy-deep);color:#fff;padding:13px 26px;border-radius:40px;z-index:2000;
+  font-weight:700;font-size:.92rem;box-shadow:var(--shadow-lg);opacity:0;transition:.4s cubic-bezier(.2,1.2,.4,1);
+  border:1px solid rgba(212,175,55,.4);pointer-events:none;
+}
+#toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+#toast.success{border-color:#4caf50}
+#toast.error{border-color:#e53935}
+
+/* زر العودة للأعلى */
+#toTop{
+  position:fixed;bottom:22px;right:20px;width:46px;height:46px;border-radius:50%;border:none;
+  background:linear-gradient(135deg,var(--maroon),var(--maroon-dark));color:#fff;font-size:1.2rem;
+  cursor:pointer;z-index:90;box-shadow:var(--shadow-md);opacity:0;pointer-events:none;transition:.3s;
+}
+#toTop.show{opacity:1;pointer-events:auto}
+#toTop:hover{transform:translateY(-4px)}
 
 @media(max-width:520px){
-  header h1{font-size:1.5rem}
-  .tabs button{padding:10px 18px;font-size:.88rem}
+  header h1{font-size:1.7rem}
+  .tabs button{padding:11px 16px;font-size:.86rem}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px}
+  .card-img{height:150px}
+  .card h3{font-size:.95rem}
+  .card .price{font-size:1.05rem}
 }
 </style>
 </head>
 <body>
 
-<!-- شريط الترحيب المتحرك -->
+<!-- ═══════════ 1) شريط الترحيب المتحرك ═══════════ -->
 <div class="welcome-marquee">
-  <div class="track">
-    <span class="h">🎉 أهلاً وسهلاً بكم في مركز الأمجاد 🎉</span>
-    <span>✨ رفّنا بوجودكم.. وأفراحكم أجمل معنا</span>
-    <span class="h">🎊 نقدم لكم أفخم مستلزمات الأفراح وأرقى الخدمات 🎊</span>
-    <span>💕 مركز الأمجاد.. حيث تبدأ البدايات الجميلة 💕</span>
-  </div>
-</div>
-
-<!-- شريط إشعارات العز نت -->
-<div class="alaz-bar" id="alazBar">
-  <div class="txt">
-    <div class="inner">
-      📡 <b>شبكة العز نت</b> — باقات إنترنت فائقة السرعة بأسعار منافسة! ⚡ اشترك الآن واستمتع بتصفح بلا حدود.. للاستفسار والتواصل: واتساب مباشر من الموقع 🌐
+  <div class="marquee-viewport">
+    <div class="marquee-track">
+      <div class="chunk">
+        <span class="h">🎉 أهلاً وسهلاً بكم في مركز الأمجاد 🎉</span>
+        <span>✨ رفّنا بوجودكم.. وأفراحكم أجمل معنا</span>
+        <span class="h"><span class="marquee-icon">🎊</span> أفخم مستلزمات الأفراح وأرقى الخدمات <span class="marquee-icon">🎊</span></span>
+        <span>💕 مركز الأمجاد.. حيث تبدأ البدايات الجميلة 💕</span>
+      </div>
+      <div class="chunk" aria-hidden="true">
+        <span class="h">🎉 أهلاً وسهلاً بكم في مركز الأمجاد 🎉</span>
+        <span>✨ رفّنا بوجودكم.. وأفراحكم أجمل معنا</span>
+        <span class="h"><span class="marquee-icon">🎊</span> أفخم مستلزمات الأفراح وأرقى الخدمات <span class="marquee-icon">🎊</span></span>
+        <span>💕 مركز الأمجاد.. حيث تبدأ البدايات الجميلة 💕</span>
+      </div>
     </div>
   </div>
-  <button class="close-btn" onclick="document.getElementById('alazBar').style.display='none'">✕</button>
 </div>
 
-<!-- الهيدر -->
+<!-- ═══════════ 2) شريط إشعارات العز نت ═══════════ -->
+<div class="alaz-bar" id="alazBar">
+  <div class="alaz-viewport">
+    <div class="alaz-track">
+      <div class="chunk">
+        <span>📡 <b>شبكة العز نت</b> — باقات إنترنت فائقة السرعة بأسعار منافسة!</span>
+        <span>⚡ سرعة تحميل وتصفح بلا حدود.. للأفراد والعائلات والمكاتب</span>
+        <span class="cta">🌐 اشترك الآن — تواصل واتساب مباشر من الموقع</span>
+        <span>📶 استقرار اتصال على مدار الساعة 24/7</span>
+      </div>
+      <div class="chunk" aria-hidden="true">
+        <span>📡 <b>شبكة العز نت</b> — باقات إنترنت فائقة السرعة بأسعار منافسة!</span>
+        <span>⚡ سرعة تحميل وتصفح بلا حدود.. للأفراد والعائلات والمكاتب</span>
+        <span class="cta">🌐 اشترك الآن — تواصل واتساب مباشر من الموقع</span>
+        <span>📶 استقرار اتصال على مدار الساعة 24/7</span>
+      </div>
+    </div>
+  </div>
+  <button class="alaz-close" id="alazClose" title="إخفاء الإشعار">✕</button>
+</div>
+
+<!-- ═══════════ 3) الهيدر ═══════════ -->
 <header>
+  <div class="logo-badge">👑</div>
   <h1>مركز <span>الأمجاد</span></h1>
-  <div class="address">شرعب الرونة - المعشار - مقابل معرض الإخوة</div>
+  <div class="header-line"></div>
+  <div class="address">شرعب الرونة — المعشار — مقابل معرض الإخوة</div>
   <div class="socials">
-    <a class="btn-tiktok" href="https://www.tiktok.com/@الحساب" target="_blank">🎵 تيك توك</a>
-    <a class="btn-wa" href="https://wa.me/9665XXXXXXXX?text=مرحباً، أرغب بالاستفسار عن خدمات مركز الأمجاد" target="_blank">💬 واتساب مباشر</a>
+    <a class="btn-tiktok" href="https://www.tiktok.com/@الحساب" target="_blank" rel="noopener">🎵 تيك توك</a>
+    <a class="btn-wa" id="waMain" href="#" target="_blank" rel="noopener">💬 واتساب مباشر</a>
   </div>
 </header>
 
-<!-- التبويبات -->
+<!-- ═══════════ 4) التبويبات ═══════════ -->
 <div class="tabs">
-  <button class="active" data-tab="wedding">💍 مستلزمات الأفراح</button>
-  <button data-tab="office">🖨️ الأدوات المكتبية والطباعة</button>
+  <div class="tabs-inner">
+    <button class="active" data-tab="wedding">💍 مستلزمات الأفراح</button>
+    <button data-tab="office">🖨️ الأدوات المكتبية والطباعة</button>
+  </div>
+</div>
+<div class="count-pill" id="countPill"></div>
+
+<!-- ═══════════ 5) شبكة المنتجات ═══════════ -->
+<div class="grid" id="productsGrid">
+  <div class="skel"></div><div class="skel"></div><div class="skel"></div>
 </div>
 
-<!-- شبكة المنتجات -->
-<div class="grid" id="productsGrid"></div>
-
-<!-- الفوتر -->
+<!-- ═══════════ 6) الفوتر ═══════════ -->
 <footer>
-  <div class="rights">جميع الحقوق محفوظة © 2026 <b>مركز الأمجاد</b> — شرعب الرونة | تصميم وتطوير حصري</div>
+  <div class="foot-logo">👑</div>
+  <div class="rights">جميع الحقوق محفوظة © 2026 <b>مركز الأمجاد</b> — شرعب الرونة</div>
+  <div class="sub">تصميم وتطوير حصري • جميع الصور والمنتجات ملكية فكرية للمركز</div>
   <span id="secretLock" title=".">🔒</span>
 </footer>
 
-<!-- نافذة الرمز السري -->
+<!-- نافذة الرمز -->
 <div class="modal-bg" id="pinModal">
   <div class="modal">
-    <h2>🔐 دخول الإدارة</h2>
-    <input type="password" id="pinInput" placeholder="••••••" autocomplete="off">
+    <div class="lock-ic">🔐</div>
+    <h2>دخول الإدارة</h2>
+    <p>هذه المنطقة مخصصة لإدارة المركز فقط</p>
+    <div class="pin-dots" id="pinDots">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <input type="password" id="pinInput" maxlength="5" autocomplete="off" inputmode="text" placeholder="•••••">
     <div class="err" id="pinErr"></div>
-    <button class="ok" onclick="checkPin()">دخول</button>
+    <button class="ok" onclick="checkPin()">تسجيل الدخول</button>
     <button class="cancel" onclick="closePin()">إلغاء</button>
   </div>
 </div>
@@ -254,10 +465,10 @@ footer .rights b{color:var(--gold)}
 <div id="adminPanel">
   <div class="admin-box">
     <h2>⚙️ لوحة التحكم الشاملة</h2>
-    <label>اسم المنتج</label>
+    <label>اسم المنتج <span style="color:#c0392b">*</span></label>
     <input type="text" id="pTitle" placeholder="مثال: طقم كوش أفراح فاخر">
     <label>الوصف</label>
-    <textarea id="pDesc" rows="2" placeholder="وصف مختصر للمنتج"></textarea>
+    <textarea id="pDesc" rows="2" placeholder="وصف مختصر وجذاب للمنتج"></textarea>
     <div class="row">
       <div>
         <label>القسم</label>
@@ -268,34 +479,37 @@ footer .rights b{color:var(--gold)}
       </div>
       <div>
         <label>السعر (ر.س)</label>
-        <input type="number" id="pPrice" placeholder="0">
+        <input type="number" id="pPrice" min="0" placeholder="اتركه فارغاً = السعر عند الطلب">
       </div>
     </div>
+    <label>رابط الصورة</label>
+    <input type="text" id="pImg" placeholder="https://...">
     <div class="row">
-      <div>
-        <label>رابط الصورة</label>
-        <input type="text" id="pImg" placeholder="https://...">
-      </div>
       <div>
         <label>التوفر</label>
         <select id="pAvail">
-          <option value="true">متوفر</option>
-          <option value="false">غير متوفر</option>
+          <option value="true">✔ متوفر</option>
+          <option value="false">✖ غير متوفر</option>
         </select>
+      </div>
+      <div style="display:flex;align-items:flex-end">
+        <img id="imgPreview" style="width:52px;height:52px;object-fit:cover;border-radius:10px;border:1px solid #ddd" onerror="this.style.opacity=.2">
       </div>
     </div>
     <div class="admin-actions">
       <button class="btn-save" id="saveBtn" onclick="saveProduct()">➕ إضافة المنتج</button>
-      <button class="btn-close-admin" onclick="closeAdmin()">إغلاق اللوحة</button>
+      <button class="btn-close-admin" onclick="closeAdmin()">✖ إغلاق</button>
     </div>
+    <div class="admin-divider">قائمة المنتجات الحالية</div>
     <div class="admin-list" id="adminList"></div>
   </div>
 </div>
 
+<div id="toast"></div>
+<button id="toTop" title="العودة للأعلى">↑</button>
+
 <script>
-/* ================================================================
-   ⚠️ استبدل القيم التالية بإعدادات مشروعك من Firebase Console
-================================================================ */
+/* ═══════════ الإعدادات — عدّلها قبل الرفع ═══════════ */
 const firebaseConfig = {
   apiKey: "ضع_مفتاحك_هنا",
   authDomain: "ضع_مشروعك.firebaseapp.com",
@@ -304,20 +518,30 @@ const firebaseConfig = {
   messagingSenderId: "000000000000",
   appId: "ضع_appId_هنا"
 };
+const ADMIN_CODE      = "77W7@";
+const WHATSAPP_NUMBER = "9665XXXXXXXX";   // رقم واتساب المركز
+
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
-
-/* ================================================================
-   الإعدادات السرية — عدّل الرقم والواتساب من هنا
-================================================================ */
-const ADMIN_CODE = "77W7@";
-const WHATSAPP_NUMBER = "9665XXXXXXXX"; // رقم واتساب المركز
 
 let products = [];
 let currentTab = "wedding";
 let editingId = null;
 
-/* ===== التبويبات ===== */
+/* ═══ شريط العز نت: حفظ حالة الإخفاء في المتصفح ═══ */
+const alazBar = document.getElementById('alazBar');
+if(localStorage.getItem('alazHidden')==='1') alazBar.classList.add('hidden');
+document.getElementById('alazClose').addEventListener('click',()=>{
+  alazBar.classList.add('hidden');
+  localStorage.setItem('alazHidden','1');
+  toast('تم إخفاء الإشعار ✔','success');
+});
+
+/* ═══ رابط واتساب الرئيسي ═══ */
+document.getElementById('waMain').href =
+  `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('مرحباً مركز الأمجاد 🌸\nأرغب بالاستفسار عن خدماتكم')}`;
+
+/* ═══ التبويبات ═══ */
 document.querySelectorAll(".tabs button").forEach(btn=>{
   btn.addEventListener("click",()=>{
     document.querySelectorAll(".tabs button").forEach(b=>b.classList.remove("active"));
@@ -327,37 +551,47 @@ document.querySelectorAll(".tabs button").forEach(btn=>{
   });
 });
 
-/* ===== جلب المنتجات لحظياً من Firebase ===== */
+/* ═══ جلب المنتجات لحظياً ═══ */
 db.collection("products").orderBy("createdAt","desc").onSnapshot(snap=>{
   products = snap.docs.map(d=>({id:d.id, ...d.data()}));
   renderProducts();
   renderAdminList();
 }, err=>{
+  console.error(err);
   document.getElementById("productsGrid").innerHTML =
-    '<div class="empty-msg">تعذر تحميل المنتجات، تحقق من إعدادات Firebase.</div>';
+    '<div class="empty-msg">⚠️ تعذر الاتصال بقاعدة البيانات — تحقق من إعدادات Firebase وقواعد القراءة.</div>';
 });
 
-/* ===== عرض المنتجات ===== */
+/* ═══ عرض المنتجات ═══ */
 function renderProducts(){
   const grid = document.getElementById("productsGrid");
   const list = products.filter(p=>p.tab===currentTab);
+  document.getElementById("countPill").innerHTML =
+    list.length ? `عرض <b>${list.length}</b> منتج في هذا القسم` : '';
+
   if(!list.length){
-    grid.innerHTML = '<div class="empty-msg">لا توجد منتجات في هذا القسم حالياً 🌸</div>';
+    grid.innerHTML = `<div class="empty-msg" style="grid-column:1/-1;text-align:center;color:#aaa;padding:50px 0;font-size:1.05rem">
+      🌸 لا توجد منتجات في هذا القسم حالياً — تابعونا قريباً</div>`;
     return;
   }
-  grid.innerHTML = list.map(p=>`
-    <div class="card">
-      <img src="${esc(p.img)||'https://via.placeholder.com/400x300?text=مركز+الأمجاد'}" alt="${esc(p.title)}" loading="lazy">
+  grid.innerHTML = list.map((p,i)=>`
+    <div class="card ${p.available?'':'unavail'}" style="animation-delay:${Math.min(i*70,500)}ms">
+      <div class="card-img">
+        <span class="tab-ribbon ${p.tab==='wedding'?'wed':''}">${p.tab==='wedding'?'أفراح 🎀':'طباعة 🖨️'}</span>
+        <img src="${esc(p.img)||'https://via.placeholder.com/500x380/faf6ee/7b1f3a?text=%D9%85%D8%B1%D9%83%D8%B2+%D8%A7%D9%84%D8%A3%D9%85%D8%AC%D8%A7%D8%AF'}"
+             alt="${esc(p.title)}" loading="lazy"
+             onerror="this.src='https://via.placeholder.com/500x380/faf6ee/7b1f3a?text=%D9%85%D8%B1%D9%83%D8%B2+%D8%A7%D9%84%D8%A3%D9%85%D8%AC%D8%A7%D8%AF'">
+      </div>
       <div class="body">
         <h3>${esc(p.title)}</h3>
-        <div class="desc">${esc(p.desc)}</div>
-        <span class="badge ${p.available?'available':'unavailable'}">
-          ${p.available?'✔ متوفر':'✖ غير متوفر'}
-        </span>
-        <div class="price">${p.price!=='' && p.price!=null ? esc(String(p.price))+' <small>ر.س</small>' : 'السعر عند الطلب'}</div>
-        <a class="order-btn" href="https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('مرحباً مركز الأمجاد 🌸\nأرغب بطلب المنتج: '+p.title+(p.price?' (السعر: '+p.price+' ر.س)':''))}"
-           target="_blank" ${p.available?'':'disabled'} style="${p.available?'':'pointer-events:none;opacity:.6'}">
-          📲 اطلب عبر الواتساب
+        <div class="desc">${esc(p.desc)||'—'}</div>
+        <div class="meta">
+          <div class="price">${(p.price!==''&&p.price!=null)?esc(String(p.price))+' <small>ر.س</small>':'<small>السعر عند الطلب</small>'}</div>
+          <span class="badge ${p.available?'available':'unavailable'}">${p.available?'✔ متوفر':'✖ نفدت الكمية'}</span>
+        </div>
+        <a class="order-btn ${p.available?'':'off'}"
+           ${p.available?`href="https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('مرحباً مركز الأمجاد 🌸\n👋 أرغب بطلب المنتج التالي:\n📦 '+p.title+(p.price?'\n💰 السعر: '+p.price+' ر.س':'')+'\n—is it available?' )}" target="_blank" rel="noopener"`:''}>
+          ${p.available?'📲 اطلب عبر الواتساب':'غير متاح حالياً'}
         </a>
       </div>
     </div>
@@ -366,42 +600,63 @@ function renderProducts(){
 
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 
-/* ===== القفل السري والدخول ===== */
+/* ═══ القفل السري ═══ */
 const pinModal = document.getElementById('pinModal');
+const pinInput = document.getElementById('pinInput');
+const pinDots  = [...document.querySelectorAll('#pinDots span')];
+
 document.getElementById('secretLock').addEventListener('click',()=>{
   pinModal.classList.add('show');
-  document.getElementById('pinInput').value='';
-  document.getElementById('pinErr').textContent='';
-  setTimeout(()=>document.getElementById('pinInput').focus(),50);
+  pinInput.value=''; document.getElementById('pinErr').textContent='';
+  updateDots();
+  setTimeout(()=>pinInput.focus(),80);
 });
-document.getElementById('pinInput').addEventListener('keydown',e=>{if(e.key==='Enter')checkPin()});
+pinInput.addEventListener('input',updateDots);
+pinInput.addEventListener('keydown',e=>{if(e.key==='Enter')checkPin()});
+function updateDots(){pinDots.forEach((d,i)=>d.classList.toggle('fill',i<pinInput.value.length))}
 function closePin(){pinModal.classList.remove('show')}
 function checkPin(){
-  const val = document.getElementById('pinInput').value;
-  if(val===ADMIN_CODE){
+  if(pinInput.value===ADMIN_CODE){
     closePin();
     document.getElementById('adminPanel').classList.add('show');
+    toast('أهلاً بك أيها المدير 👑','success');
   }else{
     document.getElementById('pinErr').textContent='❌ الرمز غير صحيح';
-    document.getElementById('pinInput').value='';
+    document.querySelector('.modal').classList.add('shake');
+    setTimeout(()=>document.querySelector('.modal').classList.remove('shake'),450);
+    pinInput.value=''; updateDots();
   }
 }
 function closeAdmin(){
   document.getElementById('adminPanel').classList.remove('show');
   resetForm();
 }
+/* إغلاق النوافذ بالنقر خارجها أو زر Esc */
+pinModal.addEventListener('click',e=>{if(e.target===pinModal)closePin()});
+document.getElementById('adminPanel').addEventListener('click',e=>{
+  if(e.target.id==='adminPanel')closeAdmin();
+});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){closePin();closeAdmin()}
+});
 
-/* ===== إضافة / تعديل منتج ===== */
+/* ═══ إضافة / تعديل / حذف ═══ */
 function resetForm(){
   ['pTitle','pDesc','pPrice','pImg'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('pTab').value='wedding';
   document.getElementById('pAvail').value='true';
+  document.getElementById('imgPreview').removeAttribute('src');
   editingId=null;
   document.getElementById('saveBtn').textContent='➕ إضافة المنتج';
 }
+document.getElementById('pImg').addEventListener('input',e=>{
+  document.getElementById('imgPreview').src=e.target.value;
+});
+
 async function saveProduct(){
   const title=document.getElementById('pTitle').value.trim();
-  if(!title){alert('اكتب اسم المنتج');return}
+  if(!title){toast('✍️ اكتب اسم المنتج أولاً','error');return}
+  const old = editingId ? products.find(p=>p.id===editingId) : null;
   const data={
     title,
     desc:document.getElementById('pDesc').value.trim(),
@@ -409,48 +664,64 @@ async function saveProduct(){
     price:document.getElementById('pPrice').value,
     img:document.getElementById('pImg').value.trim(),
     available:document.getElementById('pAvail').value==='true',
-    createdAt: editingId ? products.find(p=>p.id===editingId).createdAt : Date.now()
+    createdAt: old ? old.createdAt : Date.now()
   };
-  if(editingId){
-    await db.collection('products').doc(editingId).update(data);
-  }else{
-    await db.collection('products').add(data);
-  }
-  resetForm();
+  try{
+    if(editingId){ await db.collection('products').doc(editingId).update(data); toast('💾 تم حفظ التعديل بنجاح','success'); }
+    else{ await db.collection('products').add(data); toast('✅ تمت إضافة المنتج بنجاح','success'); }
+    resetForm();
+  }catch(e){ toast('❌ حدث خطأ — تحقق من قواعد Firestore','error'); }
 }
 function editProduct(id){
-  const p=products.find(x=>x.id===id);
-  document.getElementById('pTitle').value=p.title;
+  const p=products.find(x=>x.id===id); if(!p)return;
+  document.getElementById('pTitle').value=p.title||'';
   document.getElementById('pDesc').value=p.desc||'';
-  document.getElementById('pTab').value=p.tab;
+  document.getElementById('pTab').value=p.tab||'wedding';
   document.getElementById('pPrice').value=p.price??'';
   document.getElementById('pImg').value=p.img||'';
+  document.getElementById('imgPreview').src=p.img||'';
   document.getElementById('pAvail').value=String(p.available);
   editingId=id;
   document.getElementById('saveBtn').textContent='💾 حفظ التعديل';
-  window.scrollTo({top:0,behavior:'smooth'});
+  document.getElementById('adminPanel').scrollTo({top:0,behavior:'smooth'});
 }
 async function deleteProduct(id){
-  if(confirm('هل تريد حذف هذا المنتج نهائياً؟')){
-    await db.collection('products').doc(id).delete();
+  const p=products.find(x=>x.id===id);
+  if(confirm('⚠️ هل تريد حذف «'+(p?p.title:'')+'» نهائياً؟')){
+    try{ await db.collection('products').doc(id).delete(); toast('🗑️ تم الحذف نهائياً','success'); }
+    catch(e){ toast('❌ تعذر الحذف','error'); }
   }
 }
 
-/* ===== قائمة المنتجات داخل اللوحة ===== */
+/* ═══ قائمة الإدارة ═══ */
 function renderAdminList(){
   const el=document.getElementById('adminList');
   el.innerHTML = products.map(p=>`
     <div class="admin-item">
-      <img src="${esc(p.img)||'https://via.placeholder.com/80'}">
+      <img src="${esc(p.img)||'https://via.placeholder.com/80'}" onerror="this.style.opacity=.2">
       <div class="info">
         <b>${esc(p.title)}</b>
-        <small>${p.tab==='wedding'?'أفراح':'مكتبي'} • ${p.price||'—'} ر.س • ${p.available?'متوفر':'غير متوفر'}</small>
+        <small>${p.tab==='wedding'?'🎀 أفراح':'🖨️ مكتبي'} • ${p.price||'—'} ر.س • ${p.available?'✔ متوفر':'✖ غير متوفر'}</small>
       </div>
       <button class="edit" onclick="editProduct('${p.id}')">تعديل</button>
       <button class="del" onclick="deleteProduct('${p.id}')">حذف</button>
     </div>
-  `).join('') || '<div class="empty-msg">لا توجد منتجات بعد</div>';
+  `).join('') || '<div style="text-align:center;color:#aaa;padding:20px 0">لا توجد منتجات بعد — أضف أول منتج 👆</div>';
 }
+
+/* ═══ Toast ═══ */
+let toastTimer;
+function toast(msg,type=''){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.className='show '+type;
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>t.className='',2600);
+}
+
+/* ═══ زر العودة للأعلى ═══ */
+const toTop=document.getElementById('toTop');
+window.addEventListener('scroll',()=>toTop.classList.toggle('show',window.scrollY>400));
+toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
 </script>
 </body>
 </html>
