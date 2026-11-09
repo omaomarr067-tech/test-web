@@ -1,336 +1,901 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مركز الأمجاد للطباعة ومستلزمات الأفراح</title>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-    <style>
-        :root {
-            --primary-wedding: #7A1C1C; /* عنابي للأفراح */
-            --primary-print: #1A365D;    /* كحلي رسمي للطباعة */
-            --accent-gold: #D4AF37;      /* لمسة ذهبية فخمة لشريط العيد */
-            --dark-color: #222;
-            --light-bg: #f4f6f8;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0; padding: 0; background-color: var(--light-bg); color: var(--dark-color);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مركز الأمجاد | شرعب الرونة</title>
+<meta name="description" content="مركز الأمجاد - مستلزمات أفراح وأدوات مكتبية وطباعة - شرعب الرونة، المعشار، مقابل معرض الإخوة">
 
-        /* شريط التبريكات والتهنئة بالعيد */
-        .eid-marquee {
-            background: linear-gradient(90deg, #8a1c1c, #1a365d, #8a1c1c);
-            color: white;
-            white-space: nowrap;
-            overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
-            padding: 10px 0;
-            font-weight: bold;
-            font-size: 11pt;
-            border-bottom: 2px solid var(--accent-gold);
-        }
-        .eid-marquee span {
-            display: inline-block;
-            padding-left: 100%;
-            animation: marquee-speed 25s linear infinite;
-        }
-        @keyframes marquee-speed {
-            0% { transform: translate3d(0, 0, 0); }
-            100% { transform: translate3d(-100%, 0, 0); }
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 
-        header {
-            background: linear-gradient(135deg, var(--primary-wedding), var(--primary-print));
-            color: white; text-align: center; padding: 35px 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-        header h1 { margin: 0; font-size: 24pt; font-weight: bold; }
-        header .sub-title { margin: 8px 0 5px 0; font-size: 13pt; opacity: 0.9; font-weight: 500; }
-        header .address { margin: 5px 0 0 0; font-size: 11pt; opacity: 0.8; font-style: italic; }
-        
-        .tabs-container {
-            display: flex; justify-content: center; background: white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 99;
-        }
-        .tab-btn {
-            padding: 15px 25px; cursor: pointer; font-weight: bold; font-size: 12pt;
-            border: none; background: none; color: #666; border-bottom: 3px solid transparent; transition: all 0.3s;
-        }
-        .tab-btn.active { border-bottom-color: var(--primary-wedding); color: var(--primary-wedding); }
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 
-        .container { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
-        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
-        
-        .product-card {
-            background: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            overflow: hidden; border: 1px solid #eef2f5; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.3s;
-        }
-        .product-card:hover { transform: translateY(-5px); }
-        .product-img { width: 100%; height: 200px; object-fit: cover; background-color: #e9ecef; }
-        .product-info { padding: 15px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
-        .product-title { font-size: 13pt; font-weight: bold; margin: 0 0 5px 0; }
-        .product-desc { font-size: 10.5pt; color: #666; margin-bottom: 10px; line-height: 1.4; }
-        .product-meta-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-        .product-price { color: var(--primary-wedding); font-size: 13pt; font-weight: bold; }
-        .product-qty { background: #e2e8f0; font-size: 9.5pt; padding: 3px 8px; border-radius: 20px; font-weight: bold; }
-        
-        .whatsapp-btn {
-            display: flex; align-items: center; justify-content: center; background-color: #25D366; color: white;
-            text-decoration: none; padding: 10px; border-radius: 8px; font-weight: bold; font-size: 11pt; box-shadow: 0 3px 8px rgba(37, 211, 102, 0.2);
-        }
-        .whatsapp-btn svg { width: 16px; height: 16px; margin-left: 6px; fill: white; }
+<style>
+:root{
+  --maroon:#7b1f3a; --maroon-dark:#521228; --maroon-deep:#3a0c1c;
+  --navy:#0d1b3e; --navy-dark:#070f26; --navy-deep:#040918;
+  --gold:#d4af37; --gold-light:#f3d97a; --gold-dark:#a8842a;
+  --cream:#faf6ee; --radius:16px;
+  --shadow-sm:0 2px 10px rgba(0,0,0,.08);
+  --shadow-md:0 8px 26px rgba(0,0,0,.14);
+  --shadow-lg:0 16px 48px rgba(0,0,0,.22);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Tajawal',Tahoma,sans-serif;
+  background:var(--cream);
+  background-image:radial-gradient(rgba(123,31,58,.05) 1px,transparent 1px);
+  background-size:26px 26px;
+  color:#222;overflow-x:hidden;
+}
 
-        footer { text-align: center; padding: 40px 20px; margin-top: 5px; }
-        .admin-toggle-btn { background: none; border: none; color: #aaa; cursor: pointer; font-size: 10pt; text-decoration: underline; }
-        .admin-toggle-btn:hover { color: #666; }
+/* ═══ شريط الترحيب المتحرك ═══ */
+.welcome-marquee{
+  background:linear-gradient(90deg,var(--maroon-deep),var(--maroon) 35%,#93294a 50%,var(--maroon) 65%,var(--maroon-deep));
+  color:#fff;padding:9px 0;font-size:15px;font-weight:600;
+  border-bottom:1px solid rgba(212,175,55,.35);
+  overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.25);
+}
+.marquee-viewport{direction:ltr;overflow:hidden;width:100%}
+.marquee-track{display:flex;width:max-content;animation:marqueeMove 38s linear infinite}
+.welcome-marquee:hover .marquee-track{animation-play-state:paused}
+.marquee-track .chunk{direction:rtl;display:flex;white-space:nowrap}
+.marquee-track .chunk>*{padding:0 34px}
+.marquee-track .h{color:var(--gold-light);font-weight:800;text-shadow:0 1px 4px rgba(0,0,0,.4)}
+@keyframes marqueeMove{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.marquee-icon{animation:spin 4s linear infinite;display:inline-block;margin-left:6px}
+@keyframes spin{to{transform:rotate(360deg)}}
 
-        .admin-section { display: none; background: white; max-width: 600px; margin: 20px auto; padding: 25px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); border: 2px solid var(--primary-print); }
-        .admin-section h2 { text-align: center; margin-top: 0; color: var(--primary-print); }
-        label { font-weight: bold; display: block; margin-top: 12px; font-size: 11pt; }
-        input, select, textarea { width: 100%; padding: 10px; margin-top: 5px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 6px; }
-        .submit-btn { width: 100%; padding: 12px; background: var(--primary-print); color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 12pt; margin-top: 15px; cursor: pointer; }
-        
-        /* معاينة الرابط المباشر */
-        .image-preview { display: none; width: 100%; height: 150px; object-fit: cover; border-radius: 6px; margin-top: 8px; border: 1px dashed #ccc; }
+/* ═══ شريط العز نت ═══ */
+.alaz-bar{
+  background:linear-gradient(90deg,var(--navy-deep),var(--navy) 40%,#16295c 55%,var(--navy) 70%,var(--navy-deep));
+  color:#fff;display:flex;align-items:center;gap:10px;padding:0 12px;height:44px;
+  border-bottom:1px solid rgba(79,195,247,.25);position:relative;z-index:5;
+}
+.alaz-bar.hidden{display:none}
+.alaz-viewport{direction:ltr;overflow:hidden;flex:1;height:100%;display:flex;align-items:center}
+.alaz-track{display:flex;width:max-content;animation:marqueeMove 26s linear infinite}
+.alaz-track .chunk{direction:rtl;display:flex;white-space:nowrap;font-size:14px;font-weight:500}
+.alaz-track .chunk>*{padding:0 30px}
+.alaz-track b{color:#4fc3f7}
+.alaz-track .cta{color:var(--gold-light);font-weight:700}
+.alaz-close{
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);color:#fff;
+  width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:13px;flex-shrink:0;
+  transition:.25s;display:flex;align-items:center;justify-content:center;line-height:1;
+}
+.alaz-close:hover{background:rgba(255,255,255,.2);transform:rotate(90deg)}
 
-        .admin-list { margin-top: 25px; border-top: 2px dashed #eee; padding-top: 15px; }
-        .admin-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #eee; }
-        .admin-item-info { font-size: 11pt; }
-        .admin-btns { display: flex; gap: 5px; }
-        .edit-btn { background: #FFA500; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 9pt; font-weight: bold; }
-        .delete-btn { background: #D9534F; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 9pt; font-weight: bold; }
-    </style>
+/* ═══ الهيدر ═══ */
+header{
+  position:relative;text-align:center;padding:34px 18px 26px;color:#fff;overflow:hidden;
+  background:linear-gradient(135deg,var(--maroon-deep) 0%,var(--maroon) 38%,#6d1a37 55%,var(--navy-dark) 100%);
+}
+header::before{
+  content:'';position:absolute;inset:0;opacity:.14;
+  background-image:radial-gradient(var(--gold) 1.2px,transparent 1.2px);
+  background-size:22px 22px;
+  -webkit-mask-image:linear-gradient(to bottom,black,transparent 75%);
+          mask-image:linear-gradient(to bottom,black,transparent 75%);
+}
+header::after{
+  content:'';position:absolute;top:-60%;left:-20%;width:40%;height:220%;
+  background:linear-gradient(105deg,transparent,rgba(255,255,255,.09),transparent);
+  transform:rotate(8deg);animation:shine 7s ease-in-out infinite;
+}
+@keyframes shine{0%,100%{left:-30%}50%{left:105%}}
+header>*{position:relative;z-index:2}
+.logo-badge{
+  display:inline-flex;align-items:center;justify-content:center;cursor:pointer;user-select:none;
+  width:76px;height:76px;border-radius:50%;margin-bottom:10px;
+  background:radial-gradient(circle at 30% 25%,#ffe9a8,var(--gold) 60%,var(--gold-dark));
+  box-shadow:0 6px 22px rgba(212,175,55,.45),inset 0 2px 6px rgba(255,255,255,.5);
+  font-size:2rem;animation:floaty 4s ease-in-out infinite;
+}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+header h1{font-size:2.3rem;font-weight:900;letter-spacing:1px;text-shadow:0 3px 10px rgba(0,0,0,.45)}
+header h1 span{
+  background:linear-gradient(120deg,var(--gold-light),var(--gold),var(--gold-light));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.header-line{width:190px;height:3px;margin:10px auto;border-radius:3px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+header .address{
+  display:inline-flex;align-items:center;gap:7px;font-size:.98rem;color:#f3e9d6;
+  background:rgba(255,255,255,.08);backdrop-filter:blur(6px);
+  padding:8px 20px;border-radius:30px;border:1px solid rgba(212,175,55,.3);margin-top:4px;
+}
+.socials{display:flex;justify-content:center;gap:14px;margin-top:18px;flex-wrap:wrap}
+.socials a{
+  display:inline-flex;align-items:center;gap:9px;padding:11px 26px;border-radius:30px;
+  text-decoration:none;font-weight:800;font-size:.95rem;transition:.28s;position:relative;overflow:hidden;
+}
+.socials a::after{
+  content:'';position:absolute;inset:0;background:linear-gradient(105deg,transparent,rgba(255,255,255,.35),transparent);
+  transform:translateX(-120%);transition:.5s;
+}
+.socials a:hover::after{transform:translateX(120%)}
+.socials a:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(0,0,0,.35)}
+.btn-tiktok{background:#000;color:#fff;border:1px solid #3a3a3a}
+.btn-wa{background:linear-gradient(135deg,#2fe071,#1fbe5f);color:#fff}
+
+/* ═══ التبويبات ═══ */
+.tabs{display:flex;justify-content:center;gap:10px;margin:26px 0 4px;flex-wrap:wrap;padding:0 14px;position:sticky;top:0;z-index:50}
+.tabs-inner{
+  background:rgba(255,255,255,.85);backdrop-filter:blur(10px);
+  padding:6px;border-radius:40px;display:flex;gap:6px;box-shadow:var(--shadow-md);
+  border:1px solid rgba(123,31,58,.12);
+}
+.tabs button{
+  padding:12px 28px;border:none;border-radius:30px;cursor:pointer;font-size:.98rem;
+  font-family:inherit;font-weight:800;background:transparent;color:var(--navy);transition:.3s;
+  display:flex;align-items:center;gap:8px;
+}
+.tabs button.active{background:linear-gradient(135deg,var(--maroon),var(--maroon-dark));color:#fff;box-shadow:0 4px 14px rgba(123,31,58,.4)}
+.tabs button:hover:not(.active){background:rgba(123,31,58,.08)}
+.count-pill{text-align:center;margin:14px 0 4px;font-size:.85rem;color:#777;font-weight:600}
+.count-pill b{color:var(--maroon)}
+
+/* ═══ المنتجات ═══ */
+.grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+  gap:22px;max-width:1140px;margin:18px auto 30px;padding:0 18px;
+}
+.card{
+  background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);
+  display:flex;flex-direction:column;transition:.3s;animation:fadeUp .5s ease both;
+  border:1px solid rgba(0,0,0,.05);position:relative;
+}
+.card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.card:hover .card-img img{transform:scale(1.08)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.card-img{height:195px;overflow:hidden;position:relative;
+  background:linear-gradient(135deg,#f3ead6,#faf6ee);
+  display:flex;align-items:center;justify-content:center}
+.card-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.card-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.25),transparent 45%)}
+.card .tab-ribbon{
+  position:absolute;top:12px;right:12px;z-index:2;font-size:.72rem;font-weight:800;
+  padding:4px 12px;border-radius:20px;color:#fff;
+  background:linear-gradient(135deg,var(--navy),#1e3a7a);box-shadow:0 3px 8px rgba(0,0,0,.3);
+}
+.card .tab-ribbon.wed{background:linear-gradient(135deg,var(--maroon),#93294a)}
+.card .body{padding:15px 15px 16px;flex:1;display:flex;flex-direction:column}
+.card h3{color:var(--navy);font-size:1.08rem;font-weight:800;margin-bottom:6px;line-height:1.5}
+.card .desc{font-size:.86rem;color:#777;flex:1;margin-bottom:11px;line-height:1.7}
+.card .meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.card .price{font-size:1.2rem;font-weight:900;color:var(--maroon)}
+.card .price small{color:#999;font-weight:600;font-size:.75rem}
+.badge{font-size:.74rem;padding:4px 12px;border-radius:20px;font-weight:800}
+.badge.available{background:#e3f6e6;color:#1a7a2e;box-shadow:inset 0 0 0 1px #bfe6c6}
+.badge.unavailable{background:#fdeaea;color:#b02a2a;box-shadow:inset 0 0 0 1px #f2c4c4}
+.order-btn{
+  background:linear-gradient(135deg,#2fe071,#1fbe5f);color:#fff;border:none;border-radius:10px;
+  padding:12px;cursor:pointer;font-weight:800;font-size:.95rem;font-family:inherit;
+  transition:.25s;text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;gap:8px;
+  box-shadow:0 4px 12px rgba(37,211,102,.3);
+}
+.order-btn:hover{transform:translateY(-2px);box-shadow:0 7px 18px rgba(37,211,102,.45)}
+.order-btn.off{background:linear-gradient(135deg,#ccc,#aaa);box-shadow:none;pointer-events:none;color:#777}
+.card.unavail .card-img img{filter:grayscale(.9) opacity(.7)}
+.skel{height:330px;border-radius:var(--radius);background:#ececec;position:relative;overflow:hidden}
+.skel::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.65),transparent);
+  animation:skelWave 1.4s infinite}
+@keyframes skelWave{from{transform:translateX(100%)}to{transform:translateX(-100%)}}
+.empty-msg{grid-column:1/-1;text-align:center;color:#aaa;padding:50px 0;font-size:1.05rem}
+
+/* ═══ الفوتر ═══ */
+footer{
+  background:linear-gradient(180deg,var(--navy-deep),#0a1330);
+  color:#c9d3ea;text-align:center;padding:30px 16px 46px;margin-top:40px;position:relative;
+  border-top:3px solid var(--gold);
+}
+footer .foot-logo{font-size:1.6rem;margin-bottom:4px}
+footer .rights{font-size:.92rem;font-weight:600;margin-top:6px}
+footer .rights b{background:linear-gradient(120deg,var(--gold-light),var(--gold));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+footer .sub{font-size:.78rem;color:#6d7ba0;margin-top:6px}
+#secretLock{position:absolute;left:14px;bottom:12px;font-size:15px;cursor:pointer;
+  opacity:.12;transition:.35s;user-select:none}
+#secretLock:hover{opacity:1;transform:scale(1.45) rotate(-10deg)}
+
+/* ═══ نافذة الرمز ═══ */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(4,9,24,.75);backdrop-filter:blur(5px);
+  z-index:1000;align-items:center;justify-content:center;padding:16px}
+.modal-bg.show{display:flex;animation:fadeIn .25s}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal{background:#fff;border-radius:20px;padding:30px 26px;width:100%;max-width:370px;text-align:center;
+  box-shadow:var(--shadow-lg);animation:popIn .3s cubic-bezier(.2,1.4,.4,1)}
+@keyframes popIn{from{opacity:0;transform:scale(.8) translateY(20px)}to{opacity:1;transform:none}}
+.modal .lock-ic{width:64px;height:64px;margin:0 auto 14px;border-radius:50%;font-size:1.7rem;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,var(--maroon),var(--maroon-dark));
+  box-shadow:0 8px 20px rgba(123,31,58,.4);animation:floaty 3s ease-in-out infinite}
+.modal h2{color:var(--navy);margin-bottom:6px;font-size:1.25rem;font-weight:900}
+.modal p{font-size:.83rem;color:#999;margin-bottom:16px}
+.modal .pin-dots{display:flex;gap:8px;justify-content:center;margin-bottom:14px;direction:ltr}
+.modal .pin-dots span{width:12px;height:12px;border-radius:50%;background:#e3e3e3;transition:.2s}
+.modal .pin-dots span.fill{background:var(--maroon);transform:scale(1.25)}
+.modal input{width:100%;padding:13px;border:2px solid #e5e5e5;border-radius:12px;text-align:center;
+  font-size:1.15rem;letter-spacing:3px;font-family:inherit;margin-bottom:8px;transition:.25s}
+.modal input:focus{outline:none;border-color:var(--maroon);box-shadow:0 0 0 4px rgba(123,31,58,.12)}
+.modal input:disabled{background:#f5f5f5;color:#999}
+.modal .err{color:#c0392b;font-size:.84rem;min-height:20px;margin-bottom:8px;font-weight:700}
+.modal .shake{animation:shake .4s}
+@keyframes shake{0%,100%{transform:none}25%{transform:translateX(8px)}50%{transform:translateX(-8px)}75%{transform:translateX(5px)}}
+.modal button{width:100%;padding:13px;border:none;border-radius:12px;cursor:pointer;font-weight:800;
+  font-family:inherit;margin-bottom:9px;font-size:.98rem;transition:.25s}
+.modal .ok{background:linear-gradient(135deg,var(--maroon),var(--maroon-dark));color:#fff}
+.modal .ok:hover{filter:brightness(1.15)}
+.modal .ok:disabled{opacity:.6;cursor:not-allowed}
+.modal .cancel{background:#f0f0f0;color:#444}
+
+/* ═══ لوحة التحكم ═══ */
+#adminPanel{display:none;position:fixed;inset:0;background:rgba(4,9,24,.82);backdrop-filter:blur(6px);
+  z-index:999;overflow-y:auto;padding:24px 14px}
+#adminPanel.show{display:block;animation:fadeIn .25s}
+.admin-box{background:#fff;max-width:620px;margin:20px auto 40px;border-radius:20px;padding:26px 22px;
+  box-shadow:var(--shadow-lg);animation:popIn .35s cubic-bezier(.2,1.4,.4,1)}
+.admin-box h2{color:var(--maroon);margin-bottom:18px;text-align:center;font-weight:900;font-size:1.3rem;
+  display:flex;align-items:center;justify-content:center;gap:8px}
+.admin-box label{display:block;font-size:.84rem;font-weight:800;color:#555;margin:12px 0 5px}
+.admin-box input,.admin-box select,.admin-box textarea{
+  width:100%;padding:11px;border:1.5px solid #ddd;border-radius:10px;font-size:.95rem;
+  font-family:inherit;transition:.2s;background:#fbfbfb}
+.admin-box input:focus,.admin-box select:focus,.admin-box textarea:focus{
+  outline:none;border-color:var(--maroon);background:#fff;box-shadow:0 0 0 3px rgba(123,31,58,.1)}
+.admin-box .row{display:flex;gap:10px}
+.admin-box .row>*{flex:1}
+.upload-zone{
+  border:2px dashed #c9a4b3;border-radius:14px;padding:18px;text-align:center;cursor:pointer;
+  transition:.25s;background:#fdf7f9;position:relative;
+}
+.upload-zone:hover,.upload-zone.drag{background:#faeef3;border-color:var(--maroon)}
+.upload-zone .uz-icon{font-size:1.8rem}
+.upload-zone .uz-text{font-size:.88rem;font-weight:700;color:var(--maroon);margin-top:4px}
+.upload-zone .uz-hint{font-size:.75rem;color:#999;margin-top:3px}
+.upload-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer}
+.img-preview-wrap{display:none;margin-top:10px;text-align:center;position:relative}
+.img-preview-wrap.show{display:block}
+.img-preview-wrap img{max-width:100%;max-height:160px;border-radius:12px;border:1px solid #ddd;box-shadow:var(--shadow-sm)}
+.img-preview-wrap .rm-img{
+  position:absolute;top:8px;left:8px;background:#c0392b;color:#fff;border:none;border-radius:50%;
+  width:30px;height:30px;cursor:pointer;font-size:14px;font-weight:bold;
+}
+.admin-actions{display:flex;gap:10px;margin-top:18px}
+.admin-actions button{flex:1;padding:13px;border:none;border-radius:10px;font-weight:800;cursor:pointer;
+  font-family:inherit;font-size:.95rem;transition:.25s}
+.btn-save{background:linear-gradient(135deg,var(--navy),#1e3a7a);color:#fff}
+.btn-save:hover{filter:brightness(1.2)}
+.btn-save:disabled{opacity:.6;cursor:wait}
+.btn-close-admin{background:#f0f0f0;color:#444}
+.btn-close-admin:hover{background:#e2e2e2}
+.btn-logout{background:linear-gradient(135deg,#c0392b,#96281b)!important;color:#fff}
+.admin-divider{display:flex;align-items:center;gap:12px;margin:26px 0 14px;color:#999;font-size:.85rem;font-weight:700}
+.admin-divider::before,.admin-divider::after{content:'';flex:1;height:1px;background:#e5e5e5}
+.admin-list{display:flex;flex-direction:column;gap:9px;max-height:420px;overflow-y:auto;padding-left:4px}
+.admin-item{display:flex;align-items:center;gap:11px;background:#fafafa;border:1px solid #ececec;
+  border-radius:12px;padding:10px;transition:.2s}
+.admin-item:hover{background:#f3f3f3;border-color:#ddd}
+.admin-item img{width:54px;height:54px;object-fit:cover;border-radius:10px;
+  background:linear-gradient(135deg,#f3ead6,#faf6ee)}
+.admin-item .info{flex:1;min-width:0}
+.admin-item .info b{color:var(--navy);font-size:.95rem}
+.admin-item .info small{display:block;color:#888;font-size:.76rem;margin-top:2px}
+.admin-item button{border:none;border-radius:8px;padding:8px 13px;cursor:pointer;font-family:inherit;font-weight:700;font-size:.82rem;transition:.2s}
+.admin-item .edit{background:var(--navy);color:#fff}
+.admin-item .edit:hover{background:#1e3a7a}
+.admin-item .del{background:#c0392b;color:#fff}
+.admin-item .del:hover{background:#a93226}
+
+/* ═══ Toast ═══ */
+#toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(90px);
+  background:var(--navy-deep);color:#fff;padding:13px 26px;border-radius:40px;z-index:2000;
+  font-weight:700;font-size:.92rem;box-shadow:var(--shadow-lg);opacity:0;transition:.4s cubic-bezier(.2,1.2,.4,1);
+  border:1px solid rgba(212,175,55,.4);pointer-events:none;white-space:nowrap;max-width:92vw;
+  overflow:hidden;text-overflow:ellipsis}
+#toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+#toast.success{border-color:#4caf50}
+#toast.error{border-color:#e53935}
+
+#toTop{position:fixed;bottom:22px;right:20px;width:46px;height:46px;border-radius:50%;border:none;
+  background:linear-gradient(135deg,var(--maroon),var(--maroon-dark));color:#fff;font-size:1.2rem;
+  cursor:pointer;z-index:90;box-shadow:var(--shadow-md);opacity:0;pointer-events:none;transition:.3s}
+#toTop.show{opacity:1;pointer-events:auto}
+#toTop:hover{transform:translateY(-4px)}
+
+@media(max-width:520px){
+  header h1{font-size:1.7rem}
+  .tabs button{padding:11px 16px;font-size:.86rem}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px}
+  .card-img{height:150px}
+  .card h3{font-size:.95rem}
+  .card .price{font-size:1.05rem}
+}
+</style>
 </head>
 <body>
 
-    <div class="eid-marquee">
-        <span>✨ مركز الأمجاد يهنئكم بحلول العيد السعيد.. كل عام وأنتم بخير وعساكم من عواده ✨  |  مستعدون لتلبية جميع طلباتكم بأعلى جودة وأسرع وقت 🎈 🎉  |  أهلاً ومرحباً بكم زبائننا الكرام 💖</span>
+<!-- ═══ شريط الترحيب المتحرك ═══ -->
+<div class="welcome-marquee">
+  <div class="marquee-viewport">
+    <div class="marquee-track">
+      <div class="chunk">
+        <span class="h">🎉 أهلاً وسهلاً بكم في مركز الأمجاد 🎉</span>
+        <span>✨ رفّنا بوجودكم.. وأفراحكم أجمل معنا</span>
+        <span class="h"><span class="marquee-icon">🎊</span> أفخم مستلزمات الأفراح وأرقى الخدمات <span class="marquee-icon">🎊</span></span>
+        <span>💕 مركز الأمجاد.. حيث تبدأ البدايات الجميلة 💕</span>
+      </div>
+      <div class="chunk" aria-hidden="true">
+        <span class="h">🎉 أهلاً وسهلاً بكم في مركز الأمجاد 🎉</span>
+        <span>✨ رفّنا بوجودكم.. وأفراحكم أجمل معنا</span>
+        <span class="h"><span class="marquee-icon">🎊</span> أفخم مستلزمات الأفراح وأرقى الخدمات <span class="marquee-icon">🎊</span></span>
+        <span>💕 مركز الأمجاد.. حيث تبدأ البدايات الجميلة 💕</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ شريط إشعارات العز نت ═══ -->
+<div class="alaz-bar" id="alazBar">
+  <div class="alaz-viewport">
+    <div class="alaz-track">
+      <div class="chunk">
+        <span>📡 <b>شبكة العز نت</b> — باقات إنترنت فائقة السرعة بأسعار منافسة!</span>
+        <span>⚡ سرعة تحميل وتصفح بلا حدود.. للأفراد والعائلات والمكاتب</span>
+        <span class="cta">🌐 اشترك الآن — تواصل واتساب مباشر من الموقع</span>
+        <span>📶 استقرار اتصال على مدار الساعة 24/7</span>
+      </div>
+      <div class="chunk" aria-hidden="true">
+        <span>📡 <b>شبكة العز نت</b> — باقات إنترنت فائقة السرعة بأسعار منافسة!</span>
+        <span>⚡ سرعة تحميل وتصفح بلا حدود.. للأفراد والعائلات والمكاتب</span>
+        <span class="cta">🌐 اشترك الآن — تواصل واتساب مباشر من الموقع</span>
+        <span>📶 استقرار اتصال على مدار الساعة 24/7</span>
+      </div>
+    </div>
+  </div>
+  <button class="alaz-close" id="alazClose" title="إخفاء الإشعار">✕</button>
+</div>
+
+<!-- ═══ الهيدر ═══ -->
+<header>
+  <div class="logo-badge" id="logoBadge">👑</div>
+  <h1>مركز <span>الأمجاد</span></h1>
+  <div class="header-line"></div>
+  <div class="address">شرعب الرونة — المعشار — مقابل معرض الإخوة</div>
+  <div class="socials">
+    <a class="btn-tiktok" href="https://www.tiktok.com/@الحساب" target="_blank" rel="noopener">🎵 تيك توك</a>
+    <a class="btn-wa" id="waMain" href="#" target="_blank" rel="noopener">💬 واتساب مباشر</a>
+  </div>
+</header>
+
+<!-- ═══ التبويبات ═══ -->
+<div class="tabs">
+  <div class="tabs-inner">
+    <button class="active" data-tab="wedding">💍 مستلزمات الأفراح</button>
+    <button data-tab="office">🖨️ الأدوات المكتبية والطباعة</button>
+  </div>
+</div>
+<div class="count-pill" id="countPill"></div>
+
+<!-- ═══ المنتجات ═══ -->
+<div class="grid" id="productsGrid">
+  <div class="skel"></div><div class="skel"></div><div class="skel"></div>
+</div>
+
+<!-- ═══ الفوتر ═══ -->
+<footer>
+  <div class="foot-logo">👑</div>
+  <div class="rights">جميع الحقوق محفوظة © 2026 <b>مركز الأمجاد</b> — شرعب الرونة</div>
+  <div class="sub">تصميم وتطوير حصري • جميع الصور والمنتجات ملكية فكرية للمركز</div>
+  <span id="secretLock" title=".">🔒</span>
+</footer>
+
+<!-- نافذة الرمز السري -->
+<div class="modal-bg" id="pinModal">
+  <div class="modal" id="pinModalBox">
+    <div class="lock-ic">🔐</div>
+    <h2>دخول الإدارة</h2>
+    <p>هذه المنطقة مخصصة لإدارة المركز فقط</p>
+    <div class="pin-dots" id="pinDots"><span></span><span></span><span></span><span></span><span></span></div>
+    <input type="password" id="pinInput" maxlength="5" autocomplete="off" placeholder="•••••">
+    <div class="err" id="pinErr"></div>
+    <button class="ok" id="pinOkBtn" onclick="checkPin()">تسجيل الدخول</button>
+    <button class="cancel" onclick="closePin()">إلغاء</button>
+  </div>
+</div>
+
+<!-- لوحة التحكم -->
+<div id="adminPanel">
+  <div class="admin-box">
+    <h2>⚙️ لوحة التحكم الشاملة</h2>
+    <label>اسم المنتج <span style="color:#c0392b">*</span></label>
+    <input type="text" id="pTitle" placeholder="مثال: طقم كوش أفراح فاخر">
+    <label>الوصف</label>
+    <textarea id="pDesc" rows="2" placeholder="وصف مختصر وجذاب للمنتج"></textarea>
+    <div class="row">
+      <div>
+        <label>القسم</label>
+        <select id="pTab">
+          <option value="wedding">مستلزمات الأفراح</option>
+          <option value="office">الأدوات المكتبية والطباعة</option>
+        </select>
+      </div>
+      <div>
+        <label>السعر (ر.س)</label>
+        <input type="number" id="pPrice" min="0" placeholder="فارغ = السعر عند الطلب">
+      </div>
     </div>
 
-    <header>
-        <h1>مركز الأمجاد</h1>
-        <div class="sub-title">للطباعة ومستلزمات الأفراح والمناسبات</div>
-        <div class="address">📍 العنوان: شرعب الرونة - المعشار - مقابل معرض الإخوة</div>
-    </header>
-
-    <div class="tabs-container">
-        <button class="tab-btn active" onclick="filterCategory('wedding')">قسم مستلزمات الأفراح</button>
-        <button class="tab-btn" onclick="filterCategory('print')">قسم خدمات الطباعة الرقمية</button>
+    <label>📷 صورة المنتج (تُرفع من جهازك وتُحفظ دائم في قاعدة البيانات)</label>
+    <div class="upload-zone" id="uploadZone">
+      <input type="file" id="pFile" accept="image/*">
+      <div class="uz-icon">🖼️</div>
+      <div class="uz-text">اضغط لاختيار صورة أو اسحبها هنا</div>
+      <div class="uz-hint">ضغط تلقائي ذكي — تُحفظ داخل الموقع ولا تختفي أبداً</div>
+    </div>
+    <div class="img-preview-wrap" id="imgPreviewWrap">
+      <img id="imgPreview" alt="معاينة الصورة">
+      <button class="rm-img" onclick="removeImage()" title="إزالة الصورة">✕</button>
     </div>
 
-    <div class="container">
-        <div id="productsContainer" class="products-grid"></div>
+    <div class="row" style="margin-top:12px">
+      <div>
+        <label>التوفر</label>
+        <select id="pAvail">
+          <option value="true">✔ متوفر</option>
+          <option value="false">✖ غير متوفر</option>
+        </select>
+      </div>
+      <div></div>
     </div>
+    <div class="admin-actions">
+      <button class="btn-save" id="saveBtn" onclick="saveProduct()">➕ إضافة المنتج</button>
+      <button class="btn-close-admin" onclick="closeAdmin()">✖ إغلاق</button>
+    </div>
+    <div class="admin-actions">
+      <button class="btn-logout" onclick="adminLogout()">🚪 خروج نهائي (يتطلب الرمز مرة أخرى)</button>
+    </div>
+    <div class="admin-divider">قائمة المنتجات الحالية</div>
+    <div class="admin-list" id="adminList"></div>
+  </div>
+</div>
 
-    <div id="adminSection" class="admin-section">
-        <h2>لوحة إدارة وتعديل متجر مركز الأمجاد</h2>
-        <form id="productForm">
-            <input type="hidden" id="productId">
-            
-            <label>اسم المنتج / الخدمة:</label>
-            <input type="text" id="title" required placeholder="مثال: كروت أفراح فاخرة حفر ليزر">
+<div id="toast"></div>
+<button id="toTop" title="العودة للأعلى">↑</button>
 
-            <label>القسم:</label>
-            <select id="category">
-                <option value="wedding">قسم مستلزمات الأفراح</option>
-                <option value="print">قسم الادوات المكتبيه</option>
-            </select>
+<script>
+/* ═══════════════════════════════════════════
+   الإعدادات — عدّلها قبل الرفع على GitHub
+═══════════════════════════════════════════ */
+const firebaseConfig = {
+  apiKey: "ضع_مفتاحك_هنا",
+  authDomain: "ضع_مشروعك.firebaseapp.com",
+  projectId: "ضع_معرف_مشروعك",
+  storageBucket: "ضع_مشروعك.appspot.com",
+  messagingSenderId: "000000000000",
+  appId: "ضع_appId_هنا"
+};
+const WHATSAPP_NUMBER = "9665XXXXXXXX";
 
-            <label>السعر بالريال:</label>
-            <input type="text" id="price" required placeholder="مثال: 500 ريال أو حسب الكمية">
+/* 🔐 رمز المدير السري */
+const ADMIN_CODE = "77W7@";
 
-            <label>حالة توفر المنتج أو الكمية:</label>
-            <input type="text" id="qty" required placeholder="مثال: متوفر، بالطلب، جاهز خلال يومين، إلخ">
+const SESSION_KEY  = 'amjadAdminSession';
+const LOCK_KEY     = 'amjadLockUntil';
+const MAX_ATTEMPTS = 5;    /* عدد المحاولات قبل القفل */
+const LOCK_MINUTES = 5;    /* مدة القفل بالدقائق */
 
-            <label>وصف وتفاصيل العرض (اختياري):</label>
-            <textarea id="desc" rows="2" placeholder="اكتب تفاصيل ومواصفات هنا..."></textarea>
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
 
-            <label>رابط الصورة المباشر (رابط من جوجل درايف أو أي موقع رفع):</label>
-            <input type="url" id="imageUrl" placeholder="ضع رابط الصورة هنا (https://...)" oninput="previewImageUrl()">
-            <img id="imgPreview" class="image-preview" alt="معاينة الصورة من الرابط">
+let products = [];
+let currentTab = "wedding";
+let editingId = null;
+let pendingImage = null;      /* الصورة الجاهزة للحفظ (Base64) */
+let imageRemoved = false;     /* هل حُذفت الصورة عمداً أثناء التعديل */
+let attempts = 0;
 
-            <input type="hidden" id="phone" value="96773269355">
+/* ═══ صورة بديلة مدمجة بالكود — مستحيل تموت أو تختفي ═══ */
+const PLACEHOLDER = 'data:image/svg+xml;utf8,' + encodeURIComponent(
+  '<svg xmlns="http://www.w3.org/2000/svg" width="500" height="380">'+
+  '<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">'+
+  '<stop offset="0" stop-color="#faf6ee"/><stop offset="1" stop-color="#f0e4d4"/></linearGradient></defs>'+
+  '<rect width="500" height="380" fill="url(#g)"/>'+
+  '<circle cx="250" cy="150" r="52" fill="none" stroke="#d4af37" stroke-width="3"/>'+
+  '<text x="250" y="165" font-size="40" text-anchor="middle">👑</text>'+
+  '<text x="250" y="250" font-size="30" font-weight="bold" fill="#7b1f3a" text-anchor="middle" font-family="Arial">مركز الأمجاد</text>'+
+  '<text x="250" y="290" font-size="17" fill="#a8842a" text-anchor="middle" font-family="Arial">صورة المنتج</text></svg>'
+);
 
-            <button type="submit" id="submitBtn" class="submit-btn">نشر وعرض المنتج فوراً</button>
-        </form>
+/* ═══ شريط العز نت: حفظ حالة الإخفاء ═══ */
+const alazBar = document.getElementById('alazBar');
+if(localStorage.getItem('alazHidden')==='1') alazBar.classList.add('hidden');
+document.getElementById('alazClose').addEventListener('click',()=>{
+  alazBar.classList.add('hidden');
+  localStorage.setItem('alazHidden','1');
+  toast('تم إخفاء الإشعار ✔','success');
+});
 
-        <div class="admin-list">
-            <h3>التحكم السريع (حذف وتعديل البضاعة الحالية)</h3>
-            <div id="adminProductsList"></div>
+/* ═══ رابط واتساب الرئيسي ═══ */
+document.getElementById('waMain').href =
+  `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('مرحباً مركز الأمجاد 🌸\nأرغب بالاستفسار عن خدماتكم')}`;
+
+/* ═══ التبويبات ═══ */
+document.querySelectorAll(".tabs button").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    document.querySelectorAll(".tabs button").forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    currentTab = btn.dataset.tab;
+    renderProducts();
+  });
+});
+
+/* ═══ جلب المنتجات لحظياً من Firestore ═══ */
+db.collection("products").orderBy("createdAt","desc").onSnapshot(snap=>{
+  products = snap.docs.map(d=>({id:d.id, ...d.data()}));
+  renderProducts();
+  renderAdminList();
+}, err=>{
+  console.error('Firestore error:', err);
+  document.getElementById("productsGrid").innerHTML =
+    `<div class="empty-msg">⚠️ تعذر الاتصال بقاعدة البيانات<br>
+    <small style="font-size:.8rem;color:#c0392b">${esc(err.code||err.message||'')}</small><br>
+    <small style="font-size:.78rem;color:#999">تأكد من إعدادات Firebase وإنشاء Firestore بوضع Test mode</small></div>`;
+});
+
+/* مصدر الصورة: المرفوعة (محفوظة دائم) ثم الرابط ثم البديل المدمج */
+function imgSrc(p){
+  return p.imgData || p.img || PLACEHOLDER;
+}
+
+/* ═══ عرض المنتجات ═══ */
+function renderProducts(){
+  const grid = document.getElementById("productsGrid");
+  const list = products.filter(p=>p.tab===currentTab);
+  document.getElementById("countPill").innerHTML =
+    list.length ? `عرض <b>${list.length}</b> منتج في هذا القسم` : '';
+
+  if(!list.length){
+    grid.innerHTML = `<div class="empty-msg">🌸 لا توجد منتجات في هذا القسم حالياً — تابعونا قريباً</div>`;
+    return;
+  }
+  grid.innerHTML = list.map((p,i)=>`
+    <div class="card ${p.available?'':'unavail'}" style="animation-delay:${Math.min(i*70,500)}ms">
+      <div class="card-img">
+        <span class="tab-ribbon ${p.tab==='wedding'?'wed':''}">${p.tab==='wedding'?'أفراح 🎀':'طباعة 🖨️'}</span>
+        <img src="${esc(imgSrc(p))}" alt="${esc(p.title)}" loading="lazy"
+             onerror="this.onerror=null;this.src='${PLACEHOLDER}'">
+      </div>
+      <div class="body">
+        <h3>${esc(p.title)}</h3>
+        <div class="desc">${esc(p.desc)||'—'}</div>
+        <div class="meta">
+          <div class="price">${(p.price!==''&&p.price!=null)?esc(String(p.price))+' <small>ر.س</small>':'<small>السعر عند الطلب</small>'}</div>
+          <span class="badge ${p.available?'available':'unavailable'}">${p.available?'✔ متوفر':'✖ نفدت الكمية'}</span>
         </div>
+        <a class="order-btn ${p.available?'':'off'}"
+           ${p.available?`href="https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('مرحباً مركز الأمجاد 🌸\n👋 أرغب بطلب المنتج التالي:\n📦 '+p.title+(p.price?'\n💰 السعر: '+p.price+' ر.س':''))}" target="_blank" rel="noopener"`:''}>
+          ${p.available?'📲 اطلب عبر الواتساب':'غير متاح حالياً'}
+        </a>
+      </div>
     </div>
+  `).join("");
+}
 
-    <footer>
-        <button class="admin-toggle-btn" onclick="checkAdminPassword()">الدخول للوحة الإدارة 🔒</button>
-    </footer>
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 
-    <script>
-        const firebaseConfig = {
-            databaseURL: "https://al-amjad-center-default-rtdb.firebaseio.com/"
-        };
-        firebase.initializeApp(firebaseConfig);
-        const database = firebase.database();
+/* ═══════════════════════════════════════════
+   🔐 نظام الأمان: رمز مباشر + محاولات + قفل + جلسة دائمة
+═══════════════════════════════════════════ */
+const pinModal  = document.getElementById('pinModal');
+const pinInput  = document.getElementById('pinInput');
+const pinDots   = [...document.querySelectorAll('#pinDots span')];
+const pinErrEl  = document.getElementById('pinErr');
+const pinOkBtn  = document.getElementById('pinOkBtn');
 
-        let currentCategory = 'wedding';
-        const mySecretPassword = "77W7@"; 
+/* فتح اللوحة تلقائياً إذا الجلسة محفوظة (بدون رمز) */
+window.addEventListener('load',()=>{
+  if(localStorage.getItem(SESSION_KEY)==='1'){
+    document.getElementById('adminPanel').classList.add('show');
+  }
+});
 
-        // دالة لمعاينة رابط الصورة عند كتابته أو لصقه
-        function previewImageUrl() {
-            const urlInput = document.getElementById('imageUrl').value;
-            const preview = document.getElementById('imgPreview');
-            
-            if (urlInput.trim() !== "") {
-                preview.src = urlInput;
-                preview.style.display = "block";
-            } else {
-                preview.style.display = "none";
-            }
+document.getElementById('secretLock').addEventListener('click',()=>{
+  if(localStorage.getItem(SESSION_KEY)==='1'){
+    document.getElementById('adminPanel').classList.add('show');
+    toast('مرحباً بعودتك أيها المدير 👑','success');
+    return;
+  }
+  openPinModal();
+});
+
+/* مدخل سري ثاني: نقرتان سريعتان على تاج الشعار */
+let clickTimer=null, clickCount=0;
+document.getElementById('logoBadge').addEventListener('click',()=>{
+  if(localStorage.getItem(SESSION_KEY)==='1'){
+    document.getElementById('adminPanel').classList.add('show');
+    return;
+  }
+  clickCount++;
+  clearTimeout(clickTimer);
+  if(clickCount===1){
+    clickTimer=setTimeout(()=>clickCount=0,600);
+  }else{
+    clickCount=0;
+    openPinModal();
+  }
+});
+
+function openPinModal(){
+  const lockUntil = parseInt(localStorage.getItem(LOCK_KEY)||'0');
+  if(Date.now() < lockUntil){
+    const mins = Math.ceil((lockUntil-Date.now())/60000);
+    pinErrEl.textContent = `⏳ القفل مؤقت — انتظر ${mins} دقيقة ثم أعد المحاولة`;
+    pinInput.disabled = true; pinOkBtn.disabled = true;
+    pinModal.classList.add('show');
+    return;
+  }
+  pinInput.disabled = false; pinOkBtn.disabled = false;
+  pinModal.classList.add('show');
+  pinInput.value=''; pinErrEl.textContent='';
+  updateDots();
+  setTimeout(()=>pinInput.focus(),80);
+}
+
+pinInput.addEventListener('input',updateDots);
+pinInput.addEventListener('keydown',e=>{if(e.key==='Enter')checkPin()});
+function updateDots(){pinDots.forEach((d,i)=>d.classList.toggle('fill',i<pinInput.value.length))}
+function closePin(){pinModal.classList.remove('show')}
+
+function checkPin(){
+  const lockUntil = parseInt(localStorage.getItem(LOCK_KEY)||'0');
+  if(Date.now() < lockUntil){
+    const mins = Math.ceil((lockUntil-Date.now())/60000);
+    pinErrEl.textContent = `⏳ القفل مؤقت — انتظر ${mins} دقيقة ثم أعد المحاولة`;
+    return;
+  }
+
+  if(pinInput.value === ADMIN_CODE){
+    attempts = 0;
+    localStorage.removeItem(LOCK_KEY);
+    closePin();
+    localStorage.setItem(SESSION_KEY,'1');   /* جلسة دائمة على جهازك فقط */
+    document.getElementById('adminPanel').classList.add('show');
+    toast('أهلاً بك أيها المدير 👑','success');
+  }else{
+    attempts++;
+    document.getElementById('pinModalBox').classList.add('shake');
+    setTimeout(()=>document.getElementById('pinModalBox').classList.remove('shake'),450);
+    if(attempts >= MAX_ATTEMPTS){
+      localStorage.setItem(LOCK_KEY, String(Date.now() + LOCK_MINUTES*60000));
+      attempts = 0;
+      pinErrEl.textContent = `🔒 ${MAX_ATTEMPTS} محاولات خاطئة — القفل ${LOCK_MINUTES} دقائق`;
+      pinInput.disabled = true; pinOkBtn.disabled = true;
+    }else{
+      pinErrEl.textContent = `❌ الرمز غير صحيح (محاولة ${attempts} من ${MAX_ATTEMPTS})`;
+    }
+    pinInput.value=''; updateDots();
+  }
+}
+
+function closeAdmin(){
+  document.getElementById('adminPanel').classList.remove('show');
+  resetForm();
+}
+function adminLogout(){
+  if(confirm('تسجيل الخروج؟ سيسألك الموقع عن الرمز السري في المرة القادمة.')){
+    localStorage.removeItem(SESSION_KEY);
+    closeAdmin();
+    toast('تم تسجيل الخروج 🔒','success');
+  }
+}
+pinModal.addEventListener('click',e=>{if(e.target===pinModal)closePin()});
+document.getElementById('adminPanel').addEventListener('click',e=>{
+  if(e.target.id==='adminPanel')closeAdmin();
+});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){closePin();closeAdmin()}
+});
+
+/* ═══════════════════════════════════════════
+   🖼️ رفع الصور: ضغط تكيفي ذكي + تخزين دائم
+   يجرّب مقاسات وجودات متدرجة حتى يبقى الحجم
+   تحت 500KB (حد Firestore الآمن 1MB)
+═══════════════════════════════════════════ */
+const fileInput  = document.getElementById('pFile');
+const uploadZone = document.getElementById('uploadZone');
+
+fileInput.addEventListener('change',e=>{
+  if(e.target.files[0]) handleImageFile(e.target.files[0]);
+});
+['dragover','dragenter'].forEach(ev=>uploadZone.addEventListener(ev,e=>{
+  e.preventDefault(); uploadZone.classList.add('drag');
+}));
+['dragleave','drop'].forEach(ev=>uploadZone.addEventListener(ev,e=>{
+  e.preventDefault(); uploadZone.classList.remove('drag');
+}));
+uploadZone.addEventListener('drop',e=>{
+  if(e.dataTransfer.files[0]) handleImageFile(e.dataTransfer.files[0]);
+});
+
+function handleImageFile(file){
+  if(!file.type.startsWith('image/')){toast('❌ الملف المختار ليس صورة','error');return}
+  toast('⏳ جاري ضغط الصورة بالذكاء...');
+  const reader = new FileReader();
+  reader.onload = e=>{
+    const img = new Image();
+    img.onload = ()=>{
+      const sizes     = [900, 700, 550, 420];
+      const qualities = [0.8, 0.72, 0.65, 0.55];
+      let best = null;
+
+      for(let s=0; s<sizes.length; s++){
+        const MAX = sizes[s];
+        let w = img.width, h = img.height;
+        if(w>MAX || h>MAX){
+          const ratio = Math.min(MAX/w, MAX/h);
+          w = Math.round(w*ratio); h = Math.round(h*ratio);
         }
+        const canvas = document.createElement('canvas');
+        canvas.width=w; canvas.height=h;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle='#fff'; ctx.fillRect(0,0,w,h);
+        ctx.drawImage(img,0,0,w,h);
 
-        function checkAdminPassword() {
-            const adminPanel = document.getElementById('adminSection');
-            if (adminPanel.style.display === "block") {
-                adminPanel.style.display = "none";
-                return;
-            }
-            const pass = prompt("الرجاء إدخال كلمة سر المدير للدخول:");
-            if (pass === mySecretPassword) {
-                adminPanel.style.display = "block";
-                window.scrollTo({ top: adminPanel.offsetTop, behavior: 'smooth' });
-            } else if (pass !== null) {
-                alert("كلمة السر خاطئة! عذراً، هذا القسم مخصص لمدير المركز فقط.");
-            }
-        }
+        const data = canvas.toDataURL('image/jpeg', qualities[s]);
+        const sizeKB = Math.round(data.length*0.75/1024);
+        if(sizeKB <= 500){ best = data; break; }
+        best = data; /* نحتفظ بأصغر نسخة حتى الآن ونكمل التصغير */
+      }
+      pendingImage = best;
+      imageRemoved = false;
+      showPreview(best);
+      const kb = Math.round(best.length*0.75/1024);
+      toast(`✅ الصورة جاهزة (${kb} كيلوبايت) — ستُحفظ دائم`,'success');
+    };
+    img.onerror = ()=>toast('❌ تعذر قراءة الصورة — جرّب صورة أخرى','error');
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+function showPreview(src){
+  document.getElementById('imgPreview').src = src;
+  document.getElementById('imgPreviewWrap').classList.add('show');
+}
+function removeImage(){
+  if(editingId){ imageRemoved = true; }  /* الحذف المتعمد فقط أثناء التعديل */
+  pendingImage = null;
+  document.getElementById('imgPreviewWrap').classList.remove('show');
+  document.getElementById('imgPreview').removeAttribute('src');
+  fileInput.value='';
+}
 
-        function loadProducts() {
-            const container = document.getElementById('productsContainer');
-            database.ref('products').on('value', (snapshot) => {
-                container.innerHTML = '';
-                const data = snapshot.val();
-                let hasProducts = false;
+/* ═══ إضافة / تعديل / حذف ═══ */
+function resetForm(){
+  ['pTitle','pDesc','pPrice'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('pTab').value='wedding';
+  document.getElementById('pAvail').value='true';
+  pendingImage = null;
+  imageRemoved = false;
+  document.getElementById('imgPreviewWrap').classList.remove('show');
+  document.getElementById('imgPreview').removeAttribute('src');
+  fileInput.value='';
+  editingId=null;
+  document.getElementById('saveBtn').textContent='➕ إضافة المنتج';
+  document.getElementById('saveBtn').disabled=false;
+}
 
-                for (let id in data) {
-                    const p = data[id];
-                    if (p.category === currentCategory) {
-                        hasProducts = true;
-                        const whatsappMessage = encodeURIComponent(`السلام عليكم مركز الأمجاد للطباعة والأفراح، أريد الاستفسار عن منتج: ${p.title} - السعر المعروض: ${p.price}`);
-                        const whatsappLink = `https://wa.me/${p.phone || '96773269355'}?text=${whatsappMessage}`;
+async function saveProduct(){
+  const title=document.getElementById('pTitle').value.trim();
+  if(!title){toast('✍️ اكتب اسم المنتج أولاً','error');return}
+  const saveBtn=document.getElementById('saveBtn');
+  saveBtn.disabled=true;
+  saveBtn.textContent='⏳ جاري الحفظ...';
 
-                        container.innerHTML += `
-                            <div class="product-card">
-                                <img src="${p.image || 'https://via.placeholder.com/300x200?text=No+Image'}" class="product-img" alt="${p.title}">
-                                <div class="product-info">
-                                    <div>                                        <div class="product-title">${p.title}</div>
-                                        <div class="product-desc">${p.desc || ''}</div>
-                                    </div>
-                                    <div>
-                                        <div class="product-meta-row">
-                                            <div class="product-price">${p.price}</div>
-                                            <div class="product-qty">${p.qty || 'متوفر'}</div>
-                                        </div>
-                                        <a href="${whatsappLink}" class="whatsapp-btn" target="_blank">
-                                            <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.5-5.754-1.446L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.963C16.528 2.028 14.061.966 11.454.966c-5.443 0-9.874 4.375-9.878 9.802-.001 1.748.463 3.454 1.343 4.967l-.983 3.595 3.711-.966zm12.108-6.11c-.328-.164-1.94-.954-2.242-1.063-.301-.109-.522-.164-.742.164-.219.328-.85 1.063-1.041 1.281-.192.219-.384.246-.712.082-1.399-.699-2.309-1.222-3.114-2.602-.212-.365.212-.34.607-1.127.066-.137.033-.257-.016-.355-.05-.099-.443-1.063-.607-1.457-.159-.384-.334-.333-.459-.34l-.394-.008c-.137 0-.361.051-.548.257-.188.206-.717.7-.717 1.709 0 1.009.734 1.984.836 2.121.102.137 1.444 2.201 3.495 3.086.488.21.87.336 1.167.431.49.155.936.133 1.288.08.393-.058 1.94-.793 2.214-1.523.274-.73.274-1.355.192-1.485-.082-.131-.274-.164-.602-.328z"/></svg>
-                                            اطلب عبر الواتساب
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        `;
-                    }
-                }
-                if (!hasProducts) container.innerHTML = '<p style="text-align:center; width:100%; color:#666;">لا توجد منتجات معروضة حالياً في هذا القسم.</p>';
-            });
-        }
+  const old = editingId ? products.find(p=>p.id===editingId) : null;
+  const data={
+    title,
+    desc:document.getElementById('pDesc').value.trim(),
+    tab:document.getElementById('pTab').value,
+    price:document.getElementById('pPrice').value,
+    available:document.getElementById('pAvail').value==='true',
+    createdAt: old ? old.createdAt : Date.now()
+  };
+  /* منطق الصورة المحكم:
+     - رفعت صورة جديدة؟ => تُحفظ دائم داخل Firestore
+     - تعدّل بدون تغيير الصورة؟ => الصورة القديمة تبقى
+     - ضغطت ✕ على المعاينة أثناء التعديل؟ => تُحذف فعلاً
+  */
+  if(pendingImage){
+    data.imgData = pendingImage;
+  }else if(old && old.imgData && !imageRemoved){
+    data.imgData = old.imgData;
+  }else{
+    data.imgData = '';
+  }
 
-        const productForm = document.getElementById('productForm');
-        const submitBtn = document.getElementById('submitBtn');
-        const productIdInput = document.getElementById('productId');
+  try{
+    if(editingId){
+      await db.collection('products').doc(editingId).update(data);
+      toast('💾 تم حفظ التعديل — الصورة محفوظة دائم ✔','success');
+    }else{
+      await db.collection('products').add(data);
+      toast('✅ تمت إضافة المنتج — الصورة محفوظة دائم ✔','success');
+    }
+    resetForm();
+  }catch(e){
+    console.error(e);
+    let msg = '❌ حدث خطأ أثناء الحفظ';
+    if(e && e.code==='permission-denied') msg='❌ قواعد Firestore تمنع الكتابة — فعّل Test mode';
+    else if(String((e&&e.message)||'').includes('exceeds')) msg='❌ الصورة كبيرة جداً حتى بعد الضغط — جرّب صورة أصغر';
+    toast(msg,'error');
+  }
+  saveBtn.disabled=false;
+  document.getElementById('saveBtn').textContent = editingId ? '💾 حفظ التعديل' : '➕ إضافة المنتج';
+}
 
-        productForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const id = productIdInput.value;
-            const pData = {
-                title: document.getElementById('title').value,
-                category: document.getElementById('category').value,
-                price: document.getElementById('price').value,
-                qty: document.getElementById('qty').value,
-                desc: document.getElementById('desc').value,
-                image: document.getElementById('imageUrl').value, // حفظ رابط الصورة المباشر هنا
-                phone: document.getElementById('phone').value
-            };
+function editProduct(id){
+  const p=products.find(x=>x.id===id); if(!p)return;
+  document.getElementById('pTitle').value=p.title||'';
+  document.getElementById('pDesc').value=p.desc||'';
+  document.getElementById('pTab').value=p.tab||'wedding';
+  document.getElementById('pPrice').value=p.price??'';
+  document.getElementById('pAvail').value=String(p.available);
+  imageRemoved = false;
+  pendingImage = null;
+  if(p.imgData){
+    showPreview(p.imgData);
+  }else{
+    document.getElementById('imgPreviewWrap').classList.remove('show');
+    document.getElementById('imgPreview').removeAttribute('src');
+  }
+  editingId=id;
+  document.getElementById('saveBtn').textContent='💾 حفظ التعديل';
+  document.getElementById('adminPanel').scrollTo({top:0,behavior:'smooth'});
+}
 
-            if (id) {
-                database.ref('products/' + id).set(pData, (err) => { if(!err) { alert('تم التعديل والتحديث للموقع!'); resetForm(); } });
-            } else {
-                database.ref('products').push().set(pData, (err) => { if(!err) { alert('تم النشر بنجاح وظهر للزبائن!'); resetForm(); } });
-            }
-        });
+async function deleteProduct(id){
+  const p=products.find(x=>x.id===id);
+  if(confirm('⚠️ هل تريد حذف «'+(p?p.title:'')+'» نهائياً؟')){
+    try{ await db.collection('products').doc(id).delete(); toast('🗑️ تم الحذف نهائياً','success'); }
+    catch(e){ toast('❌ تعذر الحذف','error'); }
+  }
+}
 
-        database.ref('products').on('value', (snapshot) => {
-            const list = document.getElementById('adminProductsList');
-            list.innerHTML = '';
-            const data = snapshot.val();
-            if(!data) return;
+/* ═══ قائمة الإدارة ═══ */
+function renderAdminList(){
+  const el=document.getElementById('adminList');
+  el.innerHTML = products.map(p=>`
+    <div class="admin-item">
+      <img src="${esc(imgSrc(p))}" onerror="this.onerror=null;this.src='${PLACEHOLDER}'">
+      <div class="info">
+        <b>${esc(p.title)}</b>
+        <small>${p.tab==='wedding'?'🎀 أفراح':'🖨️ مكتبي'} • ${p.price||'—'} ر.س • ${p.available?'✔ متوفر':'✖ غير متوفر'}${p.imgData?' • 🖼️ محفوظة':' • ⚠️ بدون صورة محفوظة'}</small>
+      </div>
+      <button class="edit" onclick="editProduct('${p.id}')">تعديل</button>
+      <button class="del" onclick="deleteProduct('${p.id}')">حذف</button>
+    </div>
+  `).join('') || '<div style="text-align:center;color:#aaa;padding:20px 0">لا توجد منتجات بعد — أضف أول منتج 👆</div>';
+}
 
-            for (let id in data) {
-                const p = data[id];
-                const displayCat = p.category === 'wedding' ? 'مستلزمات أفراح' : 'طباعة رقمية';
-                list.innerHTML += `
-                    <div class="admin-item">
-                        <div class="admin-item-info"><strong>${p.title}</strong> (${p.price}) - <small>${displayCat}</small></div>
-                        <div class="admin-btns">
-                            <button class="edit-btn" onclick="startEdit('${id}','${p.title}','${p.category}','${p.price}','${p.qty}','${p.desc}','${p.image}','${p.phone}')">تعديل</button>
-                            <button class="delete-btn" onclick="deleteProduct('${id}')">حذف</button>
-                        </div>
-                    </div>
-                `;
-            }
-        });
+/* ═══ Toast ═══ */
+let toastTimer;
+function toast(msg,type=''){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.className='show '+type;
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>t.className='',3000);
+}
 
-        function deleteProduct(id) {
-            if (confirm('حذف هذا المنتج نهائياً من العرض؟')) { database.ref('products/' + id).remove(); }
-        }
-
-        function startEdit(id, title, cat, price, qty, desc, img, phone) {
-            productIdInput.value = id;
-            document.getElementById('title').value = title;
-            document.getElementById('category').value = cat;
-            document.getElementById('price').value = price;
-            document.getElementById('qty').value = qty === 'undefined' ? '' : qty;
-            document.getElementById('desc').value = desc === 'undefined' ? '' : desc;
-            
-            const preview = document.getElementById('imgPreview');
-            if (img && img !== 'undefined' && img.trim() !== "") {
-                document.getElementById('imageUrl').value = img;
-                preview.src = img;
-                preview.style.display = "block";
-            } else {
-                document.getElementById('imageUrl').value = "";
-                preview.style.display = "none";
-            }
-            
-            submitBtn.innerText = "تحديث وتعديل المنتج الآن";
-            submitBtn.style.background = "#FFA500";
-            window.scrollTo({ top: document.getElementById('adminSection').offsetTop, behavior: 'smooth' });
-        }
-
-        function resetForm() {
-            productForm.reset(); 
-            productIdInput.value = ''; 
-            document.getElementById('imgPreview').style.display = "none";
-            document.getElementById('phone').value = "96773269355";
-            submitBtn.innerText = "نشر وعرض المنتج فوراً"; 
-            submitBtn.style.background = "var(--primary-print)";
-        }
-
-        function filterCategory(cat) {
-            currentCategory = cat;
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            loadProducts();                                          
-        }
-        window.onload = loadProducts;
-    </script>
+/* ═══ زر العودة للأعلى ═══ */
+const toTop=document.getElementById('toTop');
+window.addEventListener('scroll',()=>toTop.classList.toggle('show',window.scrollY>400));
+toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+</script>
 </body>
 </html>
