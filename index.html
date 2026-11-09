@@ -41,7 +41,7 @@
             100% { transform: translate3d(-100%, 0, 0); }
         }
 
-        /* شريط إشعار شبكة العز نت المتحرك القابل للإغلاق (بالزر X) */
+        /* شريط إشعار شبكة العز نت المتحرك والقابل للإغلاق (بالزر X) */
         .net-banner {
             background: #0f172a;
             color: #38bdf8;
@@ -136,7 +136,7 @@
         }
         .whatsapp-btn svg { width: 16px; height: 16px; margin-left: 6px; fill: white; }
 
-        /* الفوتر وحقوق الملكية وزر القفل الصغير في الركن */
+        /* الفوتر النظيف والمنسق مع زر القفل الصغير في الزاوية */
         footer {
             text-align: center; padding: 30px 20px; margin-top: 40px; background: #fff;
             border-top: 1px solid #e2e8f0; color: #666; font-size: 10pt; position: relative;
@@ -144,7 +144,7 @@
         .secret-lock {
             position: absolute; bottom: 10px; right: 10px;
             background: none; border: none; color: #cbd5e1; cursor: pointer;
-            font-size: 12pt; padding: 5px; opacity: 0.3; transition: 0.3s;
+            font-size: 11pt; padding: 5px; opacity: 0.3; transition: 0.3s;
         }
         .secret-lock:hover { opacity: 1; color: var(--primary-print); }
 
@@ -208,7 +208,7 @@
         <div id="productsContainer" class="products-grid"></div>
     </div>
 
-    <!-- لوحة التحكم الإدارية (محمية بالرمز السري) -->
+    <!-- لوحة التحكم الإدارية (محمية تماماً) -->
     <div id="adminSection" class="admin-section">
         <h2>لوحة إدارة وتعديل متجر مركز الأمجاد</h2>
         <form id="productForm">
@@ -248,7 +248,7 @@
         </div>
     </div>
 
-    <!-- حقوق الملكية وزر القفل الصغير في الركن -->
+    <!-- الفوتر مع حقوق الملكية وزر القفل المخفي في الزاوية السفلى -->
     <footer>
         <div>جميع الحقوق محفوظة © 2026 مركز الأمجاد للطباعة ومستلزمات الأفراح</div>
         <button class="secret-lock" onclick="checkAdminPassword()" title="إدارة">🔒</button>
