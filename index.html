@@ -3,23 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>متجر الخدمات والمنتجات الرقمية الاحترافي</title>
+    <title>متجر الأمجاد للخدمات الرقمية</title>
     <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
     
     <style>
         :root {
-            --primary-color: #2563eb;
-            --primary-hover: #1d4ed8;
-            --accent-color: #7c3aed;
-            --whatsapp-green: #25d366;
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --text-main: #f8fafc;
+            --bg-deep: #090d16;
+            --bg-card: #131b2e;
+            --gold-primary: #d4af37;
+            --gold-light: #f3e5ab;
+            --gold-dark: #aa820a;
+            --accent-blue: #3b82f6;
+            --text-main: #f1f5f9;
             --text-muted: #94a3b8;
-            --border-color: #334155;
+            --border-color: #1e293b;
+            --whatsapp-green: #25d366;
         }
 
         * {
@@ -30,9 +32,9 @@
         }
 
         body {
-            background-color: var(--bg-color);
+            background-color: var(--bg-deep);
             color: var(--text-main);
-            padding: 20px 10px;
+            padding: 20px 15px;
             min-height: 100vh;
         }
 
@@ -41,17 +43,56 @@
             margin: 0 auto;
         }
 
+        /* رأس الصفحة الفخم */
         header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(19, 27, 46, 0.9), rgba(9, 13, 22, 0.9));
+            border-radius: 16px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         header h1 {
-            font-size: 2.2rem;
-            background: linear-gradient(135deg, #60a5fa, #c084fc);
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold-primary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        /* شريط الترحيب التفاعلي (Toast Notification) */
+        #welcomeToast {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            background: linear-gradient(135deg, #131b2e, #1e293b);
+            color: var(--gold-light);
+            padding: 15px 25px;
+            border-radius: 12px;
+            border: 1px solid var(--gold-primary);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: slideIn 0.5s ease, fadeOut 0.5s ease 4.5s forwards;
+            font-weight: bold;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes fadeOut {
+            to { opacity: 0; visibility: hidden; }
         }
 
         /* أدوات التصفية والبحث */
@@ -59,10 +100,10 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
-            margin-bottom: 30px;
-            background: var(--card-bg);
-            padding: 15px;
-            border-radius: 12px;
+            margin-bottom: 35px;
+            background: var(--bg-card);
+            padding: 18px;
+            border-radius: 14px;
             border: 1px solid var(--border-color);
         }
 
@@ -77,82 +118,84 @@
         .search-box {
             position: relative;
             flex-grow: 1;
-            max-width: 400px;
+            max-width: 450px;
         }
 
         .search-box input {
             width: 100%;
-            padding: 12px 16px;
-            background: var(--bg-color);
+            padding: 14px 18px;
+            background: var(--bg-deep);
             border: 1px solid var(--border-color);
-            border-radius: 8px;
+            border-radius: 10px;
             color: var(--text-main);
-            font-size: 0.95rem;
+            font-size: 1rem;
             outline: none;
-            transition: border-color 0.2s;
+            transition: border-color 0.3s;
         }
 
         .search-box input:focus {
-            border-color: var(--primary-color);
+            border-color: var(--gold-primary);
         }
 
         .tabs {
             display: flex;
-            gap: 8px;
+            gap: 10px;
             overflow-x: auto;
         }
 
         .tab-btn {
-            padding: 10px 18px;
+            padding: 12px 20px;
             border: none;
-            background: var(--bg-color);
+            background: var(--bg-deep);
             color: var(--text-muted);
             cursor: pointer;
-            border-radius: 8px;
+            border-radius: 10px;
             font-weight: 600;
             white-space: nowrap;
-            transition: all 0.2s;
+            transition: all 0.3s;
             border: 1px solid var(--border-color);
         }
 
         .tab-btn.active, .tab-btn:hover {
-            background: var(--primary-color);
-            color: white;
-            border-color: var(--primary-color);
+            background: var(--gold-primary);
+            color: var(--bg-deep);
+            border-color: var(--gold-primary);
+            font-weight: 700;
         }
 
         /* شبكة عرض المنتجات */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
+            gap: 25px;
             margin-bottom: 50px;
         }
 
         .product-card {
-            background: var(--card-bg);
-            border-radius: 12px;
+            background: var(--bg-card);
+            border-radius: 14px;
             overflow: hidden;
             border: 1px solid var(--border-color);
             display: flex;
             flex-direction: column;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
         }
 
         .product-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+            border-color: rgba(212, 175, 55, 0.4);
         }
 
         .product-img {
             width: 100%;
             height: 200px;
             object-fit: cover;
-            background: #0f172a;
+            background: var(--bg-deep);
         }
 
         .product-info {
-            padding: 18px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -160,16 +203,17 @@
         }
 
         .product-title {
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             font-weight: 700;
             margin-bottom: 8px;
+            color: var(--gold-light);
         }
 
         .product-desc {
             font-size: 0.9rem;
             color: var(--text-muted);
             margin-bottom: 15px;
-            line-height: 1.4;
+            line-height: 1.5;
         }
 
         .product-meta-row {
@@ -181,14 +225,15 @@
 
         .product-price {
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             color: #34d399;
         }
 
         .product-qty {
             font-size: 0.8rem;
-            background: #334155;
-            padding: 3px 8px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border-color);
+            padding: 4px 10px;
             border-radius: 6px;
             color: #cbd5e1;
         }
@@ -202,7 +247,7 @@
             color: white;
             text-decoration: none;
             padding: 12px;
-            border-radius: 8px;
+            border-radius: 10px;
             font-weight: 700;
             transition: opacity 0.2s;
         }
@@ -217,46 +262,56 @@
             fill: white;
         }
 
-        /* قسم تسجيل الدخول ولوحة التحكم */
+        /* قسم لوحة التحكم المنفصلة برابط `#admin` */
         .admin-section {
-            background: var(--card-bg);
-            padding: 25px;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            margin-top: 50px;
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid var(--gold-primary);
+            margin-top: 60px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
         }
 
         .admin-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             border-bottom: 1px solid var(--border-color);
-            padding-bottom: 10px;
+            padding-bottom: 15px;
         }
 
         .login-box {
             max-width: 400px;
-            margin: 0 auto;
+            margin: 20px auto;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 15px;
+            background: var(--bg-deep);
+            padding: 30px;
+            border-radius: 14px;
+            border: 1px solid var(--border-color);
         }
 
         .admin-form {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
+            gap: 18px;
         }
 
         .admin-form input, .admin-form textarea, .admin-form select, .login-box input {
             width: 100%;
-            padding: 12px;
-            background: var(--bg-color);
+            padding: 14px;
+            background: var(--bg-deep);
             border: 1px solid var(--border-color);
-            border-radius: 8px;
+            border-radius: 10px;
             color: var(--text-main);
             outline: none;
+            font-size: 0.95rem;
+        }
+
+        .admin-form input:focus, .login-box input:focus {
+            border-color: var(--gold-primary);
         }
 
         .admin-form textarea {
@@ -264,126 +319,142 @@
         }
 
         .btn-action {
-            background: var(--primary-color);
-            color: white;
+            background: var(--gold-primary);
+            color: var(--bg-deep);
             border: none;
-            padding: 12px 20px;
-            border-radius: 8px;
+            padding: 14px 20px;
+            border-radius: 10px;
             font-weight: 700;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: 0.3s;
         }
 
         .btn-action:hover {
-            background: var(--primary-hover);
+            background: var(--gold-light);
         }
 
         .btn-danger {
             background: #ef4444;
+            color: white;
         }
         .btn-danger:hover { background: #dc2626; }
 
         .btn-warning {
             background: #f59e0b;
+            color: var(--bg-deep);
         }
         .btn-warning:hover { background: #d97706; }
 
         #imgPreview {
-            max-width: 120px;
-            max-height: 120px;
+            max-width: 130px;
+            max-height: 130px;
             display: none;
-            margin-top: 8px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
+            margin-top: 10px;
+            border-radius: 10px;
+            border: 1px solid var(--gold-primary);
         }
 
         .admin-list {
-            margin-top: 25px;
+            margin-top: 30px;
         }
 
         .admin-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: var(--bg-color);
-            padding: 12px 16px;
+            background: var(--bg-deep);
+            padding: 15px 20px;
             border: 1px solid var(--border-color);
-            margin-bottom: 10px;
-            border-radius: 8px;
+            margin-bottom: 12px;
+            border-radius: 10px;
         }
 
         .admin-btns {
             display: flex;
-            gap: 8px;
+            gap: 10px;
         }
     </style>
 </head>
 <body>
 
+<!-- إشعار الترحيب الفخم -->
+<div id="welcomeToast">
+    <span>✨</span>
+    <div>
+        <div>أهلاً بك في متجر الأمجاد للخدمات الرقمية</div>
+        <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: normal;">تصفح أحدث العروض وتواصل معنا مباشرة عبر الواتساب</div>
+    </div>
+</div>
+
 <div class="container">
     <header>
-        <h1>متجر الخدمات والمنتجات الرقمية</h1>
-        <p style="color: var(--text-muted)">تصفح أفضل العروض والخدمات وتواصل مباشرة عبر الواتساب</p>
+        <h1>متجر الأمجاد للخدمات الرقمية</h1>
+        <p>التميز، الجودة، والحلول الاحترافية المباشرة</p>
     </header>
     
     <!-- أدوات البحث والتصفية -->
     <div class="controls-bar">
         <div class="search-box">
-            <input type="text" id="searchInput" oninput="handleSearch()" placeholder="🔍 ابحث عن منتج بالاسم أو الوصف...">
+            <input type="text" id="searchInput" oninput="handleSearch()" placeholder="🔍 ابحث عن أي خدمة أو منتج بالاسم...">
         </div>
         
         <div class="tabs">
-            <button class="tab-btn active" onclick="filterCategory('all', this)">الكل</button>
+            <button class="tab-btn active" onclick="filterCategory('all', this)">كل الخدمات</button>
             <button class="tab-btn" onclick="filterCategory('print', this)">طباعة رقمية</button>
             <button class="tab-btn" onclick="filterCategory('wedding', this)">مستلزمات أفراح</button>
         </div>
     </div>
 
-    <!-- شبكة عرض المنتجات -->
+    <!-- شبكة عرض المنتجات للزبائن -->
     <div id="productsContainer" class="products-grid">
-        <!-- يتم التعبئة ديناميكياً -->
+        <!-- يتم التعبئة تلقائياً -->
     </div>
 
-    <!-- لوحة التحكم الإدارية (محمية بكلمة مرور) -->
+    <!-- لوحة التحكم الإدارية المنفصلة برابط `#admin` (محمية بالكامل) -->
     <div id="adminSection" class="admin-section">
         
-        <!-- نموذج تسجيل الدخول للمدير (يظهر عندما لا يكون مسجلاً) -->
+        <!-- نموذج تسجيل الدخول للمدير -->
         <div id="authContainer" class="login-box">
-            <h3 style="text-align: center; margin-bottom: 10px;">تسجيل دخول المدير</h3>
-            <input type="email" id="adminEmail" placeholder="البريد الإلكتروني للآدمين">
-            <input type="password" id="adminPassword" placeholder="كلمة المرور">
-            <button class="btn-action" onclick="loginAdmin()">دخول لوحة التحكم</button>
+            <h3 style="text-align: center; color: var(--gold-light); margin-bottom: 5px;">لوحة إدارة الأمجاد</h3>
+            <p style="text-align: center; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">منطقة محمية - يتطلب تسجيل الدخول للتعديل</p>
+            <input type="email" id="adminEmail" placeholder="البريد الإلكتروني للإدارة">
+            <input type="password" id="adminPassword" placeholder="كلمة المرور السرية">
+            <button class="btn-action" onclick="loginAdmin()">تسجيل الدخول للوحة التحكم</button>
         </div>
 
-        <!-- محتوى لوحة التحكم (مخفي افتراضياً حتى يتم تسجيل الدخول) -->
+        <!-- محتوى لوحة التحكم (لا يظهر إلا بعد تسجيل الدخول الناجح) -->
         <div id="adminContent" style="display: none;">
             <div class="admin-header">
-                <h2>إدارة المنتجات والعروض</h2>
-                <button class="btn-action btn-danger" onclick="logoutAdmin()">تسجيل الخروج</button>
+                <h2>إدارة عروض وخدمات المتجر</h2>
+                <button class="btn-action btn-danger" onclick="logoutAdmin()">تسجيل الخروج الآمن</button>
             </div>
 
             <form id="productForm" class="admin-form">
                 <input type="hidden" id="productId">
-                <input type="text" id="title" placeholder="اسم المنتج / الخدمة" required>
+                <input type="text" id="title" placeholder="اسم الخدمة أو المنتج" required>
                 <select id="category" required>
                     <option value="print">طباعة رقمية</option>
                     <option value="wedding">مستلزمات أفراح</option>
                 </select>
                 <input type="text" id="price" placeholder="السعر (مثال: 5000 ريال)" required>
-                <input type="text" id="qty" placeholder="الكمية أو حالة التوفر">
-                <input type="text" id="imageUrl" placeholder="رابط الصورة المباشر" oninput="previewImage(this.value)">
-                <input type="text" id="phone" value="96773269355" placeholder="رقم الواتساب" required>
-                <textarea id="desc" rows="3" placeholder="تفاصيل ووصف المنتج..."></textarea>
+                <input type="text" id="qty" placeholder="حالة التوفر (مثال: متوفر / متاح الآن)">
                 
                 <div style="grid-column: span 2;">
+                    <label style="display: block; margin-bottom: 8px; color: var(--gold-light);">رفع صورة المنتج من الجهاز:</label>
+                    <input type="file" id="imageFile" accept="image/*" onchange="uploadImageToFirebase(this)" style="padding: 10px;">
+                    <input type="hidden" id="imageUrl">
+                    <p id="uploadStatus" style="font-size: 0.85rem; color: var(--gold-light); margin-top: 5px;"></p>
                     <img id="imgPreview" alt="معاينة الصورة">
                 </div>
+
+                <input type="text" id="phone" value="96773269355" placeholder="رقم الواتساب للتواصل" required>
+                <textarea id="desc" rows="3" placeholder="تفاصيل ووصف الخدمة..."></textarea>
                 
-                <button type="submit" id="submitBtn" class="btn-action" style="grid-column: span 2;">نشر وعرض المنتج فوراً</button>
+                <button type="submit" id="submitBtn" class="btn-action" style="grid-column: span 2;">نشر وعرض الخدمة فوراً</button>
             </form>
 
             <div class="admin-list" id="adminProductsList">
-                <!-- قائمة المنتجات للتحكم بها -->
+                <!-- قائمة الإدارة والتحكم بالحذف والتعديل -->
             </div>
         </div>
 
@@ -391,7 +462,7 @@
 </div>
 
 <script>
-    // 1. إعدادات Firebase 
+    // 1. إعدادات Firebase الخاصة بك
     const firebaseConfig = {
         databaseURL: "https://YOUR_FIREBASE_DATABASE_URL.firebaseio.com" // استبدل برابط قاعدة بياناتك الحقيقي
     };
@@ -401,13 +472,13 @@
     }
     const database = firebase.database();
     const auth = firebase.auth();
+    const storage = firebase.storage();
 
-    // متغيرة الحالة العامة
     let allProducts = [];
     let currentCategory = 'all';
     let searchQuery = '';
 
-    // 2. مراقبة حالة تسجيل دخول المدير (Auth State Listener)
+    // 2. نظام حراسة ومراقبة لوحة التحكم (AuthState Listener + رابط `#admin`)
     auth.onAuthStateChanged((user) => {
         const authContainer = document.getElementById('authContainer');
         const adminContent = document.getElementById('adminContent');
@@ -425,15 +496,50 @@
         const email = document.getElementById('adminEmail').value;
         const pass = document.getElementById('adminPassword').value;
         auth.signInWithEmailAndPassword(email, pass)
-            .then(() => alert('تم تسجيل الدخول بنجاح!'))
-            .catch(err => alert('خطأ في تسجيل الدخول: ' + err.message));
+            .then(() => alert('مرحباً بك يا صاحب الأمجاد! تم تسجيل الدخول بنجاح.'))
+            .catch(err => alert('خطأ في بيانات الدخول: ' + err.message));
     }
 
     function logoutAdmin() {
         auth.signOut();
+        alert('تم تسجيل الخروج بأمان.');
     }
 
-    // 3. جلب البيانات وتطبيق البحث والتصنيف المباشر
+    // 3. رفع الصور المباشر إلى Firebase Storage
+    function uploadImageToFirebase(input) {
+        const file = input.files[0];
+        if (!file) return;
+
+        const statusText = document.getElementById('uploadStatus');
+        const preview = document.getElementById('imgPreview');
+        const imageUrlInput = document.getElementById('imageUrl');
+
+        statusText.innerText = "جاري رفع الصورة إلى التخزين الآمن...";
+
+        const storageRef = storage.ref('amjad_products/' + Date.now() + '_' + file.name);
+        const uploadTask = storageRef.put(file);
+
+        uploadTask.on('state_changed', 
+            (snapshot) => {
+                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                statusText.innerText = `جاري الرفع... ${Math.round(progress)}%`;
+            }, 
+            (error) => {
+                console.error(error);
+                statusText.innerText = "فشل الرفع، تأكد من قواعد الأمان (Storage Rules).";
+            }, 
+            () => {
+                uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+                    imageUrlInput.value = downloadURL;
+                    preview.src = downloadURL;
+                    preview.style.display = "block";
+                    statusText.innerText = "تم رفع الصورة بنجاح! ✓";
+                });
+            }
+        );
+    }
+
+    // 4. جلب وعرض البيانات مع البحث والتصفية
     function fetchProductsData() {
         database.ref('products').on('value', (snapshot) => {
             const data = snapshot.val();
@@ -451,7 +557,6 @@
         const container = document.getElementById('productsContainer');
         container.innerHTML = '';
 
-        // تصفية المنتجات بالبحث + التصنيف
         const filtered = allProducts.filter(p => {
             const matchesCat = (currentCategory === 'all' || p.category === currentCategory);
             const titleMatch = (p.title || '').toLowerCase().includes(searchQuery.toLowerCase());
@@ -460,17 +565,17 @@
         });
 
         if (filtered.length === 0) {
-            container.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color: var(--text-muted); padding: 40px 0;">لا توجد منتجات مطابقة لخيارات البحث الحالية.</p>';
+            container.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color: var(--text-muted); padding: 40px 0;">لا توجد خدمات مطابقة لبحثك الحالي.</p>';
             return;
         }
 
         filtered.forEach(p => {
-            const imgSrc = (p.image && p.image !== 'undefined' && p.image.trim() !== '') ? p.image : 'https://via.placeholder.com/300x200?text=No+Image';
+            const imgSrc = (p.image && p.image !== 'undefined' && p.image.trim() !== '') ? p.image : 'https://via.placeholder.com/300x200?text=Amjad+Store';
             const descText = (p.desc && p.desc !== 'undefined') ? p.desc : '';
             const qtyText = (p.qty && p.qty !== 'undefined') ? p.qty : 'متوفر';
             const phoneNum = (p.phone && p.phone !== 'undefined') ? p.phone : '96773269355';
             
-            const whatsappMsg = encodeURIComponent(`مرحباً، أرجو الاستفسار عن المنتج: ${p.title} - السعر: ${p.price}`);
+            const whatsappMsg = encodeURIComponent(`مرحباً متجر الأمجاد، أرجو الاستفسار عن الخدمة: ${p.title} - السعر: ${p.price}`);
             const whatsappLink = `https://wa.me/${phoneNum}?text=${whatsappMsg}`;
 
             container.innerHTML += `
@@ -488,7 +593,7 @@
                             </div>
                             <a href="${whatsappLink}" class="whatsapp-btn" target="_blank">
                                 <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.5-5.754-1.446L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.963C16.528 2.028 14.061.966 11.454.966c-5.443 0-9.874 4.375-9.878 9.802-.001 1.748.463 3.454 1.343 4.967l-.983 3.595 3.711-.966zm12.108-6.11c-.328-.164-1.94-.954-2.242-1.063-.301-.109-.522-.164-.742.164-.219.328-.85 1.063-1.041 1.281-.192.219-.384.246-.712.082-1.399-.699-2.309-1.222-3.114-2.602-.212-.365.212-.34.607-1.127.066-.137.033-.257-.016-.355-.05-.099-.443-1.063-.607-1.457-.159-.384-.334-.333-.459-.34l-.394-.008c-.137 0-.361.051-.548.257-.188.206-.717.7-.717 1.709 0 1.009.734 1.984.836 2.121.102.137 1.444 2.201 3.495 3.086.488.21.87.336 1.167.431.49.155.936.133 1.288.08.393-.058 1.94-.793 2.214-1.523.274-.73.274-1.355.192-1.485-.082-.131-.274-.164-.602-.328z"/></svg>
-                                طلب عبر الواتساب
+                                اطلب عبر الواتساب
                             </a>
                         </div>
                     </div>
@@ -497,7 +602,6 @@
         });
     }
 
-    // التعامل مع شريط البحث والتبويب
     function handleSearch() {
         searchQuery = document.getElementById('searchInput').value;
         renderProducts();
@@ -510,7 +614,7 @@
         renderProducts();
     }
 
-    // 4. العمليات الإدارية (إضافة/تعديل/حذف)
+    // 5. إدارة النشر، التعديل، والحذف (محمي بالكامل)
     const productForm = document.getElementById('productForm');
     const submitBtn = document.getElementById('submitBtn');
     const productIdInput = document.getElementById('productId');
@@ -531,14 +635,14 @@
         if (id) {
             database.ref('products/' + id).set(pData, (err) => {
                 if (!err) {
-                    alert('تم تحديث المنتج بنجاح!');
+                    alert('تم تحديث الخدمة بنجاح!');
                     resetForm();
                 }
             });
         } else {
             database.ref('products').push().set(pData, (err) => {
                 if (!err) {
-                    alert('تم إضافة المنتج بنجاح!');
+                    alert('تم إضافة ونشر الخدمة بنجاح!');
                     resetForm();
                 }
             });
@@ -569,7 +673,7 @@
     }
 
     function deleteProduct(id) {
-        if (confirm('هل أنت متأكد من حذف هذا المنتج؟')) {
+        if (confirm('هل أنت متأكد من حذف هذه الخدمة نهائياً؟')) {
             database.ref('products/' + id).remove();
         }
     }
@@ -584,36 +688,29 @@
         document.getElementById('phone').value = phone;
         
         const decodedImg = (img && img !== 'undefined') ? decodeURIComponent(img) : '';
+        const preview = document.getElementById('imgPreview');
         if (decodedImg.trim() !== "") {
             document.getElementById('imageUrl').value = decodedImg;
-            previewImage(decodedImg);
-        } else {
-            document.getElementById('imageUrl').value = "";
-            document.getElementById('imgPreview').style.display = "none";
-        }
-        
-        submitBtn.innerText = "تحديث التعديلات الآن";
-        submitBtn.style.background = "var(--accent-color)";
-        window.scrollTo({ top: document.getElementById('adminSection').offsetTop, behavior: 'smooth' });
-    }
-
-    function previewImage(url) {
-        const preview = document.getElementById('imgPreview');
-        if (url && url.trim() !== "") {
-            preview.src = url;
+            preview.src = decodedImg;
             preview.style.display = "block";
         } else {
+            document.getElementById('imageUrl').value = "";
             preview.style.display = "none";
         }
+        
+        submitBtn.innerText = "تحديث وتعديل الخدمة الآن";
+        submitBtn.style.background = "var(--gold-light)";
+        window.scrollTo({ top: document.getElementById('adminSection').offsetTop, behavior: 'smooth' });
     }
 
     function resetForm() {
         productForm.reset(); 
         productIdInput.value = ''; 
         document.getElementById('imgPreview').style.display = "none";
+        document.getElementById('uploadStatus').innerText = "";
         document.getElementById('phone').value = "96773269355";
-        submitBtn.innerText = "نشر وعرض المنتج فوراً"; 
-        submitBtn.style.background = "var(--primary-color)";
+        submitBtn.innerText = "نشر وعرض الخدمة فوراً"; 
+        submitBtn.style.background = "var(--gold-primary)";
     }
 
     window.onload = fetchProductsData;
