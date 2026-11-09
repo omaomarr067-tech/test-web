@@ -41,22 +41,33 @@
             100% { transform: translate3d(-100%, 0, 0); }
         }
 
-        /* شريط شبكة العز نت القابل للإغلاق (بواسطة X) */
+        /* شريط إشعار شبكة العز نت المتحرك القابل للإغلاق (بالزر X) */
         .net-banner {
             background: #0f172a;
             color: #38bdf8;
-            padding: 10px 15px;
+            padding: 8px 15px;
             font-size: 10pt;
             font-weight: bold;
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid #334155;
+            overflow: hidden;
+            white-space: nowrap;
         }
-        .net-banner span { color: #facc15; }
+        .net-marquee {
+            display: inline-block;
+            padding-left: 50%;
+            animation: net-marquee-speed 20s linear infinite;
+            color: #facc15;
+        }
+        @keyframes net-marquee-speed {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
         .close-banner {
             background: none; border: none; color: #fff; cursor: pointer; font-size: 12pt; font-weight: bold;
-            padding: 0 5px; opacity: 0.8; transition: 0.2s;
+            padding: 0 5px; opacity: 0.8; transition: 0.2s; z-index: 10;
         }
         .close-banner:hover { opacity: 1; color: #f87171; }
 
@@ -125,7 +136,7 @@
         }
         .whatsapp-btn svg { width: 16px; height: 16px; margin-left: 6px; fill: white; }
 
-        /* الفوتر وحقوق الملكية وزر القفل الصغير جداً في الركن */
+        /* الفوتر وحقوق الملكية وزر القفل الصغير في الركن */
         footer {
             text-align: center; padding: 30px 20px; margin-top: 40px; background: #fff;
             border-top: 1px solid #e2e8f0; color: #666; font-size: 10pt; position: relative;
@@ -137,7 +148,7 @@
         }
         .secret-lock:hover { opacity: 1; color: var(--primary-print); }
 
-        /* لوحة الإدارة المحمية */
+        /* لوحة الإدارة المحمية بالكامل */
         .admin-section { display: none; background: white; max-width: 650px; margin: 20px auto; padding: 25px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); border: 2px solid var(--primary-print); }
         .admin-section h2 { text-align: center; margin-top: 0; color: var(--primary-print); }
         label { font-weight: bold; display: block; margin-top: 12px; font-size: 11pt; }
@@ -161,9 +172,11 @@
         <span>✨ أهلاً ومرحباً بكم زبائننا الكرام في مركز الأمجاد للطباعة ومستلزمات الأفراح ✨  |  نسعد بخدمتكم وتلبية طلباتكم بأعلى جودة وأسرع وقت 🎈 🎉</span>
     </div>
 
-    <!-- شريط إشعار شبكة العز نت القابل للإغلاق بالزر X -->
+    <!-- شريط إشعار شبكة العز نت المتحرك والقابل للإغلاق بالزر X -->
     <div id="netBanner" class="net-banner">
-        <div>🌐 <span>إشعار هام:</span> متوفر لدينا الآن كروت تسديد وباقات شبكة (العز نت) بأسعار منافسة.</div>
+        <div style="width: 100%; overflow: hidden;">
+            <div class="net-marquee">🌐 إشعار هام: متوفر لدينا الآن كروت تسديد وباقات شبكة (العز نت) بأسعار منافسة وسرعة فائقة ⚡</div>
+        </div>
         <button class="close-banner" onclick="closeNetBanner()" title="إغلاق الإشعار">✕</button>
     </div>
 
@@ -195,7 +208,7 @@
         <div id="productsContainer" class="products-grid"></div>
     </div>
 
-    <!-- لوحة التحكم الإدارية (محمية تماماً بالرمز السري) -->
+    <!-- لوحة التحكم الإدارية (محمية بالرمز السري) -->
     <div id="adminSection" class="admin-section">
         <h2>لوحة إدارة وتعديل متجر مركز الأمجاد</h2>
         <form id="productForm">
