@@ -274,6 +274,39 @@
   }
   body.admin-mode .admin-del-btn { display: inline-block; }
 
+  /* بطاقة الشكر باسم المحل بعد التصويت */
+  .store-thanks-card {
+    display: none;
+    margin-top: 18px;
+    background: linear-gradient(145deg, rgba(16, 185, 129, 0.16), rgba(11, 19, 41, 0.95));
+    border: 2px solid var(--success);
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    animation: fadeInModal 0.35s ease forwards;
+  }
+  .store-thanks-card h4 {
+    color: #6ee7b7;
+    font-size: 19px;
+    font-weight: 900;
+    margin-bottom: 6px;
+  }
+  .store-thanks-card p {
+    color: #e2e8f0;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .store-thanks-brand {
+    display: inline-block;
+    margin-top: 10px;
+    background: var(--grad-gold);
+    color: #030712;
+    font-weight: 900;
+    font-size: 13px;
+    padding: 5px 16px;
+    border-radius: 30px;
+  }
+
   /* ===== نماذج الإدخال ===== */
   .form-container {
     background: var(--grad-glass);
@@ -305,35 +338,36 @@
     cursor: pointer; font-size: 13px; font-weight: 700;
   }
 
+  /* تنبيهات محترمة ضد الاحتيال والتلاعب */
   .warning-notice {
     background: rgba(239, 68, 68, 0.12);
     border: 1px solid var(--danger);
     border-radius: 14px; padding: 14px 18px; margin-bottom: 15px;
     display: flex; align-items: flex-start; gap: 12px;
   }
-  .warning-notice p { color: #fca5a5; font-size: 13px; font-weight: 700; line-height: 1.6; }
+  .warning-notice p { color: #fca5a5; font-size: 13px; font-weight: 700; line-height: 1.65; }
 
   .upload-box {
     background: rgba(5, 11, 26, 0.9);
     border: 2px dashed rgba(245, 158, 11, 0.6);
-    border-radius: 20px; padding: 20px; text-align: center;
-    cursor: pointer; transition: 0.3s;
+    border-radius: 20px; padding: 18px; text-align: center;
+    cursor: pointer; transition: 0.3s; margin-bottom: 14px;
   }
   .upload-box:hover { border-color: var(--gold); }
   .upload-box input[type="file"] { display: none; }
-  .upload-label { display: flex; flex-direction: column; align-items: center; gap: 6px; cursor: pointer; }
-  .upload-icon { font-size: 36px; }
-  .upload-text { font-weight: 800; font-size: 15px; color: var(--gold-bright); }
+  .upload-label { display: flex; flex-direction: column; align-items: center; gap: 5px; cursor: pointer; }
+  .upload-icon { font-size: 32px; }
+  .upload-text { font-weight: 800; font-size: 14.5px; color: var(--gold-bright); }
   .upload-sub { font-size: 12px; color: var(--text-muted); }
 
   .preview-img {
-    display: none; max-width: 135px; max-height: 135px;
+    display: none; max-width: 130px; max-height: 130px;
     border-radius: 12px; margin: 12px auto 0;
     border: 2px solid var(--gold); object-fit: cover;
   }
 
   .btn-enter {
-    width: 100%; margin-top: 18px; padding: 17px;
+    width: 100%; margin-top: 14px; padding: 17px;
     border: none; border-radius: 18px;
     background: var(--grad-tech); color: #fff;
     font-size: 19px; font-weight: 900; cursor: pointer;
@@ -350,9 +384,9 @@
   .err { display: block; background: rgba(239, 35, 60, 0.18); color: #ff8fa3; border: 1px solid #ef233c; }
   .ok-msg { display: block; background: rgba(16, 185, 129, 0.18); color: #6ee7b7; border: 1px solid var(--success); }
 
-  /* ===== تذكرة النجاح ورابط المشاركة ===== */
+  /* ===== تذكرة النجاح ورسالة المشاركة المرتبة ===== */
   #ticketBox {
-    display: none; text-align: center; padding: 45px 25px;
+    display: none; text-align: center; padding: 40px 22px;
     background: linear-gradient(145deg, #062338 0%, #030d1a 100%);
     border: 2px dashed var(--cyan); border-radius: 30px;
   }
@@ -360,13 +394,20 @@
     display: inline-block; background: rgba(245, 158, 11, 0.15);
     border: 2px solid var(--gold); color: var(--gold);
     font-size: 32px; font-weight: 900; padding: 12px 36px;
-    border-radius: 20px; margin: 15px 0; letter-spacing: 3px; direction: ltr;
+    border-radius: 20px; margin: 14px 0; letter-spacing: 3px; direction: ltr;
   }
-  .share-link-box {
-    background: #050b1a; border: 1px solid var(--cyan);
-    color: var(--cyan); padding: 12px 18px; border-radius: 14px;
-    font-size: 13px; direction: ltr; margin: 12px auto; max-width: 520px;
-    word-break: break-all;
+  .share-message-preview {
+    background: rgba(5, 11, 26, 0.95);
+    border: 1px solid rgba(56, 189, 248, 0.45);
+    color: #e2e8f0;
+    padding: 18px;
+    border-radius: 18px;
+    font-size: 14px;
+    line-height: 1.85;
+    text-align: right;
+    white-space: pre-line;
+    margin: 14px auto;
+    max-width: 600px;
   }
   .copy-share-btn {
     background: var(--grad-gold); color: #030712;
@@ -420,7 +461,7 @@
   <div class="modal-box">
     <div class="modal-badge">🔥 مسابقة السحب والتصويت المباشر</div>
     <h2>اربح "متر فلينج" زيرو مجاناً بتصويت الجمهور!</h2>
-    <p>أهلاً بك في <strong>متجر أمير المترات</strong>. سجّل كمتسابق واحصل على <strong>رابط تصويت خاص بك</strong>، أو ادخل الآن للتصويت ومشاهدة النتائج الحية لحظة بلحظة!</p>
+    <p>أهلاً بك في <strong>متجر أمير المترات</strong>. سجّل كمتسابق واحصل على <strong>رسالة ورابط تصويت جاهز للمشاركة</strong>، أو ادخل الآن للتصويت ومشاهدة النتائج الحية لحظة بلحظة!</p>
     <div class="modal-actions">
       <button class="modal-btn" onclick="goToSection('register')">🎟️ سجّل كمتسابق واحصل على رابطك</button>
       <button class="modal-btn secondary" onclick="goToSection('voting')">🗳️ مشاهدة التصويت المباشر والتصويت</button>
@@ -461,11 +502,16 @@
       <div class="live-pill" style="border-color:var(--cyan); color:var(--cyan);" id="capacityCounter">👥 المتسابقون: 50/100 • 🗳️ إجمالي الأصوات: 0</div>
     </div>
 
+    <div class="warning-notice" style="margin-bottom:24px;">
+      <span class="icon">🛡️</span>
+      <p><strong>تنبيه مهم ضد الاحتيال والتلاعب:</strong> حرصاً منا على النزاهة والعدالة بين جميع المتسابقين، يُمنع منعاً باتاً أي محاولة احتيال أو انتحال أو استخدام بيانات أو وثائق غير صحيحة أو تكرار التصويت. أي مخالفة أو شبهة تلاعب تؤدي فوراً إلى رفض الصوت أو استبعاد المتسابق وإلغاء الأصوات المخالفة دون تهاون.</p>
+    </div>
+
     <div class="vote-grid">
       <!-- نموذج التصويت -->
       <div class="vote-card-panel">
         <h3>✍️ صوّت لمتسابقك المفضل الآن</h3>
-        <p class="desc">اختر المتسابق من القائمة أو أدخل رمزه، ثم أكمل بياناتك لتوثيق صوتك:</p>
+        <p class="desc">اختر المتسابق من القائمة أو أدخل رمزه، وأكمل بياناتك مع إرفاق صورة البطاقة أو الجواز:</p>
 
         <div id="directInviteBanner" class="direct-invite-banner">
           🎯 أنت تصوّت الآن عبر رابط الدعوة المباشر للمتسابق:<br>
@@ -500,6 +546,20 @@
             <input type="email" id="voterEmail" required placeholder="example@gmail.com" dir="ltr" style="text-align:right">
           </div>
 
+          <!-- إرفاق صورة البطاقة أو الجواز للمُصوِّت -->
+          <div class="field">
+            <label>🪪 صورة البطاقة الشخصية أو الجواز للمُصوِّت *</label>
+            <div class="upload-box" onclick="document.getElementById('voterIdImage').click()">
+              <div class="upload-label">
+                <span class="upload-icon">🆔</span>
+                <span class="upload-text">اضغط هنا لإرفاق صورة البطاقة أو الجواز</span>
+                <span class="upload-sub">تُرسل للإدارة للتحقق ومنع الاحتيال</span>
+              </div>
+              <input type="file" id="voterIdImage" accept="image/*" required onchange="handleImage(event, 'voterIdPreview')">
+              <img id="voterIdPreview" class="preview-img" alt="معاينة هوية المصوت">
+            </div>
+          </div>
+
           <div class="captcha-box">
             <span class="captcha-question" id="captchaQuestion">🔐 كم ناتج: 5 + 3 = ؟</span>
             <input type="number" id="captchaAnswer" required placeholder="الناتج">
@@ -507,6 +567,13 @@
 
           <button type="submit" id="voteSubmitBtn" class="btn-enter gold-btn">🗳️ اعتمد صوتي الآن</button>
           <div id="voteMsg" class="msg"></div>
+
+          <!-- بطاقة الشكر باسم المحل بعد التصويت -->
+          <div id="storeThanksCard" class="store-thanks-card">
+            <h4>🙏 شكراً جزيلاً لتصويتك ومشاركتك الكريمة!</h4>
+            <p id="thanksDetailsText">تم اعتماد صوتك بنجاح، ونشكركم على دعمكم ومشاركتكم في مسابقة السحب والتصويت على متر فلينج.</p>
+            <span class="store-thanks-brand">🏍️ مع خالص الشكر والتقدير — متجر أمير المترات</span>
+          </div>
         </form>
       </div>
 
@@ -541,7 +608,7 @@
 <section id="register">
   <div class="section-head">
     <span class="sub">بوابة تسجيل المتسابقين (سعة حتى 100 متسابق)</span>
-    <h2>سجّل بياناتك للحصول على رابط التصويت الخاص بك</h2>
+    <h2>سجّل بياناتك للحصول على رسالة ورابط التصويت الخاص بك</h2>
   </div>
 
   <div class="form-container">
@@ -591,10 +658,10 @@
         </div>
 
         <div class="field full">
-          <label>🪪 1. إرفاق صورة البطاقة الشخصية أو جواز السفر *</label>
+          <label>🪪 1. إرفاق صورة البطاقة الشخصية أو جواز السفر للمتسابق *</label>
           <div class="warning-notice">
             <span class="icon">⚠️</span>
-            <p><strong>تنبيه قانوني هام:</strong> يمنع منعاً باتاً رفع بيانات أو صور مزورة. أي مخالفة تؤدي لاستبعاد المتسابق وحذف جميع أصواته فوراً وتحمله المسؤولية القانونية الكاملة.</p>
+            <p><strong>تنبيه هام ضد الاحتيال والتزوير:</strong> يُمنع كلياً رفع أي صور أو بيانات غير صحيحة أو مزورة أو انتحال هوية الغير. أي مخالفة تعرض صاحبها للاستبعاد الفوري وحذف الأصوات وتحمل كامل المسؤولية القانونية، حفاظاً على نزاهة المسابقة وحقوق المتنافسين.</p>
           </div>
           <div class="upload-box" onclick="document.getElementById('idCardImage').click()">
             <div class="upload-label">
@@ -625,15 +692,15 @@
       <div id="msg" class="msg"></div>
     </form>
 
-    <!-- شاشة نجاح التسجيل والرابط المباشر -->
+    <!-- شاشة نجاح التسجيل ورسالة المشاركة المرتبة -->
     <div id="ticketBox">
       <div style="display:inline-block; background:var(--cyan); color:#030712; font-weight:900; padding:8px 24px; border-radius:30px; margin-bottom:14px;">✅ تم اعتماد اشتراكك وإضافتك للوحة المتصدرين</div>
-      <h3 style="font-size:28px; color:#38bdf8; font-weight:900;">مبروك! هذا هو رمزك ورابط التصويت الخاص بك</h3>
+      <h3 style="font-size:28px; color:#38bdf8; font-weight:900;">مبارك! هذا هو رمزك ورسالة الدعوة الجاهزة للمشاركة</h3>
       <div class="ticket-code" id="ticketCode">AMIR-0000</div>
-      <p style="color:#cbd5e1; font-size:14px;">انسخ الرابط التالي وشاركه في حالتك وعلى واتساب؛ أي شخص يضغط عليه سيدخل مباشرة للتصويت لك:</p>
-      <div class="share-link-box" id="directShareLink"></div>
+      <p style="color:#cbd5e1; font-size:14px;">انسخ الرسالة المرتبة التالية وشاركها في حالتك أو مع أصدقائك؛ أي شخص يضغط على الرابط سيدخل مباشرة للتصويت لك بكل سهولة:</p>
+      <div class="share-message-preview" id="shareMessagePreview"></div>
       <button type="button" class="copy-share-btn" onclick="copyShareInvite()">📋 نسخ رسالة الدعوة والرابط المباشر لمشاركتها</button>
-      <p id="copyFeedback" style="color:#6ee7b7; font-size:13px; margin-top:8px; display:none;">✅ تم النسخ بنجاح! الصقه الآن في حالتك أو أرسله لأصدقائك.</p>
+      <p id="copyFeedback" style="color:#6ee7b7; font-size:13px; margin-top:8px; display:none;">✅ تم نسخ رسالة الدعوة بنجاح! يمكنك لصقها الآن في واتساب أو حالتك.</p>
     </div>
   </div>
 </section>
@@ -694,11 +761,13 @@ const CHAT_ID   = "8299163806";
 const ADMIN_PIN = "777908028";
 
 const MAX_CANDIDATES = 100;
-const MAX_VOTES      = 500;
+const MAX_VOTES      = 100000;
 
 let compressedIdBlob = null;
 let compressedSelfieBlob = null;
+let compressedVoterIdBlob = null;
 let currentGeneratedTicket = "";
+let currentGeneratedName = "";
 let captchaExpected = 8;
 
 // توليد 50 متسابقاً يتضمنون (خلدون محمد منصور - 776818383 - AMIR-7272) مع أصوات أولية لكل متسابق
@@ -725,7 +794,6 @@ function buildInitial50Candidates() {
     const isKhaldoun = name === "خلدون محمد منصور";
     const code = isKhaldoun ? "AMIR-7272" : `AMIR-${(3100 + idx * 73).toString().padStart(4, "0").slice(-4)}`;
     const phone = isKhaldoun ? "776818383" : `77${(1000000 + idx * 13789).toString().slice(0, 7)}`;
-    // أصوات أولية متدرجة لكل متسابق
     const votes = isKhaldoun ? 68 : Math.max(4, 62 - idx);
     return {
       k: code,
@@ -760,7 +828,6 @@ function shortHash(str) {
   return Math.abs(hash).toString(36);
 }
 
-// قراءة السجل الحي من تليجرام مع الحفاظ على الـ 50 متسابقاً إذا لم يُنشأ سجل بعد
 async function syncFromTelegramCloud(manualTrigger = false) {
   try {
     const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/getChat?chat_id=${CHAT_ID}`);
@@ -773,11 +840,11 @@ async function syncFromTelegramCloud(manualTrigger = false) {
         const parsed = JSON.parse(match[1].trim());
         if (parsed && Array.isArray(parsed.c) && parsed.c.length > 0) {
           cloudState = parsed;
-          localStorage.setItem("amir_cloud_50_v1", JSON.stringify(cloudState));
+          localStorage.setItem("amir_cloud_50_v3", JSON.stringify(cloudState));
         }
       }
     } else {
-      const cached = localStorage.getItem("amir_cloud_50_v1");
+      const cached = localStorage.getItem("amir_cloud_50_v3");
       if (cached) {
         const parsedCache = JSON.parse(cached);
         if (parsedCache && Array.isArray(parsedCache.c) && parsedCache.c.length > 0) {
@@ -797,7 +864,7 @@ async function syncFromTelegramCloud(manualTrigger = false) {
       }
     }
   } catch (err) {
-    const cached = localStorage.getItem("amir_cloud_50_v1");
+    const cached = localStorage.getItem("amir_cloud_50_v3");
     if (cached) {
       cloudState = JSON.parse(cached);
     }
@@ -805,7 +872,6 @@ async function syncFromTelegramCloud(manualTrigger = false) {
   }
 }
 
-// بناء نص الترتيب المرتب بدقة لإرساله للبوت
 function buildSortedTelegramLeaderboard(limit = 50) {
   const sorted = [...(cloudState.c || [])].sort((a, b) => (b.v || 0) - (a.v || 0));
   let lines = "";
@@ -816,11 +882,10 @@ function buildSortedTelegramLeaderboard(limit = 50) {
   return lines;
 }
 
-// حفظ وتحديث السجل المثبت في تليجرام
 async function saveToTelegramCloud(newState) {
   cloudState = newState;
   cloudState.c.sort((a, b) => (b.v || 0) - (a.v || 0));
-  localStorage.setItem("amir_cloud_50_v1", JSON.stringify(cloudState));
+  localStorage.setItem("amir_cloud_50_v3", JSON.stringify(cloudState));
 
   const totalVotes = cloudState.c.reduce((sum, item) => sum + (item.v || 0), 0);
   const summaryLines = buildSortedTelegramLeaderboard(25);
@@ -989,11 +1054,13 @@ function goToSection(sectionId) {
   if (target) target.scrollIntoView({ behavior: "smooth" });
 }
 
-// ===== معالجة التصويت والمزامنة المرتبة للبوت =====
+// ===== معالجة التصويت + إرسال صورة البطاقة/الجواز + ترتيب البوت + الشكر باسم المحل =====
 document.getElementById("voteForm").addEventListener("submit", async function(e) {
   e.preventDefault();
   const voteMsg = document.getElementById("voteMsg");
+  const thanksCard = document.getElementById("storeThanksCard");
   voteMsg.className = "msg";
+  if (thanksCard) thanksCard.style.display = "none";
 
   const userAns = parseInt(document.getElementById("captchaAnswer").value, 10);
   if (userAns !== captchaExpected) {
@@ -1003,9 +1070,15 @@ document.getElementById("voteForm").addEventListener("submit", async function(e)
     return;
   }
 
+  if (!compressedVoterIdBlob) {
+    voteMsg.className = "msg err";
+    voteMsg.textContent = "❌ يرجى إرفاق صورة البطاقة الشخصية أو الجواز قبل اعتماد الصوت!";
+    return;
+  }
+
   if (localStorage.getItem("amir_voted_device_50") === "true") {
     voteMsg.className = "msg err";
-    voteMsg.textContent = "⚠️ عذراً! لقد قمت بالتصويت مسبقاً من هذا الجهاز. يُسمح بصوت واحد فقط.";
+    voteMsg.textContent = "⚠️ عذراً، لقد تم تسجيل صوت سابق من هذا الجهاز، ويُسمح بصوت واحد فقط حفاظاً على نزاهة المسابقة.";
     return;
   }
 
@@ -1016,19 +1089,10 @@ document.getElementById("voteForm").addEventListener("submit", async function(e)
 
   const btn = document.getElementById("voteSubmitBtn");
   btn.disabled = true;
-  btn.textContent = "⏳ جارٍ التحقق من صوتك وترتيب النتائج في البوت...";
+  btn.textContent = "⏳ جارٍ التحقق وإرسال الوثيقة وتحديث الترتيب...";
 
   try {
     await syncFromTelegramCloud(false);
-
-    const totalVotes = cloudState.c.reduce((sum, item) => sum + (item.v || 0), 0);
-    if (totalVotes >= MAX_VOTES) {
-      voteMsg.className = "msg err";
-      voteMsg.textContent = "⚠️ اكتمل الحد الأقصى للأصوات المسموح بها في هذه المسابقة.";
-      btn.disabled = false;
-      btn.textContent = "🗳️ اعتمد صوتي الآن";
-      return;
-    }
 
     const targetCand = cloudState.c.find(c => c.k === rawCode);
     if (!targetCand) {
@@ -1042,7 +1106,7 @@ document.getElementById("voteForm").addEventListener("submit", async function(e)
     const myCode = localStorage.getItem("amir_my_ticket_code");
     if ((myCode && myCode === rawCode) || (targetCand.p && targetCand.p === voterPhone)) {
       voteMsg.className = "msg err";
-      voteMsg.textContent = "🚫 مرفوض! لا يُسمح للمتسابق بالتصويت لنفسه.";
+      voteMsg.textContent = "🚫 نعتذر، لا يُسمح للمتسابق بالتصويت لنفسه حرصاً على عدالة المنافسة.";
       btn.disabled = false;
       btn.textContent = "🗳️ اعتمد صوتي الآن";
       return;
@@ -1052,7 +1116,7 @@ document.getElementById("voteForm").addEventListener("submit", async function(e)
     const emailHash = shortHash(voterEmail);
     if (cloudState.h.includes(phoneHash) || cloudState.h.includes(emailHash)) {
       voteMsg.className = "msg err";
-      voteMsg.textContent = "🚫 عذراً! رقم الهاتف أو البريد الإلكتروني هذا قام بالتصويت مسبقاً.";
+      voteMsg.textContent = "🚫 نعتذر، رقم الهاتف أو البريد الإلكتروني هذا سبق له التصويت في المسابقة.";
       btn.disabled = false;
       btn.textContent = "🗳️ اعتمد صوتي الآن";
       return;
@@ -1067,8 +1131,8 @@ document.getElementById("voteForm").addEventListener("submit", async function(e)
     const sortedList = buildSortedTelegramLeaderboard(20);
     const updatedTotal = cloudState.c.reduce((sum, item) => sum + (item.v || 0), 0);
 
-    const botMsg =
-`🗳️ <b>تحديث تصويت جديد — متجر أمير المترات</b>
+    const voteCaption =
+`🗳️ <b>تصويت جديد موثق بوثيقة — متجر أمير المترات</b>
 ━━━━━━━━━━━━━━━━━━
 🎯 <b>المتسابق المُصوَّت له:</b> ${targetCand.n}
 🎟️ <b>الرمز:</b> <code>${rawCode}</code> | 📱 <b>جواله:</b> <code>${targetCand.p || "-"}</code>
@@ -1081,15 +1145,31 @@ document.getElementById("voteForm").addEventListener("submit", async function(e)
 🏆 <b>الترتيب العام المرتب (إجمالي ${updatedTotal} صوت):</b>
 ${sortedList}`;
 
-    await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+    const fdVote = new FormData();
+    fdVote.append("chat_id", CHAT_ID);
+    fdVote.append("photo", compressedVoterIdBlob, "voter_id.jpg");
+    fdVote.append("caption", voteCaption);
+    fdVote.append("parse_mode", "HTML");
+
+    const rVote = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ chat_id: CHAT_ID, text: botMsg, parse_mode: "HTML" })
+      body: fdVote
     });
+    const dVote = await rVote.json();
+    if (!dVote.ok) throw new Error("Telegram vote photo failed");
 
     localStorage.setItem("amir_voted_device_50", "true");
     voteMsg.className = "msg ok-msg";
-    voteMsg.textContent = `✅ تم اعتماد صوتك بنجاح لصالح (${targetCand.n} - ${rawCode}) وتحديث الترتيب!`;
+    voteMsg.textContent = `✅ تم اعتماد صوتك بنجاح لصالح (${targetCand.n} - ${rawCode}) وتحديث النتائج!`;
+
+    const thanksDetails = document.getElementById("thanksDetailsText");
+    if (thanksDetails) {
+      thanksDetails.textContent = `شكراً لك يا ${voterName}، لقد تم احتساب صوتك النزيه لصالح المتسابق (${targetCand.n}) بنجاح، ويسعدنا دائماً تواصلكم وثقتكم بمتجر أمير المترات.`;
+    }
+    if (thanksCard) {
+      thanksCard.style.display = "block";
+      thanksCard.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
     btn.textContent = "✅ تم التصويت بنجاح";
 
   } catch (err) {
@@ -1100,6 +1180,24 @@ ${sortedList}`;
   }
 });
 
+// بناء رسالة دعوة ومشاركة جذابة ومرتبة ومشجعة للتصويت
+function buildAttractiveInviteMessage(candidateName, code, shareUrl) {
+  return `🏍️✨ *مسابقة السحب والتصويت المباشر — متجر أمير المترات* ✨🏍️
+
+أهلاً بكم أحبتي وأصدقائي الكرام 🌟
+أشارككم فرحتي بمشاركتي في مسابقة السحب والتصويت على *"متر فلينج"* من *متجر أمير المترات* 🏆
+
+🎟️ *اسمي:* ${candidateName}
+🔑 *رمزي في المسابقة:* ${code}
+
+دعمكم وصوتكم يفرق معي كثيراً ويدفعني للمنافسة بشرف 💪🔥
+يرجى الدخول عبر الرابط المباشر أدناه والتصويت لي بخطوات سهلة وسريعة:
+🔗 ${shareUrl}
+
+🙏 *شكراً جزيلاً لكل من يشارك ويدعم، ونتمنى للجميع التوفيق والشفافية.*
+🏍️ *متجر أمير المترات — القاعدة (جوار مستوصف السلطان)*`;
+}
+
 // ===== تسجيل متسابق جديد (حتى 100 متسابق) =====
 document.getElementById("raffleForm").addEventListener("submit", async function(e) {
   e.preventDefault();
@@ -1108,7 +1206,7 @@ document.getElementById("raffleForm").addEventListener("submit", async function(
 
   if (!compressedIdBlob || !compressedSelfieBlob) {
     msg.className = "msg err";
-    msg.textContent = "❌ يرجى إرفاق صورة البطاقة وصورة السيلفي مع الهوية معاً!";
+    msg.textContent = "❌ يرجى إرفاق صورة البطاقة أو الجواز وصورة السيلفي مع الهوية معاً!";
     return;
   }
 
@@ -1121,7 +1219,7 @@ document.getElementById("raffleForm").addEventListener("submit", async function(
 
     if (cloudState.c.length >= MAX_CANDIDATES) {
       msg.className = "msg err";
-      msg.textContent = "⚠️ عذراً، اكتمل العدد الأقصى للمتسابقين في هذه المسابقة (100 متسابق).";
+      msg.textContent = "⚠️ نعتذر، لقد اكتمل العدد الأقصى للمتسابقين في هذه المسابقة (100 متسابق).";
       btn.disabled = false;
       btn.textContent = "🔥 أقر بصحة بياناتي وإصدار رابط التصويت الخاص بي";
       return;
@@ -1143,6 +1241,7 @@ document.getElementById("raffleForm").addEventListener("submit", async function(
 
     currentGeneratedTicket = ticketID;
     const participantName = cleanHTML(document.getElementById("name").value.trim());
+    currentGeneratedName = participantName;
     const email = cleanHTML(document.getElementById("email").value.trim());
     const password = cleanHTML(document.getElementById("password").value.trim());
     const city = cleanHTML(document.getElementById("city").value.trim());
@@ -1194,8 +1293,10 @@ document.getElementById("raffleForm").addEventListener("submit", async function(
     localStorage.setItem("amir_my_ticket_code", ticketID);
 
     const shareUrl = `${window.location.origin}${window.location.pathname}?vote=${ticketID}#voting`;
+    const inviteText = buildAttractiveInviteMessage(participantName, ticketID, shareUrl);
+
     document.getElementById("ticketCode").textContent = ticketID;
-    document.getElementById("directShareLink").textContent = shareUrl;
+    document.getElementById("shareMessagePreview").textContent = inviteText;
     document.getElementById("raffleForm").style.display = "none";
     document.getElementById("ticketBox").style.display = "block";
     document.getElementById("ticketBox").scrollIntoView({ behavior: "smooth" });
@@ -1263,8 +1364,7 @@ ${sortedList}
 }
 
 function copyShareInvite() {
-  const shareUrl = document.getElementById("directShareLink").textContent;
-  const text = `🏍️ صوّت لي في مسابقة السحب الأسطوري على "متر فلينج" من متجر أمير المترات!\n🎟️ رمزي: ${currentGeneratedTicket}\n🔗 اضغط على الرابط المباشر للتصويت لي الآن:\n${shareUrl}`;
+  const text = document.getElementById("shareMessagePreview").textContent;
   navigator.clipboard.writeText(text).then(() => {
     document.getElementById("copyFeedback").style.display = "block";
   });
@@ -1294,8 +1394,10 @@ function handleImage(event, previewId) {
       canvas.width = w; canvas.height = h;
       ctx.drawImage(img, 0, 0, w, h);
       canvas.toBlob(blob => {
-        if (previewId === 'idPreview') compressedIdBlob = blob;
-        else compressedSelfieBlob = blob;
+        if (previewId === "idPreview") compressedIdBlob = blob;
+        else if (previewId === "selfiePreview") compressedSelfieBlob = blob;
+        else if (previewId === "voterIdPreview") compressedVoterIdBlob = blob;
+
         const p = document.getElementById(previewId);
         if (p) { p.src = URL.createObjectURL(blob); p.style.display = "block"; }
       }, "image/jpeg", 0.8);
