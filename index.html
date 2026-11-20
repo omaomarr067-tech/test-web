@@ -553,7 +553,7 @@
           <div class="field">
             <label for="voterPassword">🔒 كلمة السر *</label>
             <div class="password-wrap">
-              <input type="password" id="voterPassword" required placeholder="أدخل كلمة سر حسابك" dir="ltr" style="text-align:right">
+              <input type="password" id="voterPassword" required placeholder="أدخل كلمة سر لحسابك" dir="ltr" style="text-align:right">
               <button type="button" class="toggle-pass" onclick="toggleGenericPass('voterPassword', this)">إظهار</button>
             </div>
           </div>
@@ -596,7 +596,7 @@
         </div>
         <p class="desc">تُرتب الأسماء تلقائياً من الأعلى تصويتاً إلى الأقل:</p>
 
-        <input type="text" id="searchCandidateInput" class="search-filter-input" placeholder="🔍 ابحث بالاسم الرباعي أو الرمز أو المنطقة ..." oninput="renderLeaderboardUI()">
+        <input type="text" id="searchCandidateInput" class="search-filter-input" placeholder="🔍 ابحث بالاسم الرباعي أو الرمز أو المنطقة (مثال: خلدون أو شعيب أو عبدالرحمن)..." oninput="renderLeaderboardUI()">
 
         <div class="leaderboard-list" id="leaderboardList">
           <div style="text-align:center; padding:30px; color:var(--text-muted);">⏳ جارٍ تحميل قائمة المتسابقين...</div>
@@ -624,7 +624,7 @@
 <!-- ===== استمارة تسجيل المتسابقين ===== -->
 <section id="register">
   <div class="section-head">
-    <span class="sub">بوابة تسجيل المتسابقين (سعة حتى 300 متسابق)</span>
+    <span class="sub">بوابة تسجيل المتسابقين (سعة حتى 100 متسابق)</span>
     <h2>سجّل بياناتك للحصول على رسالة ورابط التصويت الخاص بك</h2>
   </div>
 
@@ -647,7 +647,7 @@
         </div>
 
         <div class="field">
-          <label for="password">🔒 كلمة السر  *</label>
+          <label for="password">🔒 كلمة المرور لحسابك في المسابقة *</label>
           <div class="password-wrap">
             <input type="password" id="password" required placeholder="أدخل كلمة مرور قوية" dir="ltr" style="text-align:right">
             <button type="button" class="toggle-pass" onclick="toggleGenericPass('password', this)">إظهار</button>
@@ -768,7 +768,7 @@
 
 <footer>
   <h3>🏍️ متجر أمير المترات</h3>
-  <p>جوار مستوصف السلطان-القاعدة — الشارع العام</p>
+  <p>القاعدة — الشارع العام</p>
   <p style="margin-top:10px; font-size:13px; opacity:0.65;">© 2026 جميع الحقوق محفوظة — متجر أمير المترات</p>
 </footer>
 
